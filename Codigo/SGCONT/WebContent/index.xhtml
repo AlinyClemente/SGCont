@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+</h:head>
+<h:body>
+<f:view>
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+		    <p:layoutUnit position="north" size="100" >  
+		        <h:outputText value="Aqui fica a logo..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="south" size="60" >  
+		        <h:outputText value="Rodapé com a versão/direitos autorais/etc..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="west" size="200">  
+		        <p:panelMenu style="width:200px">  
+			        <p:submenu label="Cadastro">  
+			            <p:menuitem value="Inserir Cliente" actionListener="#{LoginBean.login}" icon="ui-icon-disk" />  
+			            <p:menuitem value="Manter Cliente" actionListener="#{LoginBean.login}"  icon="ui-icon-arrowrefresh-1-w" />  
+			        </p:submenu>    
+			        <p:submenu label="Agenda">  
+			            <p:menuitem value="Gerenciar Agenda" actionListener="#{LoginBean.login}" icon="ui-icon-disk" />  
+			        </p:submenu>
+			    </p:panelMenu>
+		    </p:layoutUnit>  
+		  
+		  <!-- 
+		    <p:layoutUnit position="east" size="200" effect="drop">  
+		        <h:outputText value="Right unit content." />  
+		    </p:layoutUnit>  
+		   -->
+		    <p:layoutUnit position="center">  
+		        <h:form>  
+		            Conteúdo...  
+		  
+		        </h:form>  
+		    </p:layoutUnit>  
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>
+

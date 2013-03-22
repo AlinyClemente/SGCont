@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/hibernate-configuration"  
+   		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+		xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-configuration classpath://org/hibernate/hibernate-configuration-4.0.xsd">
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://192.168.64.220:5432/sgcont</property>
+		<property name="hibernate.connection.username">sgcont</property>
+		<property name="hibernate.connection.password">sg$cont</property>
+		<property name="hibernate.connection.pool_size">10</property>
+		<property name="show_sql">true</property>
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<mapping class="com.sgcont.dados.Usuario"></mapping>
+		
+	</session-factory>
+</hibernate-configuration>
