@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:login.jsp" PATH="login.jsp" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:login.jsp:0" NAME="item" PATH="login.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="OK::index.jsp" NAME="output"
+    PATH="index.jsp" TARGET="rules:index.jsp" TITLE="OK" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="MAX_LOGIN_EXCED::attemptExced.jsp"
+    NAME="output1" PATH="attemptExced.jsp"
+    TARGET="rules:attemptExced.jsp" TITLE="MAX_LOGIN_EXCED" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:index.jsp" PATH="index.jsp"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:attemptExced.jsp" PATH="attemptExced.jsp"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
