@@ -2,8 +2,7 @@ package com.sgcont.conexao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.metamodel.Metadata;
-import org.hibernate.metamodel.MetadataSources;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
@@ -12,25 +11,24 @@ import com.sgcont.dados.Usuario;
 public class HibernateUtil {
 	
 	private static final SessionFactory sessionFactory;
-	private static final Session session;
 	
 	static {
-//		sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-	    .configure().buildServiceRegistry();
-		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-		metadataSources.addAnnotatedClass(Usuario.class);
-		Metadata metadata = metadataSources.buildMetadata();
-		sessionFactory = metadata.buildSessionFactory();
-		session = sessionFactory.getCurrentSession();
-	}
-	
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
+		Configuration configuration = new Configuration();
+		
+		//Classes das entidades
+		configuration
+			.addAnnotatedClass(Usuario.class);
+		
+	    configuration.configure();
+	    ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());
+		ServiceRegistry serviceRegistry = serviceRegistryBuilder.buildServiceRegistry();	    
+		
+	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}
 	
 	public static Session getSession() {
-		return session;
+		Session session = sessionFactory.openSession();
+  		return session;
 	}
 
 }
