@@ -1,4 +1,4 @@
-package com.sgcont.conexao;
+package com.sgcont.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
