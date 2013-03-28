@@ -2,21 +2,35 @@ package com.sgcont.repositorio;
 
 import org.hibernate.Session;
 
-import com.sgcont.conexao.HibernateUtil;
 import com.sgcont.dados.Usuario;
+import com.sgcont.util.HibernateUtil;
 
-public class Repositorio implements IRepositorio {
+/**
+ * Repositório responsável pelas consultas do módulo de cadastro
+ * */
+public class RepositorioCadastro implements IRepositorioCadastro {
 
-	private static IRepositorio instance;
+	private static IRepositorioCadastro instance;
 
-	public static IRepositorio getInstancia() {
+	public static IRepositorioCadastro getInstancia() {
 		if (instance == null) {
-			instance = new Repositorio();
+			instance = new RepositorioCadastro();
 		}
 		return instance;
 	}
 
-
+	/**
+	 * [UC010] Efetuar Login
+	 * 
+	 * Método responsável pesquisar um usuário a partir do login e da senha
+	 * 
+	 * @author Mariana Victor
+	 * @since 21/03/2013
+	 * 
+	 * @param login
+	 * @param senha
+	 * @return Usuario
+	 * */
 	public Usuario pesquisarUsuario(String login, String senha) {
 		
 		Session session = HibernateUtil.getSession();
