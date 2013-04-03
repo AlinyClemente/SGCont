@@ -1,5 +1,7 @@
 package com.sgcont.dados;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,26 +10,52 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "cadastro.usuario")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id", nullable=false)
-	private Integer id;
+	@Column(name="cdusuario", nullable=false)
+	private Integer codigo;
 	
-	@Column
+	@Column(name="nmusuario", nullable=false, length=50)
+	private String nome;
+	
+	@Column(name="login", nullable=false, length=50)
 	private String login;
 
-	@Column
+	@Column(name="senha", nullable=false, length=10)
 	private String senha;
+	
+	@Column(name="nncpf", nullable=false, length=20)
+	private String cpf;
+	
+	@Column(name="nntelefone", nullable=false, length=20)
+	private String telefone;
+	
+	@Column(name="email", nullable=false, length=30)
+	private String email;
+	
+	@Column(name="icuso", nullable=false)
+	private Short indicadorUso;
+	
+	@Column(name="tmultimaalteracao", nullable=false)
+	private Date ultimaAlteracao;
 
-	public Integer getId() {
-		return id;
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getLogin() {
@@ -44,6 +72,46 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Short getIndicadorUso() {
+		return indicadorUso;
+	}
+
+	public void setIndicadorUso(Short indicadorUso) {
+		this.indicadorUso = indicadorUso;
+	}
+
+	public Date getUltimaAlteracao() {
+		return ultimaAlteracao;
+	}
+
+	public void setUltimaAlteracao(Date ultimaAlteracao) {
+		this.ultimaAlteracao = ultimaAlteracao;
 	}
 	
 }
