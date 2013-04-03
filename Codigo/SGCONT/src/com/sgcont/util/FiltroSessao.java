@@ -41,7 +41,7 @@ public class FiltroSessao implements Filter{
         HttpSession session = req.getSession(false);         
         if(session != null){  
             Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");          
-            if(usuario != null && usuario.getId() != null){                  
+            if(usuario != null && usuario.getCodigo() != null){                  
                 retorno = true;  
             }              
         }  
