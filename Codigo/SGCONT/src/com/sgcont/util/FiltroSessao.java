@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 
 public class FiltroSessao implements Filter{  
   

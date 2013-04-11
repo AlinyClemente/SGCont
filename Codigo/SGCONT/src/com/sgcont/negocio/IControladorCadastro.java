@@ -1,6 +1,6 @@
 package com.sgcont.negocio;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 
 /**
  * Interface do controlador responsável pelas regras de negócio do módulo de cadastro
