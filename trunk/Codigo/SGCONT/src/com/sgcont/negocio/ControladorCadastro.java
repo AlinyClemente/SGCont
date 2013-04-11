@@ -1,6 +1,6 @@
 package com.sgcont.negocio;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
 import com.sgcont.repositorio.RepositorioCadastro;

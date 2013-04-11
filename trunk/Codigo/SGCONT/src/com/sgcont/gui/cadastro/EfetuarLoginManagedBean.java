@@ -1,4 +1,4 @@
-package com.sgcont.gui;
+package com.sgcont.gui.cadastro;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.fachada.Fachada;
 
 /**

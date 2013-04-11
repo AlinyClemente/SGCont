@@ -2,7 +2,7 @@ package com.sgcont.repositorio;
 
 import org.hibernate.Session;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.util.HibernateUtil;
 
 /**

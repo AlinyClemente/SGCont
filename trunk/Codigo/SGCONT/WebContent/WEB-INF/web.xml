@@ -14,7 +14,7 @@
     <welcome-file>login.xhtml</welcome-file>
   </welcome-file-list>
   <session-config>
-    <session-timeout>1</session-timeout>
+    <session-timeout>10</session-timeout>
   </session-config>
   <filter>
     <filter-name>Login Filter</filter-name>
@@ -27,5 +27,6 @@
   <context-param>    
        <param-name>primefaces.THEME</param-name>    
        <param-value>redmond</param-value>    
-   </context-param> 
+   </context-param>
+    
 </web-app>

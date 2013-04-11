@@ -1,6 +1,6 @@
 package com.sgcont.repositorio;
 
-import com.sgcont.dados.Usuario;
+import com.sgcont.dados.cadastro.Usuario;
 
 /**
  * Interface do repositório responsável pelas consultas do módulo de cadastro

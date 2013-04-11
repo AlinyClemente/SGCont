@@ -1,4 +1,4 @@
-package com.sgcont.dados;
+package com.sgcont.dados.cadastro;
 
 import java.util.Date;
 
