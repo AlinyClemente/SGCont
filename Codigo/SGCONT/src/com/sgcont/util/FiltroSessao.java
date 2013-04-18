@@ -25,7 +25,7 @@ public class FiltroSessao implements Filter{
      
         if( !this.authorize( (HttpServletRequest)req ) ){  
         	
-            response.sendRedirect(request.getContextPath() + "/sessao_expirada.xhtml");
+            response.sendRedirect(request.getContextPath() + "/jsf/sessao_expirada.xhtml");
             
         }else{  
             chain.doFilter(request, response);

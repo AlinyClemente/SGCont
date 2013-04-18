@@ -5,20 +5,23 @@
  xmlns:h="http://java.sun.com/jsf/html"
  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>SGCONT - Sessão Expirada</title>
+	<title>SGCONT - Erro</title>
 </h:head>
 <h:body>
 <f:view>
 	<h:form id="form">  
-	    <p:panel header="Sessão Expirada">
+	    <p:panel header="Erro de Sistema - #{flash.keep.dataHoraAtual}">
 	    	<h:panelGrid columns="1" cellpadding="5">
-	    		<h:outputLabel for="login" value="Sessão Expirada!" 
+	    		<h:outputLabel value="Ocorreu um erro no sistema. Por favor, entrar em contato com a operação." 
 	    			style="font-weight:bold"/>
-	    			
+	    		
+	    		<h:outputLabel value="Causa do erro: #{flash.keep.mensagemExcecao}"/>	
+	    		
 	    		<p:commandLink id="efetuarLogin" action="login" ajax="false">
         				<h:outputText value="Efetuar Login" />   
 			    </p:commandLink>
-			</h:panelGrid>
+			    
+	    	</h:panelGrid>
 	    </p:panel>
 	</h:form>
 </f:view>
