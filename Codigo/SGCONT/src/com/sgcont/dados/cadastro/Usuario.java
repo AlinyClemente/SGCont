@@ -28,10 +28,10 @@ public class Usuario {
 	private String senha;
 	
 	@Column(name="nncpf", nullable=false, length=20)
-	private String cpf;
+	private String numeroCpf;
 	
 	@Column(name="nntelefone", nullable=false, length=20)
-	private String telefone;
+	private String numeroTelefone;
 	
 	@Column(name="email", nullable=false, length=30)
 	private String email;
@@ -74,20 +74,20 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getNumeroCpf() {
+		return numeroCpf;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setNumeroCpf(String numeroCpf) {
+		this.numeroCpf = numeroCpf;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getNumeroTelefone() {
+		return numeroTelefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setNumeroTelefone(String numeroTelefone) {
+		this.numeroTelefone = numeroTelefone;
 	}
 
 	public String getEmail() {

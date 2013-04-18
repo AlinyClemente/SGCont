@@ -1,8 +1,6 @@
 package com.sgcont.gui.cadastro;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -27,8 +25,6 @@ public class EfetuarLoginManagedBean implements Serializable {
 
 	private Usuario usuario;
 	
-	private String resposta;
-	
 	public EfetuarLoginManagedBean() {
 		usuario = new Usuario();
 	}
@@ -41,14 +37,6 @@ public class EfetuarLoginManagedBean implements Serializable {
 		this.usuario = usuario;
 	}
 	
-	public String getResposta() {
-		return resposta;
-	}
-
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
-	}
-	
 	/**
 	 * [UC010] Efetuar Login
 	 * 
@@ -57,40 +45,28 @@ public class EfetuarLoginManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 21/03/2013
 	 * */
-	public void login() {
+	public String login() {
 		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		
-		Map<String,String> parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-
-		if (parametros.get("sessaoEspirada") != null
-				&& parametros.get("sessaoEspirada").toString().trim().equalsIgnoreCase("sim")) {
+		Fachada fachada = Fachada.getInstance();
+		Usuario usuarioBase = fachada.pesquisarUsuario(usuario.getLogin(), usuario.getSenha());
+		
+		if(usuarioBase != null
+				&& usuarioBase.getCodigo() != null) {
 			
-			FacesContext.getCurrentInstance().addMessage(
-					null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atenção", "Sessão Expirada!"));
+			session.setAttribute("usuarioLogado", usuarioBase);
+			
+			return "paginaInicial";
 			
 		} else {
-		
-			Fachada fachada = Fachada.getInstance();
-			Usuario usuarioBase = fachada.pesquisarUsuario(usuario.getLogin(), usuario.getSenha());
-			
-			if(usuarioBase != null
-					&& usuarioBase.getCodigo() != null) {
-				
-				session.setAttribute("usuarioLogado", usuarioBase);
-				
-				try {
-					FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-			} else {
-				FacesContext.getCurrentInstance().addMessage(
-						null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Atenção", "Usuário e/ou senha incorretos!"));
-			}
-			
+
+			FacesContext.getCurrentInstance().addMessage(
+					null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Atenção", "Login/Senha inválido."));
 		}
+			
+		
+		return "";
 		
 	}
 	
