@@ -22,11 +22,11 @@
 		    <p:layoutUnit position="west" size="200">  
 		        <p:panelMenu style="width:200px">  
 			        <p:submenu label="Cadastro">  
-			            <p:menuitem value="Inserir Cliente" actionListener="#{LoginBean.login}" icon="ui-icon-disk" />  
-			            <p:menuitem value="Manter Cliente" actionListener="#{LoginBean.login}"  icon="ui-icon-arrowrefresh-1-w" />  
+			            <p:menuitem value="Inserir Cliente" action="#{InserirClienteBean.exibirInserirCliente}" icon="ui-icon-disk" />  
+			            <p:menuitem value="Manter Cliente" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />  
 			        </p:submenu>    
 			        <p:submenu label="Agenda">  
-			            <p:menuitem value="Gerenciar Agenda" actionListener="#{LoginBean.login}" icon="ui-icon-disk" />  
+			            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-disk" />  
 			        </p:submenu>
 			    </p:panelMenu>
 		    </p:layoutUnit>  
