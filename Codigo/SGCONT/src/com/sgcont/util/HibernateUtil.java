@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.Endereco;
+import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 
 public class HibernateUtil {
@@ -21,7 +22,8 @@ public class HibernateUtil {
 		configuration
 			.addAnnotatedClass(Usuario.class)
 			.addAnnotatedClass(Endereco.class)
-			.addAnnotatedClass(Cliente.class);
+			.addAnnotatedClass(Cliente.class)
+			.addAnnotatedClass(Profissao.class);
 		
 	    configuration.configure();
 	    ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());
