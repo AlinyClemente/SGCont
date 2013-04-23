@@ -1,4 +1,4 @@
-CREATE TABLE cadastro.profissao (
+﻿CREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -31,22 +31,6 @@ CREATE SEQUENCE cadastro.seq_grupo_acesso
 ALTER TABLE cadastro.seq_grupo_acesso
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.estado (
-  cdEstado INTEGER  NOT NULL ,
-  dsEstado VARCHAR(40) NOT NULL,
-  dsSigla VARCHAR(2) NOT NULL,
-  tmUltimaAlteracao TIMESTAMP NOT NULL,
-  PRIMARY KEY(cdEstado)
-);
-
-CREATE SEQUENCE cadastro.seq_estado
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-ALTER TABLE cadastro.seq_estado
-  OWNER TO sgcont;
 
 CREATE TABLE cadastro.setor (
   cdSetor INTEGER  NOT NULL ,
@@ -104,7 +88,7 @@ ALTER TABLE cadastro.seq_tipo_receita
   OWNER TO sgcont;
 
 CREATE TABLE cadastro.tipo_despesa (
-  cdDespesaTipo INTEGER  NOT NULL,
+  cdTipoDespesa INTEGER  NOT NULL,
   descricao VARCHAR(50) NOT NULL,
   icUso SMALLINT NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
@@ -138,43 +122,27 @@ CREATE SEQUENCE cadastro.seq_compromisso
 ALTER TABLE cadastro.seq_compromisso
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.municipio (
-  cdMunicipio INTEGER  NOT NULL ,
-  cdEstado INTEGER  NOT NULL,
-  dsMunicipio INTEGER  NOT NULL,
-  icUso SMALLINT  NOT NULL,
-  tmUltimaAlteracao TIMESTAMP NOT NULL,
-  PRIMARY KEY(cdMunicipio),
-  FOREIGN KEY (cdEstado) REFERENCES cadastro.estado(cdEstado)
+  CREATE TABLE lembrete (
+  cdLembrete INTEGER NOT NULL,
+  cdCompromisso INTEGER NOT NULL,
+  dsLembrete VARCHAR(255) NULL,
+  dtLembrete DATETIME NULL,
+  icFrequencia SMALLINT NULL,
+  cdCompromisso INTEGER NULL,
+  PRIMARY KEY(cdLembrete),
+  FOREIGN KEY (cdCompromisso) REFERENCES cadastro.compromisso(cdCompromisso)
 );
 
-CREATE SEQUENCE cadastro.seq_municipio
+
+CREATE SEQUENCE cadastro.seq_lembrete
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_municipio
+ALTER TABLE cadastro.seq_lembrete
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.bairro (
-  cdBairro INTEGER  NOT NULL ,
-  cdMunicipio INTEGER  NOT NULL,
-  nomeBairro VARCHAR(40) NULL,
-  icUso SMALLINT  NULL,
-  tmUltimaAlteracao TIMESTAMP NULL,
-  PRIMARY KEY(cdBairro),
-  FOREIGN KEY (cdMunicipio) REFERENCES cadastro.municipio(cdMunicipio)
-);
-
-CREATE SEQUENCE cadastro.seq_bairro
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-ALTER TABLE cadastro.seq_bairro
-  OWNER TO sgcont;
 
 CREATE TABLE cadastro.funcionalidade (
   cdfuncionalidade INTEGER  NOT NULL ,
@@ -195,15 +163,17 @@ CREATE SEQUENCE cadastro.seq_funcionalidade
 ALTER TABLE cadastro.seq_funcionalidade
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.endereco (
-  cdEndereco INTEGER  NOT NULL ,
-  cdBairro INTEGER  NOT NULL,
-  descricaoRua VARCHAR(50) NOT NULL,
-  descricaoComplemento VARCHAR(20) NULL,
-  codigoCep INTEGER  NOT NULL,
+CREATE TABLE endereco (
+  cdEndereco INTEGER  NOT NULL,
+  cdCep INTEGER NOT NULL,
+  dsLogradouro VARCHAR(50) NOT NULL,
+  nome VARCHAR(20) NULL,
+  dsComplemento VARCHAR(20) NULL,
+  nnBairro VARCHAR(30) NULL,
+  dsSiglaUF VARCHAR(2) NOT NULL,
+  nmCidade VARCHAR(50) NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
-  PRIMARY KEY(cdEndereco),
-  FOREIGN KEY (cdBairro) REFERENCES cadastro.bairro(cdBairro)
+ PRIMARY KEY(cdEndereco)
 );
 
 CREATE SEQUENCE cadastro.seq_endereco
@@ -361,8 +331,6 @@ CREATE TABLE cadastro.cliente_pj (
   cdSuframa VARCHAR(20) NULL,
   cdNIRE INTEGER  NULL,
   dsSite VARCHAR(40) NULL,
-  icUso SMALLINT  NOT NULL,
-  tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdCliente),
   FOREIGN KEY(cdClienteMatriz) REFERENCES cadastro.cliente_pj(cdCliente),
   FOREIGN KEY(cdContadorResponsavel) REFERENCES cadastro.contador(cdContador)
@@ -383,8 +351,6 @@ CREATE TABLE cadastro.cliente_pf (
   cdBanco INTEGER  NULL,
   nnAgencia VARCHAR(10) NULL,
   nnConta VARCHAR(10) NULL,
-  icUso SMALLINT  NOT NULL,
-  tmultimaalteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdCliente),
   FOREIGN KEY(cdClienteTitular) REFERENCES cadastro.cliente_pf(cdCliente),
   FOREIGN KEY(cdProfissao) REFERENCES cadastro.profissao(cdProfissao)
