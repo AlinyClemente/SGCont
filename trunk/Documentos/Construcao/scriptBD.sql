@@ -1,4 +1,4 @@
-﻿CREATE TABLE cadastro.profissao (
+CREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE cadastro.tipo_despesa (
   descricao VARCHAR(50) NOT NULL,
   icUso SMALLINT NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
-  PRIMARY KEY(cdDespesaTipo)
+  PRIMARY KEY(cdTipoDespesa)
 );
 
 CREATE SEQUENCE cadastro.seq_tipo_despesa
@@ -126,9 +126,8 @@ ALTER TABLE cadastro.seq_compromisso
   cdLembrete INTEGER NOT NULL,
   cdCompromisso INTEGER NOT NULL,
   dsLembrete VARCHAR(255) NULL,
-  dtLembrete DATETIME NULL,
+  tmLembrete TIMESTAMP NULL,
   icFrequencia SMALLINT NULL,
-  cdCompromisso INTEGER NULL,
   PRIMARY KEY(cdLembrete),
   FOREIGN KEY (cdCompromisso) REFERENCES cadastro.compromisso(cdCompromisso)
 );
@@ -163,7 +162,7 @@ CREATE SEQUENCE cadastro.seq_funcionalidade
 ALTER TABLE cadastro.seq_funcionalidade
   OWNER TO sgcont;
 
-CREATE TABLE endereco (
+CREATE TABLE cadastro.endereco (
   cdEndereco INTEGER  NOT NULL,
   cdCep INTEGER NOT NULL,
   dsLogradouro VARCHAR(50) NOT NULL,
@@ -360,7 +359,7 @@ CREATE TABLE cadastro.cliente_pf (
 CREATE TABLE cadastro.despesa (
   cdDespesa INTEGER NOT NULL,
   cdCliente INTEGER  NULL,
-  cdDespesaTipo INTEGER  NOT NULL,
+  cdtipodespesa INTEGER  NOT NULL,
   cdEmpresaContabil INTEGER NULL,
   descricao VARCHAR(50) NOT NULL,
   valor numeric(13,2) NOT NULL,
@@ -369,7 +368,7 @@ CREATE TABLE cadastro.despesa (
   tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdDespesa),
   FOREIGN KEY(cdCliente) REFERENCES cadastro.cliente(cdCliente),
-  FOREIGN KEY(cdDespesaTipo) REFERENCES cadastro.tipo_despesa(cdDespesaTipo),
+  FOREIGN KEY(cdtipodespesa) REFERENCES cadastro.tipo_despesa(cdTipoDespesa),
   FOREIGN KEY(cdEmpresaContabil) REFERENCES cadastro.empresa_contabil(cdEmpresaContabil)
 );
 
