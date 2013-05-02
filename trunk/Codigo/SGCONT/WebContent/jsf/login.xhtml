@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:p="http://primefaces.org/ui"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>SGCONT - Efetuar Login</title>
 </h:head>
-<h:body>
-<f:view>
-	<h:form id="form" >  
-		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
-		
-	    <p:panel header="Efetuar Login" style="width: 50%;">
-	    	<h:panelGrid columns="2" cellpadding="5" >  
-	    	 
-	    		<h:outputLabel for="login" value="Usuário:" 
-	    			style="font-weight:bold"/>
-			    <p:inputText value="#{LoginBean.usuario.login}" 
-			    			id="login" required="true" label="Usuário" />
-			    			
-			    <h:outputLabel for="senha" value="Senha:" 
-	    			style="font-weight:bold"/>
-			    <p:password value="#{LoginBean.usuario.senha}" 
-			    			id="senha" required="true" label="Senha" />
-			    
-			    <f:facet name="footer">  
-	                <p:commandButton id="loginButton" value="Entrar"  
-	                    action="#{LoginBean.login}"   />  
-	            </f:facet> 
-	            
-		    </h:panelGrid>
-	    </p:panel>
-	</h:form>
-</f:view>
+<h:body style="background-color: #E6E7E8;">
+	<f:view>
+	<h:panelGrid columns="2" cellpadding="80" />
+	<center>
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<p:panel style="width: 30%; height: 90%;">
+
+					<p:column colspan="2">
+						<div style="width: 100%; height: 100%;">
+							<center>
+								<h:graphicImage value="/imagens/sgcont.png" width="150px"/>
+							</center>
+						</div>
+					</p:column>
+					
+					<h:panelGrid columns="2" cellpadding="12" />
+					
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<h:outputLabel for="login" value="Usuário:"
+						style="font-weight:bold" />
+					<p:inputText value="#{LoginBean.usuario.login}" id="login"
+						required="true" label="Usuário" />
+
+					<h:outputLabel for="senha" value="Senha:" style="font-weight:bold;" />
+					<p:password value="#{LoginBean.usuario.senha}" id="senha"
+						required="true" label="Senha" />
+
+					<h:panelGrid columns="2" cellpadding="8" />
+
+					<f:facet name="footer">
+						<center>
+							<p:commandButton id="loginButton" value="Entrar"
+								action="#{LoginBean.login}" />
+						</center>
+					</f:facet>
+					
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</center>
+	
+	</f:view>
 </h:body>
 </html>
 
