@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+ <managed-bean>
+  <managed-bean-name>FiltroSessao</managed-bean-name>
+  <managed-bean-class>com.sgcont.util.FiltroSessao</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+  <navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+        <from-outcome>sessao_espirada</from-outcome>            
+        <to-view-id>/jsf/sessao_expirada.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>erro</from-outcome>            
+        <to-view-id>/jsf/erro.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+ 	<from-view-id>/jsf/sessao_expirada.xhtml</from-view-id>
+ 	<navigation-case>
+ 		<from-outcome>login</from-outcome>
+ 		<to-view-id>/jsf/login.xhtml</to-view-id>
+ 	</navigation-case>
+  </navigation-rule>
+ 
+  <navigation-rule>
+ 	<from-view-id>/jsf/erro.xhtml</from-view-id>
+ 	<navigation-case>
+ 		<from-outcome>login</from-outcome>
+ 		<to-view-id>/jsf/login.xhtml</to-view-id>
+ 	</navigation-case>
+  </navigation-rule>
+ 
+  <navigation-rule>
+ 	<from-view-id>/jsf/login.xhtml</from-view-id>
+ 	<navigation-case>
+ 		<from-outcome>paginaInicial</from-outcome>
+ 		<to-view-id>/jsf/index.xhtml</to-view-id>
+ 	</navigation-case>
+  </navigation-rule>
+ 
+  <navigation-rule>
+ 	<from-view-id>/jsf/inserir_cliente.xhtml</from-view-id>
+ 	<navigation-case>
+ 		<from-outcome>inserir_cliente</from-outcome>
+ 		<to-view-id>/jsf/inserir_cliente.xhtml</to-view-id>
+ 	</navigation-case>
+ 	<navigation-case>
+ 		<from-outcome>tela_sucesso</from-outcome>
+ 		<to-view-id>/jsf/tela_sucesso.xhtml</to-view-id>
+ 	</navigation-case>
+  </navigation-rule>
+
+ <factory>
+        <exception-handler-factory>
+            com.sgcont.util.CustomExceptionHandlerFactory
+        </exception-handler-factory>
+ </factory>
+</faces-config>

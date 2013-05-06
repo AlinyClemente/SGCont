@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+</h:head>
+<h:body>
+<f:view>
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+		    <p:layoutUnit position="north" size="100" >  
+		        <h:outputText value="Aqui fica a logo..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="south" size="60" >  
+		        <h:outputText value="Rodapé com a versão/direitos autorais/etc..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="west" size="200">  
+		        <p:panelMenu style="width:200px">  
+			       <p:submenu label="Cadastro">  
+			            <p:menuitem value="Inserir Cliente" action="#{InserirClienteBean.exibirInserirCliente}" icon="ui-icon-disk" />  
+			            <p:menuitem value="Manter Cliente" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />  
+			        </p:submenu>    
+			        <p:submenu label="Agenda">  
+			            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-disk" />  
+			        </p:submenu>
+			    </p:panelMenu>
+		    </p:layoutUnit>  
+		  
+		  <!-- 
+		    <p:layoutUnit position="east" size="200" effect="drop">  
+		        <h:outputText value="Right unit content." />  
+		    </p:layoutUnit>  
+		   -->
+		    <p:layoutUnit position="center" header="Inserir Cliente">  
+		        <h:form>  
+		        	<h:panelGrid columns="2" cellpadding="5"> 
+			            <h:outputText value="Tipo de Cliente: " /> 
+				        <p:selectOneRadio id="tipoCliente" value="#{InserirClienteBean.clienteTO.indicadorPessoaFisica}" onchange="#">  
+				            <p:ajax event="change" update="dadosPfPj" />
+				            <f:selectItem itemLabel="Pessoa Física" itemValue="1" />  
+				            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="2" />  
+				        </p:selectOneRadio> 
+			        </h:panelGrid>
+			        
+			        <p:outputPanel id="dadosPfPj">  
+					     <p:panel rendered="#{InserirClienteBean.clienteTO.indicadorPessoaFisica == 1}">  
+    						<h:panelGrid columns="2" cellpadding="5">    
+						     	<h:outputLabel for="nome" value="Nome:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.nome}" 
+							    			id="nome" required="true" label="Nome" 
+							    			size="50" maxlength="100" />
+							    			
+							    <h:outputLabel for="cpf" value="CPF:"/>
+							    <p:inputMask value="#{InserirClienteBean.clientePfTO.cpf}" 
+							    			id="cpf" required="true" label="CPF" 
+							    			size="15" maxlength="11" mask="999.999.999-99"/>
+							    			
+							    <h:outputLabel for="rg" value="RG:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.rg}" 
+							    			id="rg" required="true" label="RG" 
+							    			size="11" maxlength="9" />
+							    			
+							    <h:outputText value="Data de Nascimento: " />  
+           						<p:inputMask value="#{InserirClienteBean.clientePfTO.dataNascimento}"
+           									mask="99/99/9999" size="11" /> 
+           						
+           						<h:outputText for="sexo" value="Sexo: " /> 
+           						<p:selectOneRadio id="sexo" value="#{InserirClienteBean.clientePfTO.sexo}" onchange="#">  
+						            <f:selectItem itemLabel="Masculino" itemValue="1" />  
+						            <f:selectItem itemLabel="Feminino" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        
+           						<h:outputText for="indicadorDeclaracaoIR" value="Declaração de IR: " /> 
+           						<p:selectOneRadio id="indicadorDeclaracaoIR" value="#{InserirClienteBean.clientePfTO.indicadorDeclaracaoIR}" onchange="#">  
+						            <f:selectItem itemLabel="Sim" itemValue="1" />  
+						            <f:selectItem itemLabel="Não" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        
+							    <h:outputLabel for="tituloEleitor" value="Título de Eleitor:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.tituloEleitor}" 
+							    			id="tituloEleitor" required="true" label="Título de Eleitor" 
+							    			size="13" maxlength="12" />
+							    			
+						        <h:outputText for="profissao" value="Profissão:" />  
+						        
+						        <p:selectOneMenu value="#{InserirClienteBean.clientePfTO.profissao}">                         
+			                        <f:selectItem itemLabel="" itemValue=""  
+			                            noSelectionOption="true" />  
+			                        <f:selectItems value="#{InserirClienteBean.colecaoProfissoes}" var="c"  
+			                            itemLabel="#{c.nomeProfissao}" itemValue="#{c.codigo}" />  
+			                    </p:selectOneMenu> 
+			                    		
+						        <h:outputText for="clienteTitular" value="Cliente Titular para IR:" />  
+						        
+						        <p:selectOneMenu value="#{InserirClienteBean.clientePfTO.clienteTitular}">                         
+			                        <f:selectItem itemLabel="" itemValue=""  
+			                            noSelectionOption="true" />  
+			                        <f:selectItems value="#{InserirClienteBean.colecaoClienteTitular}" var="c"  
+			                            itemLabel="#{c.nome}" itemValue="#{c.codigo}" />  
+			                    </p:selectOneMenu> 
+			    			</h:panelGrid>
+			    			
+			    			 <p:fieldset legend="Informações Bancárias">  
+    								<h:panelGrid columns="2" cellpadding="5">
+									    <h:outputLabel for="banco" value="Banco:"/>
+									    <p:inputText value="#{InserirClienteBean.clientePfTO.banco}" 
+									    			id="banco" required="true" label="Banco" 
+									    			size="11" maxlength="10" />
+									    			
+									    <h:outputLabel for="numeroAgencia" value="Nº da Agência:"/>
+									    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroAgencia}" 
+									    			id="numeroAgencia" required="true" label="Número da Agência" 
+									    			size="8" maxlength="5" />
+									    			
+									    <h:outputLabel for="numeroConta" value="Nº da Conta:"/>
+									    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroConta}" 
+									    			id="numeroConta" required="true" label="Número da Conta" 
+									    			size="22" maxlength="20" />
+    								</h:panelGrid>
+   							 </p:fieldset>
+   							 
+   							 
+			    		</p:panel>
+					     
+					     <p:panel rendered="#{InserirClienteBean.clienteTO.indicadorPessoaFisica == 2}">  
+					     	<h:panelGrid columns="2" cellpadding="5">    
+						     	<h:outputLabel for="razaoSocial" value="Razão Social:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.razaoSocial}" 
+							    			id="razaoSocial" required="true" label="Razão Social" 
+							    			size="50" maxlength="120" />
+							    			
+							    <h:outputLabel for="cnpj" value="CNPJ:"/>
+							    <p:inputMask value="#{InserirClienteBean.clientePjTO.cnpj}" 
+							    			id="cnpj" required="true" label="CNPJ" 
+							    			size="20" maxlength="14" mask="99.999.999/9999-99"/>
+							    			
+							    <h:outputLabel for="inscricaoEstadual" value="Inscrição Estadual:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.inscricaoEstadual}" 
+							    			id="inscricaoEstadual" required="true" label="Inscrição Estadual" 
+							    			size="25" maxlength="20" />
+							    			
+							    <h:outputText value="Data Inicio de Atividade: " />  
+           						<p:inputMask value="#{InserirClienteBean.clientePjTO.dataInicioAtividade}"
+           									mask="99/99/9999" size="11" /> 
+							    			
+							    <h:outputText value="Data Fim de Atividade: " />  
+           						<p:inputMask value="#{InserirClienteBean.clientePjTO.dataFimAtividade}"
+           									mask="99/99/9999" size="11" /> 
+           									
+							    <h:outputLabel for="suframa" value="Suframa:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.suframa}" 
+							    			id="suframa" required="true" label="Suframa:" 
+							    			size="25" maxlength="20" />
+							    			
+							    <h:outputLabel for="nirf" value="N.I.R.E:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.nirf}" 
+							    			id="nirf" required="true" label="N.I.R.E" 
+							    			size="25" maxlength="20" />
+							    			
+							    <h:outputLabel for="site" value="Site:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.site}" 
+							    			id="site" required="true" label="Site" 
+							    			size="45" maxlength="40" />
+           									
+			    			</h:panelGrid>
+					     </p:panel>
+					     <p:panel>  
+					     	<h:panelGrid columns="2" cellpadding="5">    
+					     		<h:outputLabel for="telefone" value="Telefone:"/>
+							    <p:inputMask value="#{InserirClienteBean.clienteTO.numeroTelefone}" 
+							    			id="telefone" required="true" label="Telefone" 
+							    			size="15" maxlength="11" mask="(999)9999-9999"/>
+							    			
+							    <h:outputLabel for="email" value="E-mail:"/>
+							    <p:inputText value="#{InserirClienteBean.clienteTO.email}" 
+							    			id="email" required="true" label="E-mail" 
+							    			size="40" maxlength="30" />
+							    			
+           						<h:outputText for="indicadorUso" value="Indicador de Uso: " /> 
+           						<p:selectOneRadio id="indicadorUso" value="#{InserirClienteBean.clienteTO.indicadorUso}" onchange="#">  
+						            <f:selectItem itemLabel="Sim" itemValue="1" />  
+						            <f:selectItem itemLabel="Não" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        
+					     	</h:panelGrid>
+				     	</p:panel> 
+				     	<h:panelGrid columns="1" cellpadding="5" > 
+			     			<p:commandButton id="cadastrarButton" value="Cadastrar" 
+			     				actionListener="#{InserirClienteBean.cadastrar}" /> 
+                   		</h:panelGrid>
+					</p:outputPanel>  
+					
+		        </h:form>  
+		    </p:layoutUnit>  
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>
+
