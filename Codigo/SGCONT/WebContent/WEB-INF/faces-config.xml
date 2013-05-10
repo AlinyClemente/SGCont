@@ -19,6 +19,10 @@
         <from-outcome>erro</from-outcome>            
         <to-view-id>/jsf/erro.xhtml</to-view-id>
     </navigation-case>
+ 	<navigation-case>
+ 		<from-outcome>tela_sucesso</from-outcome>
+ 		<to-view-id>/jsf/tela_sucesso.xhtml</to-view-id>
+ 	</navigation-case>
   </navigation-rule>
 
   <navigation-rule>
@@ -50,10 +54,6 @@
  	<navigation-case>
  		<from-outcome>inserir_cliente</from-outcome>
  		<to-view-id>/jsf/inserir_cliente.xhtml</to-view-id>
- 	</navigation-case>
- 	<navigation-case>
- 		<from-outcome>tela_sucesso</from-outcome>
- 		<to-view-id>/jsf/tela_sucesso.xhtml</to-view-id>
  	</navigation-case>
   </navigation-rule>
 

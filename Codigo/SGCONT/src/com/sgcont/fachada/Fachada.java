@@ -2,6 +2,9 @@ package com.sgcont.fachada;
 
 import java.util.Collection;
 
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
+import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorUtil;
@@ -100,6 +103,57 @@ public class Fachada {
 	public void inserirClientePJ(ClienteTO clienteTO, ClientePessoaJuridicaTO clientePessoaJuridicaTO) {
 		
 		this.controladorCadastro.inserirClientePJ(clienteTO, clientePessoaJuridicaTO);
+		
+	}
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um cliente a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return ClientePessoaFisica
+	 * */
+	public ClientePessoaFisica pesquisarClientePF(String nome) {
+		
+		return this.controladorCadastro.pesquisarClientePF(nome);
+		
+	}
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar uma profissão a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Profissao
+	 * */
+	public Profissao pesquisarProfissao(String nome) {
+		
+		return this.controladorCadastro.pesquisarProfissao(nome);
+		
+	}
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um contador a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Contador
+	 * */
+	public Contador pesquisarContador(String nomeRazaoSocial) {
+		
+		return this.controladorCadastro.pesquisarContador(nomeRazaoSocial);
 		
 	}
 	

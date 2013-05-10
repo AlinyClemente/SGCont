@@ -22,8 +22,10 @@ public class RepositorioUtil implements IRepositorioUtil {
 	 * */
 	public void inserirOuAtualizar(Object object) {
 		Session session = HibernateUtil.getSession();
-		
+
 		session.saveOrUpdate(object);
+		
+		HibernateUtil.closeSession(session);
 	}
 
 	/**
@@ -33,6 +35,8 @@ public class RepositorioUtil implements IRepositorioUtil {
 		Session session = HibernateUtil.getSession();
 		
 		session.delete(object);
+		
+		HibernateUtil.closeSession(session);
 	}
 
 	/**
@@ -41,9 +45,13 @@ public class RepositorioUtil implements IRepositorioUtil {
 	public Collection<?> pesquisar(Class<?> classe) {
 		Session session = HibernateUtil.getSession();
 		
-		return session.createQuery(
+		Collection<?> colecao = session.createQuery(
 				"from " + classe.getName())
 				.list();
+		
+		HibernateUtil.closeSession(session);
+		
+		return colecao;
 	}
 
 	/**
@@ -52,7 +60,11 @@ public class RepositorioUtil implements IRepositorioUtil {
 	public Object pesquisar(Class<?> classe, Integer id) {
 		Session session = HibernateUtil.getSession();
 		
-		return session.get(classe.getName(), id);
+		Object objeto = session.get(classe.getName(), id);
+
+		HibernateUtil.closeSession(session);
+		
+		return objeto;
 	}
 
 }

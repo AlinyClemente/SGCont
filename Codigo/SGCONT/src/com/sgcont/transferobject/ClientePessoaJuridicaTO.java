@@ -2,6 +2,10 @@ package com.sgcont.transferobject;
 
 import java.io.Serializable;
 
+import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.util.Util;
+
 /**
  * [UC001] Inserir Cliente
  * 
@@ -18,8 +22,6 @@ public class ClientePessoaJuridicaTO implements Serializable {
 	
 	private String inscricaoEstadual;
 	
-	private String contadorResponsavel;
-	
 	private String dataInicioAtividade;
 	
 	private String dataFimAtividade;
@@ -29,7 +31,43 @@ public class ClientePessoaJuridicaTO implements Serializable {
 	private String nirf;
 	
 	private String site;
+	
+	private Contador contador;
+	
+	public ClientePessoaJuridica getClientePessoaJuridica(
+			ClientePessoaJuridica clientePessoaJuridica) {
 
+		clientePessoaJuridica.setRazaoSocial(this.razaoSocial);
+		clientePessoaJuridica
+			.setNumeroCnpj(this.cnpj
+					.replace(".", "")
+					.replace("/", "")
+					.replace("-", ""));
+		clientePessoaJuridica.setInscricaoEstadual(this.inscricaoEstadual);
+		clientePessoaJuridica.setDataInicioAtividade(
+				Util.converterStringParaDate(this.dataInicioAtividade));
+		clientePessoaJuridica.setDataFimAtividade(
+				Util.converterStringParaDate(this.dataFimAtividade));
+		clientePessoaJuridica.setCodigoSuframa(this.suframa);
+		
+		if (this.nirf != null 
+				&& !this.nirf.isEmpty()) {
+			clientePessoaJuridica.setCodigoNire(
+					new Integer(this.nirf));
+		}
+		
+		clientePessoaJuridica.setSite(this.site);
+		clientePessoaJuridica.setContador(this.contador);
+		
+		return clientePessoaJuridica;
+	}
+	
+	public ClientePessoaJuridica getClientePessoaJuridica() {
+		ClientePessoaJuridica clientePessoaJuridica = new ClientePessoaJuridica();
+		
+		return this.getClientePessoaJuridica(clientePessoaJuridica);
+	}
+	
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -52,14 +90,6 @@ public class ClientePessoaJuridicaTO implements Serializable {
 
 	public void setInscricaoEstadual(String inscricaoEstadual) {
 		this.inscricaoEstadual = inscricaoEstadual;
-	}
-
-	public String getContadorResponsavel() {
-		return contadorResponsavel;
-	}
-
-	public void setContadorResponsavel(String contadorResponsavel) {
-		this.contadorResponsavel = contadorResponsavel;
 	}
 
 	public String getDataInicioAtividade() {
@@ -100,6 +130,14 @@ public class ClientePessoaJuridicaTO implements Serializable {
 
 	public void setSite(String site) {
 		this.site = site;
+	}
+
+	public Contador getContador() {
+		return contador;
+	}
+
+	public void setContador(Contador contador) {
+		this.contador = contador;
 	}
 
 }

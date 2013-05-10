@@ -4,19 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cadastro.cliente_pj")
+@PrimaryKeyJoinColumn(name="cdcliente")
 public class ClientePessoaJuridica {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cdcliente", nullable=false)
 	private Integer codigo;
 	
@@ -38,26 +37,28 @@ public class ClientePessoaJuridica {
 	@Column(name="cdsuframa", nullable=true, length=20)
 	private String codigoSuframa;
 	
-	//TODO verificar tipo
 	@Column(name="cdnire", nullable=true)
 	private Integer codigoNire;
 
 	@Column(name="dssite", nullable=true, length=40)
 	private String site;
 	
-	@Column(name="icuso", nullable=false)
-	private Short indicadorUso;
-	
-	@Column(name="tmultimaalteracao", nullable=false)
-	private Date ultimaAlteracao;
-
 	@ManyToOne
     @JoinColumn(name="cdclientematriz", 
             insertable=true, updatable=true, 
             nullable=true)
 	private ClientePessoaJuridica clientePessoaJuridica;
-	
-	//TODO adicionar Contador
+
+	@ManyToOne
+	@JoinColumn(name="cdcliente", 
+            insertable=false, updatable=false)
+	private Cliente cliente;
+
+	@ManyToOne
+	@JoinColumn(name="cdcontadorresponsavel", 
+            insertable=true, updatable=true, 
+            nullable=false)
+	private Contador contador;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -131,28 +132,52 @@ public class ClientePessoaJuridica {
 		this.site = site;
 	}
 
-	public Short getIndicadorUso() {
-		return indicadorUso;
-	}
-
-	public void setIndicadorUso(Short indicadorUso) {
-		this.indicadorUso = indicadorUso;
-	}
-
-	public Date getUltimaAlteracao() {
-		return ultimaAlteracao;
-	}
-
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-		this.ultimaAlteracao = ultimaAlteracao;
-	}
-
 	public ClientePessoaJuridica getClientePessoaJuridica() {
 		return clientePessoaJuridica;
 	}
 
 	public void setClientePessoaJuridica(ClientePessoaJuridica clientePessoaJuridica) {
 		this.clientePessoaJuridica = clientePessoaJuridica;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+		this.setCodigo(cliente.getCodigo());
+	}
+
+	public Contador getContador() {
+		return contador;
+	}
+
+	public void setContador(Contador contador) {
+		this.contador = contador;
+	}
+	
+	public String getNumeroCnpjFormatado() {
+		String cnpjFormatado = this.numeroCnpj;
+		String zeros = "";
+		
+		if (cnpjFormatado != null) {
+			
+			for (int a = 0; a < (14 - cnpjFormatado.length()); a++) {
+				zeros = zeros.concat("0");
+			}
+			// concatena os zeros ao numero
+			// caso o numero seja diferente de nulo
+			cnpjFormatado = zeros.concat(cnpjFormatado);
+			
+			cnpjFormatado = cnpjFormatado.substring(0, 2) + "."
+					+ cnpjFormatado.substring(2, 5) + "."
+					+ cnpjFormatado.substring(5, 8) + "/"
+					+ cnpjFormatado.substring(8, 12) + "-"
+					+ cnpjFormatado.substring(12, 14);
+		}
+		
+		return cnpjFormatado;
 	}
 	
 }

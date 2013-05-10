@@ -17,20 +17,31 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cdendereco", nullable=false)
 	private Integer codigo;
-	
-	@Column(name="descricaorua", nullable=false, length=50)
-	private String descricaoRua;
-	
-	@Column(name="descricaocomplemento", nullable=true, length=20)
-	private String descricaoComplemento;
 
-	@Column(name="codigocep", nullable=false)
+	@Column(name="cdcep", nullable=false)
 	private Integer codigoCep;
+	
+	@Column(name="dslogradouro", nullable=false, length=50)
+	private String descricaoLogradouro;
+	
+	@Column(name="nome", nullable=true, length=20)
+	private String nome;
+	
+	@Column(name="dscomplemento", nullable=true, length=20)
+	private String descricaoComplemento;
+	
+	@Column(name="nnbairro", nullable=true, length=30)
+	private String bairro;
+	
+	@Column(name="dssiglauf", nullable=false, length=2)
+	private String descricaoSiglaUf;
+	
+	@Column(name="nmcidade", nullable=false, length=50)
+	private String nomeCidade;
 
 	@Column(name="tmultimaalteracao", nullable=false)
 	private Date ultimaAlteracao;
 
-	//TODO adicionar Endereço!!!
 	
 	public Integer getCodigo() {
 		return codigo;
@@ -40,12 +51,28 @@ public class Endereco {
 		this.codigo = codigo;
 	}
 
-	public String getDescricaoRua() {
-		return descricaoRua;
+	public Integer getCodigoCep() {
+		return codigoCep;
 	}
 
-	public void setDescricaoRua(String descricaoRua) {
-		this.descricaoRua = descricaoRua;
+	public void setCodigoCep(Integer codigoCep) {
+		this.codigoCep = codigoCep;
+	}
+
+	public String getDescricaoLogradouro() {
+		return descricaoLogradouro;
+	}
+
+	public void setDescricaoLogradouro(String descricaoLogradouro) {
+		this.descricaoLogradouro = descricaoLogradouro;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricaoComplemento() {
@@ -56,12 +83,28 @@ public class Endereco {
 		this.descricaoComplemento = descricaoComplemento;
 	}
 
-	public Integer getCodigoCep() {
-		return codigoCep;
+	public String getBairro() {
+		return bairro;
 	}
 
-	public void setCodigoCep(Integer codigoCep) {
-		this.codigoCep = codigoCep;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getDescricaoSiglaUf() {
+		return descricaoSiglaUf;
+	}
+
+	public void setDescricaoSiglaUf(String descricaoSiglaUf) {
+		this.descricaoSiglaUf = descricaoSiglaUf;
+	}
+
+	public String getNomeCidade() {
+		return nomeCidade;
+	}
+
+	public void setNomeCidade(String nomeCidade) {
+		this.nomeCidade = nomeCidade;
 	}
 
 	public Date getUltimaAlteracao() {

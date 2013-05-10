@@ -7,6 +7,10 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.sgcont.dados.cadastro.Cliente;
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
+import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Endereco;
 import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
@@ -22,8 +26,12 @@ public class HibernateUtil {
 		configuration
 			.addAnnotatedClass(Usuario.class)
 			.addAnnotatedClass(Endereco.class)
+			.addAnnotatedClass(EmpresaContabil.class)
+			.addAnnotatedClass(Contador.class)
+			.addAnnotatedClass(Profissao.class)
 			.addAnnotatedClass(Cliente.class)
-			.addAnnotatedClass(Profissao.class);
+			.addAnnotatedClass(ClientePessoaFisica.class)
+			.addAnnotatedClass(ClientePessoaJuridica.class);
 		
 	    configuration.configure();
 	    ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());
@@ -34,7 +42,13 @@ public class HibernateUtil {
 	
 	public static Session getSession() {
 		Session session = sessionFactory.openSession();
+		session.getTransaction().begin();
   		return session;
+	}
+	
+	public static void closeSession(Session session) {
+		session.getTransaction().commit();
+		session.close();
 	}
 
 }

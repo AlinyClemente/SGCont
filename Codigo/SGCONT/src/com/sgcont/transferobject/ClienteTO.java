@@ -2,6 +2,8 @@ package com.sgcont.transferobject;
 
 import java.io.Serializable;
 
+import com.sgcont.dados.cadastro.Cliente;
+
 /**
  * [UC001] Inserir Cliente
  * 
@@ -12,6 +14,8 @@ public class ClienteTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private String nome;
+	
 	private String indicadorPessoaFisica;
 	
 	private String rua;
@@ -26,13 +30,47 @@ public class ClienteTO implements Serializable {
 	
 	private String estado;
 	
-	private String ddd;
-	
 	private String numeroTelefone;
 	
 	private String email;
 	
-	private String indicadorUso;
+	private String inscricaoMunicipal;
+	
+	private String observacao;
+
+	public Cliente getCliente(Cliente cliente) {
+
+		cliente.setNome(this.nome);
+		cliente.setIndicadorPessoaFisica(
+				new Short(this.indicadorPessoaFisica));
+		
+//		Endereco endereco = new Endereco();
+//		endereco.set
+// 		TODO
+
+		cliente.setNumeroTelefone(this.numeroTelefone);
+		cliente.setEmail(this.email);
+		cliente.setInscricaoMunicipal(this.inscricaoMunicipal);
+		cliente.setObservacao(this.observacao);
+		
+		return cliente;
+	}
+	
+	public Cliente getCliente() {
+		
+		Cliente cliente = new Cliente();
+		
+		return this.getCliente(cliente);
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public String getIndicadorPessoaFisica() {
 		return indicadorPessoaFisica;
@@ -90,14 +128,6 @@ public class ClienteTO implements Serializable {
 		this.estado = estado;
 	}
 
-	public String getDdd() {
-		return ddd;
-	}
-
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
-	}
-
 	public String getNumeroTelefone() {
 		return numeroTelefone;
 	}
@@ -114,12 +144,20 @@ public class ClienteTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getIndicadorUso() {
-		return indicadorUso;
+	public String getInscricaoMunicipal() {
+		return inscricaoMunicipal;
 	}
 
-	public void setIndicadorUso(String indicadorUso) {
-		this.indicadorUso = indicadorUso;
+	public void setInscricaoMunicipal(String inscricaoMunicipal) {
+		this.inscricaoMunicipal = inscricaoMunicipal;
 	}
-	
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 }

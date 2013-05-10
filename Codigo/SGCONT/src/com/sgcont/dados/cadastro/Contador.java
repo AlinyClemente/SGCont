@@ -14,18 +14,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cadastro.cliente")
+@Table(name = "cadastro.contador")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Cliente {
+public class Contador {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="cdcliente", nullable=false)
+	@Column(name="cdcontador", nullable=false)
 	private Integer codigo;
 	
-	@Column(name="nmcliente", nullable=false, length=100)
-	private String nome;
+	@Column(name="cdidentificacao", nullable=false, length=20)
+	private String codigoIdentificacao;
 	
+	@Column(name="nmrazaosocial", nullable=false, length=70)
+	private String nomeRazaoSocial;
+
+	@Column(name="nncrc", nullable=false)
+	private Integer numeroCrc;
+
 	@Column(name="nntelefone", nullable=false, length=20)
 	private String numeroTelefone;
 
@@ -35,17 +41,11 @@ public class Cliente {
 	@Column(name="email", nullable=true, length=30)
 	private String email;
 	
-	@Column(name="icpessoafisica", nullable=false)
-	private Short indicadorPessoaFisica;
+	@Column(name="icresponsavel", nullable=false)
+	private Short indicadorResponsavel;
 	
 	@Column(name="icuso", nullable=false)
 	private Short indicadorUso;
-	
-	@Column(name="inscricaomunicipal", nullable=false, length=14)
-	private String inscricaoMunicipal;
-	
-	@Column(name="observacao", nullable=true, length=500)
-	private String observacao;
 	
 	@Column(name="tmultimaalteracao", nullable=false)
 	private Date ultimaAlteracao;
@@ -55,7 +55,13 @@ public class Cliente {
             insertable=true, updatable=true, 
             nullable=true)
 	private Endereco endereco;
-	
+
+	@ManyToOne
+    @JoinColumn(name="cdempresacontabil", 
+            insertable=true, updatable=true, 
+            nullable=true)
+	private EmpresaContabil empresaContabil;
+
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -64,12 +70,28 @@ public class Cliente {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getCodigoIdentificacao() {
+		return codigoIdentificacao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCodigoIdentificacao(String codigoIdentificacao) {
+		this.codigoIdentificacao = codigoIdentificacao;
+	}
+
+	public String getNomeRazaoSocial() {
+		return nomeRazaoSocial;
+	}
+
+	public void setNomeRazaoSocial(String nomeRazaoSocial) {
+		this.nomeRazaoSocial = nomeRazaoSocial;
+	}
+
+	public Integer getNumeroCrc() {
+		return numeroCrc;
+	}
+
+	public void setNumeroCrc(Integer numeroCrc) {
+		this.numeroCrc = numeroCrc;
 	}
 
 	public String getNumeroTelefone() {
@@ -96,12 +118,12 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Short getIndicadorPessoaFisica() {
-		return indicadorPessoaFisica;
+	public Short getIndicadorResponsavel() {
+		return indicadorResponsavel;
 	}
 
-	public void setIndicadorPessoaFisica(Short indicadorPessoaFisica) {
-		this.indicadorPessoaFisica = indicadorPessoaFisica;
+	public void setIndicadorResponsavel(Short indicadorResponsavel) {
+		this.indicadorResponsavel = indicadorResponsavel;
 	}
 
 	public Short getIndicadorUso() {
@@ -110,22 +132,6 @@ public class Cliente {
 
 	public void setIndicadorUso(Short indicadorUso) {
 		this.indicadorUso = indicadorUso;
-	}
-
-	public String getInscricaoMunicipal() {
-		return inscricaoMunicipal;
-	}
-
-	public void setInscricaoMunicipal(String inscricaoMunicipal) {
-		this.inscricaoMunicipal = inscricaoMunicipal;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
 	}
 
 	public Date getUltimaAlteracao() {
@@ -142,6 +148,14 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public EmpresaContabil getEmpresaContabil() {
+		return empresaContabil;
+	}
+
+	public void setEmpresaContabil(EmpresaContabil empresaContabil) {
+		this.empresaContabil = empresaContabil;
 	}
 	
 }

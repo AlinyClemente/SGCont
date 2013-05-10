@@ -1,5 +1,12 @@
 package com.sgcont.negocio;
 
+import java.util.Date;
+
+import com.sgcont.dados.cadastro.Cliente;
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
+import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -57,7 +64,19 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @since 19/04/2013
 	 * */
 	public void inserirClientePF(ClienteTO clienteTO, ClientePessoaFisicaTO clientePessoaFisicaTO) {
-		//TODO
+		
+		Cliente cliente = clienteTO.getCliente();
+		
+		cliente.setUltimaAlteracao(new Date());
+		cliente.setIndicadorUso(new Short("1"));
+		
+		this.repositorioUtil.inserirOuAtualizar(cliente);
+		
+		ClientePessoaFisica clientePessoaFisica = clientePessoaFisicaTO.getClientePessoaFisica();
+		clientePessoaFisica.setCliente(cliente);
+		
+		this.repositorioUtil.inserirOuAtualizar(clientePessoaFisica);
+		
 	}
 	
 	/**
@@ -70,7 +89,70 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @since 19/04/2013
 	 * */
 	public void inserirClientePJ(ClienteTO clienteTO, ClientePessoaJuridicaTO clientePessoaJuridicaTO) {
-		//TODO
+		
+		Cliente cliente = clienteTO.getCliente();
+		
+		cliente.setUltimaAlteracao(new Date());
+		cliente.setIndicadorUso(new Short("1"));
+		
+		this.repositorioUtil.inserirOuAtualizar(cliente);
+		
+		ClientePessoaJuridica clientePessoaJuridica = clientePessoaJuridicaTO.getClientePessoaJuridica();
+		clientePessoaJuridica.setCliente(cliente);
+		
+		this.repositorioUtil.inserirOuAtualizar(clientePessoaJuridica);
+		
+	}
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um cliente a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return ClientePessoaFisica
+	 * */
+	public ClientePessoaFisica pesquisarClientePF(String nome) {
+		
+		return this.repositorioCadastro.pesquisarClientePF(nome);
+		
+	}
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar uma profissão a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Profissao
+	 * */
+	public Profissao pesquisarProfissao(String nome) {
+		
+		return this.repositorioCadastro.pesquisarProfissao(nome);
+		
+	}
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um contador a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Contador
+	 * */
+	public Contador pesquisarContador(String nomeRazaoSocial) {
+		
+		return this.repositorioCadastro.pesquisarContador(nomeRazaoSocial);
+		
 	}
 	
 }
