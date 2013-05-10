@@ -1,8 +1,10 @@
 package com.sgcont.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Util {
 	
@@ -63,6 +65,22 @@ public class Util {
 		}
 
 		return dataBD.toString();
+	}
+
+	/**
+	 * Retorna a data recebida no seguinte formato: "dd/MM/yyyy hh:mm:ss" 
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/04/2013
+	 * */
+	public static Date converterStringParaDate(String data) {
+		Date retorno = null;
+		try {
+			retorno = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR")).parse(data);
+		} catch (Exception e) {
+			new IllegalArgumentException(data + " não tem o formato dd/MM/yyyy.");
+		}
+		return retorno;
 	}
 	
 }

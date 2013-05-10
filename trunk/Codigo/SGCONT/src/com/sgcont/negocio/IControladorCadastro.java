@@ -1,5 +1,8 @@
 package com.sgcont.negocio;
 
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
+import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
@@ -41,5 +44,44 @@ public interface IControladorCadastro {
 	 * @since 19/04/2013
 	 * */
 	public void inserirClientePJ(ClienteTO clienteTO, ClientePessoaJuridicaTO clientePessoaJuridicaTO);
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um cliente a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return ClientePessoaFisica
+	 * */
+	public ClientePessoaFisica pesquisarClientePF(String nome);
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar uma profissão a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Profissao
+	 * */
+	public Profissao pesquisarProfissao(String nome);
+
+	/**
+	 * [UC001] Inserir Cliente
+	 * 
+	 * Método responsável pesquisar um contador a partir do nome
+	 * 
+	 * @author Mariana Victor
+	 * @since 09/05/2013
+	 * 
+	 * @param nome
+	 * @return Contador
+	 * */
+	public Contador pesquisarContador(String nomeRazaoSocial);
 	
 }

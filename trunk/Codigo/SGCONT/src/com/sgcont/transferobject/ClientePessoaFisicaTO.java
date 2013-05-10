@@ -2,6 +2,10 @@ package com.sgcont.transferobject;
 
 import java.io.Serializable;
 
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
+import com.sgcont.dados.cadastro.Profissao;
+import com.sgcont.util.Util;
+
 /**
  * [UC001] Inserir Cliente
  * 
@@ -12,8 +16,6 @@ public class ClientePessoaFisicaTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String nome;
-	
 	private String cpf;
 	
 	private String rg;
@@ -26,9 +28,9 @@ public class ClientePessoaFisicaTO implements Serializable {
 	
 	private String tituloEleitor;
 	
-	private String profissao;
+	private Profissao profissao;
 	
-	private String clienteTitular;
+	private ClientePessoaFisica clienteTitular;
 	
 	private String banco;
 	
@@ -36,14 +38,36 @@ public class ClientePessoaFisicaTO implements Serializable {
 	
 	private String numeroConta;
 
-	public String getNome() {
-		return nome;
-	}
+	public ClientePessoaFisica getClientePessoaFisica(
+			ClientePessoaFisica clientePessoaFisica) {
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+		clientePessoaFisica.setNumeroCpf(this.cpf
+				.replace(".", "")
+				.replace("-", ""));
+		clientePessoaFisica.setNumeroRg(this.rg);
+		clientePessoaFisica.setDataNascimento(
+				Util.converterStringParaDate(this.dataNascimento));
+		clientePessoaFisica.setSexo(
+				new Short(sexo));
+		clientePessoaFisica.setIndicadorDeclaracaoIr(
+				new Short(this.indicadorDeclaracaoIR));
+		clientePessoaFisica.setNumeroTituloEleitor(this.tituloEleitor);
+		clientePessoaFisica.setProfissao(this.profissao);
+		clientePessoaFisica.setClienteTitular(this.clienteTitular);
+		clientePessoaFisica.setCodigoBanco(
+				new Integer(this.banco));
+		clientePessoaFisica.setNumeroAgencia(this.numeroAgencia);
+		clientePessoaFisica.setNumeroAgencia(this.numeroConta);
 
+		return clientePessoaFisica;
+	}
+	
+	public ClientePessoaFisica getClientePessoaFisica() {
+		ClientePessoaFisica clientePessoaFisica = new ClientePessoaFisica();
+		
+		return this.getClientePessoaFisica(clientePessoaFisica);
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -92,19 +116,19 @@ public class ClientePessoaFisicaTO implements Serializable {
 		this.tituloEleitor = tituloEleitor;
 	}
 
-	public String getProfissao() {
+	public Profissao getProfissao() {
 		return profissao;
 	}
 
-	public void setProfissao(String profissao) {
+	public void setProfissao(Profissao profissao) {
 		this.profissao = profissao;
 	}
 
-	public String getClienteTitular() {
+	public ClientePessoaFisica getClienteTitular() {
 		return clienteTitular;
 	}
 
-	public void setClienteTitular(String clienteTitular) {
+	public void setClienteTitular(ClientePessoaFisica clienteTitular) {
 		this.clienteTitular = clienteTitular;
 	}
 

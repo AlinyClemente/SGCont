@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -12,11 +13,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cadastro.cliente_pf")
 @PrimaryKeyJoinColumn(name="cdcliente")
-public class ClientePessoaFisica extends Cliente {
+public class ClientePessoaFisica {
 
-//	@Id
-//	@Column(name="cdcliente", nullable=false)
-//	private Integer codigo;
+	@Id
+	@Column(name="cdcliente", nullable=false)
+	private Integer codigo;
 	
 	@Column(name="nnrg", nullable=false, length=9)
 	private String numeroRg;
@@ -30,14 +31,13 @@ public class ClientePessoaFisica extends Cliente {
 	@Column(name="dtnascimento", nullable=false)
 	private Date dataNascimento;
 	
-	//TODO verificar tipo
 	@Column(name="sexo", nullable=false)
 	private Short sexo;
 	
 	@Column(name="icdeclaracaoir", nullable=false)
 	private Short indicadorDeclaracaoIr;
 
-	@Column(name="nntituloeleitor", nullable=false, length=20)
+	@Column(name="nntituloeleitor", nullable=true, length=20)
 	private String numeroTituloEleitor;
 	
 	@Column(name="cdbanco", nullable=true)
@@ -48,34 +48,43 @@ public class ClientePessoaFisica extends Cliente {
 
 	@Column(name="nnconta", nullable=true, length=10)
 	private String numeroConta;
-	
-	@Column(name="icuso", nullable=false)
-	private Short indicadorUso;
-	
-	@Column(name="tmultimaalteracao", nullable=false)
-	private Date ultimaAlteracao;
 
 	@ManyToOne
     @JoinColumn(name="cdprofissao", 
             insertable=true, updatable=true, 
             nullable=false)
 	private Profissao profissao;
+	
 	@ManyToOne
-    @JoinColumn(name="cdclientetitular", 
+	@JoinColumn(name="cdclientetitular", 
             insertable=true, updatable=true, 
             nullable=true)
 	private ClientePessoaFisica clienteTitular;
+	
+	@ManyToOne
+	@JoinColumn(name="cdcliente", 
+            insertable=false, updatable=false)
+	private Cliente cliente;
 
-//	public Integer getCodigo() {
-//		return codigo;
-//	}
-//
-//	public void setCodigo(Integer codigo) {
-//		this.codigo = codigo;
-//	}
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
 
 	public String getNumeroRg() {
 		return numeroRg;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+		this.setCodigo(cliente.getCodigo());
 	}
 
 	public void setNumeroRg(String numeroRg) {
@@ -154,22 +163,6 @@ public class ClientePessoaFisica extends Cliente {
 		this.numeroConta = numeroConta;
 	}
 
-	public Short getIndicadorUso() {
-		return indicadorUso;
-	}
-
-	public void setIndicadorUso(Short indicadorUso) {
-		this.indicadorUso = indicadorUso;
-	}
-
-	public Date getUltimaAlteracao() {
-		return ultimaAlteracao;
-	}
-
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-		this.ultimaAlteracao = ultimaAlteracao;
-	}
-
 	public Profissao getProfissao() {
 		return profissao;
 	}
@@ -184,6 +177,20 @@ public class ClientePessoaFisica extends Cliente {
 
 	public void setClienteTitular(ClientePessoaFisica clienteTitular) {
 		this.clienteTitular = clienteTitular;
+	}
+	
+	public String getNumeroCpfFormatado() {
+		String cpfFormatado = this.numeroCpf;
+
+		if (cpfFormatado != null && cpfFormatado.length() == 11) {
+
+			cpfFormatado = cpfFormatado.substring(0, 3) + "."
+					+ cpfFormatado.substring(3, 6) + "."
+					+ cpfFormatado.substring(6, 9) + "-"
+					+ cpfFormatado.substring(9, 11);
+		}
+		
+		return cpfFormatado;
 	}
 	
 }
