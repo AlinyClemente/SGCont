@@ -1,4 +1,4 @@
-CREATE TABLE cadastro.profissao (
+﻿CREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE cadastro.contador (
   nnFax VARCHAR(20) NULL,
   email VARCHAR(30) NULL,
   icResponsavel SMALLINT  NOT NULL,
-  isUso SMALLINT  NOT NULL,
+  icUso SMALLINT  NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdContador),
   FOREIGN KEY (cdEmpresaContabil) REFERENCES cadastro.empresa_contabil(cdEmpresaContabil),
@@ -293,7 +293,6 @@ ALTER TABLE cadastro.seq_usuario_grupo_acesso
 
 CREATE TABLE cadastro.cliente (
   cdCliente INTEGER  NOT NULL ,
-  cdClienteTitular INTEGER  NULL,
   cdEndereco INTEGER  NOT NULL,
   nmCliente VARCHAR(100) NOT NULL,
   nnTelefone VARCHAR(20) NOT NULL,
