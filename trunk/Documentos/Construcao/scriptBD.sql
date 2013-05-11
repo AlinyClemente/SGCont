@@ -172,6 +172,7 @@ CREATE TABLE cadastro.endereco (
   dsSiglaUF VARCHAR(2) NOT NULL,
   nmCidade VARCHAR(50) NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  nnEndereco INTEGER NOT NULL,
  PRIMARY KEY(cdEndereco)
 );
 
@@ -365,6 +366,7 @@ CREATE TABLE cadastro.despesa (
   dtDespesa DATE NOT NULL,
   observacao VARCHAR(300) NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  icUso SMALLINT  NOT NULL,
   PRIMARY KEY(cdDespesa),
   FOREIGN KEY(cdCliente) REFERENCES cadastro.cliente(cdCliente),
   FOREIGN KEY(cdtipodespesa) REFERENCES cadastro.tipo_despesa(cdTipoDespesa),
@@ -390,6 +392,7 @@ CREATE TABLE cadastro.receita (
   observacao VARCHAR(300) NULL,
   dtreceita DATE NOT NULL,
   tmultimaalteracao TIMESTAMP NOT NULL,
+  icUso SMALLINT  NOT NULL,
   PRIMARY KEY(codigo),
   FOREIGN KEY(cdCliente) REFERENCES cadastro.cliente(cdCliente),
   FOREIGN KEY(cdTipoReceita) REFERENCES cadastro.tipo_receita(cdTipoReceita),
