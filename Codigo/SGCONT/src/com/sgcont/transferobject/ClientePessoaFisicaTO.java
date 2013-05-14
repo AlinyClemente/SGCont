@@ -37,10 +37,10 @@ public class ClientePessoaFisicaTO implements Serializable {
 	private String numeroAgencia;
 	
 	private String numeroConta;
-
-	public ClientePessoaFisica getClientePessoaFisica(
-			ClientePessoaFisica clientePessoaFisica) {
-
+	
+	public ClientePessoaFisica getClientePessoaFisica() {
+		ClientePessoaFisica clientePessoaFisica = new ClientePessoaFisica();
+		
 		clientePessoaFisica.setNumeroCpf(this.cpf
 				.replace(".", "")
 				.replace("-", ""));
@@ -60,12 +60,6 @@ public class ClientePessoaFisicaTO implements Serializable {
 		clientePessoaFisica.setNumeroAgencia(this.numeroConta);
 
 		return clientePessoaFisica;
-	}
-	
-	public ClientePessoaFisica getClientePessoaFisica() {
-		ClientePessoaFisica clientePessoaFisica = new ClientePessoaFisica();
-		
-		return this.getClientePessoaFisica(clientePessoaFisica);
 	}
 	
 	public String getCpf() {

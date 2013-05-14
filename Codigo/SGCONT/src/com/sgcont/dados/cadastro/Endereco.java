@@ -26,6 +26,9 @@ public class Endereco {
 	
 	@Column(name="nome", nullable=true, length=20)
 	private String nome;
+
+	@Column(name="nnEndereco", nullable=false)
+	private Integer numeroEndereco;
 	
 	@Column(name="dscomplemento", nullable=true, length=20)
 	private String descricaoComplemento;
@@ -73,6 +76,14 @@ public class Endereco {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getNumeroEndereco() {
+		return numeroEndereco;
+	}
+
+	public void setNumeroEndereco(Integer numeroEndereco) {
+		this.numeroEndereco = numeroEndereco;
 	}
 
 	public String getDescricaoComplemento() {

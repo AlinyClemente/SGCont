@@ -3,6 +3,7 @@ package com.sgcont.transferobject;
 import java.io.Serializable;
 
 import com.sgcont.dados.cadastro.Cliente;
+import com.sgcont.dados.cadastro.Endereco;
 
 /**
  * [UC001] Inserir Cliente
@@ -19,6 +20,8 @@ public class ClienteTO implements Serializable {
 	private String indicadorPessoaFisica;
 	
 	private String rua;
+	
+	private String numeroEndereco;
 	
 	private String complemento;
 	
@@ -37,16 +40,29 @@ public class ClienteTO implements Serializable {
 	private String inscricaoMunicipal;
 	
 	private String observacao;
+	
+	private String enderecoFormatado;
 
-	public Cliente getCliente(Cliente cliente) {
-
+	public Cliente getCliente() {
+		
+		Cliente cliente = new Cliente();
+		
 		cliente.setNome(this.nome);
 		cliente.setIndicadorPessoaFisica(
 				new Short(this.indicadorPessoaFisica));
 		
-//		Endereco endereco = new Endereco();
-//		endereco.set
-// 		TODO
+		Endereco endereco = new Endereco();
+		//TODO endereco.setNome(nome) ???
+		endereco.setCodigoCep(
+				new Integer(this.cep.replace("-", "")));
+		endereco.setDescricaoLogradouro(this.rua);
+		endereco.setNumeroEndereco(
+				new Integer(this.numeroEndereco));
+		endereco.setDescricaoComplemento(this.complemento);
+		endereco.setBairro(this.bairro);
+		endereco.setNomeCidade(this.cidade);
+		endereco.setDescricaoSiglaUf(this.estado);
+		cliente.setEndereco(endereco);
 
 		cliente.setNumeroTelefone(this.numeroTelefone);
 		cliente.setEmail(this.email);
@@ -54,13 +70,6 @@ public class ClienteTO implements Serializable {
 		cliente.setObservacao(this.observacao);
 		
 		return cliente;
-	}
-	
-	public Cliente getCliente() {
-		
-		Cliente cliente = new Cliente();
-		
-		return this.getCliente(cliente);
 		
 	}
 	
@@ -86,6 +95,14 @@ public class ClienteTO implements Serializable {
 
 	public void setRua(String rua) {
 		this.rua = rua;
+	}
+
+	public String getNumeroEndereco() {
+		return numeroEndereco;
+	}
+
+	public void setNumeroEndereco(String numeroEndereco) {
+		this.numeroEndereco = numeroEndereco;
 	}
 
 	public String getComplemento() {
@@ -158,6 +175,14 @@ public class ClienteTO implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public String getEnderecoFormatado() {
+		return enderecoFormatado;
+	}
+
+	public void setEnderecoFormatado(String enderecoFormatado) {
+		this.enderecoFormatado = enderecoFormatado;
 	}
 
 }

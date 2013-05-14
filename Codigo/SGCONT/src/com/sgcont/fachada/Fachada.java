@@ -1,10 +1,8 @@
 package com.sgcont.fachada;
 
 import java.util.Collection;
+import java.util.Map;
 
-import com.sgcont.dados.cadastro.ClientePessoaFisica;
-import com.sgcont.dados.cadastro.Contador;
-import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorUtil;
@@ -61,6 +59,15 @@ public class Fachada {
 	public Object pesquisar(Class<?> classe, Integer id) {
 		return this.controladorUtil.pesquisar(classe, id);
 	}
+
+	/**
+	 * Método genérico que retorna um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
+		
+		return this.controladorUtil.pesquisar(classe, campos);
+		
+	}
 	
 	/**
 	 * [UC010] Efetuar Login
@@ -108,52 +115,59 @@ public class Fachada {
 	
 	/**
 	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar um cliente a partir do nome
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS004] - Verificar CPF inválido
 	 * 
 	 * @author Mariana Victor
-	 * @since 09/05/2013
-	 * 
-	 * @param nome
-	 * @return ClientePessoaFisica
-	 * */
-	public ClientePessoaFisica pesquisarClientePF(String nome) {
+	 * @since 13/05/2013
+	 */
+	public String verificarCPFValidoExistente(String cpf) {
 		
-		return this.controladorCadastro.pesquisarClientePF(nome);
+		return this.controladorCadastro.verificarCPFValidoExistente(cpf);
 		
 	}
-
+	
 	/**
 	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar uma profissão a partir do nome
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CNPJ inválido
 	 * 
 	 * @author Mariana Victor
-	 * @since 09/05/2013
-	 * 
-	 * @param nome
-	 * @return Profissao
-	 * */
-	public Profissao pesquisarProfissao(String nome) {
+	 * @since 13/05/2013
+	 */
+	public String verificarCNPJValidoExistente(String cnpj) {
 		
-		return this.controladorCadastro.pesquisarProfissao(nome);
+		return this.controladorCadastro.verificarCNPJValidoExistente(cnpj);
 		
 	}
-
+	
 	/**
 	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar um contador a partir do nome
+	 *  
+	 * [FS0002] - Verificar existência de dados
 	 * 
 	 * @author Mariana Victor
-	 * @since 09/05/2013
-	 * 
-	 * @param nome
-	 * @return Contador
-	 * */
-	public Contador pesquisarContador(String nomeRazaoSocial) {
+	 * @since 13/05/2013
+	 */
+	public String verificarRGExistente(String rg) {
 		
-		return this.controladorCadastro.pesquisarContador(nomeRazaoSocial);
+		return this.controladorCadastro.verificarRGExistente(rg);
+		
+	}
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * 
+	 * @author Mariana Victor
+	 * @since 13/05/2013
+	 */
+	public String verificarTituloEleitorExistente(String tituloEleitor) {
+
+		return this.controladorCadastro.verificarTituloEleitorExistente(tituloEleitor);
 		
 	}
 	
