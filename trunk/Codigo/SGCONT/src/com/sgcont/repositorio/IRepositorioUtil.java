@@ -1,6 +1,7 @@
 package com.sgcont.repositorio;
 
 import java.util.Collection;
+import java.util.Map;
 
 public interface IRepositorioUtil {
 
@@ -23,5 +24,10 @@ public interface IRepositorioUtil {
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id);
+
+	/**
+	 * Método genérico que retorna um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public Object pesquisar(Class<?> classe, Map<String, Object> campos);
 	
 }

@@ -1,8 +1,5 @@
 package com.sgcont.negocio;
 
-import com.sgcont.dados.cadastro.ClientePessoaFisica;
-import com.sgcont.dados.cadastro.Contador;
-import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
@@ -47,41 +44,44 @@ public interface IControladorCadastro {
 	
 	/**
 	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar um cliente a partir do nome
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS004] - Verificar CPF inválido
 	 * 
 	 * @author Mariana Victor
-	 * @since 09/05/2013
+	 * @since 13/05/2013
+	 */
+	public String verificarCPFValidoExistente(String cpf);
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CNPJ inválido
 	 * 
-	 * @param nome
-	 * @return ClientePessoaFisica
-	 * */
-	public ClientePessoaFisica pesquisarClientePF(String nome);
+	 * @author Mariana Victor
+	 * @since 13/05/2013
+	 */
+	public String verificarCNPJValidoExistente(String cnpj);
+	
+	/**
+	 * [UC001] Inserir Cliente
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * 
+	 * @author Mariana Victor
+	 * @since 13/05/2013
+	 */
+	public String verificarRGExistente(String rg);
 
 	/**
 	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar uma profissão a partir do nome
-	 * 
-	 * @author Mariana Victor
-	 * @since 09/05/2013
-	 * 
-	 * @param nome
-	 * @return Profissao
-	 * */
-	public Profissao pesquisarProfissao(String nome);
-
-	/**
-	 * [UC001] Inserir Cliente
-	 * 
-	 * Método responsável pesquisar um contador a partir do nome
+	 *  
+	 * [FS0002] - Verificar existência de dados
 	 * 
 	 * @author Mariana Victor
-	 * @since 09/05/2013
-	 * 
-	 * @param nome
-	 * @return Contador
-	 * */
-	public Contador pesquisarContador(String nomeRazaoSocial);
+	 * @since 13/05/2013
+	 */
+	public String verificarTituloEleitorExistente(String tituloEleitor);
 	
 }

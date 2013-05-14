@@ -47,7 +47,7 @@ public class ClientePessoaJuridica {
     @JoinColumn(name="cdclientematriz", 
             insertable=true, updatable=true, 
             nullable=true)
-	private ClientePessoaJuridica clientePessoaJuridica;
+	private ClientePessoaJuridica clienteMatriz;
 
 	@ManyToOne
 	@JoinColumn(name="cdcliente", 
@@ -132,12 +132,12 @@ public class ClientePessoaJuridica {
 		this.site = site;
 	}
 
-	public ClientePessoaJuridica getClientePessoaJuridica() {
-		return clientePessoaJuridica;
+	public ClientePessoaJuridica getClienteMatriz() {
+		return clienteMatriz;
 	}
 
-	public void setClientePessoaJuridica(ClientePessoaJuridica clientePessoaJuridica) {
-		this.clientePessoaJuridica = clientePessoaJuridica;
+	public void setClienteMatriz(ClientePessoaJuridica clienteMatriz) {
+		this.clienteMatriz = clienteMatriz;
 	}
 
 	public Cliente getCliente() {

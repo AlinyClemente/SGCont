@@ -1,6 +1,7 @@
 package com.sgcont.negocio;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Interface do controlador responsável pelas operações básicas
@@ -27,5 +28,10 @@ public interface IControladorUtil {
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id);
+
+	/**
+	 * Método genérico que retorna um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public Object pesquisar(Class<?> classe, Map<String, Object> campos);
 	
 }

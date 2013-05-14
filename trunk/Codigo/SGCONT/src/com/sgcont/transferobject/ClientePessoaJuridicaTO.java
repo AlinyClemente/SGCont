@@ -34,9 +34,11 @@ public class ClientePessoaJuridicaTO implements Serializable {
 	
 	private Contador contador;
 	
-	public ClientePessoaJuridica getClientePessoaJuridica(
-			ClientePessoaJuridica clientePessoaJuridica) {
-
+	private ClientePessoaJuridica clienteMatriz;
+	
+	public ClientePessoaJuridica getClientePessoaJuridica() {
+		ClientePessoaJuridica clientePessoaJuridica = new ClientePessoaJuridica();
+		
 		clientePessoaJuridica.setRazaoSocial(this.razaoSocial);
 		clientePessoaJuridica
 			.setNumeroCnpj(this.cnpj
@@ -58,14 +60,9 @@ public class ClientePessoaJuridicaTO implements Serializable {
 		
 		clientePessoaJuridica.setSite(this.site);
 		clientePessoaJuridica.setContador(this.contador);
+		clientePessoaJuridica.setClienteMatriz(this.clienteMatriz);
 		
 		return clientePessoaJuridica;
-	}
-	
-	public ClientePessoaJuridica getClientePessoaJuridica() {
-		ClientePessoaJuridica clientePessoaJuridica = new ClientePessoaJuridica();
-		
-		return this.getClientePessoaJuridica(clientePessoaJuridica);
 	}
 	
 	public String getRazaoSocial() {
@@ -138,6 +135,14 @@ public class ClientePessoaJuridicaTO implements Serializable {
 
 	public void setContador(Contador contador) {
 		this.contador = contador;
+	}
+
+	public ClientePessoaJuridica getClienteMatriz() {
+		return clienteMatriz;
+	}
+
+	public void setClienteMatriz(ClientePessoaJuridica clienteMatriz) {
+		this.clienteMatriz = clienteMatriz;
 	}
 
 }

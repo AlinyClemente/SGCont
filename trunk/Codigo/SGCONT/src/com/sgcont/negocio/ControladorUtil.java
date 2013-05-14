@@ -1,6 +1,7 @@
 package com.sgcont.negocio;
 
 import java.util.Collection;
+import java.util.Map;
 
 import com.sgcont.repositorio.IRepositorioUtil;
 import com.sgcont.repositorio.RepositorioUtil;
@@ -55,5 +56,13 @@ public class ControladorUtil implements IControladorUtil {
 		return this.repositorioUtil.pesquisar(classe, id);
 	}
 
+	/**
+	 * Método genérico que retorna um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
+		
+		return this.repositorioUtil.pesquisar(classe, campos);
+		
+	}
 	
 }

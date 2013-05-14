@@ -53,7 +53,7 @@ public class Cliente {
 	@ManyToOne
     @JoinColumn(name="cdendereco", 
             insertable=true, updatable=true, 
-            nullable=true)
+            nullable=false)
 	private Endereco endereco;
 	
 	public Integer getCodigo() {

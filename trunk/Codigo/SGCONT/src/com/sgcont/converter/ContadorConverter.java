@@ -1,5 +1,8 @@
 package com.sgcont.converter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -14,7 +17,13 @@ public class ContadorConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
 		Fachada fachada = Fachada.getInstance();
-		Contador contador = fachada.pesquisarContador(string);
+
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("nomeRazaoSocial", string);
+		
+		Contador contador = (Contador) 
+				fachada.pesquisar(Contador.class, parametros);
+		
 		return contador;
 	}
 

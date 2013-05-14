@@ -1,6 +1,8 @@
 package com.sgcont.repositorio;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.hibernate.Session;
 
@@ -62,6 +64,39 @@ public class RepositorioUtil implements IRepositorioUtil {
 		
 		Object objeto = session.get(classe.getName(), id);
 
+		HibernateUtil.closeSession(session);
+		
+		return objeto;
+	}
+
+	/**
+	 * Método genérico que retorna um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
+
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "from " + classe.getName() + " where ";
+				
+		Iterator<String> keys = campos.keySet().iterator();
+		
+		while (keys.hasNext()) {
+			String key = keys.next();  
+	        Object campo = campos.get(key);  
+	  
+	        if (campo instanceof String) {
+	            consulta = consulta + key + " = '" + campo + "' and ";
+	        } else {
+	            consulta = consulta + key + " = " + campo + " and ";  
+	        }  
+		}
+		
+		consulta = consulta.substring(0, consulta.length() - 4);
+		
+		Object objeto = session
+				.createQuery(consulta)
+				.setMaxResults(1).uniqueResult();
+		
 		HibernateUtil.closeSession(session);
 		
 		return objeto;
