@@ -8,11 +8,8 @@ import javax.faces.bean.SessionScoped;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Endereco;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.fachada.Fachada;
-import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
-import com.sgcont.transferobject.ReceitaTO;
 
 
 /**

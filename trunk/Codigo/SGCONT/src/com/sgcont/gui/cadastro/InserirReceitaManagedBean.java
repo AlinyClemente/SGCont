@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.TipoReceita;
@@ -169,5 +173,43 @@ public class InserirReceitaManagedBean implements Serializable {
 		}
 		return sugestoes;
 	}
+	
+	/** 
+	 * Método responsável por verificar se deve ser exibida mensagem para o campo validado
+	 * 
+	 * @author Mariana Victor
+	 * @since 13/05/2013
+	 */
+	private void verificarMensagemCampo(FacesContext context,
+			UIComponent toValidate, String mensagem) {
+		if (mensagem != null) {
+			((UIInput) toValidate).setValid(false);  
+
+	        FacesMessage message = new FacesMessage(mensagem);  
+	        message.setSeverity(FacesMessage.SEVERITY_ERROR);  
+	        context.addMessage(toValidate.getClientId(context), message);
+		} else {
+			((UIInput) toValidate).setValid(true);
+		}
+	} 
+	
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * 
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 16/05/2013
+	 * */
+	public void validaCPF(FacesContext context, UIComponent toValidate, Object value) {  
+        String cpf = ((String) value)
+        		.replace(".", "")
+				.replace("-", "");
+        
+        String mensagem = Fachada.getInstance().verificarCPFValidoExistente(cpf);
+
+		verificarMensagemCampo(context, toValidate, mensagem);
+    }
 	
 }

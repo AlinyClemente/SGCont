@@ -335,10 +335,12 @@ public class ControladorCadastro implements IControladorCadastro {
 	public void inserirReceita(ReceitaTO receitaTO) {
 		
 		if(receitaTO != null){
-			Receita receita = new Receita();
+			
 			receitaTO.setReceita(receitaTO);
 			
-			repositorioUtil.inserirOuAtualizar(receitaTO.getReceita());
+			Receita receita = receitaTO.getReceita();
+			
+			repositorioUtil.inserirOuAtualizar(receita);
 			
 		}
 		
@@ -361,4 +363,6 @@ public class ControladorCadastro implements IControladorCadastro {
 		return this.repositorioCadastro.pesquisarEmpresaContabil(nome);
 		
 	}
+	
+
 }

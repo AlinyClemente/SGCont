@@ -3,6 +3,7 @@ package com.sgcont.repositorio;
 import java.util.Collection;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.Receita;
 import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 
@@ -58,4 +59,6 @@ public interface IRepositorioCadastro {
 	 * @return EmpresaContabil
 	 * */
 	public EmpresaContabil pesquisarEmpresaContabil(String nome);
+	
+	
 }

@@ -24,7 +24,7 @@
 						<h:outputLabel for="descricao" value="Descrição:" />
 						<p:inputText value="#{InserirReceitaBean.receitaTO.descricao}"
 							id="descricao" required="true" label="Descrição" size="50"
-							maxlength="50" />
+							maxlength="50" validator="#{InserirReceitaBean.validaDescricao}" />
 						<p:message id="descricaoMessage" for="descricao" />
 
 						<h:outputText for="tipoReceita" value="Tipo Receita:" />
