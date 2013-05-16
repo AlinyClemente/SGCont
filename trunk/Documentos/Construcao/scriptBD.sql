@@ -70,7 +70,7 @@ CREATE SEQUENCE cadastro.seq_usuario
 ALTER TABLE cadastro.seq_usuario
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.tipo_receita (
+CREATE TABLE operacional.tipo_receita (
   cdTipoReceita INTEGER NOT NULL,
   descricao VARCHAR(50) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -78,16 +78,16 @@ CREATE TABLE cadastro.tipo_receita (
   PRIMARY KEY(cdTipoReceita)
 );
 
-CREATE SEQUENCE cadastro.seq_tipo_receita
+CREATE SEQUENCE operacional.seq_tipo_receita
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_tipo_receita
+ALTER TABLE operacional.seq_tipo_receita
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.tipo_despesa (
+CREATE TABLE operacional.tipo_despesa (
   cdTipoDespesa INTEGER  NOT NULL,
   descricao VARCHAR(50) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -95,51 +95,52 @@ CREATE TABLE cadastro.tipo_despesa (
   PRIMARY KEY(cdTipoDespesa)
 );
 
-CREATE SEQUENCE cadastro.seq_tipo_despesa
+CREATE SEQUENCE operacional.seq_tipo_despesa
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_tipo_despesa
+ALTER TABLE operacional.seq_tipo_despesa
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.compromisso (
+CREATE TABLE operacional.compromisso (
   cdCompromisso INTEGER  NOT NULL ,
-  dtCompromisso DATE NOT NULL,
+  dtCompromisso TIMESTAMP NOT NULL,
   dsCompromisso VARCHAR(50) NOT NULL,
   observacao VARCHAR(300) NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdCompromisso)
 );
 
-CREATE SEQUENCE cadastro.seq_compromisso
+CREATE SEQUENCE operacional.seq_compromisso
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_compromisso
+ALTER TABLE operacional.seq_compromisso
   OWNER TO sgcont;
 
-  CREATE TABLE lembrete (
+  CREATE TABLE operacional.lembrete (
   cdLembrete INTEGER NOT NULL,
   cdCompromisso INTEGER NOT NULL,
   dsLembrete VARCHAR(255) NULL,
   tmLembrete TIMESTAMP NULL,
   icFrequencia SMALLINT NULL,
+  tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdLembrete),
-  FOREIGN KEY (cdCompromisso) REFERENCES cadastro.compromisso(cdCompromisso)
+  FOREIGN KEY (cdCompromisso) REFERENCES operacional.compromisso(cdCompromisso)
 );
 
 
-CREATE SEQUENCE cadastro.seq_lembrete
+CREATE SEQUENCE operacional.seq_lembrete
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_lembrete
+ALTER TABLE operacional.seq_lembrete
   OWNER TO sgcont;
 
 
@@ -166,7 +167,6 @@ CREATE TABLE cadastro.endereco (
   cdEndereco INTEGER  NOT NULL,
   cdCep INTEGER NOT NULL,
   dsLogradouro VARCHAR(50) NOT NULL,
-  nome VARCHAR(20) NULL,
   dsComplemento VARCHAR(20) NULL,
   nnBairro VARCHAR(30) NULL,
   dsSiglaUF VARCHAR(2) NOT NULL,
@@ -208,7 +208,7 @@ CREATE SEQUENCE cadastro.seq_empresa_contabil
 ALTER TABLE cadastro.seq_empresa_contabil
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.compromisso_responsaveis (
+CREATE TABLE operacional.compromisso_responsaveis (
   cdCompResponsaveis INTEGER  NOT NULL ,
   cdUsuario INTEGER  NOT NULL,
   cdCompromisso INTEGER  NOT NULL,
@@ -218,13 +218,13 @@ CREATE TABLE cadastro.compromisso_responsaveis (
 );
 
 
-CREATE SEQUENCE cadastro.seq_compromisso_responsaveis
+CREATE SEQUENCE operacional.seq_compromisso_responsaveis
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_compromisso_responsaveis
+ALTER TABLE operacional.seq_compromisso_responsaveis
   OWNER TO sgcont;
 
 CREATE TABLE cadastro.contador (
@@ -356,7 +356,7 @@ CREATE TABLE cadastro.cliente_pf (
 );
 
 
-CREATE TABLE cadastro.despesa (
+CREATE TABLE operacional.despesa (
   cdDespesa INTEGER NOT NULL,
   cdCliente INTEGER  NULL,
   cdtipodespesa INTEGER  NOT NULL,
@@ -369,20 +369,20 @@ CREATE TABLE cadastro.despesa (
   icUso SMALLINT  NOT NULL,
   PRIMARY KEY(cdDespesa),
   FOREIGN KEY(cdCliente) REFERENCES cadastro.cliente(cdCliente),
-  FOREIGN KEY(cdtipodespesa) REFERENCES cadastro.tipo_despesa(cdTipoDespesa),
+  FOREIGN KEY(cdtipodespesa) REFERENCES operacional.tipo_despesa(cdTipoDespesa),
   FOREIGN KEY(cdEmpresaContabil) REFERENCES cadastro.empresa_contabil(cdEmpresaContabil)
 );
 
-CREATE SEQUENCE cadastro.seq_despesa
+CREATE SEQUENCE operacional.seq_despesa
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_despesa
+ALTER TABLE operacional.seq_despesa
   OWNER TO sgcont;
 
-CREATE TABLE cadastro.receita (
+CREATE TABLE operacional.receita (
   codigo INTEGER NOT NULL,
   cdCliente INTEGER  NULL,
   cdTipoReceita INTEGER NOT NULL,
@@ -395,15 +395,15 @@ CREATE TABLE cadastro.receita (
   icUso SMALLINT  NOT NULL,
   PRIMARY KEY(codigo),
   FOREIGN KEY(cdCliente) REFERENCES cadastro.cliente(cdCliente),
-  FOREIGN KEY(cdTipoReceita) REFERENCES cadastro.tipo_receita(cdTipoReceita),
+  FOREIGN KEY(cdTipoReceita) REFERENCES operacional.tipo_receita(cdTipoReceita),
   FOREIGN KEY(cdEmpresaContabil) REFERENCES cadastro.empresa_contabil(cdEmpresaContabil)
 );
 
-CREATE SEQUENCE cadastro.seq_receita
+CREATE SEQUENCE operacional.seq_receita
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE cadastro.seq_receita
+ALTER TABLE operacional.seq_receita
   OWNER TO sgcont;
