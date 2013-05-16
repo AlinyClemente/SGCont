@@ -1,12 +1,20 @@
 package com.sgcont.negocio;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import org.hibernate.service.spi.ServiceException;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.Receita;
+import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
@@ -16,6 +24,8 @@ import com.sgcont.repositorio.RepositorioUtil;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
+import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.ReceitaTO;
 import com.sgcont.util.Util;
 
 /**
@@ -209,5 +219,146 @@ public class ControladorCadastro implements IControladorCadastro {
 		return mensagem;
 	}
 
+
+
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao) {
+		
+		return this.repositorioCadastro.pesquisarTipoReceita(descricao);
+		
+	}
 	
+	/**
+	 * [UC003] Inserir Contador 
+	 * 
+	 * Método responsável cadastrar um contador
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 11/05/2013
+	 * */
+	public void inserirContador(ContadorTO contadorTO) {
+		
+		if(contadorTO != null){
+			
+			//contadorTO.setContador(contador);
+			
+			repositorioUtil.inserirOuAtualizar(contadorTO.getContador());
+			
+		}
+		
+		
+	}
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Collection pesquisarDadosClienteParaCombo() { 
+		
+		Collection<ClienteTO> colecaoClientesCombo = new ArrayList();
+
+		Collection<?> retornoConsulta = null;
+		
+		try {
+			
+			retornoConsulta = repositorioCadastro.pesquisarDadosClienteParaCombo();
+			
+			if (retornoConsulta != null && !retornoConsulta.isEmpty()){
+				
+				Iterator<?> iterator = retornoConsulta.iterator();
+
+				while (iterator.hasNext()) {
+
+					ClienteTO clienteTO = new ClienteTO();
+					
+					Object[] objetoPesquisa = (Object[]) iterator.next();
+
+					//Codigo
+					if (objetoPesquisa[0] != null) {
+						clienteTO.setCodigo(((Integer) objetoPesquisa[0]).toString());
+					}
+
+					//Nome 
+					if (objetoPesquisa[1] != null) {
+						clienteTO.setNome((String) objetoPesquisa[1]);
+					}
+					
+					//Cpf
+					if (objetoPesquisa[2] != null) {
+						clienteTO.setCpf((String) objetoPesquisa[2]);
+					}
+					
+					//Cnpf
+					if (objetoPesquisa[3] != null) {
+						clienteTO.setCnpj( ((String) objetoPesquisa[3]));
+					}
+					
+					
+					clienteTO.setarDadosClienteFormato();
+					colecaoClientesCombo.add(clienteTO);
+				}
+			}			
+			
+			
+			return colecaoClientesCombo;
+
+		} catch (Exception e) {
+			throw new ServiceException("erro.sistema",e );
+		}
+			
+	}
+	
+	/**
+	 * [UC011] Inserir Receita 
+	 * 
+	 * Método responsável cadastrar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 23/04/2013
+	 * */
+	public void inserirReceita(ReceitaTO receitaTO) {
+		
+		if(receitaTO != null){
+			Receita receita = new Receita();
+			receitaTO.setReceita(receitaTO);
+			
+			repositorioUtil.inserirOuAtualizar(receitaTO.getReceita());
+			
+		}
+		
+		
+	}
+
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return EmpresaContabil
+	 * */
+	public EmpresaContabil pesquisarEmpresaContabil(String nome) {
+		
+		return this.repositorioCadastro.pesquisarEmpresaContabil(nome);
+		
+	}
 }

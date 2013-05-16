@@ -1,5 +1,9 @@
 package com.sgcont.repositorio;
 
+import java.util.Collection;
+
+import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 
 /**
@@ -16,5 +20,42 @@ public interface IRepositorioCadastro {
 	 * @since 21/03/2013
 	 * */
 	public Usuario pesquisarUsuario(String login, String senha);
+
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Collection pesquisarDadosClienteParaCombo();
 	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao);
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return EmpresaContabil
+	 * */
+	public EmpresaContabil pesquisarEmpresaContabil(String nome);
 }

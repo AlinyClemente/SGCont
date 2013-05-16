@@ -1,7 +1,12 @@
 package com.sgcont.repositorio;
 
-import org.hibernate.Session;
+import java.util.Collection;
 
+import org.hibernate.Session;
+import org.hibernate.type.StandardBasicTypes;
+
+import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.util.HibernateUtil;
 
@@ -52,4 +57,107 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 				
 	}
 
+
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT tipoReceita "
+				+ " FROM TipoReceita tipoReceita "
+				+ " WHERE contd.descricao = :descricao ";
+		
+		TipoReceita tipoReceita = 
+				(TipoReceita) session
+					.createQuery(consulta)
+	                .setParameter("descricao", descricao)
+	                .uniqueResult();
+
+		HibernateUtil.closeSession(session);
+		
+		return tipoReceita;
+				
+	}
+	
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return EmpresaContabil
+	 * */
+	public EmpresaContabil pesquisarEmpresaContabil(String nome) {
+		
+		
+	Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT empresaContabil "
+				+ " FROM EmpresaContabil empresaContabil "
+				+ " WHERE empresaContabil.nomeFantasia = :nome ";
+		
+		EmpresaContabil empresaContabil = 
+				(EmpresaContabil) session
+					.createQuery(consulta)
+	                .setParameter("nome", nome)
+	                .uniqueResult();
+
+		HibernateUtil.closeSession(session);
+		
+		return empresaContabil;
+	}
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Collection pesquisarDadosClienteParaCombo() {
+		
+		Session session = HibernateUtil.getSession();
+		
+		Collection retorno = null;
+		
+		String consulta = "SELECT clie.cdcliente as codigo, " 
+				+ "clie.nmcliente as nomeCliente, "
+				+ " clipf.nncpf as cpf,  "
+				+ " clipj.cnpj as cnpj "
+				+ " FROM cadastro.cliente clie "
+				+ " LEFT JOIN cadastro.cliente_pf clipf on clipf.cdcliente = clie.cdcliente "
+				+ " LEFT JOIN cadastro.cliente_pj clipj on clipj.cdcliente = clie.cdcliente "
+				;
+		
+		retorno =  session
+				.createSQLQuery(consulta)
+				.addScalar("codigo", StandardBasicTypes.INTEGER)
+                .addScalar("nomeCliente", StandardBasicTypes.STRING)
+                .addScalar("cpf", StandardBasicTypes.STRING)
+                .addScalar("cnpj", StandardBasicTypes.STRING)
+                .list()
+                ;
+		
+		return retorno;
+				
+	}
+	
 }
