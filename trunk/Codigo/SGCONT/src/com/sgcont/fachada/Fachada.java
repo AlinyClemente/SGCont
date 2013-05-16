@@ -3,6 +3,8 @@ package com.sgcont.fachada;
 import java.util.Collection;
 import java.util.Map;
 
+import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorUtil;
@@ -11,6 +13,8 @@ import com.sgcont.negocio.IControladorUtil;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
+import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.ReceitaTO;
 
 public class Fachada {
 
@@ -169,6 +173,82 @@ public class Fachada {
 
 		return this.controladorCadastro.verificarTituloEleitorExistente(tituloEleitor);
 		
+	}
+
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return EmpresaContabil
+	 * */
+	public EmpresaContabil pesquisarEmpresaContabil(String nome){
+		
+		return this.controladorCadastro.pesquisarEmpresaContabil(nome);
+	}
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao) {
+		
+		return this.controladorCadastro.pesquisarTipoReceita(descricao);
+	}
+	
+
+	/**
+	 * [UC003] Inserir Contador 
+	 * 
+	 * Método responsável cadastrar um contador
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 11/05/2013
+	 * */
+	public void inserirContador(ContadorTO contadorTO) {
+		
+		this.controladorCadastro.inserirContador(contadorTO);
+		
+	}
+	
+	/**
+	 * [UC011] Inserir Receita 
+	 * 
+	 * Método responsável cadastrar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 23/04/2013
+	 * */
+	public void inserirReceita(ReceitaTO receitaTO) {
+		
+		this.controladorCadastro.inserirReceita(receitaTO);
+		
+	}
+
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Collection pesquisarDadosClienteParaCombo() {
+		
+		return this.controladorCadastro.pesquisarDadosClienteParaCombo();
 	}
 	
 }

@@ -42,6 +42,14 @@ public class ClienteTO implements Serializable {
 	private String observacao;
 	
 	private String enderecoFormatado;
+	
+	private String dadosClienteFormatado;
+
+	private String cpf;
+
+	private String cnpj;
+
+	private String codigo;
 
 	public Cliente getCliente() {
 		
@@ -185,4 +193,45 @@ public class ClienteTO implements Serializable {
 		this.enderecoFormatado = enderecoFormatado;
 	}
 
+	public String getDadosClienteFormatado() {
+		return dadosClienteFormatado;
+	}
+
+	public void setDadosClienteFormatado(String dadosClienteFormatado) {
+		this.dadosClienteFormatado = dadosClienteFormatado;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setarDadosClienteFormato() {
+		if (this.cpf != null && !this.cpf.equals("")) {
+			this.dadosClienteFormatado = cpf + " - " + nome;
+		} else if (this.cnpj != null && !this.cnpj.equals("")) {
+			this.dadosClienteFormatado = cnpj + " - " + nome;
+		}
+	}
+	
+	
 }
