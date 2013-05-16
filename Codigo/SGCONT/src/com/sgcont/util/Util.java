@@ -1,5 +1,6 @@
 package com.sgcont.util;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -188,5 +189,62 @@ public class Util {
 		
 		return false;
 
+	}
+	
+	/**
+	 * Método que recebe uma string ex."123456" e converte para o objeto
+	 * BigDecimal ex. "123456".
+	 * 
+	 * 354654564,12 = 354654564.12 354.654.564,12 = 354654564.12 35465456412 =
+	 * 35465456412.00 354654564.12 = 354654564.12 354654564,12 = 354654564.12
+	 * 
+	 * @param data
+	 * @autor Sávio Luiz, Thiago Toscano
+	 * @date 15/02/2006, 18/03/2006
+	 * @return
+	 */
+
+	public static BigDecimal formatarMoedaRealparaBigDecimal(String valor) {
+		BigDecimal bigDecimalFormatado = new BigDecimal("0");
+
+		if (valor != null) {
+			valor = valor.trim();
+
+			boolean negativo = false;
+			if (valor.startsWith("-")) {
+				negativo = true;
+			}
+
+			boolean temCasaDecimal = false;
+			if (valor.length() > 2
+					&& (valor.substring(valor.length() - 3, valor.length() - 2)
+							.equals(".") || valor.substring(valor.length() - 3,
+							valor.length() - 2).equals(","))) {
+				temCasaDecimal = true;
+			}
+
+			String valorSemPontuacao = "";
+			// metodo que tira todos os pontos no meio da string
+			for (int i = 0; i < valor.length(); i++) {
+				try {
+					Integer.parseInt(valor.substring(i, i + 1));
+					valorSemPontuacao = valorSemPontuacao
+							+ valor.substring(i, i + 1);
+				} catch (Exception e) {
+				}
+			}
+			if (temCasaDecimal) {
+				int tamanho = valorSemPontuacao.length();
+				valorSemPontuacao = valorSemPontuacao.substring(0, tamanho - 2)
+						+ "."
+						+ valorSemPontuacao.substring(tamanho - 2, tamanho);
+			}
+			if (negativo) {
+				valorSemPontuacao = "-" + valorSemPontuacao;
+			}
+			bigDecimalFormatado = new BigDecimal(valorSemPontuacao);
+		}
+
+		return bigDecimalFormatado;
 	}
 }

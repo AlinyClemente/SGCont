@@ -18,22 +18,22 @@
 
 				<ui:include src="include/menu.xhtml" />
 
-				<p:layoutUnit position="center" header="Inserir Receita">
+				<p:layoutUnit position="center" header="Inserir teste Receita">
 					<h:panelGrid columns="3" cellpadding="5">
-						
+
 						<h:outputLabel for="descricao" value="Descrição:" />
 						<p:inputText value="#{InserirReceitaBean.receitaTO.descricao}"
 							id="descricao" required="true" label="Descrição" size="50"
-							maxlength="50" validator="#{InserirReceitaBean.validaDescricao}" />
+							maxlength="50" />
 						<p:message id="descricaoMessage" for="descricao" />
 
 						<h:outputText for="tipoReceita" value="Tipo Receita:" />
-				        <p:autoComplete id="tipoReceita" dropdown="true" size="30" 
-				        	value="#{InserirReceitaBean.receitaTO.tipoReceita}"   
-                  				completeMethod="#{InserirReceitaBean.completaTipoReceita}" 
-                  				var="tipoReceita" itemLabel="#{tipoReceita.descricao}" 
-                  				itemValue="#{tipoReceita}" converter="tipoReceitaConverter" />
-	                    <p:message id="tipoReceitaMessage" for="tipoReceita" />
+						<p:autoComplete id="tipoReceita" dropdown="true" size="30"
+							value="#{InserirReceitaBean.receitaTO.tipoReceita}"
+							completeMethod="#{InserirReceitaBean.completaTipoReceita}"
+							var="tipoReceita" itemLabel="#{tipoReceita.descricao}"
+							itemValue="#{tipoReceita}" converter="tipoReceitaConverter" />
+						<p:message id="tipoReceitaMessage" for="tipoReceita" />
 
 
 						<h:outputText for="dataGeracao" value="Data de Geração: " />
@@ -44,35 +44,42 @@
 
 
 						<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
-				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
-				        	value="#{InserirReceitaBean.receitaTO.empresaContabil}"   
-                  				completeMethod="#{InserirReceitaBean.completaEmpresaContabil}" 
-                  				var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}" 
-                  				itemValue="#{empresaContabil}" converter="empresaContabilConverter" />
-	                    <p:message id="empresaContabilMessage" for="empresaContabil" />
+						<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+							value="#{InserirReceitaBean.receitaTO.empresaContabil}"
+							completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
+							var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
+							itemValue="#{empresaContabil}"
+							converter="empresaContabilConverter" />
+						<p:message id="empresaContabilMessage" for="empresaContabil" />
 
 
 						<h:outputText for="cliente" value="Cliente:" />
-				        <p:autoComplete id="cliente" dropdown="true" size="30" 
-				        	value="#{InserirReceitaBean.receitaTO.cliente}"   
-                  				completeMethod="#{InserirReceitaBean.completaCliente}" 
-                  				var="clienteTO" itemLabel="#{clienteTO.dadosClienteFormatado}" 
-                  				itemValue="#{clienteTO}" converter="clienteTOConverter" />
-	                    <p:message id="clienteMessage" for="cliente" />
+						<p:autoComplete id="cliente" dropdown="true" size="30"
+							value="#{InserirReceitaBean.receitaTO.cliente}"
+							completeMethod="#{InserirReceitaBean.completaCliente}"
+							var="clienteTO" itemLabel="#{clienteTO.dadosClienteFormatado}"
+							itemValue="#{clienteTO}" converter="clienteTOConverter" />
+						<p:message id="clienteMessage" for="cliente" />
 
 						<h:outputLabel for="valor" value="Valor:" />
-						<p:inputMask value="#{InserirReceitaBean.receitaTO.valor}"
-							id="valor" required="true" label="Valor" size="13" 
-							maxlength="13" mask="?99.999.999,99"/>
+						<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
+							id="valor" required="true" label="Valor" size="13" maxlength="13" />
 						<p:message id="valorMessage" for="valor" />
 
-					
+						<h:outputLabel for="observacao" value="Observação:" />
+						<p:inputTextarea
+							value="#{InserirReceitaBean.receitaTO.observacao}"
+							id="observacao" required="false" label="Observação" size="300"
+							maxlength="300" cols="" />
+						<p:message id="observacaoMessage" for="observacao" />
+
 
 					</h:panelGrid>
 					<h:panelGrid columns="1" cellpadding="5">
 						<p:commandButton id="cadastrarButton" value="Cadastrar"
-							actionListener="#{InserirReceitaBean.cadastrar}" />
+							action="#{InserirReceitaBean.cadastrar}" />
 					</h:panelGrid>
+
 
 				</p:layoutUnit>
 

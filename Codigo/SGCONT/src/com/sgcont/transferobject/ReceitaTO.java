@@ -22,13 +22,13 @@ public class ReceitaTO implements Serializable {
 
 	private String descricao;
 	
-	private String tipoReceita;
+	private TipoReceita tipoReceita;
 	
 	private String valor;
 	
 	private String dataGeracao;
 	
-	private String empresaContabil;
+	private EmpresaContabil empresaContabil;
 	
 	private String cliente;
 	
@@ -44,13 +44,7 @@ public class ReceitaTO implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getTipoReceita() {
-		return tipoReceita;
-	}
-
-	public void setTipoReceita(String tipoReceita) {
-		this.tipoReceita = tipoReceita;
-	}
+	
 
 	public String getValor() {
 		return valor;
@@ -69,12 +63,26 @@ public class ReceitaTO implements Serializable {
 	}
 
 	
-	public String getEmpresaContabil() {
+	
+
+	public TipoReceita getTipoReceita() {
+		return tipoReceita;
+	}
+
+	public void setTipoReceita(TipoReceita tipoReceita) {
+		this.tipoReceita = tipoReceita;
+	}
+
+	public EmpresaContabil getEmpresaContabil() {
 		return empresaContabil;
 	}
 
-	public void setEmpresaContabil(String empresaContabil) {
+	public void setEmpresaContabil(EmpresaContabil empresaContabil) {
 		this.empresaContabil = empresaContabil;
+	}
+
+	public void setReceita(Receita receita) {
+		this.receita = receita;
 	}
 
 	public String getCliente() {
@@ -98,20 +106,24 @@ public class ReceitaTO implements Serializable {
 	}
 
 	public void setReceita(ReceitaTO receitaTO) {
-		Cliente cliente = new Cliente();
-		cliente.setCodigo(new Integer(receitaTO.getCliente()));
 		
-		this.receita.setCliente(cliente);
+		if(receitaTO.getCliente() != null 
+				&& !receitaTO.getCliente().equals("")){
+			Cliente cliente = new Cliente();
+			cliente.setCodigo(new Integer(receitaTO.getCliente()));
+			this.receita.setCliente(cliente);
+		}
 		
 		this.receita.setDataReceita(new Date());
 		
-		TipoReceita tipoReceita = new TipoReceita();
-		tipoReceita.setCodigo(new Integer(receitaTO.getTipoReceita()));
 		this.receita.setTipoReceita(tipoReceita);
 		
-		EmpresaContabil empresa = new EmpresaContabil();
-		empresa.setCodigo(new Integer(receitaTO.getEmpresaContabil()));
-		this.receita.setEmpresaContabil(empresa);
+		if(receitaTO.getEmpresaContabil() != null 
+				&& !receitaTO.getEmpresaContabil().equals("")){
+		
+			this.receita.setEmpresaContabil(empresaContabil);
+		
+		}
 		
 		this.receita.setDescricao(receitaTO.getDescricao());
 		
@@ -121,7 +133,7 @@ public class ReceitaTO implements Serializable {
 		
 		this.receita.setIndicadorUso((new Integer(1)).shortValue());
 		
-		//this.receita.setValor(Util.formatarMoedaRealparaBigDecimal(receitaTO.getValor()));
+		this.receita.setValor(Util.formatarMoedaRealparaBigDecimal(receitaTO.getValor()));
 		
 		
 		
