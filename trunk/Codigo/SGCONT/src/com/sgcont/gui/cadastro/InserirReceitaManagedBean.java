@@ -105,9 +105,9 @@ public class InserirReceitaManagedBean implements Serializable {
 	public String cadastrar() {
 
 		Fachada fachada = Fachada.getInstance();
-
+		System.out.println("teste 4");
 		fachada.inserirReceita(this.receitaTO);
-
+		System.out.println("teste 5");
 		return "tela_sucesso";
 
 	}
