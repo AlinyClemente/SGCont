@@ -9,6 +9,7 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Receita;
 import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.util.HibernateUtil;
 
 /**
@@ -57,7 +58,6 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		return usuario;
 				
 	}
-
 
 	
 	/**

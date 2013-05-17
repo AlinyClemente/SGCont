@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+</h:head>
+<h:body>
+<f:view>
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+		    <p:layoutUnit position="north" size="100" >  
+		        <h:outputText value="Aqui fica a logo..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="south" size="60" >  
+		        <h:outputText value="Rodapé com a versão/direitos autorais/etc..." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="west" size="200">  
+		        <p:panelMenu style="width:200px">  
+			       <p:submenu label="Cadastro">  
+			            <p:menuitem value="Inserir Cliente" action="#{InserirClienteBean.exibirInserirCliente}" icon="ui-icon-disk" />  
+			            <p:menuitem value="Manter Cliente" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />  
+			        </p:submenu>    
+			        <p:submenu label="Agenda">  
+			            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-disk" />  
+			        </p:submenu>
+			    </p:panelMenu>
+		    </p:layoutUnit>  
+		  
+		  <!-- 
+		    <p:layoutUnit position="east" size="200" effect="drop">  
+		        <h:outputText value="Right unit content." />  
+		    </p:layoutUnit>  
+		   -->
+		    <p:layoutUnit position="center" header="Inserir Despesa">  
+		        <h:form>  
+	
+					<h:panelGrid columns="3" cellpadding="5">   
+  						
+				     	<h:outputLabel for="descricao" value="Descrição:"/>
+					    <p:inputText value="#{InserirDespesaBean.despesaTO.descricao}" 
+					    			id="descricao" required="true" label="Descrição" 
+					    			size="50" maxlength="50" />
+					    <p:message id="descricaoMessage" for="descricao" />
+					    	
+           		        <h:outputText for="tipoDespesa" value="Tipo de Despesa:" />  
+				        <p:autoComplete id="tipoDespesa" dropdown="true" 
+				        	value="#{InserirDespesaBean.despesaTO.tipoDespesa}"   
+	                 				completeMethod="#{InserirDespesaBean.completaTipoDespesa}" 
+	                 				var="tipoDespesa" itemLabel="#{tipoDespesa.descricao}" 
+	                 				itemValue="#{tipoDespesa}" converter="tipoDespesaConverter" />
+	                    <p:message id="tipoDespesaMessage" for="tipoDespesa" />
+	                    
+					    <h:outputLabel for="valor" value="Valor:"/>
+					    <p:inputMask value="#{InserirDespesaBean.despesaTO.valor}" 
+					    			id="valor" required="true" label="Valor" 
+					    			size="17" maxlength="13" />
+					    <p:message id="valorMessage" for="valor" />
+
+         				 <h:outputText for="datadespesa" value="Data de Geração: " />  
+           						<p:inputMask value="#{InserirDespesaBean.despesaTO.datadespesa}"
+           									id="datadespesa" required="true" label="Data de Geração"
+           									mask="99/99/9999" size="11" /> 
+           						<p:message id="datadespesaMessage" for="datadespesa" />
+         									
+         				<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
+				        	value="#{InserirDespesaBean.despesaTO.empresaContabil}"   
+                  				completeMethod="#{InserirDespesaBean.completaEmpresaContabil}" 
+                  				var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}" 
+                  				itemValue="#{empresaContabil}" converter="empresaContabilConverter" />
+	                    <p:message id="empresaContabilMessage" for="empresaContabil" />
+
+						<h:outputText for="cliente" value="Cliente:" />
+				        <p:autoComplete id="cliente" dropdown="true" size="30" 
+				        	value="#{InserirDespesaBean.despesaTO.cliente}"   
+                  				completeMethod="#{InserirDespesaBean.completaCliente}" 
+                  				var="clienteTO" itemLabel="#{clienteTO.dadosClienteFormatado}" 
+                  				itemValue="#{clienteTO}" converter="clienteTOConverter" />
+	                    <p:message id="clienteMessage" for="cliente" />
+				        
+				        <h:outputLabel for="observacao" value="Observação:"/>
+					    <p:inputTextarea value="#{InserirDespesaBean.despesaTO.observacao}" 
+					    			id="observacao" required="false" label="Observação" 
+					    			size="300" maxlength="300" cols=""/>
+	       				<p:message id="observacaoMessage" for="observacao" />
+	       				
+	    			</h:panelGrid>
+
+			     	<h:panelGrid columns="1" cellpadding="5" > 
+		     			<p:commandButton id="cadastrarButton" value="Cadastrar" 
+		     				action="#{InserirDespesaBean.cadastrar}" /> 
+               		</h:panelGrid>
+					
+		        </h:form>  
+		    </p:layoutUnit>  
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>
+

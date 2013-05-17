@@ -6,13 +6,17 @@ import java.util.Map;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.negocio.ControladorCadastro;
+import com.sgcont.negocio.ControladorOperacional;
 import com.sgcont.negocio.ControladorUtil;
 import com.sgcont.negocio.IControladorCadastro;
+import com.sgcont.negocio.IControladorOperacional;
 import com.sgcont.negocio.IControladorUtil;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
+import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.transferobject.ContadorTO;
 import com.sgcont.transferobject.ReceitaTO;
 
@@ -22,6 +26,7 @@ public class Fachada {
 
 	private IControladorCadastro controladorCadastro;
 	private IControladorUtil controladorUtil;
+	private IControladorOperacional controladorOperacional;
 	
 	public static synchronized Fachada getInstance(){
 		if (instance == null){
@@ -33,6 +38,7 @@ public class Fachada {
 	private Fachada() {
 		controladorCadastro = ControladorCadastro.getInstance();
 		controladorUtil = ControladorUtil.getInstance();
+		controladorOperacional = ControladorOperacional.getInstance();
 	}
 	
 
@@ -158,6 +164,37 @@ public class Fachada {
 	public String verificarRGExistente(String rg) {
 		
 		return this.controladorCadastro.verificarRGExistente(rg);
+		
+	}
+	
+	/**
+	 * [UC013] Inserir Despesa
+	 * 
+	 * Método responsável pesquisar um tipo de despesa a partir da descrição
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 13/05/2013
+	 * 
+	 * @param descrição
+	 * @return TipoDespesa
+	 * */
+	public TipoDespesa pesquisarTipoDespesa(String descricao){
+		
+		return this.controladorOperacional.pesquisarTipoDespesa(descricao);
+		
+	}
+	
+	/**
+	 * [UC013] Inserir Despesa
+	 * 
+	 * Método responsável cadastrar uma despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 14/05/2013
+	 * */
+	public void inserirDespesa(DespesaTO despesaTO){
+		
+		 this.controladorOperacional.inserirDespesa(despesaTO);
 		
 	}
 	
