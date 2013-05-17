@@ -294,6 +294,22 @@ CREATE SEQUENCE cadastro.seq_usuario_grupo_acesso
 ALTER TABLE cadastro.seq_usuario_grupo_acesso
   OWNER TO sgcont;
 
+CREATE TABLE cadastro.banco (
+  cdBanco INTEGER  NOT NULL ,
+  dsBanco VARCHAR(50) NOT NULL,
+  icUso INTEGER  NOT NULL,
+  tmUltimaAlteracao TIMESTAMP NOT NULL,
+  PRIMARY KEY(cdBanco)
+);
+CREATE SEQUENCE cadastro.seq_banco
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE cadastro.seq_banco
+  OWNER TO sgcont;  
+
 CREATE TABLE cadastro.cliente (
   cdCliente INTEGER  NOT NULL ,
   cdEndereco INTEGER  NOT NULL,
@@ -342,6 +358,7 @@ CREATE TABLE cadastro.cliente_pf (
   cdCliente INTEGER  NOT NULL,
   cdClienteTitular INTEGER  NULL,
   cdProfissao INTEGER  NOT NULL,
+  cdBanco INTEGER  NULL,
   nnRG VARCHAR(9) NOT NULL,
   nnCPF VARCHAR(20) NOT NULL,
   nnCEI VARCHAR(20) NULL,
@@ -349,12 +366,12 @@ CREATE TABLE cadastro.cliente_pf (
   sexo CHAR NOT NULL,
   icDeclaracaoIR SMALLINT NOT NULL,
   nnTituloEleitor VARCHAR(20) NULL,
-  cdBanco INTEGER  NULL,
   nnAgencia VARCHAR(10) NULL,
   nnConta VARCHAR(10) NULL,
   PRIMARY KEY(cdCliente),
   FOREIGN KEY(cdClienteTitular) REFERENCES cadastro.cliente_pf(cdCliente),
-  FOREIGN KEY(cdProfissao) REFERENCES cadastro.profissao(cdProfissao)
+  FOREIGN KEY(cdProfissao) REFERENCES cadastro.profissao(cdProfissao),
+  FOREIGN KEY(cdBanco) REFERENCES cadastro.banco(cdBanco)
 );
 
 
