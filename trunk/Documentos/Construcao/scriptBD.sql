@@ -34,10 +34,12 @@ ALTER TABLE cadastro.seq_grupo_acesso
 
 CREATE TABLE cadastro.setor (
   cdSetor INTEGER  NOT NULL ,
+  cdSetorsuperior INTEGER  NULL, 
   dsSetor VARCHAR(50) NOT NULL,
   icUso INTEGER  NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
-  PRIMARY KEY(cdSetor)
+  PRIMARY KEY(cdSetor),
+  FOREIGN KEY (cdSetorsuperior) REFERENCES cadastro.setor(cdSetor)
 );
 CREATE SEQUENCE cadastro.seq_setor
   INCREMENT 1
