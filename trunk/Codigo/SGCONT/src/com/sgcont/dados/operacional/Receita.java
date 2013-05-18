@@ -1,4 +1,4 @@
-package com.sgcont.dados.cadastro;
+package com.sgcont.dados.operacional;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sgcont.dados.cadastro.Cliente;
+import com.sgcont.dados.cadastro.EmpresaContabil;
 
 
 @Entity
