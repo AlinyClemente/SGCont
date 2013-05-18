@@ -3,8 +3,8 @@ package com.sgcont.repositorio;
 import java.util.Collection;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.transferobject.ClienteTO;
 
 /**
@@ -34,18 +34,6 @@ public interface IRepositorioCadastro {
 	 * */
 	public Collection pesquisarDadosClienteParaCombo();
 	
-	/**
-	 * [UC011] Inserir Receita
-	 * 
-	 * Método responsável pesquisar um tipo de receita a partir do nome
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 13/05/2013
-	 * 
-	 * @param nome
-	 * @return TipoReceita
-	 * */
-	public TipoReceita pesquisarTipoReceita(String descricao);
 	
 	/**
 	 * [UC011] Inserir Receita
