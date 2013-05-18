@@ -13,9 +13,9 @@ import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.Receita;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.Receita;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -221,22 +221,6 @@ public class ControladorCadastro implements IControladorCadastro {
 
 
 
-	/**
-	 * [UC011] Inserir Receita
-	 * 
-	 * Método responsável pesquisar um tipo de receita a partir do nome
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 13/05/2013
-	 * 
-	 * @param nome
-	 * @return TipoReceita
-	 * */
-	public TipoReceita pesquisarTipoReceita(String descricao) {
-		
-		return this.repositorioCadastro.pesquisarTipoReceita(descricao);
-		
-	}
 	
 	/**
 	 * [UC003] Inserir Contador 
@@ -324,27 +308,7 @@ public class ControladorCadastro implements IControladorCadastro {
 			
 	}
 	
-	/**
-	 * [UC011] Inserir Receita 
-	 * 
-	 * Método responsável cadastrar uma receita
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 23/04/2013
-	 * */
-	public void inserirReceita(ReceitaTO receitaTO) {
-		
-		if(receitaTO != null){
-			
-			receitaTO.setReceita(receitaTO);
-			
-			Receita receita = receitaTO.getReceita();
-
-			repositorioUtil.inserirOuAtualizar(receita);
-		}
-		
-		
-	}
+	
 
 	/**
 	 * [UC011] Inserir Receita

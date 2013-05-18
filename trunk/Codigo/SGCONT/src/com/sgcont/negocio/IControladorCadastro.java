@@ -3,8 +3,8 @@ package com.sgcont.negocio;
 import java.util.Collection;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
@@ -90,28 +90,6 @@ public interface IControladorCadastro {
 	 */
 	public String verificarTituloEleitorExistente(String tituloEleitor);
 
-	/**
-	 * [UC011] Inserir Receita 
-	 * 
-	 * Método responsável cadastrar uma receita
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 23/04/2013
-	 * */
-	public void inserirReceita(ReceitaTO receitaTO);
-	
-	/**
-	 * [UC011] Inserir Receita
-	 * 
-	 * Método responsável pesquisar um tipo de receita a partir do nome
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 13/05/2013
-	 * 
-	 * @param nome
-	 * @return TipoReceita
-	 * */
-	public TipoReceita pesquisarTipoReceita(String descricao);
 	
 	/**
 	 * [UC011] Inserir Receita

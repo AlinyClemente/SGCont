@@ -13,11 +13,11 @@ import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Endereco;
 import com.sgcont.dados.cadastro.Profissao;
-import com.sgcont.dados.cadastro.Receita;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.dados.operacional.Despesa;
+import com.sgcont.dados.operacional.Receita;
 import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.dados.operacional.TipoReceita;
 
 public class HibernateUtil {
 	

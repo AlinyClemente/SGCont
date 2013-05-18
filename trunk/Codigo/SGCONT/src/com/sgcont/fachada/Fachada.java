@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorOperacional;
 import com.sgcont.negocio.ControladorUtil;
@@ -241,7 +241,7 @@ public class Fachada {
 	 * */
 	public TipoReceita pesquisarTipoReceita(String descricao) {
 		
-		return this.controladorCadastro.pesquisarTipoReceita(descricao);
+		return this.controladorOperacional.pesquisarTipoReceita(descricao);
 	}
 	
 
@@ -269,7 +269,7 @@ public class Fachada {
 	 * */
 	public void inserirReceita(ReceitaTO receitaTO) {
 		
-		this.controladorCadastro.inserirReceita(receitaTO);
+		this.controladorOperacional.inserirReceita(receitaTO);
 		
 	}
 

@@ -5,6 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
 <h:head>
 	<title>SGCONT - Tela Inicial</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
@@ -20,72 +22,86 @@
 				<ui:include src="include/menu.xhtml" />
 
 				<p:layoutUnit position="center" header="Inserir teste Receita">
-					<h:panelGrid columns="3" cellpadding="5" >
 
-						<h:column><h:outputLabel for="descricao" value="Descrição:" /> <font color="#FF0000">*</font></h:column> 
+					<h:panelGrid columns="3" cellpadding="5" id="gridReceita">
+						<h:column>
+							<h:outputLabel for="descricao" value="Descrição:" />
+							<font color="#FF0000">*</font>
+						</h:column>
 						<p:inputText value="#{InserirReceitaBean.receitaTO.descricao}"
 							id="descricao" required="true" label="Descrição" size="50"
 							maxlength="50" />
 						<p:message id="descricaoMessage" for="descricao" />
 
-						<h:column><h:outputText for="tipoReceita" value="Tipo Receita:" /><font color="#FF0000">*</font></h:column>
+						<h:column>
+							<h:outputText for="tipoReceita" value="Tipo Receita:" />
+							<font color="#FF0000">*</font>
+						</h:column>
 						<p:autoComplete id="tipoReceita" dropdown="true" size="30"
 							value="#{InserirReceitaBean.receitaTO.tipoReceita}"
 							completeMethod="#{InserirReceitaBean.completaTipoReceita}"
 							var="tipoReceita" itemLabel="#{tipoReceita.descricao}"
-							itemValue="#{tipoReceita}" converter="tipoReceitaConverter" 
-							required="true"/>
+							itemValue="#{tipoReceita}" converter="tipoReceitaConverter"
+							required="true" label="Tipo Receita" />
 						<p:message id="tipoReceitaMessage" for="tipoReceita" />
 
-
-						<h:column><h:outputText for="dataGeracao" value="Data de Geração: " /><font color="#FF0000">*</font></h:column>
+						<h:column>
+							<h:outputText for="dataGeracao" value="Data de Geração: " />
+							<font color="#FF0000">*</font>
+						</h:column>
 						<p:inputMask value="#{InserirReceitaBean.receitaTO.dataGeracao}"
 							mask="99/99/9999" size="11" id="dataGeracao" required="true"
-							label="Data de Geração" 
-							/>
+							label="Data de Geração" />
 						<p:message id="dataGeracaoMessage" for="dataGeracao" />
 
 
-						<h:column><h:outputLabel for="empresaContabil" value="Empresa Contabil:" /></h:column>
-						<p:autoComplete id="empresaContabil" dropdown="true" size="30"
-							value="#{InserirReceitaBean.receitaTO.empresaContabil}"
-							completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
-							var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
-							itemValue="#{empresaContabil}"
-							converter="empresaContabilConverter" />
-						<p:message id="empresaContabilMessage" for="empresaContabil" />
+							<h:column>
+								<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+							</h:column>
+							<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+								value="#{InserirReceitaBean.receitaTO.empresaContabil}"
+								completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
+								var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
+								itemValue="#{empresaContabil}"
+								converter="empresaContabilConverter" />
+							<p:message id="empresaContabilMessage" for="empresaContabil" />
 
-
-						<h:column><h:outputText for="clienteTO" value="Cliente:" /> </h:column>
+						<h:column>
+							<h:outputText for="clienteTO" value="Cliente:" />
+						</h:column>
 						<p:autoComplete id="clienteTO" dropdown="true" size="30"
 							value="#{InserirReceitaBean.receitaTO.clienteTO}"
 							completeMethod="#{InserirReceitaBean.completaCliente}"
-							var="clienteTO" itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
+							var="clienteTO"
+							itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
 							itemValue="#{clienteTO}" converter="clienteTOConverter" />
 						<p:message id="clienteMessage" for="clienteTO" />
-
-						<h:column><h:outputLabel for="valor" value="Valor:" /><font color="#FF0000">*</font></h:column>
+					
+					
+						<h:column>
+							<h:outputLabel for="valor" value="Valor:" />
+							<font color="#FF0000">*</font>
+						</h:column>
 						<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
-							id="valor" required="true" label="Valor" size="13" maxlength="13" 
-							/>
-						<p:message id="valorMessage" for="valor" />
+							id="valor" required="true" label="Valor" size="13" maxlength="13" />
+						<p:message id="valorMessage" for="valor"
+							onkeypress="mascara(this, valor);" />
 
-						<h:column><h:outputLabel for="observacao" value="Observação:" /></h:column>
+						<h:column>
+							<h:outputLabel for="observacao" value="Observação:" />
+						</h:column>
 						<p:inputTextarea
 							value="#{InserirReceitaBean.receitaTO.observacao}"
 							id="observacao" required="false" label="Observação" size="300"
 							maxlength="300" cols="" />
 						<p:message id="observacaoMessage" for="observacao" />
-
-
 					</h:panelGrid>
+					
 					<h:panelGrid columns="1" cellpadding="5">
 						<p:commandButton id="cadastrarButton" value="Cadastrar"
-							action="#{InserirReceitaBean.cadastrar}" 
-							
-							/>
+							action="#{InserirReceitaBean.cadastrar}"
+							update="gridReceita" />
 					</h:panelGrid>
-
 
 				</p:layoutUnit>
 

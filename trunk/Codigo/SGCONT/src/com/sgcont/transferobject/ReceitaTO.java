@@ -5,8 +5,8 @@ import java.util.Date;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.Receita;
-import com.sgcont.dados.cadastro.TipoReceita;
+import com.sgcont.dados.operacional.Receita;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.util.Util;
 
 

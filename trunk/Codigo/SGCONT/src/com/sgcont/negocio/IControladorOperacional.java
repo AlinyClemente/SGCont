@@ -1,7 +1,9 @@
 package com.sgcont.negocio;
 
 import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.transferobject.DespesaTO;
+import com.sgcont.transferobject.ReceitaTO;
 
 /**
  * Interface do controlador responsável pelas regras de negócio do módulo operacional
@@ -30,4 +32,29 @@ public interface IControladorOperacional {
 	 * @since 14/05/2013
 	 * */
 	public void inserirDespesa(DespesaTO despesaTO);
+	
+	
+	/**
+	 * [UC011] Inserir Receita 
+	 * 
+	 * Método responsável cadastrar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 23/04/2013
+	 * */
+	public void inserirReceita(ReceitaTO receitaTO);
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao);
+	
 }

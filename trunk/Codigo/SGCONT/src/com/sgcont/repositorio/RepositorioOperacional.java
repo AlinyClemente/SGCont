@@ -3,6 +3,7 @@ package com.sgcont.repositorio;
 import org.hibernate.Session;
 
 import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.util.HibernateUtil;
 
 /**
@@ -47,6 +48,37 @@ public class RepositorioOperacional implements IRepositorioOperacional {
 		HibernateUtil.closeSession(session);
 		
 		return tipoDespesa;
+				
+	}
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT tipoReceita "
+				+ " FROM TipoReceita tipoReceita "
+				+ " WHERE tipoReceita.descricao = :descricao ";
+		
+		TipoReceita tipoReceita = 
+				(TipoReceita) session
+					.createQuery(consulta)
+	                .setParameter("descricao", descricao)
+	                .uniqueResult();
+
+		HibernateUtil.closeSession(session);
+		
+		return tipoReceita;
 				
 	}
 }

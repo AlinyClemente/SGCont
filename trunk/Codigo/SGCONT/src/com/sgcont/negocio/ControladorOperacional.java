@@ -3,12 +3,15 @@ package com.sgcont.negocio;
 import java.util.Date;
 
 import com.sgcont.dados.operacional.Despesa;
+import com.sgcont.dados.operacional.Receita;
 import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.repositorio.IRepositorioOperacional;
 import com.sgcont.repositorio.IRepositorioUtil;
 import com.sgcont.repositorio.RepositorioOperacional;
 import com.sgcont.repositorio.RepositorioUtil;
 import com.sgcont.transferobject.DespesaTO;
+import com.sgcont.transferobject.ReceitaTO;
 
 /**
  * Controlador responsável pelas regras de negócio do módulo operacional
@@ -69,4 +72,44 @@ public class ControladorOperacional implements IControladorOperacional {
 		
 	}
 
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar um tipo de receita a partir do nome
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 * 
+	 * @param nome
+	 * @return TipoReceita
+	 * */
+	public TipoReceita pesquisarTipoReceita(String descricao) {
+		
+		return this.repositorioOperacional.pesquisarTipoReceita(descricao);
+		
+	}
+	
+	
+	/**
+	 * [UC011] Inserir Receita 
+	 * 
+	 * Método responsável cadastrar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 23/04/2013
+	 * */
+	public void inserirReceita(ReceitaTO receitaTO) {
+		
+		if(receitaTO != null){
+			
+			receitaTO.setReceita(receitaTO);
+			
+			Receita receita = receitaTO.getReceita();
+
+			repositorioUtil.inserirOuAtualizar(receita);
+		}
+		
+		
+	}
 }
