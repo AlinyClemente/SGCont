@@ -30,7 +30,7 @@ public class ReceitaTO implements Serializable {
 	
 	private EmpresaContabil empresaContabil;
 	
-	private String cliente;
+	private ClienteTO clienteTO;
 	
 	private String observacao;
 
@@ -85,12 +85,13 @@ public class ReceitaTO implements Serializable {
 		this.receita = receita;
 	}
 
-	public String getCliente() {
-		return cliente;
+	
+	public ClienteTO getClienteTO() {
+		return clienteTO;
 	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
+	public void setClienteTO(ClienteTO clienteTO) {
+		this.clienteTO = clienteTO;
 	}
 
 	public String getObservacao() {
@@ -107,10 +108,10 @@ public class ReceitaTO implements Serializable {
 
 	public void setReceita(ReceitaTO receitaTO) {
 		
-		if(receitaTO.getCliente() != null 
-				&& !receitaTO.getCliente().equals("")){
+		if(receitaTO.getClienteTO() != null 
+				&& !receitaTO.getClienteTO().getCodigo().toString().equals("")){
 			Cliente cliente = new Cliente();
-			cliente.setCodigo(new Integer(receitaTO.getCliente()));
+			cliente.setCodigo(new Integer(receitaTO.getClienteTO().getCodigo()));
 			this.receita.setCliente(cliente);
 		}
 		

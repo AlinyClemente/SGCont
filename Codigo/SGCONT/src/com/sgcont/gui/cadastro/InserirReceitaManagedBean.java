@@ -105,9 +105,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	public String cadastrar() {
 
 		Fachada fachada = Fachada.getInstance();
-		System.out.println("teste 4");
 		fachada.inserirReceita(this.receitaTO);
-		System.out.println("teste 5");
 		return "tela_sucesso";
 
 	}
@@ -165,7 +163,7 @@ public class InserirReceitaManagedBean implements Serializable {
 
 		for (ClienteTO cliente : this.colecaoCliente) {
 
-			if (cliente.getDadosClienteFormatado().toLowerCase()
+			if ((cliente.getDocumento() + " - " + cliente.getNome().toLowerCase())
 					.contains(query.toLowerCase())) {
 				sugestoes.add(cliente);
 			}
@@ -193,23 +191,5 @@ public class InserirReceitaManagedBean implements Serializable {
 		}
 	} 
 	
-	
-	/**
-	 * [UC011] Inserir Receita
-	 * 
-	 * 
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 16/05/2013
-	 * */
-	public void validaCPF(FacesContext context, UIComponent toValidate, Object value) {  
-        String cpf = ((String) value)
-        		.replace(".", "")
-				.replace("-", "");
-        
-        String mensagem = Fachada.getInstance().verificarCPFValidoExistente(cpf);
-
-		verificarMensagemCampo(context, toValidate, mensagem);
-    }
 	
 }

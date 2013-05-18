@@ -43,7 +43,7 @@ public class ClienteTO implements Serializable {
 	
 	private String enderecoFormatado;
 	
-	private String dadosClienteFormatado;
+	private String documento;
 
 	private String cpf;
 
@@ -193,12 +193,14 @@ public class ClienteTO implements Serializable {
 		this.enderecoFormatado = enderecoFormatado;
 	}
 
-	public String getDadosClienteFormatado() {
-		return dadosClienteFormatado;
+	
+
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDadosClienteFormatado(String dadosClienteFormatado) {
-		this.dadosClienteFormatado = dadosClienteFormatado;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public String getCpf() {
@@ -225,13 +227,52 @@ public class ClienteTO implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public void setarDadosClienteFormato() {
+	
+	public String getNumeroCpfFormatado() {
+		String cpfFormatado = this.cpf;
+
+		if (cpfFormatado != null && cpfFormatado.length() == 11) {
+
+			cpfFormatado = cpfFormatado.substring(0, 3) + "."
+					+ cpfFormatado.substring(3, 6) + "."
+					+ cpfFormatado.substring(6, 9) + "-"
+					+ cpfFormatado.substring(9, 11);
+		}
+		
+		return cpfFormatado;
+	}
+	
+	public void setardocumento() {
 		if (this.cpf != null && !this.cpf.equals("")) {
-			this.dadosClienteFormatado = cpf + " - " + nome;
+			this.documento = getNumeroCpfFormatado();
 		} else if (this.cnpj != null && !this.cnpj.equals("")) {
-			this.dadosClienteFormatado = cnpj + " - " + nome;
+			this.documento = this.getNumeroCnpjFormatado();
 		}
 	}
+	
+	public String getNumeroCnpjFormatado() {
+		String cnpjFormatado = this.cnpj;
+		String zeros = "";
+		
+		if (cnpjFormatado != null) {
+			
+			for (int a = 0; a < (14 - cnpjFormatado.length()); a++) {
+				zeros = zeros.concat("0");
+			}
+			// concatena os zeros ao numero
+			// caso o numero seja diferente de nulo
+			cnpjFormatado = zeros.concat(cnpjFormatado);
+			
+			cnpjFormatado = cnpjFormatado.substring(0, 2) + "."
+					+ cnpjFormatado.substring(2, 5) + "."
+					+ cnpjFormatado.substring(5, 8) + "/"
+					+ cnpjFormatado.substring(8, 12) + "-"
+					+ cnpjFormatado.substring(12, 14);
+		}
+		
+		return cnpjFormatado;
+	}
+	
 	
 	
 }
