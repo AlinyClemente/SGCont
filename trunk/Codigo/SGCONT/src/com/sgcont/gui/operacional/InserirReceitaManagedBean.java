@@ -1,4 +1,4 @@
-package com.sgcont.gui.cadastro;
+package com.sgcont.gui.operacional;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.TipoReceita;
+import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ReceitaTO;
