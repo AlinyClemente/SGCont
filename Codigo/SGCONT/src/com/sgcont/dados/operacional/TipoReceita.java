@@ -1,4 +1,4 @@
-package com.sgcont.dados.cadastro;
+package com.sgcont.dados.operacional;
 
 import java.io.Serializable;
 import java.util.Date;
