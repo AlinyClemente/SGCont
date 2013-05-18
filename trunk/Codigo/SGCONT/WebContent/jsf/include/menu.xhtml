@@ -6,13 +6,24 @@
  xmlns:f="http://java.sun.com/jsf/core">
     <p:layoutUnit position="west" size="200">  
         <p:panelMenu style="width:200px">  
-	        <p:submenu label="Cadastro">  
-	            <p:menuitem value="Inserir Cliente" action="#{InserirClienteBean.exibirInserirCliente}" icon="ui-icon-disk" />  
-	            <p:menuitem value="Manter Cliente" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />
-	            <p:menuitem value="Inserir Receita" action="#{InserirReceitaBean.exibirInserirReceita}" icon="ui-icon-disk" />  
+	        <p:submenu label="CADASTRO">  
+	        	<p:submenu label="CLIENTE">  
+		            <p:menuitem value="Inserir Cliente" action="#{InserirClienteBean.exibirInserirCliente}" icon="ui-icon-disk" ajax="false" immediate="true"/>  
+		            <p:menuitem value="Manter Cliente" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />
+		        </p:submenu>  
 	        </p:submenu>    
-	        <p:submenu label="Agenda">  
-	            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-disk" />  
+	        <p:submenu label="OPERACIONAL">
+	        	<p:submenu label="RECEITA">
+		            <p:menuitem value="Inserir Receita" action="#{InserirReceitaBean.exibirInserirReceita}" icon="ui-icon-disk" ajax="false" immediate="true"/>
+		            <p:menuitem value="Manter Receita" actionListener="#" icon="ui-icon-arrowrefresh-1-w" />
+	        	</p:submenu>
+	        	<p:submenu label="DESPESA">
+		            <p:menuitem value="Inserir Despesa" actionListener="#" icon="ui-icon-disk" />
+		            <p:menuitem value="Manter Despesa" actionListener="#" icon="ui-icon-arrowrefresh-1-w" />
+	        	</p:submenu>
+	        </p:submenu>
+	        <p:submenu label="AGENDA">  
+	            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-calendar" />  
 	        </p:submenu>
 	    </p:panelMenu>
     </p:layoutUnit>  
