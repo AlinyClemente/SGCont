@@ -105,4 +105,55 @@ INSERT INTO operacional.tipo_despesa(
 -- Tipo de Receita
 INSERT INTO operacional.tipo_receita(
             cdtiporeceita, descricao, icuso, tmultimaalteracao)
-    VALUES (1, 'Declaração IR', 1, '2013-04-03 13:24:40.907192');
+    VALUES (1, 'Honorários de IRPF', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO operacional.tipo_receita(
+            cdtiporeceita, descricao, icuso, tmultimaalteracao)
+    VALUES (2, 'Honorários de Processos de Legalizações', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO operacional.tipo_receita(
+            cdtiporeceita, descricao, icuso, tmultimaalteracao)
+    VALUES (3, 'Honorários de Prestação de Serviços Contábeis', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO operacional.tipo_receita(
+            cdtiporeceita, descricao, icuso, tmultimaalteracao)
+    VALUES (4, 'Honorários de Consultas Técnicas e Pesquisas', 1, '2013-04-03 13:24:40.907192');
+    
+
+-- Inserir Banco
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (1, 'BANCO DO BRASIL', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (399, 'HSBC BANK BRASIL S/A', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (24, 'BANCO DO ESTADO DE PERNAMBUCO', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (104, 'CAIXA ECONÔMICA FEDERAL', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (237, 'BRADESCO', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (275, 'BANCO REAL', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (33, 'SANTANDER', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (745, 'CITIBANK', 1, '2013-04-03 13:24:40.907192');
+
+INSERT INTO cadastro.banco(
+            cdbanco, dsbanco, icuso, tmultimaalteracao)
+    VALUES (341, 'BANCO ITAU', 1, '2013-04-03 13:24:40.907192');
+
