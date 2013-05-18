@@ -39,6 +39,9 @@ public class Despesa {
 	@Column(name="tmultimaalteracao", nullable=false)
 	private Date ultimaAlteracao;
 
+	@Column(name="icuso", nullable=false)
+	private Short indicadorUso;
+	
 	@ManyToOne
     @JoinColumn(name="cdcliente", insertable=true, updatable=true, nullable=true)
 	private Cliente cliente;
@@ -50,7 +53,7 @@ public class Despesa {
 	@ManyToOne
     @JoinColumn(name="cdempresacontabil", insertable=true, updatable=true, nullable=true)
 	private EmpresaContabil empresaContabil;
-
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -121,6 +124,14 @@ public class Despesa {
 
 	public void setEmpresaContabil(EmpresaContabil empresaContabil) {
 		this.empresaContabil = empresaContabil;
+	}
+
+	public Short getIndicadorUso() {
+		return indicadorUso;
+	}
+
+	public void setIndicadorUso(Short indicadorUso) {
+		this.indicadorUso = indicadorUso;
 	}
 
 }
