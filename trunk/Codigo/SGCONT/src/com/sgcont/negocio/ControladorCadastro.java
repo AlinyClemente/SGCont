@@ -310,7 +310,7 @@ public class ControladorCadastro implements IControladorCadastro {
 					}
 					
 					
-					clienteTO.setarDadosClienteFormato();
+					clienteTO.setardocumento();
 					colecaoClientesCombo.add(clienteTO);
 				}
 			}			
@@ -335,16 +335,12 @@ public class ControladorCadastro implements IControladorCadastro {
 	public void inserirReceita(ReceitaTO receitaTO) {
 		
 		if(receitaTO != null){
-			System.out.println("teste");
 			
 			receitaTO.setReceita(receitaTO);
 			
-			System.out.println("teste 1");
-			
 			Receita receita = receitaTO.getReceita();
-			System.out.println("teste 2");
+
 			repositorioUtil.inserirOuAtualizar(receita);
-			System.out.println("teste 3n");
 		}
 		
 		
@@ -367,5 +363,18 @@ public class ControladorCadastro implements IControladorCadastro {
 		
 	}
 	
-
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente  
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return ClienteTO
+	 * */
+	public ClienteTO pesquisarClienteTO(String nome) {
+		
+		return this.repositorioCadastro.pesquisarClienteTO(nome);
+	}
 }

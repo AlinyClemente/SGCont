@@ -5,7 +5,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.transferobject.ClienteTO;
 
@@ -15,8 +14,8 @@ public class ClienteConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
 		Fachada fachada = Fachada.getInstance();
-		//ClienteTO clienteTO = fachada.pesquisarDadosClienteParaCombo();
-		return null;
+		ClienteTO clienteTO = fachada.pesquisarClienteTO(string);
+		return clienteTO;
 	}
 
 	@Override
@@ -24,7 +23,7 @@ public class ClienteConverter implements Converter {
 		ClienteTO clienteTO = new ClienteTO();
 		clienteTO = (ClienteTO) o;
 
-		return clienteTO.getDadosClienteFormatado();
+		return clienteTO.getCodigo();
 	}
 
 }

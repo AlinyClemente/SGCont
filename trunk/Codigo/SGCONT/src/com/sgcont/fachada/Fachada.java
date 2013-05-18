@@ -289,5 +289,20 @@ public class Fachada {
 	}
 
 	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente  
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return ClienteTO
+	 * */
+	public ClienteTO pesquisarClienteTO(String nome){
+		
+		return this.controladorCadastro.pesquisarClienteTO(nome);
+	}
+	
 	
 }

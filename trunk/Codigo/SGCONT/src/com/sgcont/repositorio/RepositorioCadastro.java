@@ -5,11 +5,11 @@ import java.util.Collection;
 import org.hibernate.Session;
 import org.hibernate.type.StandardBasicTypes;
 
+import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.Receita;
 import com.sgcont.dados.cadastro.TipoReceita;
 import com.sgcont.dados.cadastro.Usuario;
-import com.sgcont.dados.operacional.TipoDespesa;
+import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.util.HibernateUtil;
 
 /**
@@ -162,6 +162,41 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	}
 	
 
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * Método responsável pesquisar os cliente  
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 07/05/2013
+	 * 
+	 * @return ClienteTO
+	 * */
+	public ClienteTO pesquisarClienteTO(String codigo) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT cliente "
+				+ " FROM Cliente cliente "
+				+ " WHERE cliente.codigo = :codigo ";
+		
+		Cliente cliente = 
+				(Cliente) session
+					.createQuery(consulta)
+	                .setParameter("codigo", new Integer(codigo))
+	                .uniqueResult();
+
+		HibernateUtil.closeSession(session);
+		
+		
+		ClienteTO clienteTO = new ClienteTO();
+		
+		clienteTO.setCodigo(cliente.getCodigo().toString());
+		clienteTO.setNome(cliente.getNome());
+		
+		return clienteTO;
+				
+	}
 	
 	
 }
