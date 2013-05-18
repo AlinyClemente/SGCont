@@ -27,7 +27,7 @@ public class DespesaTO implements Serializable {
 	
 	private String observacao;
 		
-	private ClienteTO cliente;
+	private ClienteTO clienteTO;
 	
 	private TipoDespesa tipoDespesa;
 	
@@ -65,12 +65,12 @@ public class DespesaTO implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public ClienteTO getCliente() {
-		return cliente;
+	public ClienteTO getClienteTO() {
+		return clienteTO;
 	}
 
-	public void setCliente(ClienteTO cliente) {
-		this.cliente = cliente;
+	public void setClienteTO(ClienteTO clienteTO) {
+		this.clienteTO = clienteTO;
 	}
 
 	public TipoDespesa getTipoDespesa() {
@@ -96,23 +96,15 @@ public class DespesaTO implements Serializable {
 		despesa.setValor(new BigDecimal(this.valor));
 		despesa.setDataDespesa(Util.converterStringParaDate(this.datadespesa));
 		despesa.setObservacao(this.observacao);
-		
-//		TipoDespesa tipoDespesaSelecionado = new TipoDespesa();
-//		tipoDespesaSelecionado.setCodigo(new Integer(this.tipoDespesa));
-//		despesa.setTipoDespesa(tipoDespesaSelecionado);
 		despesa.setTipoDespesa(this.tipoDespesa);
 		
-		if(this.cliente != null && !this.cliente.equals("")){
-//			Cliente clienteSelecionado = new Cliente();
-//			clienteSelecionado.setCodigo(new Integer(this.cliente));
-//			despesa.setCliente(clienteSelecionado);
-			despesa.setCliente(this.cliente.getCliente());
+		if(this.clienteTO != null && !this.clienteTO.equals("")){
+			Cliente cliente = new Cliente();
+			cliente.setCodigo(new Integer(this.clienteTO.getCodigo()));
+			despesa.setCliente(cliente);
 		}
 		
 		if(this.empresaContabil != null && !this.empresaContabil.equals("")){
-//			EmpresaContabil empresaContabilSelecionada = new EmpresaContabil();
-//			empresaContabilSelecionada.setCodigo(new Integer(this.empresaContabil));
-//			despesa.setEmpresaContabil(empresaContabilSelecionada);
 			despesa.setEmpresaContabil(this.empresaContabil);
 		}
 		

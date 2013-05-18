@@ -174,7 +174,7 @@ public class InserirDespesaManagedBean implements Serializable {
 
 		for (ClienteTO cliente : this.colecaoCliente) {
 
-			if (cliente.getDadosClienteFormatado().toLowerCase()
+			if ((cliente.getDocumento() + " - " + cliente.getNome().toLowerCase())
 					.contains(query.toLowerCase())) {
 				sugestoes.add(cliente);
 			}
