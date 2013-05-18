@@ -21,9 +21,10 @@
 
 				<ui:include src="include/menu.xhtml" />
 
-				<p:layoutUnit position="center" header="Inserir teste Receita">
+				<p:layoutUnit position="center" header="Inserir Receita">
 
 					<h:panelGrid columns="3" cellpadding="5" id="gridReceita">
+					
 						<h:column>
 							<h:outputLabel for="descricao" value="Descrição:" />
 							<font color="#FF0000">*</font>
@@ -44,6 +45,15 @@
 							itemValue="#{tipoReceita}" converter="tipoReceitaConverter"
 							required="true" label="Tipo Receita" />
 						<p:message id="tipoReceitaMessage" for="tipoReceita" />
+
+						<h:column>
+							<h:outputLabel for="valor" value="Valor:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
+							id="valor" required="true" label="Valor" size="13" maxlength="13" />
+						<p:message id="valorMessage" for="valor"
+							onkeypress="mascara(this, valor);" />
 
 						<h:column>
 							<h:outputText for="dataGeracao" value="Data de Geração: " />
@@ -78,15 +88,6 @@
 						<p:message id="clienteMessage" for="clienteTO" />
 					
 					
-						<h:column>
-							<h:outputLabel for="valor" value="Valor:" />
-							<font color="#FF0000">*</font>
-						</h:column>
-						<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
-							id="valor" required="true" label="Valor" size="13" maxlength="13" />
-						<p:message id="valorMessage" for="valor"
-							onkeypress="mascara(this, valor);" />
-
 						<h:column>
 							<h:outputLabel for="observacao" value="Observação:" />
 						</h:column>
