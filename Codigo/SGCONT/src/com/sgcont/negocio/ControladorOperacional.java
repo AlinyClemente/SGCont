@@ -67,6 +67,7 @@ public class ControladorOperacional implements IControladorOperacional {
 		Despesa despesa = despesaTO.getDespesa();
 		
 		despesa.setUltimaAlteracao(new Date());
+		despesa.setIndicadorUso(new Short("1"));
 		
 		this.repositorioUtil.inserirOuAtualizar(despesa);
 		
