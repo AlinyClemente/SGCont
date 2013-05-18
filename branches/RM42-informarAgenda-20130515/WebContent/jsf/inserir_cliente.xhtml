@@ -7,6 +7,7 @@
  xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
 <f:view>
@@ -126,7 +127,7 @@
 							    <p:message id="tituloEleitorMessage" for="tituloEleitor" />
 							    			
 						        <h:outputText for="profissao" value="Profissão:" />  
-						        <p:autoComplete id="profissao" dropdown="true" 
+						        <p:autoComplete id="profissao" dropdown="true" size="30"
 						        	value="#{InserirClienteBean.clientePfTO.profissao}"   
                     				completeMethod="#{InserirClienteBean.completaProfissao}" 
                     				var="profissao" itemLabel="#{profissao.nomeProfissao}" 
@@ -190,7 +191,7 @@
 			                    <p:message id="inscricaoEstadualMessage" for="inscricaoEstadual" />
 
 						        <h:outputText for="clienteMatriz" value="Cliente Matriz:" />
-						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30" 
+						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30"  
 						        	value="#{InserirClienteBean.clientePjTO.clienteMatriz}"   
                     				completeMethod="#{InserirClienteBean.completaClienteMatriz}" 
                     				var="clientePJ" itemLabel="#{clientePJ.numeroCnpjFormatado} - #{clientePJ.cliente.nome}" 
