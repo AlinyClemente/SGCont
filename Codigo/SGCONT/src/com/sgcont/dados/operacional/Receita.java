@@ -18,7 +18,7 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 
 
 @Entity
-@Table(name = "cadastro.receita")
+@Table(name = "operacional.receita")
 public class Receita implements Serializable{
 
 	/**

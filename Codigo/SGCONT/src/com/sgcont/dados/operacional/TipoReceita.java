@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "cadastro.tipo_receita")
+@Table(name = "operacional.tipo_receita")
 public class TipoReceita implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
