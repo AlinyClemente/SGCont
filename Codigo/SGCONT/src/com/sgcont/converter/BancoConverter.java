@@ -8,11 +8,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.Banco;
 import com.sgcont.fachada.Fachada;
 
-@FacesConverter(value="clientePjConverter")
-public class ClientePJConverter implements Converter {
+@FacesConverter(value="bancoConverter")
+public class BancoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
@@ -21,18 +21,18 @@ public class ClientePJConverter implements Converter {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("codigo", string);
 		
-		ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica) 
-				fachada.pesquisar(ClientePessoaJuridica.class, parametros);
+		Banco banco = (Banco) 
+				fachada.pesquisar(Banco.class, parametros);
 		
-		return clientePessoaJuridica;
+		return banco;
 	}
 
 	@Override
 	public String getAsString(FacesContext fc, UIComponent uic, Object o) {
-		ClientePessoaJuridica clientePessoaJuridica = new ClientePessoaJuridica();
-		clientePessoaJuridica = (ClientePessoaJuridica) o;
+		Banco banco = new Banco();
+		banco = (Banco) o;
 
-		return clientePessoaJuridica.getCliente().getCodigo().toString();
+		return banco.getCodigo().toString();
 	}
 
 }

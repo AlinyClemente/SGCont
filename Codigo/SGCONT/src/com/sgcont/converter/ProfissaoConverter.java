@@ -19,7 +19,7 @@ public class ProfissaoConverter implements Converter {
 		Fachada fachada = Fachada.getInstance();
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("nomeProfissao", string);
+		parametros.put("codigo", string);
 		
 		Profissao profissao = (Profissao) 
 				fachada.pesquisar(Profissao.class, parametros);
@@ -32,7 +32,7 @@ public class ProfissaoConverter implements Converter {
 		Profissao profissao = new Profissao();
 		profissao = (Profissao) o;
 
-		return profissao.getNomeProfissao();
+		return profissao.getCodigo().toString();
 	}
 
 }

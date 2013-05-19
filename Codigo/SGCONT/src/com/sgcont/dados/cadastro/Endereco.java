@@ -24,9 +24,6 @@ public class Endereco {
 	@Column(name="dslogradouro", nullable=false, length=50)
 	private String descricaoLogradouro;
 	
-	@Column(name="nome", nullable=true, length=20)
-	private String nome;
-
 	@Column(name="nnEndereco", nullable=false)
 	private Integer numeroEndereco;
 	
@@ -68,14 +65,6 @@ public class Endereco {
 
 	public void setDescricaoLogradouro(String descricaoLogradouro) {
 		this.descricaoLogradouro = descricaoLogradouro;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Integer getNumeroEndereco() {

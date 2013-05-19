@@ -2,6 +2,7 @@ package com.sgcont.transferobject;
 
 import java.io.Serializable;
 
+import com.sgcont.dados.cadastro.Banco;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.util.Util;
@@ -28,11 +29,13 @@ public class ClientePessoaFisicaTO implements Serializable {
 	
 	private String tituloEleitor;
 	
+	private String numeroCei;
+	
 	private Profissao profissao;
 	
 	private ClientePessoaFisica clienteTitular;
 	
-	private String banco;
+	private Banco banco;
 	
 	private String numeroAgencia;
 	
@@ -51,13 +54,22 @@ public class ClientePessoaFisicaTO implements Serializable {
 				new Short(sexo));
 		clientePessoaFisica.setIndicadorDeclaracaoIr(
 				new Short(this.indicadorDeclaracaoIR));
-		clientePessoaFisica.setNumeroTituloEleitor(this.tituloEleitor);
+
+		if (this.tituloEleitor != null
+				&& !this.tituloEleitor.isEmpty()) {
+			clientePessoaFisica.setNumeroTituloEleitor(this.tituloEleitor);
+		}
+		
+		if (this.numeroCei != null
+				&& !this.numeroCei.isEmpty()) {
+			clientePessoaFisica.setNumeroCei(this.numeroCei);
+		}
+		
 		clientePessoaFisica.setProfissao(this.profissao);
 		clientePessoaFisica.setClienteTitular(this.clienteTitular);
-		clientePessoaFisica.setCodigoBanco(
-				new Integer(this.banco));
+		clientePessoaFisica.setBanco(this.banco);
 		clientePessoaFisica.setNumeroAgencia(this.numeroAgencia);
-		clientePessoaFisica.setNumeroAgencia(this.numeroConta);
+		clientePessoaFisica.setNumeroConta(this.numeroConta);
 
 		return clientePessoaFisica;
 	}
@@ -110,6 +122,14 @@ public class ClientePessoaFisicaTO implements Serializable {
 		this.tituloEleitor = tituloEleitor;
 	}
 
+	public String getNumeroCei() {
+		return numeroCei;
+	}
+
+	public void setNumeroCei(String numeroCei) {
+		this.numeroCei = numeroCei;
+	}
+
 	public Profissao getProfissao() {
 		return profissao;
 	}
@@ -126,11 +146,11 @@ public class ClientePessoaFisicaTO implements Serializable {
 		this.clienteTitular = clienteTitular;
 	}
 
-	public String getBanco() {
+	public Banco getBanco() {
 		return banco;
 	}
 
-	public void setBanco(String banco) {
+	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
 

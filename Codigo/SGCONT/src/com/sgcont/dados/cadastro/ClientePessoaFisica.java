@@ -40,9 +40,6 @@ public class ClientePessoaFisica {
 	@Column(name="nntituloeleitor", nullable=true, length=20)
 	private String numeroTituloEleitor;
 	
-	@Column(name="cdbanco", nullable=true)
-	private Integer codigoBanco;
-
 	@Column(name="nnagencia", nullable=true, length=10)
 	private String numeroAgencia;
 
@@ -52,7 +49,7 @@ public class ClientePessoaFisica {
 	@ManyToOne
     @JoinColumn(name="cdprofissao", 
             insertable=true, updatable=true, 
-            nullable=false)
+            nullable=true)
 	private Profissao profissao;
 	
 	@ManyToOne
@@ -65,6 +62,12 @@ public class ClientePessoaFisica {
 	@JoinColumn(name="cdcliente", 
             insertable=false, updatable=false)
 	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name="cdBanco",
+            insertable=true, updatable=true, 
+            nullable=true)
+	private Banco banco;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -139,14 +142,6 @@ public class ClientePessoaFisica {
 		this.numeroTituloEleitor = numeroTituloEleitor;
 	}
 
-	public Integer getCodigoBanco() {
-		return codigoBanco;
-	}
-
-	public void setCodigoBanco(Integer codigoBanco) {
-		this.codigoBanco = codigoBanco;
-	}
-
 	public String getNumeroAgencia() {
 		return numeroAgencia;
 	}
@@ -177,6 +172,14 @@ public class ClientePessoaFisica {
 
 	public void setClienteTitular(ClientePessoaFisica clienteTitular) {
 		this.clienteTitular = clienteTitular;
+	}
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 	
 	public String getNumeroCpfFormatado() {
