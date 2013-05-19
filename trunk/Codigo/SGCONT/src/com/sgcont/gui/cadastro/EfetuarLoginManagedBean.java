@@ -60,9 +60,8 @@ public class EfetuarLoginManagedBean implements Serializable {
 			return "paginaInicial";
 			
 		} else {
-
 			FacesContext.getCurrentInstance().addMessage(
-					null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Atenção", "Login/Senha inválido."));
+					null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login/Senha inválido.", null));
 		}
 			
 		
