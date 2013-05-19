@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import com.sgcont.dados.cadastro.Banco;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
@@ -49,6 +50,8 @@ public class InserirClienteManagedBean implements Serializable {
 	private Collection<Contador> colecaoContador;
 	
 	private Collection<ClientePessoaJuridica> colecaoClienteMatriz;
+	
+	private Collection<Banco> colecaoBanco;
 	
 	public InserirClienteManagedBean() {
 		this.clienteTO = new ClienteTO();
@@ -114,6 +117,13 @@ public class InserirClienteManagedBean implements Serializable {
 		this.colecaoClienteMatriz = colecaoClienteMatriz;
 	}
 
+	public Collection<Banco> getColecaoBanco() {
+		return colecaoBanco;
+	}
+
+	public void setColecaoBanco(Collection<Banco> colecaoBanco) {
+		this.colecaoBanco = colecaoBanco;
+	}
 
 	/**
 	 * Método responsável por exibir a tela de cadastro do cliente 
@@ -138,6 +148,8 @@ public class InserirClienteManagedBean implements Serializable {
 				fachada.pesquisar(Contador.class);
 		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
 				fachada.pesquisar(ClientePessoaJuridica.class);
+		this.colecaoBanco = (Collection<Banco>) 
+				fachada.pesquisar(Banco.class);
 		
 		return "inserir_cliente";
 		
@@ -252,7 +264,7 @@ public class InserirClienteManagedBean implements Serializable {
 			((UIInput) toValidate).setValid(false);  
 
 	        FacesMessage message = new FacesMessage(mensagem);  
-	        message.setSeverity(FacesMessage.SEVERITY_ERROR);  
+	        message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	        context.addMessage(toValidate.getClientId(context), message);
 		} else {
 			((UIInput) toValidate).setValid(true);
@@ -268,14 +280,17 @@ public class InserirClienteManagedBean implements Serializable {
 	public List<ClientePessoaFisica> completaClienteTitular(String query) {
 		List<ClientePessoaFisica> sugestoes = new ArrayList<ClientePessoaFisica>();
 		
-		for (ClientePessoaFisica cliente : this.colecaoClienteTitular) {
-			
-			if (cliente.getCliente().getNome().toLowerCase().contains(query.toLowerCase())
-					|| cliente.getNumeroCpf().toLowerCase().contains(query.toLowerCase())) {
+		if (this.colecaoClienteTitular != null 
+				&& !this.colecaoClienteTitular.isEmpty()) {
+			for (ClientePessoaFisica cliente : this.colecaoClienteTitular) {
 				
-				sugestoes.add(cliente);
+				if (cliente.getCliente().getNome().toLowerCase().contains(query.toLowerCase())
+						|| cliente.getNumeroCpf().toLowerCase().contains(query.toLowerCase())) {
+					
+					sugestoes.add(cliente);
+				}
+				
 			}
-			
 		}
 		return sugestoes;
 	}
@@ -289,14 +304,17 @@ public class InserirClienteManagedBean implements Serializable {
 	public List<Profissao> completaProfissao(String query) {
 		List<Profissao> sugestoes = new ArrayList<Profissao>();
 		
-		for (Profissao profissao : this.colecaoProfissoes) {
-			
-			if (profissao.getNomeProfissao().toLowerCase()
-					.contains(query.toLowerCase())) {
-				sugestoes.add(profissao);
+		if (this.colecaoProfissoes != null 
+				&& !this.colecaoProfissoes.isEmpty()) {
+			for (Profissao profissao : this.colecaoProfissoes) {
+				
+				if (profissao.getNomeProfissao().toLowerCase()
+						.contains(query.toLowerCase())) {
+					sugestoes.add(profissao);
+				}
 			}
-			
 		}
+		
 		return sugestoes;
 	}
 
@@ -308,15 +326,18 @@ public class InserirClienteManagedBean implements Serializable {
 	 * */
 	public List<Contador> completaContador(String query) {
 		List<Contador> sugestoes = new ArrayList<Contador>();
-		
-		for (Contador contador : this.colecaoContador) {
-			
-			if (contador.getNomeRazaoSocial().toLowerCase()
-					.contains(query.toLowerCase())) {
-				sugestoes.add(contador);
+
+		if (this.colecaoContador != null 
+				&& !this.colecaoContador.isEmpty()) {		
+			for (Contador contador : this.colecaoContador) {
+				
+				if (contador.getNomeRazaoSocial().toLowerCase()
+						.contains(query.toLowerCase())) {
+					sugestoes.add(contador);
+				}
 			}
-			
 		}
+		
 		return sugestoes;
 	}
 	
@@ -328,16 +349,40 @@ public class InserirClienteManagedBean implements Serializable {
 	 * */
 	public List<ClientePessoaJuridica> completaClienteMatriz(String query) {
 		List<ClientePessoaJuridica> sugestoes = new ArrayList<ClientePessoaJuridica>();
-		
-		for (ClientePessoaJuridica cliente : this.colecaoClienteMatriz) {
-			
-			if (cliente.getCliente().getNome().toLowerCase().contains(query.toLowerCase())
-					|| cliente.getNumeroCnpj().toLowerCase().contains(query.toLowerCase())) {
+
+		if (this.colecaoClienteMatriz!= null 
+				&& !this.colecaoClienteMatriz.isEmpty()) {
+			for (ClientePessoaJuridica cliente : this.colecaoClienteMatriz) {
 				
-				sugestoes.add(cliente);
+				if (cliente.getCliente().getNome().toLowerCase().contains(query.toLowerCase())
+						|| cliente.getNumeroCnpj().toLowerCase().contains(query.toLowerCase())) {
+					sugestoes.add(cliente);
+				}
 			}
-			
 		}
+		
+		return sugestoes;
+	}
+	
+	/**
+	 * Método responsável por filtrar os resultados da pesquisa de Bancos
+	 * 
+	 * @author Mariana Victor
+	 * @since 18/05/2013
+	 * */
+	public List<Banco> completaBanco(String query) {
+		List<Banco> sugestoes = new ArrayList<Banco>();
+
+		if (this.colecaoBanco!= null 
+				&& !this.colecaoBanco.isEmpty()) {
+			for (Banco banco : this.colecaoBanco) {
+				
+				if (banco.getDescricaoBanco().toLowerCase().contains(query.toLowerCase())) {
+					sugestoes.add(banco);
+				}
+			}
+		}
+		
 		return sugestoes;
 	}
 	

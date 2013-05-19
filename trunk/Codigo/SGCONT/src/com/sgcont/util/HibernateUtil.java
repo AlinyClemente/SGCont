@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import com.sgcont.dados.cadastro.Banco;
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
@@ -37,6 +38,7 @@ public class HibernateUtil {
 			.addAnnotatedClass(Profissao.class)
 			.addAnnotatedClass(TipoDespesa.class)
 			.addAnnotatedClass(Despesa.class)
+			.addAnnotatedClass(Banco.class)
 			.addAnnotatedClass(ClientePessoaFisica.class)
 			.addAnnotatedClass(ClientePessoaJuridica.class)
 			.addAnnotatedClass(Receita.class)

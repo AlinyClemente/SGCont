@@ -50,15 +50,21 @@ public class ClientePessoaJuridicaTO implements Serializable {
 				Util.converterStringParaDate(this.dataInicioAtividade));
 		clientePessoaJuridica.setDataFimAtividade(
 				Util.converterStringParaDate(this.dataFimAtividade));
-		clientePessoaJuridica.setCodigoSuframa(this.suframa);
 		
+		if (this.suframa != null
+				&& !this.suframa.isEmpty()) {
+			clientePessoaJuridica.setCodigoSuframa(this.suframa);
+		}
 		if (this.nirf != null 
 				&& !this.nirf.isEmpty()) {
 			clientePessoaJuridica.setCodigoNire(
 					new Integer(this.nirf));
 		}
+		if (this.site != null 
+				&& !this.site.isEmpty()) {
+			clientePessoaJuridica.setSite(this.site);
+		}
 		
-		clientePessoaJuridica.setSite(this.site);
 		clientePessoaJuridica.setContador(this.contador);
 		clientePessoaJuridica.setClienteMatriz(this.clienteMatriz);
 		

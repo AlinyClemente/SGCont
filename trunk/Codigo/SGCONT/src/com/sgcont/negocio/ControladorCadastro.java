@@ -14,8 +14,6 @@ import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
-import com.sgcont.dados.operacional.Receita;
-import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -25,7 +23,6 @@ import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
-import com.sgcont.transferobject.ReceitaTO;
 import com.sgcont.util.Util;
 
 /**

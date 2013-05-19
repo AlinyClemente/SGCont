@@ -35,6 +35,8 @@ public class ClienteTO implements Serializable {
 	
 	private String numeroTelefone;
 	
+	private String numeroFax;
+	
 	private String email;
 	
 	private String inscricaoMunicipal;
@@ -60,22 +62,36 @@ public class ClienteTO implements Serializable {
 				new Short(this.indicadorPessoaFisica));
 		
 		Endereco endereco = new Endereco();
-		//TODO endereco.setNome(nome) ???
 		endereco.setCodigoCep(
 				new Integer(this.cep.replace("-", "")));
 		endereco.setDescricaoLogradouro(this.rua);
 		endereco.setNumeroEndereco(
 				new Integer(this.numeroEndereco));
-		endereco.setDescricaoComplemento(this.complemento);
+		if (this.complemento != null
+				&& !this.complemento.isEmpty()) {
+			endereco.setDescricaoComplemento(this.complemento);
+		}
 		endereco.setBairro(this.bairro);
 		endereco.setNomeCidade(this.cidade);
 		endereco.setDescricaoSiglaUf(this.estado);
 		cliente.setEndereco(endereco);
 
 		cliente.setNumeroTelefone(this.numeroTelefone);
-		cliente.setEmail(this.email);
+		
+		if (this.numeroFax != null
+				&& !this.numeroFax.isEmpty()) {
+			cliente.setNumeroFax(this.numeroFax);
+		}
+		if (this.email != null
+				&& !this.email.isEmpty()) {
+			cliente.setEmail(this.email);
+		}
+		if (this.observacao != null
+				&& !this.observacao.isEmpty()) {
+			cliente.setObservacao(this.observacao);
+		}
+		
 		cliente.setInscricaoMunicipal(this.inscricaoMunicipal);
-		cliente.setObservacao(this.observacao);
 		
 		return cliente;
 		
@@ -159,6 +175,14 @@ public class ClienteTO implements Serializable {
 
 	public void setNumeroTelefone(String numeroTelefone) {
 		this.numeroTelefone = numeroTelefone;
+	}
+
+	public String getNumeroFax() {
+		return numeroFax;
+	}
+
+	public void setNumeroFax(String numeroFax) {
+		this.numeroFax = numeroFax;
 	}
 
 	public String getEmail() {

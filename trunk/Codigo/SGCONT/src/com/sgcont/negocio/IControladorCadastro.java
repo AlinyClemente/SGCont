@@ -4,12 +4,10 @@ import java.util.Collection;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
-import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
-import com.sgcont.transferobject.ReceitaTO;
 
 /**
  * Interface do controlador responsável pelas regras de negócio do módulo de cadastro

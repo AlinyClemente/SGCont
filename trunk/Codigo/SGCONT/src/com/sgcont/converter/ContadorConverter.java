@@ -19,7 +19,7 @@ public class ContadorConverter implements Converter {
 		Fachada fachada = Fachada.getInstance();
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("nomeRazaoSocial", string);
+		parametros.put("codigo", string);
 		
 		Contador contador = (Contador) 
 				fachada.pesquisar(Contador.class, parametros);
@@ -32,7 +32,7 @@ public class ContadorConverter implements Converter {
 		Contador contador = new Contador();
 		contador = (Contador) o;
 
-		return contador.getNomeRazaoSocial();
+		return contador.getCodigo().toString();
 	}
 
 }

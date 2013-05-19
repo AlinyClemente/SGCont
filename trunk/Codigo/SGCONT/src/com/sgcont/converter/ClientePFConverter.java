@@ -19,7 +19,7 @@ public class ClientePFConverter implements Converter {
 		Fachada fachada = Fachada.getInstance();
 		
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("cliente.nome", string);
+		parametros.put("codigo", string);
 		
 		ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) 
 				fachada.pesquisar(ClientePessoaFisica.class, parametros);
@@ -32,7 +32,7 @@ public class ClientePFConverter implements Converter {
 		ClientePessoaFisica clientePessoaFisica = new ClientePessoaFisica();
 		clientePessoaFisica = (ClientePessoaFisica) o;
 
-		return clientePessoaFisica.getCliente().getNome();
+		return clientePessoaFisica.getCliente().getCodigo().toString();
 	}
 
 }

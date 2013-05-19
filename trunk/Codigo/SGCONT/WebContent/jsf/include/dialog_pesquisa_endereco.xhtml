@@ -16,7 +16,10 @@
    			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
    			
        		<h:panelGrid columns="2" cellpadding="5" id="gridCep">
-			    <h:outputLabel for="cep" value="CEP:"/>
+				<h:column>
+				    <h:outputLabel for="cep" value="CEP:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 				<h:column>
 					<p:inputMask value="#{InserirClienteBean.clienteTO.cep}" 
 			    			id="cep" required="true" label="CEP" 
@@ -26,35 +29,50 @@
      						action="#{InserirClienteBean.pesquisarCEP}" update="gridCep" />
      			</h:column>
      			
-				<h:outputLabel for="rua" value="Rua:"/>
+				<h:column>
+					<h:outputLabel for="rua" value="Rua:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.rua}" 
 			    			id="rua" required="false" label="Rua" 
 			    			size="40" maxlength="60" />
 				
-				<h:outputLabel for="numero" value="Número:"/>
+				<h:column>
+					<h:outputLabel for="numero" value="Número:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.numeroEndereco}" 
 			    			id="numeroEndereco" required="false" label="Número" 
-			    			size="40" maxlength="20" />
+			    			size="40" maxlength="9" />
 				
 				<h:outputLabel for="complemento" value="Complemento:"/>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.complemento}" 
 			    			id="complemento" required="false" label="Complemento" 
 			    			size="40" maxlength="20" />
 				
-				<h:outputLabel for="bairro" value="Bairro:"/>
+				<h:column>
+					<h:outputLabel for="bairro" value="Bairro:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.bairro}" 
 			    			id="bairro" required="false" label="Bairro" 
 			    			size="40" maxlength="20" />
 				
-       			<h:outputLabel for="cidade" value="Cidade:"/>
+				<h:column>
+       				<h:outputLabel for="cidade" value="Cidade:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.cidade}" 
 			    			id="cidade" required="false" label="Cidade" 
 			    			size="40" maxlength="40" />
 				
-       			<h:outputLabel for="estado" value="Estado:"/>
+				<h:column>
+       				<h:outputLabel for="estado" value="Estado:"/>
+			    	<font color="#FF0000">*</font>
+			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.estado}" 
 			    			id="estado" required="false" label="Estado" 
-			    			size="40" maxlength="30" />
+			    			size="40" maxlength="2" />
 				
 				<f:facet name="footer">  
                 	<p:commandButton id="InformarButton" value="Informar"     

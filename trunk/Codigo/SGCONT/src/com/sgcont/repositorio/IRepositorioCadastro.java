@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
-import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.transferobject.ClienteTO;
 
 /**
