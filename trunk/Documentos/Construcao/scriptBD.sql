@@ -1,4 +1,4 @@
-﻿CREATE TABLE cadastro.profissao (
+CREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -231,7 +231,7 @@ ALTER TABLE operacional.seq_compromisso_responsaveis
 
 CREATE TABLE cadastro.contador (
   cdContador INTEGER  NOT NULL ,
-  cdEmpresaContabil INTEGER NULL,
+  nnCPF INTEGER NULL,
   cdEndereco INTEGER  NOT NULL,
   cdIdentificacao VARCHAR(20) NOT NULL,
   nmRazaoSocial VARCHAR(70) NOT NULL,
