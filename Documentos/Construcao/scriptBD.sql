@@ -231,9 +231,9 @@ ALTER TABLE operacional.seq_compromisso_responsaveis
 
 CREATE TABLE cadastro.contador (
   cdContador INTEGER  NOT NULL ,
-  nnCPF INTEGER NULL,
+  cdEmpresaCobrabil INTEGER  NOT NULL,
   cdEndereco INTEGER  NOT NULL,
-  cdIdentificacao VARCHAR(20) NOT NULL,
+  nnCPF VARCHAR(20) NOT NULL,
   nmRazaoSocial VARCHAR(70) NOT NULL,
   nnCRC INTEGER  NOT NULL,
   nnTelefone VARCHAR(20) NOT NULL,
