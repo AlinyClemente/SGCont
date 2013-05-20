@@ -104,9 +104,10 @@ public class ControladorOperacional implements IControladorOperacional {
 		
 		if(receitaTO != null){
 			
-			receitaTO.setReceita(receitaTO);
-			
 			Receita receita = receitaTO.getReceita();
+			receita.setUltimaAlteracao(new Date());
+			
+			receita.setIndicadorUso((new Integer(1)).shortValue());
 
 			repositorioUtil.inserirOuAtualizar(receita);
 		}
