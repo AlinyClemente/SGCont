@@ -126,8 +126,10 @@ public class ReceitaTO implements Serializable {
 		
 		receita.setDescricao(this.descricao);
 		
-		receita.setObservacao(this.observacao);
-		
+		if(this.observacao!=null 
+				&& !this.observacao.equals("")){ 
+			receita.setObservacao(this.observacao);
+		}
 		receita.setValor(Util.formatarMoedaRealparaBigDecimal(this.valor));
 		
 		
