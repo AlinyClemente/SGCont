@@ -81,6 +81,8 @@ public class InserirReceitaManagedBean implements Serializable {
 	 * */
 	public String exibirInserirReceita() {
 
+		this.receitaTO = new ReceitaTO();
+		
 		Fachada fachada = Fachada.getInstance();
 
 		this.colecaoTipoReceita = (Collection<TipoReceita>) fachada
