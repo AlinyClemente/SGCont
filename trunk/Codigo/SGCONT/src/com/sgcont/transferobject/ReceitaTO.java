@@ -103,41 +103,35 @@ public class ReceitaTO implements Serializable {
 	}
 
 	public Receita getReceita() {
-		return receita;
-	}
-
-	public void setReceita(ReceitaTO receitaTO) {
+		Receita receita = new Receita();
 		
-		if(receitaTO.getClienteTO() != null 
-				&& !receitaTO.getClienteTO().getCodigo().toString().equals("")){
+		
+		if(this.getClienteTO() != null 
+				&& !this.getClienteTO().getCodigo().toString().equals("")){
 			Cliente cliente = new Cliente();
-			cliente.setCodigo(new Integer(receitaTO.getClienteTO().getCodigo()));
-			this.receita.setCliente(cliente);
+			cliente.setCodigo(new Integer(this.getClienteTO().getCodigo()));
+			receita.setCliente(cliente);
 		}
 		
-		this.receita.setDataReceita(new Date());
+		receita.setDataReceita(Util.converterStringParaDate(this.getDataGeracao()));
 		
-		this.receita.setTipoReceita(tipoReceita);
+		receita.setTipoReceita(this.tipoReceita);
 		
-		if(receitaTO.getEmpresaContabil() != null 
-				&& !receitaTO.getEmpresaContabil().equals("")){
+		if(this.getEmpresaContabil() != null 
+				&& !this.getEmpresaContabil().equals("")){
 		
-			this.receita.setEmpresaContabil(empresaContabil);
+			receita.setEmpresaContabil(empresaContabil);
 		
 		}
 		
-		this.receita.setDescricao(receitaTO.getDescricao());
+		receita.setDescricao(this.descricao);
 		
-		this.receita.setObservacao(receitaTO.getObservacao());
+		receita.setObservacao(this.observacao);
 		
-		this.receita.setUltimaAlteracao(new Date());
-		
-		this.receita.setIndicadorUso((new Integer(1)).shortValue());
-		
-		this.receita.setValor(Util.formatarMoedaRealparaBigDecimal(receitaTO.getValor()));
+		receita.setValor(Util.formatarMoedaRealparaBigDecimal(this.valor));
 		
 		
-		
+		return receita;
 	}
 	
 	
