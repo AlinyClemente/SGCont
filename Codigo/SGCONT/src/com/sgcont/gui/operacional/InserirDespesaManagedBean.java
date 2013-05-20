@@ -12,6 +12,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Profissao;
@@ -89,6 +91,8 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * */
 	public String exibirInserirDespesa() {
 
+		this.despesaTO = new DespesaTO();
+		
 		Fachada fachada = Fachada.getInstance();
 		
 		this.colecaoEmpresaContabil = (Collection<EmpresaContabil>) 
@@ -113,12 +117,21 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * @since 23/04/2013
 	 * */
 	public String cadastrar() {
-
-		Fachada fachada = Fachada.getInstance();
-		fachada.inserirDespesa(this.despesaTO);
 		
-		return "tela_sucesso";
-		
+//	    RequestContext context = RequestContext.getCurrentInstance();  
+//		boolean dadosValidos = validarDadosClienteEmpresaContabil(); 
+//		
+//		if (dadosValidos) {
+			Fachada fachada = Fachada.getInstance();
+			fachada.inserirDespesa(this.despesaTO);
+			
+			return "tela_sucesso";
+//		}else{
+//			context.addCallbackParam("dadosValidos", dadosValidos);  
+//			
+//			return "";
+//		}
+				
 	}
 	
 	/**
@@ -201,5 +214,35 @@ public class InserirDespesaManagedBean implements Serializable {
 			((UIInput) toValidate).setValid(true);
 		}
 	} 
+
+	/** 
+	 * [UC013] Inserir Despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 20/05/2013
+	 */
+	public boolean validarDadosClienteEmpresaContabil() {  
+		boolean dadosValidos = true;
+		
+		if (this.despesaTO.getClienteTO() == null
+			&& (this.despesaTO.getEmpresaContabil() == null || 
+				this.despesaTO.getEmpresaContabil().equals(""))) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Cliente ou Empresa Contabil: Erro de validação: o valor é necessário", null));
+		}
+
+		if (this.despesaTO.getClienteTO() != null
+				&& (this.despesaTO.getEmpresaContabil() != null || 
+					!this.despesaTO.getEmpresaContabil().equals(""))) {
+
+				dadosValidos = false;
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,"Cliente ou Empresa Contabil: Erro de validação: o valor é necessário", null));
+			}
+		
+		return dadosValidos;
+    }
 	
 }
