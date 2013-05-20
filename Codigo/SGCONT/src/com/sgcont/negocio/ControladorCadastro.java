@@ -12,6 +12,7 @@ import org.hibernate.service.spi.ServiceException;
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
+import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.fachada.Fachada;
@@ -231,9 +232,11 @@ public class ControladorCadastro implements IControladorCadastro {
 		
 		if(contadorTO != null){
 			
-			//contadorTO.setContador(contador);
+			Contador contador = contadorTO.getContador();
 			
-			repositorioUtil.inserirOuAtualizar(contadorTO.getContador());
+			contador.setUltimaAlteracao(new Date());
+			contador.setIndicadorUso(new Integer(1).shortValue());
+			repositorioUtil.inserirOuAtualizar(contador);
 			
 		}
 		
