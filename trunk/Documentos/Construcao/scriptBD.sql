@@ -357,7 +357,7 @@ CREATE TABLE cadastro.cliente_pj (
 CREATE TABLE cadastro.cliente_pf (
   cdCliente INTEGER  NOT NULL,
   cdClienteTitular INTEGER  NULL,
-  cdProfissao INTEGER  NOT NULL,
+  cdProfissao INTEGER NULL,
   cdBanco INTEGER  NULL,
   nnRG VARCHAR(9) NOT NULL,
   nnCPF VARCHAR(20) NOT NULL,
