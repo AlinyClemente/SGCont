@@ -93,9 +93,14 @@ public class DespesaTO implements Serializable {
 		Despesa despesa = new Despesa();
 		
 		despesa.setDescricao(this.descricao);
-		despesa.setValor(new BigDecimal(this.valor));
+		
+		despesa.setValor(Util.formatarMoedaRealparaBigDecimal(this.valor));
+		
 		despesa.setDataDespesa(Util.converterStringParaDate(this.datadespesa));
-		despesa.setObservacao(this.observacao);
+		if(this.observacao != null && !this.observacao.equals("")){
+			despesa.setObservacao(this.observacao);
+		}
+
 		despesa.setTipoDespesa(this.tipoDespesa);
 		
 		if(this.clienteTO != null && !this.clienteTO.equals("")){
