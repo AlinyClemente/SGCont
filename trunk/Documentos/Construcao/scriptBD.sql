@@ -235,7 +235,7 @@ CREATE TABLE cadastro.contador (
   cdEndereco INTEGER  NOT NULL,
   nnCPF VARCHAR(20) NOT NULL,
   nmRazaoSocial VARCHAR(70) NOT NULL,
-  nnCRC INTEGER  NOT NULL,
+  nnCRC VARCHAR(9)  NOT NULL,
   nnTelefone VARCHAR(20) NOT NULL,
   nnFax VARCHAR(20) NULL,
   email VARCHAR(30) NULL,
