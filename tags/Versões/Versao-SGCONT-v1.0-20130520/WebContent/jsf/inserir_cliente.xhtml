@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+</h:head>
+<h:body>
+<f:view>
+    <ui:include src="include/dialog_pesquisa_endereco.xhtml"/>
+	<ui:include src="include/dialog_tela_espera.xhtml"/>
+    
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+		    <ui:include src="include/cabecalho.xhtml"/>  
+		  
+		    <ui:include src="include/rodape.xhtml"/>
+		  
+		    <ui:include src="include/menu.xhtml"/>
+	
+			    <p:layoutUnit position="center" header="Inserir Cliente">
+					<p:panel>
+				     	<h:panelGrid columns="3" cellpadding="5" id="gridNome">
+						    <h:column>
+						     	<h:outputLabel for="nome" value="Nome:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+					    	<p:inputText value="#{InserirClienteBean.clienteTO.nome}" 
+						    			id="nome" required="true" label="Nome" 
+						    			size="50" maxlength="100" />
+			        		<p:message id="nomeMessage" for="nome" />
+			        	</h:panelGrid>    
+				     	<h:panelGrid columns="3" cellpadding="5" id="gridEnderecoFormatado">
+						    <h:column>    
+					    		<h:outputLabel value="Endereço:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputText value="#{InserirClienteBean.clienteTO.enderecoFormatado}" 
+						    			id="enderecoFormatado" required="true" label="Endereço Formatado" readonly="true" style="border: 0pt none ; background-color:#EFEFEF;" 
+						    			size="80" maxlength="300" />
+							<p:commandButton id="showDialogButton" type="button" value="Informar Endereço" onclick="dialogEndereco.show()" />
+							<h:inputHidden value="#{InserirClienteBean.clienteTO.enderecoFormatado}" 
+						    			id="endereco" required="true" label="Endereço" />
+							<p:message id="enderecoMessage" for="endereco" />
+						</h:panelGrid>
+				     	<h:panelGrid columns="3" cellpadding="5" id="gridGeral">
+						    <h:column>    
+				     			<h:outputLabel for="telefone" value="Telefone:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputMask value="#{InserirClienteBean.clienteTO.numeroTelefone}" 
+						    			id="telefone" required="true" label="Telefone" 
+						    			size="20" maxlength="11" mask="(999)9999-9999"/>
+						    <p:message id="telefoneMessage" for="telefone" />
+						    			
+				     		<h:outputLabel for="fax" value="Fax:"/>
+						    <p:inputMask value="#{InserirClienteBean.clienteTO.numeroFax}" 
+						    			id="fax" required="false" label="Fax" 
+						    			size="20" maxlength="11" mask="(999)9999-9999"/>
+						    <p:message id="faxMessage" for="fax" />
+						    			
+						    <h:column>
+	          					<h:outputLabel for="inscricaoMunicipal" value="Inscrição Municipal:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputText value="#{InserirClienteBean.clienteTO.inscricaoMunicipal}" 
+						    			id="inscricaoMunicipal" required="true" label="Inscrição Municipal" 
+						    			size="20" maxlength="14"/>
+						    <p:message id="inscricaoMunicipalMessage" for="inscricaoMunicipal" />
+						     							    
+						    <h:outputLabel for="observacao" value="Observação:"/>
+						    <p:inputTextarea value="#{InserirClienteBean.clienteTO.observacao}" 
+						    			id="observacao" required="false" label="Observação" 
+						    			maxlength="500" cols="20" rows="5" autoResize="false" />
+						    <p:message id="observacaoMessage" for="observacao" />
+						    
+						    <h:outputLabel for="email" value="E-mail:"/>
+						    <p:inputText value="#{InserirClienteBean.clienteTO.email}" 
+						    			id="email" required="false" label="E-mail" 
+						    			size="35" maxlength="30" />
+						    <p:message id="emailMessage" for="email" />
+						     
+					        
+				     	</h:panelGrid>
+				    </p:panel>
+		        	
+		        	<h:panelGrid columns="3" cellpadding="5" id="gridTipoCliente">
+						<h:column> 
+			        	    <h:outputText for="tipoCliente" value="Tipo de Cliente: " />
+					    	<font color="#FF0000">*</font>
+					    </h:column> 
+				        <p:selectOneRadio id="tipoCliente" value="#{InserirClienteBean.clienteTO.indicadorPessoaFisica}" 
+				        	onchange="#" required="true" label="Tipo de Cliente">  
+				            <p:ajax event="change" update="dadosPfPj" />
+				            <f:selectItem itemLabel="Pessoa Física" itemValue="1" />  
+				            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="2" />  
+				        </p:selectOneRadio>
+				        <p:message id="tipoClienteMessage" for="tipoCliente" /> 
+			        </h:panelGrid>
+			        
+			        <p:outputPanel id="dadosPfPj">  
+					     <p:panel rendered="#{InserirClienteBean.clienteTO.indicadorPessoaFisica == 1}">  
+    						<h:panelGrid columns="3" cellpadding="5" id="gridPF">
+								<h:column>
+							    	<h:outputLabel for="cpf" value="CPF:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+							    <p:inputMask value="#{InserirClienteBean.clientePfTO.cpf}" 
+							    			id="cpf" required="true" label="CPF" 
+							    			size="15" maxlength="11" mask="999.999.999-99"
+							    			validator="#{InserirClienteBean.validaCPF}"/>
+							    <p:message id="cpfMessage" for="cpf" />
+							    
+								<h:column>
+							    	<h:outputLabel for="rg" value="RG:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.rg}" 
+							    			id="rg" required="true" label="RG" 
+							    			size="11" maxlength="9"
+							    			validator="#{InserirClienteBean.validaRG}" />
+							    <p:message id="rgMessage" for="rg" />
+							    			
+								<h:column>
+							    	<h:outputText for="dataNascimento" value="Data de Nascimento: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column>  
+           						<p:inputMask value="#{InserirClienteBean.clientePfTO.dataNascimento}"
+           									id="dataNascimento" required="true" label="Data de Nascimento"
+           									mask="99/99/9999" size="11" /> 
+           						<p:message id="dataNascimentoMessage" for="dataNascimento" />
+           						
+								<h:column>
+           							<h:outputText for="sexo" value="Sexo: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+           						<p:selectOneRadio value="#{InserirClienteBean.clientePfTO.sexo}" 
+           							onchange="#" id="sexo" required="true" label="Sexo">  
+						            <f:selectItem itemLabel="Masculino" itemValue="1" />  
+						            <f:selectItem itemLabel="Feminino" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        <p:message id="sexoMessage" for="sexo" />
+						        
+								<h:column>
+           							<h:outputText for="indicadorDeclaracaoIR" value="Declaração de IR: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+           						<p:selectOneRadio value="#{InserirClienteBean.clientePfTO.indicadorDeclaracaoIR}" 
+           							onchange="#" id="indicadorDeclaracaoIR" required="true" label="Declaração de IR">  
+						            <f:selectItem itemLabel="Sim" itemValue="1" />  
+						            <f:selectItem itemLabel="Não" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        <p:message id="indicadorDeclaracaoIRMessage" for="indicadorDeclaracaoIR" />
+						        
+							    <h:outputLabel for="tituloEleitor" value="Título de Eleitor:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.tituloEleitor}" 
+							    			id="tituloEleitor" required="false" label="Título de Eleitor" 
+							    			size="13" maxlength="12" 
+							    			validator="#{InserirClienteBean.validaTituloEleitor}"/>
+							    <p:message id="tituloEleitorMessage" for="tituloEleitor" />
+							    
+							    <h:outputLabel for="numeroCei" value="CEI:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroCei}" 
+							    			id="numeroCei" required="false" label="CEI" 
+							    			size="13" maxlength="12" />
+							    <p:message id="numeroCeiMessage" for="numeroCei" />
+							    
+						        <h:outputText for="profissao" value="Profissão:" />  
+						        <p:autoComplete id="profissao" dropdown="true" size="30"
+						        	value="#{InserirClienteBean.clientePfTO.profissao}"   
+                    				completeMethod="#{InserirClienteBean.completaProfissao}" 
+                    				var="profissao" itemLabel="#{profissao.nomeProfissao}" 
+                    				itemValue="#{profissao}" converter="profissaoConverter" />
+			                    <p:message id="profissaoMessage" for="profissao" />
+			                    		
+						        <h:outputText for="clienteTitular" value="Cliente Titular para IR:" />
+						        <p:autoComplete id="clienteTitular" dropdown="true" size="30" 
+						        	value="#{InserirClienteBean.clientePfTO.clienteTitular}"   
+                    				completeMethod="#{InserirClienteBean.completaClienteTitular}" 
+                    				var="clientePF" itemLabel="#{clientePF.numeroCpfFormatado} - #{clientePF.cliente.nome}" 
+                    				itemValue="#{clientePF}" converter="clientePfConverter" />
+			                    <p:message id="clienteTitularMessage" for="clienteTitular" />
+			                     
+			    			</h:panelGrid>
+			    			
+			    			 <p:fieldset legend="Informações Bancárias">  
+    								<h:panelGrid columns="3" cellpadding="5" id="gridBanco">
+										<h:column>
+											<h:outputLabel for="banco" value="Banco:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+								        <p:autoComplete id="banco" dropdown="true" size="30"
+										        	value="#{InserirClienteBean.clientePfTO.banco}"   
+						               				completeMethod="#{InserirClienteBean.completaBanco}" 
+						               				var="banco" itemLabel="#{banco.descricaoBanco}" 
+						               				itemValue="#{banco}" converter="bancoConverter" 
+						               				required="true" label="Banco"/>
+			                    		<p:message id="bancoMessage" for="banco" /> 
+									    			
+										<h:column>
+									    	<h:outputLabel for="numeroAgencia" value="Nº da Agência:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+									    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroAgencia}" 
+									    			id="numeroAgencia" required="true" label="Nº da Agência" 
+									    			size="15" maxlength="10" />
+			                    		<p:message id="numeroAgenciaMessage" for="numeroAgencia" />
+									    
+										<h:column>
+									    	<h:outputLabel for="numeroConta" value="Nº da Conta:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+									    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroConta}" 
+									    			id="numeroConta" required="true" label="Nº da Conta" 
+									    			size="15" maxlength="10" />
+			                    		<p:message id="numeroContaMessage" for="numeroConta" />
+    								</h:panelGrid>
+   							 </p:fieldset>
+   							 
+   							 
+			    		</p:panel>
+					     
+					     <p:panel rendered="#{InserirClienteBean.clienteTO.indicadorPessoaFisica == 2}">  
+					     	<h:panelGrid columns="3" cellpadding="5" id="gridPJ">
+								<h:column>				        		    
+						     		<h:outputLabel for="razaoSocial" value="Razão Social:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.razaoSocial}" 
+							    			id="razaoSocial" required="true" label="Razão Social" 
+							    			size="35" maxlength="120" />
+			                    <p:message id="razaoSocialMessage" for="razaoSocial" />
+							    	
+								<h:column>		
+							    	<h:outputLabel for="cnpj" value="CNPJ:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputMask value="#{InserirClienteBean.clientePjTO.cnpj}" 
+							    			id="cnpj" required="true" label="CNPJ" 
+							    			size="25" maxlength="14" mask="99.999.999/9999-99"
+							    			validator="#{InserirClienteBean.validaCNPJ}"/>
+			                    <p:message id="cnpjMessage" for="cnpj" />
+							    			
+								<h:column>
+							    	<h:outputLabel for="inscricaoEstadual" value="Inscrição Estadual:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.inscricaoEstadual}" 
+							    			id="inscricaoEstadual" required="true" label="Inscrição Estadual" 
+							    			size="25" maxlength="20" />
+			                    <p:message id="inscricaoEstadualMessage" for="inscricaoEstadual" />
+
+						        <h:outputText for="clienteMatriz" value="Cliente Matriz:" />
+						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30"  
+						        	value="#{InserirClienteBean.clientePjTO.clienteMatriz}"   
+                    				completeMethod="#{InserirClienteBean.completaClienteMatriz}" 
+                    				var="clientePJ" itemLabel="#{clientePJ.numeroCnpjFormatado} - #{clientePJ.cliente.nome}" 
+                    				itemValue="#{clientePJ}" converter="clientePjConverter" />
+			                    <p:message id="clienteMatrizMessage" for="clienteMatriz" />
+							    		
+								<h:column>
+						        	<h:outputText for="contador" value="Contador:" />
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+						        <p:autoComplete id="contador" dropdown="true" size="30" 
+						        	value="#{InserirClienteBean.clientePjTO.contador}"   
+                    				completeMethod="#{InserirClienteBean.completaContador}" 
+                    				var="contador" itemLabel="#{contador.nomeRazaoSocial}" 
+                    				itemValue="#{contador}" converter="contadorConverter" 
+                    				required="true" label="Contador"/>
+			                    <p:message id="contadorMessage" for="contador" />
+			                    	
+							    <h:outputText for="dataInicioAtividade" value="Data Inicio de Atividade: " />  
+           						<p:inputMask value="#{InserirClienteBean.clientePjTO.dataInicioAtividade}"
+           									mask="99/99/9999" size="11" 
+           									id="dataInicioAtividade" required="false" label="Data Inicio de Atividade" />
+			                    <p:message id="dataInicioAtividadeMessage" for="dataInicioAtividade" /> 
+							    			
+							    <h:outputText for="dataFimAtividade" value="Data Fim de Atividade: " />  
+           						<p:inputMask value="#{InserirClienteBean.clientePjTO.dataFimAtividade}"
+           									mask="99/99/9999" size="11" 
+           									id="dataFimAtividade" required="false" label="Data Fim de Atividade"/>
+			                    <p:message id="dataFimAtividadeMessage" for="dataFimAtividade" /> 
+           									
+							    <h:outputLabel for="suframa" value="Suframa:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.suframa}" 
+							    			id="suframa" required="false" label="Suframa:" 
+							    			size="25" maxlength="20" />
+			                    <p:message id="suframaMessage" for="suframa" />
+							    			
+							    <h:outputLabel for="nirf" value="N.I.R.E:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.nirf}" 
+							    			id="nirf" required="false" label="N.I.R.E" 
+							    			size="11" maxlength="9" />
+			                    <p:message id="nirfMessage" for="nirf" />
+							    			
+							    <h:outputLabel for="site" value="Site:"/>
+							    <p:inputText value="#{InserirClienteBean.clientePjTO.site}" 
+							    			id="site" required="false" label="Site" 
+							    			size="35" maxlength="40" />
+			                    <p:message id="siteMessage" for="site" />
+           									
+			    			</h:panelGrid>
+					     </p:panel>
+				     	<h:panelGrid columns="2" cellpadding="5" > 
+			     			<p:commandButton id="cadastrarButton" value="Cadastrar" 
+			     				action="#{InserirClienteBean.cadastrar}" 
+			     				update="gridNome, gridEnderecoFormatado, gridGeral, gridTipoCliente, gridPF, gridBanco, gridPJ"/> 
+                   		</h:panelGrid>
+					</p:outputPanel>  
+					
+		    </p:layoutUnit>  
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>

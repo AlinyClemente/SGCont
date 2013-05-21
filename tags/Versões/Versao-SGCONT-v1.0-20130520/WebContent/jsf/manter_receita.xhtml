@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+</h:head>
+<h:body>
+	<f:view>
+		<h:form id="form">
+			<p:layout fullPage="true">
+				<p:layoutUnit position="north" size="100">
+					<h:outputText value="Aqui fica a logo..." />
+				</p:layoutUnit>
+
+				<p:layoutUnit position="south" size="60">
+					<h:outputText value="Rodapé com a versão/direitos autorais/etc..." />
+				</p:layoutUnit>
+
+				<p:layoutUnit position="west" size="200">
+					<p:panelMenu style="width:200px">
+						<p:submenu label="Cadastro">
+							<p:menuitem value="Inserir Cliente"
+								action="#{InserirClienteBean.exibirInserirCliente}"
+								icon="ui-icon-disk" />
+							<p:menuitem value="Manter Cliente" actionListener="#"
+								icon="ui-icon-arrowrefresh-1-w" />
+							<p:menuitem value="Inserir Receita"
+								action="#{InserirReceitaBean.exibirInserirReceita}"
+								icon="ui-icon-disk" />
+						</p:submenu>
+						<p:submenu label="Agenda">
+							<p:menuitem value="Gerenciar Agenda" actionListener="#"
+								icon="ui-icon-disk" />
+						</p:submenu>
+					</p:panelMenu>
+				</p:layoutUnit>
+
+			
+				<p:layoutUnit position="center" header="Inserir Receita">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="descricao" value="Descrição:" />
+							<p:inputText value="#{InserirReceitaBean.receitaTO.descricao}"
+								id="descricao" required="true" label="Descrição" size="50"
+								maxlength="50" />
+
+							<h:outputLabel for="tipoReceita" value="Tipo Receita:" />
+							<p:selectOneMenu
+								value="#{InserirReceitaBean.receitaTO.tipoReceita}">
+								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{InserirReceitaBean.colecaoTipoReceita}"
+									var="d" itemLabel="#{d.descricao}" itemValue="#{d.codigo}" />
+							</p:selectOneMenu>
+							
+							<h:outputText value="Data de Geração: " />
+							<p:inputMask value="#{InserirReceitaBean.receitaTO.dataGeracao}"
+								mask="99/99/9999" size="11" />
+
+							<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+							<p:selectOneMenu
+								value="#{InserirReceitaBean.receitaTO.empresaContabil}">
+								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+								<f:selectItems
+									value="#{InserirReceitaBean.colecaoEmpresaContabil}" var="e"
+									itemLabel="#{e.nomeFantasia}" itemValue="#{e.codigo}" />
+							</p:selectOneMenu>
+
+
+							<h:outputLabel for="valor" value="Valor:" />
+							<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
+								id="valor" required="true" label="Valor" size="13"
+								maxlength="13" />
+							<h:outputLabel for="clienteTO" value="Cliente:" />
+							
+							<p:selectOneMenu
+								value="#{InserirReceitaBean.receitaTO.cliente}"
+								panelStyle="width:150px" effect="fade" var="c"
+								style="width:250px" filter="true" filterMatchMode="contains">
+								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+								<f:selectItems
+									value="#{InserirReceitaBean.colecaoCliente}" var="c"
+									itemLabel="#{c.dadosClienteFormatado}" itemValue="#{c.codigo}" />
+							</p:selectOneMenu>	
+							
+
+
+								
+							<h:outputLabel for="observacao" value="Observação:" />
+							<p:inputTextarea value="#{InserirReceitaBean.receitaTO.observacao}"
+								id="observacao" required="true" label="Observação" size="50"
+								maxlength="50" />
+
+
+					
+								
+
+						</h:panelGrid>
+						<h:panelGrid columns="1" cellpadding="5">
+							<p:commandButton id="cadastrarButton" value="Cadastrar"
+								actionListener="#{InserirReceitaBean.cadastrar}" />
+						</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+					<p:dataTable var="car" value="#{#{ManterReceitaBean.colecaoReceita}"
+						rowKey="#{receita.codigo}" paginator="true" rows="10"
+						selection="#{ManterReceitaBean.selectedCar}" selectionMode="single"
+						filteredValue="#{ManterReceitaBean.filteredCars}" id="Receita">
+
+						<p:ajax event="rowSelect" update=":form:display"
+							oncomplete="carDialog.show()" />
+
+						<f:facet name="header">  
+           Manter Receita
+        </f:facet>
+
+						<p:column headerText="Codigo" sortBy="#{receita.codigo}"
+							filterBy="#{receita.codigo}" id="codigo">  
+				            #{receita.codigo}  
+				        </p:column>
+
+						<p:column headerText="Descrição" sortBy="#{receita.descricao}"
+							filterBy="#{receita.descricao}" id="descricao">  
+				            #{receita.descricao}  
+				        </p:column>
+
+						<p:column headerText="Manufacturer" sortBy="#{car.manufacturer}"
+							filterBy="#{car.manufacturer}" id="manufacturer">  
+            #{car.manufacturer}  
+        </p:column>
+
+						<p:column headerText="Color" sortBy="#{car.color}"
+							filterBy="#{car.color}" id="color">  
+            #{car.color}"  
+        </p:column>
+
+					</p:dataTable>
+
+					<p:dialog header="Car Detail" widgetVar="carDialog"
+						resizable="false" width="200" showEffect="explode"
+						hideEffect="explode">
+
+						<h:panelGrid id="display" columns="2" cellpadding="4">
+
+							<f:facet name="header">
+								<p:graphicImage
+									value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg" />
+							</f:facet>
+
+							<h:outputText value="Model:" />
+							<h:outputText value="#{tableBean.selectedCar.model}" id="model" />
+
+							<h:outputText value="Year:" />
+							<h:outputText value="#{tableBean.selectedCar.year}" id="year" />
+
+							<h:outputText value="Manufacturer:" />
+							<h:outputText value="#{tableBean.selectedCar.manufacturer}"
+								id="manufacturer" />
+
+							<h:outputText value="Color:" />
+							<h:outputText value="#{tableBean.selectedCar.color}" id="color" />
+						</h:panelGrid>
+					</p:dialog>
+
+
+
+
+
+
+				</p:layoutUnit>
+
+			</p:layout>
+		</h:form>
+	</f:view>
+</h:body>
+</html>
+
