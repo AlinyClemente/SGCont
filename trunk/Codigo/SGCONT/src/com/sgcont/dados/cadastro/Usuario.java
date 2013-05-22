@@ -33,10 +33,10 @@ public class Usuario implements Serializable {
 	@Column(name="nncpf", nullable=false, length=20)
 	private String numeroCpf;
 	
-	@Column(name="nntelefone", nullable=false, length=20)
+	@Column(name="nntelefone", nullable=true, length=20)
 	private String numeroTelefone;
 	
-	@Column(name="email", nullable=false, length=30)
+	@Column(name="email", nullable=true, length=30)
 	private String email;
 	
 	@Column(name="icuso", nullable=false)
