@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+	<script type="text/javascript">  
+	    function verificarValidacao(args) {  
+	        if(args.dadosValidos) {  
+	        	dialogEnderecoContador.hide();  
+	        }  
+	    }  
+	</script>  
+	<h:form id="formEndereco">
+		<p:dialog id="dialog" header="Informar Endereço" widgetVar="dialogEnderecoContador" height="400" modal="true">
+   			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+   			
+       		<h:panelGrid columns="2" cellpadding="5" id="gridCep">
+			    <h:outputLabel for="cep" value="CEP:"/>
+				<h:column>
+					<p:inputMask value="#{InserirContadorBean.contadorTO.cep}" 
+			    			id="cep" required="true" label="CEP" 
+			    			size="20" maxlength="11" mask="99999-999"/>
+			    	&nbsp;&nbsp;
+			    	<p:commandButton id="pesquisarButton" icon="ui-icon-search"
+     						action="#{InserirContadorBean.pesquisarCEP}" update="gridCep" />
+     			</h:column>
+     			
+				<h:outputLabel for="rua" value="Rua:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.rua}" 
+			    			id="rua" required="false" label="Rua" 
+			    			size="40" maxlength="60" />
+				
+				<h:outputLabel for="numero" value="Número:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.numeroEndereco}" 
+			    			id="numeroEndereco" required="false" label="Número" 
+			    			size="10" maxlength="7" />
+				
+				<h:outputLabel for="complemento" value="Complemento:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.complemento}" 
+			    			id="complemento" required="false" label="Complemento" 
+			    			size="30" maxlength="20" />
+				
+				<h:outputLabel for="bairro" value="Bairro:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.bairro}" 
+			    			id="bairro" required="false" label="Bairro" 
+			    			size="40" maxlength="20" />
+				
+       			<h:outputLabel for="cidade" value="Cidade:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.cidade}" 
+			    			id="cidade" required="false" label="Cidade" 
+			    			size="56" maxlength="50" />
+				
+       			<h:outputLabel for="estado" value="Estado:"/>
+			    <p:inputText value="#{InserirContadorBean.contadorTO.estado}" 
+			    			id="estado" required="false" label="Estado" 
+			    			size="5" maxlength="2" />
+				
+				<f:facet name="footer">  
+                	<p:commandButton id="InformarButton" value="Informar"     
+                    	actionListener="#{InserirContadorBean.informarEndereco}"   
+                    	oncomplete="verificarValidacao(args)" update=":form:gridEnderecoFormatado"/>
+            	</f:facet> 
+
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>  
+</html>
+
