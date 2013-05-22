@@ -16,9 +16,10 @@ import com.sgcont.negocio.IControladorUtil;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
-import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.transferobject.ReceitaTO;
+import com.sgcont.transferobject.UsuarioTO;
 
 public class Fachada {
 
@@ -303,6 +304,46 @@ public class Fachada {
 		
 		return this.controladorCadastro.pesquisarClienteTO(nome);
 	}
+
+	/**
+	 * [UC005] Inserir Usuario 
+	 * 
+	 * Método responsável cadastrar um usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 * */
+	public void inserirUsuario(UsuarioTO usuarioTO){
+		this.controladorCadastro.inserirUsuario(usuarioTO);
+	}
+
 	
 	
+	/**
+	 * [UC003] Inserir Contador
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public String verificarCPFValidoExistenteContador(String cpf) {
+		
+		return this.controladorCadastro.verificarCPFValidoExistenteContador(cpf);
+		
+	}
+	
+	/**
+	 * [UC005] Inserir Usuário
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf){
+		return this.controladorCadastro.verificarCPFValidoExistenteUsuario(cpf);
+	}
 }

@@ -3,51 +3,55 @@ package com.sgcont.transferobject;
 import java.io.Serializable;
 
 import com.sgcont.dados.cadastro.Contador;
+import com.sgcont.dados.cadastro.EmpresaContabil;
+import com.sgcont.dados.cadastro.Endereco;
 
 public class ContadorTO implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private String codigo;
-	
+
 	private String razaoSocial;
 
-	private String codigoIdentificacao;
-	
+	private String numeroCpf;
+
 	private String numeroCRC;
-	
+
 	private String dataReceita;
-	
+
 	private String numeroTelefone;
 
 	private String nnfax;
-	
+
 	private String email;
-	
+
 	private String indicadorUso;
-	
+
 	private String indicadorResponsavel;
-	
-	private String empresaContabil;
-	
+
+	private EmpresaContabil empresaContabil;
+
 	private String endereco;
-	
+
 	private Contador contador;
-	
+
 	private String estado;
-	
+
 	private String cidade;
-	
+
 	private String bairro;
-	
+
 	private String numeroEndereco;
-	
+
 	private String rua;
-	
+
 	private String cep;
 
 	private String enderecoFormatado;
-	
+
+	private String complemento;
+
 	public String getCodigo() {
 		return codigo;
 	}
@@ -64,12 +68,12 @@ public class ContadorTO implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getCodigoIdentificacao() {
-		return codigoIdentificacao;
+	public String getNumeroCpf() {
+		return numeroCpf;
 	}
 
-	public void setCodigoIdentificacao(String codigoIdentificacao) {
-		this.codigoIdentificacao = codigoIdentificacao;
+	public void setNumeroCpf(String numeroCpf) {
+		this.numeroCpf = numeroCpf;
 	}
 
 	public String getNumeroCRC() {
@@ -128,14 +132,6 @@ public class ContadorTO implements Serializable {
 		this.indicadorResponsavel = indicadorResponsavel;
 	}
 
-	public String getEmpresaContabil() {
-		return empresaContabil;
-	}
-
-	public void setEmpresaContabil(String empresaContabil) {
-		this.empresaContabil = empresaContabil;
-	}
-
 	public String getEndereco() {
 		return endereco;
 	}
@@ -145,6 +141,47 @@ public class ContadorTO implements Serializable {
 	}
 
 	public Contador getContador() {
+		Contador contador = new Contador();
+
+		contador.setNumeroCpf(this.numeroCpf
+				.replace(".", "")
+				.replace("-", ""));
+
+		Endereco endereco = new Endereco();
+		endereco.setCodigoCep(
+				new Integer(this.cep.replace("-", "")));
+		endereco.setDescricaoLogradouro(this.rua);
+		endereco.setNumeroEndereco(
+				new Integer(this.numeroEndereco));
+		if (this.complemento != null
+				&& !this.complemento.isEmpty()) {
+			endereco.setDescricaoComplemento(this.complemento);
+		}
+		endereco.setBairro(this.bairro);
+		endereco.setNomeCidade(this.cidade);
+		endereco.setDescricaoSiglaUf(this.estado);
+		contador.setEndereco(endereco);
+
+
+		if (this.empresaContabil != null && !this.empresaContabil.equals("")) {
+			contador.setEmpresaContabil(this.empresaContabil);
+		}
+		
+		if(this.email !=null && !this.email.equals("")){
+			contador.setEmail(this.email);
+		}
+		
+		contador.setIndicadorResponsavel(new Short(this.indicadorResponsavel));
+		contador.setNomeRazaoSocial(this.razaoSocial);
+		contador.setNumeroCrc(this.numeroCRC);
+		contador.setNumeroTelefone(this.numeroTelefone);
+		
+		if (this.nnfax != null
+				&& !this.nnfax.isEmpty()) {
+			contador.setNumeroFax(this.nnfax);
+		}
+		
+		
 		return contador;
 	}
 
@@ -207,7 +244,21 @@ public class ContadorTO implements Serializable {
 	public void setEnderecoFormatado(String enderecoFormatado) {
 		this.enderecoFormatado = enderecoFormatado;
 	}
-	
-	
+
+	public EmpresaContabil getEmpresaContabil() {
+		return empresaContabil;
+	}
+
+	public void setEmpresaContabil(EmpresaContabil empresaContabil) {
+		this.empresaContabil = empresaContabil;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 
 }

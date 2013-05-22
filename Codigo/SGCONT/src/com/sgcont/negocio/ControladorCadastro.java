@@ -24,6 +24,7 @@ import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.UsuarioTO;
 import com.sgcont.util.Util;
 
 /**
@@ -234,6 +235,10 @@ public class ControladorCadastro implements IControladorCadastro {
 			
 			Contador contador = contadorTO.getContador();
 			
+			contador.getEndereco().setUltimaAlteracao(new Date());
+			this.repositorioUtil.inserirOuAtualizar(contador.getEndereco());
+			
+			
 			contador.setUltimaAlteracao(new Date());
 			contador.setIndicadorUso(new Integer(1).shortValue());
 			repositorioUtil.inserirOuAtualizar(contador);
@@ -340,5 +345,87 @@ public class ControladorCadastro implements IControladorCadastro {
 	public ClienteTO pesquisarClienteTO(String nome) {
 		
 		return this.repositorioCadastro.pesquisarClienteTO(nome);
+	}
+	
+	
+	/**
+	 * [UC005] Inserir Usuario 
+	 * 
+	 * Método responsável cadastrar um usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 * */
+	public void inserirUsuario(UsuarioTO usuarioTO) {
+		
+		if(usuarioTO != null){
+			
+			Usuario usuario = usuarioTO.getUsuario();
+			
+			usuario.setUltimaAlteracao(new Date());
+			usuario.setIndicadorUso(new Integer(1).shortValue());
+			repositorioUtil.inserirOuAtualizar(usuario);
+			
+		}
+		
+		
+	}
+	
+	
+	/**
+	 * [UC005] Inserir Usuário
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf) {
+		String mensagem = null;
+		
+		if (!Util.validacaoCPF(cpf)) {
+        	mensagem = "Dígito verificador do CPF não confere.";
+        } else {
+        	Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("numeroCpf", cpf);
+			Usuario usuario = (Usuario) 
+					Fachada.getInstance().pesquisar(Usuario.class, parametros);
+			
+			if (usuario != null) {
+				 mensagem = "CPF já cadastrado para o Usuário " + usuario.getNome() + ".";
+			}
+        }
+		
+		return mensagem;
+	}
+	
+	
+	/**
+	 * [UC003] Inserir Contador
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public String verificarCPFValidoExistenteContador(String cpf) {
+		String mensagem = null;
+		
+		if (!Util.validacaoCPF(cpf)) {
+        	mensagem = "Dígito verificador do CPF não confere.";
+        } else {
+        	Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("numeroCpf", cpf);
+			Contador contador = (Contador) 
+					Fachada.getInstance().pesquisar(Contador.class, parametros);
+			
+			if (contador != null) {
+				 mensagem = "CPF já cadastrado para o Contador " + contador.getNomeRazaoSocial() + ".";
+			}
+        }
+		
+		return mensagem;
 	}
 }

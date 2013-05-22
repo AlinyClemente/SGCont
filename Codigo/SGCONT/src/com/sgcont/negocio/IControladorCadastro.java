@@ -8,6 +8,7 @@ import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.UsuarioTO;
 
 /**
  * Interface do controlador responsável pelas regras de negócio do módulo de cadastro
@@ -134,5 +135,37 @@ public interface IControladorCadastro {
 	 * 
 	 * @return ClienteTO
 	 * */
-	public ClienteTO pesquisarClienteTO(String nome); 
+	public ClienteTO pesquisarClienteTO(String nome);
+	
+	/**
+	 * [UC005] Inserir Usuario 
+	 * 
+	 * Método responsável cadastrar um usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 * */
+	public void inserirUsuario(UsuarioTO usuarioTO);
+	
+	/**
+	 * [UC005] Inserir Usuário
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 13/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf);
+	
+	/**
+	 * [UC003] Inserir Contador
+	 *  
+	 * [FS0002] - Verificar existência de dados
+	 * [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public String verificarCPFValidoExistenteContador(String cpf);
 }

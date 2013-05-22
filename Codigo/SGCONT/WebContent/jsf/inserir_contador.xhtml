@@ -5,14 +5,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
 <h:head>
 	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
 	<f:view>
+		<ui:include src="include/dialog_pesquisa_endereco_contador.xhtml" />
+		<ui:include src="include/dialog_tela_espera.xhtml" />
 		<h:form id="form">
 			<p:layout fullPage="true">
-			
 				<ui:include src="include/cabecalho.xhtml" />
 
 				<ui:include src="include/rodape.xhtml" />
@@ -20,67 +24,114 @@
 				<ui:include src="include/menu.xhtml" />
 
 				<p:layoutUnit position="center" header="Inserir Contador">
-					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel for="codigodentificacao"
-							value="Documento Identificação:" />
-						<p:inputText
-							value="#{InserirContadorBean.contadorTO.codigoIdentificacao}"
-							id="codigoIdentificacao" required="true"
-							label="Documento Identificação" size="20" maxlength="20" />
 
-						<h:outputLabel for="nomeRazaoSocial"
-							value="Nome/Denominação Social :" />
-						<p:inputText
-							value="#{InserirContadorBean.contadorTO.codigoIdentificacao}"
-							id="codigoIdentificacao" required="true"
-							label="Documento Identificação" size="20" maxlength="20" />
+					<h:panelGrid columns="3" cellpadding="5" id="gridIdentificacao">
 
-						<h:outputLabel for="tipoReceita" value="Tipo Receita:" />
-						<p:selectOneMenu
-							value="#{InserirContadorBean.contadorTO.tipoReceita}">
-							<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{InserirContadorBean.colecaoTipoReceita}"
-								var="d" itemLabel="#{d.descricao}" itemValue="#{d.codigo}" />
-						</p:selectOneMenu>
+						<h:column>
+							<h:outputLabel for="numeroCpf" value="CPF:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputMask value="#{InserirContadorBean.contadorTO.numeroCpf}"
+							id="numeroCpf" required="true" label="CPF" size="15" maxlength="11"
+							mask="999.999.999-99"
+							validator="#{InserirContadorBean.validaCPF}" />
+						<p:message id="cpfMessage" for="numeroCpf" />
 
-						<h:outputText value="Data de Geração: " />
-						<p:inputMask value="#{InserirContadorBean.contadorTO.dataGeracao}"
-							mask="99/99/9999" size="11" />
+						<h:column>
+							<h:outputLabel for="razaoSocial" value="Nome/Denominação Social:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputText value="#{InserirContadorBean.contadorTO.razaoSocial}"
+							id="razaoSocial" required="true" label="Nome/Denominação Social"
+							size="60" maxlength="60" />
+						<p:message id="razaoSocialMessage" for="razaoSocial" />
 
-						<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
-						<p:selectOneMenu
-							value="#{InserirContadorBean.contadorTO.empresaContabil}">
-							<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-							<f:selectItems
-								value="#{InserirContadorBean.colecaoEmpresaContabil}" var="e"
-								itemLabel="#{e.nomeFantasia}" itemValue="#{e.codigo}" />
-						</p:selectOneMenu>
-
-
-						<h:outputLabel for="valor" value="Valor:" />
-						<p:inputText value="#{InserirContadorBean.contadorTO.valor}"
-							id="valor" required="true" label="Valor" size="13" maxlength="13" />
-						<h:outputLabel for="clienteTO" value="Cliente:" />
-
-						<p:selectOneMenu value="#{InserirContadorBean.contadorTO.cliente}"
-							panelStyle="width:150px" effect="fade" var="c"
-							style="width:250px" filter="true" filterMatchMode="contains">
-							<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{InserirContadorBean.colecaoCliente}"
-								var="c" itemLabel="#{c.dadosClienteFormatado}"
-								itemValue="#{c.codigo}" />
-						</p:selectOneMenu>
-
-						<h:outputLabel for="observacao" value="Observação:" />
-						<p:inputTextarea
-							value="#{InserirContadorBean.contadorTO.observacao}"
-							id="observacao" required="true" label="Observação" size="50"
-							maxlength="50" />
+						<h:column>
+							<h:outputLabel for="numeroCRC" value="Número do CRC:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputText value="#{InserirContadorBean.contadorTO.numeroCRC}"
+							id="numeroCRC" required="true" label="Nome/Denominação Social"
+							size="15" maxlength="9" />
+						<p:message id="numeroCRCMessage" for="numeroCRC" />
 
 					</h:panelGrid>
+					<h:panelGrid columns="3" cellpadding="5" id="gridEnderecoFormatado">
+						<h:column>
+							<h:outputLabel value="Endereço:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputText
+							value="#{InserirContadorBean.contadorTO.enderecoFormatado}"
+							id="enderecoFormatado" required="true" label="Endereço Formatado"
+							readonly="true"
+							style="border: 0pt none ; background-color:#EFEFEF;" size="90"
+							maxlength="300" />
+						<p:commandButton id="showDialogButton" type="button"
+							value="Informar Endereço" onclick="dialogEnderecoContador.show()" />
+						<h:inputHidden
+							value="#{InserirContadorBean.contadorTO.enderecoFormatado}"
+							id="endereco" required="true" label="Endereço" />
+						<p:message id="enderecoMessage" for="endereco" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="3" cellpadding="5" id="gridDadosGerais">
+
+						<h:column>
+							<h:outputLabel for="numeroTelefone" value="Telefone:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:inputMask
+							value="#{InserirContadorBean.contadorTO.numeroTelefone}"
+							id="numeroTelefone" required="true" label="Telefone" size="20"
+							maxlength="11" mask="(999)9999-9999" />
+						<p:message id="numeroTelefoneMessage" for="numeroTelefone" />
+
+						<h:outputLabel for="nnfax" value="Fax:" />
+						<p:inputMask value="#{InserirContadorBean.contadorTO.nnfax}"
+							id="nnfax" required="false" label="Fax" size="20" maxlength="11"
+							mask="(999)9999-9999" />
+						<p:message id="nnfaxMessage" for="nnfax" />
+
+
+						<h:column>
+							<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+							value="#{InserirContadorBean.contadorTO.empresaContabil}"
+							completeMethod="#{InserirContadorBean.completaEmpresaContabil}"
+							var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
+							itemValue="#{empresaContabil}"
+							converter="empresaContabilConverter" />
+						<p:message id="empresaContabilMessage" for="empresaContabil" />
+
+						<h:column>
+							<h:outputText for="indicadorResponsavel"
+								value="Indicador de Responsável: " />
+							<font color="#FF0000">*</font>
+						</h:column>
+						<p:selectOneRadio id="indicadorResponsavel"
+							value="#{InserirContadorBean.contadorTO.indicadorResponsavel}"
+							required="true" label="Indicador de Responsável">
+							<f:selectItem itemLabel="Sim" itemValue="1" />
+							<f:selectItem itemLabel="Não" itemValue="2" />
+						</p:selectOneRadio>
+						<p:message id="indicadorResponsavelMessage"
+							for="indicadorResponsavel" />
+
+						<h:outputLabel for="email" value="E-mail:" />
+						<p:inputText value="#{InserirContadorBean.contadorTO.email}"
+							id="email" required="false" label="E-mail" size="35"
+							maxlength="30" />
+						<p:message id="emailMessage" for="email" />
+
+					</h:panelGrid>
+
 					<h:panelGrid columns="1" cellpadding="5">
 						<p:commandButton id="cadastrarButton" value="Cadastrar"
-							actionListener="#{InserirContadorBean.cadastrar}" />
+							action="#{InserirContadorBean.cadastrar}"
+							update="gridIdentificacao, gridEnderecoFormatado, gridDadosGerais" />
 					</h:panelGrid>
 
 				</p:layoutUnit>
