@@ -1,7 +1,9 @@
 package com.sgcont.gui.cadastro;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -34,6 +36,9 @@ public class InserirContadorManagedBean implements Serializable {
 	
 	private Collection<EmpresaContabil> colecaoEmpresaContabil;
 	
+	public InserirContadorManagedBean() {
+		this.contadorTO = new ContadorTO();
+	}
 	
 	public Collection<EmpresaContabil> getColecaoEmpresaContabil() {
 		return colecaoEmpresaContabil;
@@ -223,5 +228,53 @@ public class InserirContadorManagedBean implements Serializable {
 		} else {
 			((UIInput) toValidate).setValid(true);
 		}
+	}
+
+	public ContadorTO getContadorTO() {
+		return contadorTO;
+	}
+
+	public void setContadorTO(ContadorTO contadorTO) {
+		this.contadorTO = contadorTO;
 	} 
+	
+	
+	/**
+	 * [UC011] Inserir Receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 23/04/2013
+	 * */
+	public List<EmpresaContabil> completaEmpresaContabil(String query) {
+		List<EmpresaContabil> sugestoes = new ArrayList<EmpresaContabil>();
+
+		for (EmpresaContabil empresaContabil : this.colecaoEmpresaContabil) {
+
+			if (empresaContabil.getNomeFantasia().toLowerCase()
+					.contains(query.toLowerCase())) {
+				sugestoes.add(empresaContabil);
+			}
+
+		}
+		return sugestoes;
+	}
+
+	
+	/** 
+	 * [FS0002] - Verificar existência de dados
+	 * [FS004] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public void validaCPF(FacesContext context, UIComponent toValidate, Object value) {  
+        String cpf = ((String) value)
+        		.replace(".", "")
+				.replace("-", "");
+        
+        String mensagem = Fachada.getInstance().verificarCPFValidoExistenteContador(cpf);
+
+		verificarMensagemCampo(context, toValidate, mensagem);
+    }
+	
 }

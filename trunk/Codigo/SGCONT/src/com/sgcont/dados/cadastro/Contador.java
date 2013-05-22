@@ -23,14 +23,14 @@ public class Contador {
 	@Column(name="cdcontador", nullable=false)
 	private Integer codigo;
 	
-	@Column(name="cdidentificacao", nullable=false, length=20)
-	private String codigoIdentificacao;
+	@Column(name="nncpf", nullable=false, length=20)
+	private String numeroCpf;
 	
 	@Column(name="nmrazaosocial", nullable=false, length=70)
 	private String nomeRazaoSocial;
 
-	@Column(name="nncrc", nullable=false)
-	private Integer numeroCrc;
+	@Column(name="nncrc", nullable=false, length=9)
+	private String numeroCrc;
 
 	@Column(name="nntelefone", nullable=false, length=20)
 	private String numeroTelefone;
@@ -53,13 +53,13 @@ public class Contador {
 	@ManyToOne
     @JoinColumn(name="cdendereco", 
             insertable=true, updatable=true, 
-            nullable=true)
+            nullable=false)
 	private Endereco endereco;
 
 	@ManyToOne
     @JoinColumn(name="cdempresacontabil", 
             insertable=true, updatable=true, 
-            nullable=true)
+            nullable=false)
 	private EmpresaContabil empresaContabil;
 
 	public Integer getCodigo() {
@@ -70,12 +70,12 @@ public class Contador {
 		this.codigo = codigo;
 	}
 
-	public String getCodigoIdentificacao() {
-		return codigoIdentificacao;
+	public String getNumeroCpf() {
+		return numeroCpf;
 	}
 
-	public void setCodigoIdentificacao(String codigoIdentificacao) {
-		this.codigoIdentificacao = codigoIdentificacao;
+	public void setNumeroCpf(String numeroCpf) {
+		this.numeroCpf = numeroCpf;
 	}
 
 	public String getNomeRazaoSocial() {
@@ -86,11 +86,11 @@ public class Contador {
 		this.nomeRazaoSocial = nomeRazaoSocial;
 	}
 
-	public Integer getNumeroCrc() {
+	public String getNumeroCrc() {
 		return numeroCrc;
 	}
 
-	public void setNumeroCrc(Integer numeroCrc) {
+	public void setNumeroCrc(String numeroCrc) {
 		this.numeroCrc = numeroCrc;
 	}
 
