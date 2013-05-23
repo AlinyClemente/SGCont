@@ -1,11 +1,14 @@
 package com.sgcont.util;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import org.primefaces.event.FileUploadEvent;
 
 public class Util {
 
@@ -246,5 +249,10 @@ public class Util {
 		}
 
 		return bigDecimalFormatado;
+	}
+	
+	
+	public static byte[] upload(FileUploadEvent event) throws IOException{	
+		return event.getFile().getContents();
 	}
 }

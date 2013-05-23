@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "cadastro.empresa_contabil")
@@ -30,12 +33,15 @@ public class EmpresaContabil {
 	private String cnpj;
 
 	@Column(name="nntelefone", nullable=false, length=20)
-	private String numeroFax;
+	private String numeroTelefone;
 
 	@Column(name="email", nullable=true, length=30)
 	private String email;
 		
-	@Column(name="logomarca", nullable=false)
+	
+	@Lob
+	@Column(name="logomarca", nullable=true, columnDefinition = "bytea") 
+    @Type(type="org.hibernate.type.BinaryType")  
 	private byte[] logomarca;
 	
 	@Column(name="tmultimaalteracao", nullable=false)
@@ -77,12 +83,12 @@ public class EmpresaContabil {
 		this.cnpj = cnpj;
 	}
 
-	public String getNumeroFax() {
-		return numeroFax;
+	public String getNumeroTelefone() {
+		return numeroTelefone;
 	}
 
-	public void setNumeroFax(String numeroFax) {
-		this.numeroFax = numeroFax;
+	public void setNumeroTelefone(String numeroTelefone) {
+		this.numeroTelefone = numeroTelefone;
 	}
 
 	public String getEmail() {

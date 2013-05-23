@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+</h:head>
+<h:body>
+<f:view>
+    <ui:include src="include/dialog_pesquisa_endereco_empresa_contabil.xhtml"/>
+    <ui:include src="include/dialog_tela_espera.xhtml"/>
+	<h:form id="form" enctype="multipart/form-data">  
+	    <p:layout fullPage="true">  
+
+		    <ui:include src="include/cabecalho.xhtml"/>  
+		    <ui:include src="include/rodape.xhtml"/>
+		    <ui:include src="include/menu.xhtml"/>
+
+		    <p:layoutUnit position="center" header="Inserir Empresa Contabil">  
+	
+					<h:panelGrid columns="3" cellpadding="5" id="gridDados1">   
+  						
+  						<h:column><h:outputLabel for="nomeFantasia" value="Nome Fantasia:"/><font color="#FF0000">*</font></h:column>
+					    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.nomeFantasia}" 
+					    			id="nomeFantasia" required="true" label="Nome Fantasia" 
+					    			size="70" maxlength="120" />
+					    <p:message id="nomeFantasiaMessage" for="nomeFantasia" />
+					    	
+						<h:column><h:outputLabel for="razaoSocial" value="Razão Social:"/><font color="#FF0000">*</font></h:column>					    	
+					    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.razaoSocial}" 
+					    			id="razaoSocial" required="true" label="Razão Social" 
+					    			size="70" maxlength="120" />
+					    <p:message id="razaoSocialMessage" for="razaoSocial" />
+					    			
+					    <h:column><h:outputLabel for="cnpj" value="CNPJ:"/><font color="#FF0000">*</font></h:column>
+   					    <p:inputMask value="#{InserirEmpresaContabilBean.empresaContabilTO.cnpj}" 
+			    			id="cnpj" required="true" label="CNPJ" 
+			    			size="25" maxlength="14" mask="99.999.999/9999-99"
+			    			validator="#{InserirEmpresaContabilBean.validaCNPJ}"/>
+					    <p:message id="cnpjMessage" for="cnpj" />
+					    
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" cellpadding="5" id="gridEnderecoFormatado">
+					    <h:column>    
+				    		<h:outputLabel value="Endereço:"/>
+					    	<font color="#FF0000">*</font>
+					    </h:column>
+					    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.enderecoFormatado}" 
+					    			id="enderecoFormatado" required="true" label="Endereço Formatado" readonly="true" style="border: 0pt none ; background-color:#EFEFEF;" 
+					    			size="70" maxlength="300" />
+						<h:column><p:commandButton id="showDialogButton" type="button" value="Informar Endereço" onclick="dialogEnderecoEmpresaContabilInserir.show()" />
+						   <h:inputHidden value="#{InserirEmpresaContabilBean.empresaContabilTO.enderecoFormatado}" 
+					    			id="endereco" required="true" label="Endereço" />
+						<p:message id="enderecoMessage" for="endereco" />  </h:column>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" cellpadding="5" id="gridDados2">   
+					  
+  						<h:column>    
+				    		<h:outputLabel value="Logomarca:"/>
+					    </h:column>
+						  
+					    <p:fileUpload id="arquivo" fileUploadListener="#{InserirEmpresaContabilBean.upload}"  
+						            mode="advanced" requiredMessage="#{msg.campoObrigatorio}" required="true"
+						            auto="true" 
+						            update="messageFile, refreshMe"  
+						            sizeLimit="5000000"   
+						            allowTypes="/(\.|\/)(gif|jpe?g|png|dwg)$/"
+						            invalidSizeMessage="ARQUIVO MUITO GRANDE (5MB)."
+	                                invalidFileMessage="TIPO INVALIDO"
+	                                label="Adicionar"
+	                             />
+	                   <h:column  >          
+		                   <p:message id="messageFile" for="arquivo"  autoUpdate="true"/>
+				
+							<p:outputPanel style="display:block" id="refreshMe">
+								<p:graphicImage value="#{InserirEmpresaContabilBean.file}" width="140" height="75"/>
+							</p:outputPanel>
+						</h:column> 
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" cellpadding="5" id="gridDados3">   
+				       	<h:column><h:outputLabel for="telefone" value="Telefone:"/><font color="#FF0000">*</font></h:column>
+					    <p:inputMask value="#{InserirEmpresaContabilBean.empresaContabilTO.numeroTelefone}" 
+					    			id="telefone" required="true" label="Telefone" 
+					    			size="20" maxlength="11" mask="(999)9999-9999"/>
+					    <p:message id="telefoneMessage" for="telefone" />
+
+					    <h:column><h:outputLabel for="email" value="E-mail:"/></h:column>
+					    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.email}" 
+					    			id="email" required="false" label="E-mail" 
+					    			size="35" maxlength="30" />
+					    <p:message id="emailMessage" for="email" />
+					       
+	    			</h:panelGrid>
+
+			     	<h:panelGrid columns="1" cellpadding="5" > 
+		     			<p:commandButton id="cadastrarButton" value="Cadastrar" 
+		     				action="#{InserirEmpresaContabilBean.cadastrar}" 
+							update="gridDados1,gridDados2,gridDados3, gridEnderecoFormatado"/>
+               		</h:panelGrid>
+					
+		    </p:layoutUnit>  
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>
+
