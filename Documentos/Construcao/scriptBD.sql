@@ -1,4 +1,4 @@
-CREATE TABLE cadastro.profissao (
+cREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -108,10 +108,14 @@ ALTER TABLE operacional.seq_tipo_despesa
 
 CREATE TABLE operacional.compromisso (
   cdCompromisso INTEGER  NOT NULL ,
-  dtCompromisso TIMESTAMP NOT NULL,
+  tmInicioCompromisso TIMESTAMP NOT NULL,
+  tmFimCompromisso TIMESTAMP NOT NULL,
   dsCompromisso VARCHAR(50) NOT NULL,
   observacao VARCHAR(300) NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  icRecorrente SMALLINT NOT NULL,
+  nnRepetir INTEGER ,
+  icFrequencia SMALLINT ,
   PRIMARY KEY(cdCompromisso)
 );
 
@@ -128,9 +132,11 @@ ALTER TABLE operacional.seq_compromisso
   cdLembrete INTEGER NOT NULL,
   cdCompromisso INTEGER NOT NULL,
   dsLembrete VARCHAR(255) NULL,
-  tmLembrete TIMESTAMP NULL,
+  tmLembrete TIMESTAMP NOT NULL,
   icFrequencia SMALLINT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  icUnidadeLembrete SMALLINT, 
+  nnValorLembrete INTEGER, 
   PRIMARY KEY(cdLembrete),
   FOREIGN KEY (cdCompromisso) REFERENCES operacional.compromisso(cdCompromisso)
 );
