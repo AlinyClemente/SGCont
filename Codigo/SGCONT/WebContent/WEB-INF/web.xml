@@ -24,6 +24,26 @@
     <filter-name>Login Filter</filter-name>
     <url-pattern>/jsf/index.xhtml</url-pattern>
   </filter-mapping>
+  
+  <!-- Definições para upload de arquivos -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>	
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>	
+		<init-param>	
+			<param-name>uploadDirectory</param-name>	
+			 <param-value>C:\SGCONT2\workspace\SGCONT\temp</param-value>
+			
+		</init-param>	
+		<init-param>	
+			<param-name>thresholdSize</param-name>	
+			<param-value>10000</param-value>	
+		</init-param>	
+	</filter>	
+	<filter-mapping>	
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>	
+		<servlet-name>Faces Servlet</servlet-name>	
+	</filter-mapping>
+  
   <context-param>    
        <param-name>primefaces.THEME</param-name>    
        <param-value>redmond</param-value>    

@@ -21,11 +21,19 @@ public class EmpresaContabilTO implements Serializable {
 	
 	private String cnpj;
 	
-	private String numeroFax;
+	private String numeroTelefone;
 		
 	private String email;
 	
-	//private byte[] logomarca;
+	private byte[] logomarca;
+
+	public byte[] getLogomarca() {
+		return logomarca;
+	}
+
+	public void setLogomarca(byte[] logomarca) {
+		this.logomarca = logomarca;
+	}
 
 	private String rua;
 	
@@ -67,12 +75,12 @@ public class EmpresaContabilTO implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public String getNumeroFax() {
-		return numeroFax;
+	public String getNumeroTelefone() {
+		return numeroTelefone;
 	}
 
-	public void setNumeroFax(String numeroFax) {
-		this.numeroFax = numeroFax;
+	public void setNumeroTelefone(String numeroTelefone) {
+		this.numeroTelefone = numeroTelefone;
 	}
 
 	public String getEmail() {
@@ -152,7 +160,6 @@ public class EmpresaContabilTO implements Serializable {
 		EmpresaContabil empresaContabil = new EmpresaContabil();
 		
 		Endereco endereco = new Endereco();
-		//TODO endereco.setNome(nome) ???
 		endereco.setCodigoCep(new Integer(this.cep.replace("-", "")));
 		endereco.setDescricaoLogradouro(this.rua);
 		endereco.setNumeroEndereco(new Integer(this.numeroEndereco));
@@ -164,11 +171,17 @@ public class EmpresaContabilTO implements Serializable {
 
 		empresaContabil.setRazaoSocial(this.razaoSocial);
 		empresaContabil.setNomeFantasia(this.nomeFantasia);
-		empresaContabil.setCnpj(this.cnpj);
-		empresaContabil.setNumeroFax(this.numeroFax);
+		
+        String cnpj = ((String) this.cnpj)
+				.replace(".", "")
+				.replace("/", "")
+				.replace("-", "");
+		
+		empresaContabil.setCnpj(cnpj);
+		empresaContabil.setNumeroTelefone(this.numeroTelefone);
 		empresaContabil.setEmail(this.email);
 		
-//		empresaContabil.setLogomarca(logomarca);
+		empresaContabil.setLogomarca(this.logomarca);
 		
 		return empresaContabil;
 		

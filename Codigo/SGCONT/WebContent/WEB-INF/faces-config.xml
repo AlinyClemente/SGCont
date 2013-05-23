@@ -63,12 +63,7 @@
  		<from-outcome>inserir_despesa</from-outcome>
  		<to-view-id>/jsf/inserir_despesa.xhtml</to-view-id>
  	</navigation-case>
- 	<navigation-case>
- 		<from-outcome>tela_sucesso</from-outcome>
- 		<to-view-id>/jsf/tela_sucesso.xhtml</to-view-id>
- 	</navigation-case>
   </navigation-rule>
-
 
   <navigation-rule>
  	<from-view-id>/jsf/inserir_empresa_contabil.xhtml</from-view-id>
@@ -76,9 +71,13 @@
  		<from-outcome>inserir_empresa_contabil</from-outcome>
  		<to-view-id>/jsf/inserir_empresa_contabil.xhtml</to-view-id>
  	</navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+ 	<from-view-id>/jsf/manter_despesa.xhtml</from-view-id>
  	<navigation-case>
- 		<from-outcome>tela_sucesso</from-outcome>
- 		<to-view-id>/jsf/tela_sucesso.xhtml</to-view-id>
+ 		<from-outcome>manter_despesa</from-outcome>
+ 		<to-view-id>/jsf/manter_despesa.xhtml</to-view-id>
  	</navigation-case>
   </navigation-rule>
 

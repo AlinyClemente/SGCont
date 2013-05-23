@@ -8,6 +8,7 @@ import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.EmpresaContabilTO;
 import com.sgcont.transferobject.UsuarioTO;
 
 /**
@@ -168,4 +169,14 @@ public interface IControladorCadastro {
 	 * @since 21/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf);
+	
+	/**
+	 * [UC015] Inserir Empresa Contábil 
+	 * 
+	 * Método responsável cadastrar um contador
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 20/05/2013
+	 * */
+	public void inserirEmpresaContabil(EmpresaContabilTO empresaContabilTO);
 }

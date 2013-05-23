@@ -15,6 +15,7 @@ import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.Despesa;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -24,6 +25,7 @@ import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.ContadorTO;
+import com.sgcont.transferobject.EmpresaContabilTO;
 import com.sgcont.transferobject.UsuarioTO;
 import com.sgcont.util.Util;
 
@@ -218,8 +220,6 @@ public class ControladorCadastro implements IControladorCadastro {
 		return mensagem;
 	}
 
-
-
 	
 	/**
 	 * [UC003] Inserir Contador 
@@ -313,7 +313,6 @@ public class ControladorCadastro implements IControladorCadastro {
 			
 	}
 	
-	
 
 	/**
 	 * [UC011] Inserir Receita
@@ -347,6 +346,25 @@ public class ControladorCadastro implements IControladorCadastro {
 		return this.repositorioCadastro.pesquisarClienteTO(nome);
 	}
 	
+	/**
+	 * [UC015] Inserir Empresa Contábil 
+	 * 
+	 * Método responsável cadastrar um contador
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 20/05/2013
+	 * */
+	public void inserirEmpresaContabil(EmpresaContabilTO empresaContabilTO) {
+		
+		EmpresaContabil empresaContabil = empresaContabilTO.getEmpresaContabil();
+		
+		empresaContabil.getEndereco().setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(empresaContabil.getEndereco());
+		
+		empresaContabil.setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(empresaContabil);
+	}
+	
 	
 	/**
 	 * [UC005] Inserir Usuario 
@@ -367,7 +385,6 @@ public class ControladorCadastro implements IControladorCadastro {
 			repositorioUtil.inserirOuAtualizar(usuario);
 			
 		}
-		
 		
 	}
 	
