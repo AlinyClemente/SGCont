@@ -11,20 +11,20 @@
 	<title>SGCONT - Tela Inicial</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 	<script type="text/javascript">
-		function moeda(z){  
+		function moeda(z) {
 			v = z.value;
-			v = v.replace(/\D/g,"")  
-			v = v.replace(/[0-9]{12}/,"") 
-			v = v.replace(/(\d{1})(\d{8})$/,"$1.$2")
-			v = v.replace(/(\d{1})(\d{5})$/,"$1.$2")
-			v = v.replace(/(\d{1})(\d{1,2})$/,"$1,$2")
+			v = v.replace(/\D/g, "")
+			v = v.replace(/[0-9]{12}/, "")
+			v = v.replace(/(\d{1})(\d{8})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{5})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2")
 			z.value = v;
-		}	
+		}
 	</script>
 </h:head>
 <h:body>
 	<f:view>
-	 <ui:include src="include/dialog_tela_espera.xhtml"/>
+		<ui:include src="include/dialog_tela_espera.xhtml" />
 		<h:form id="form">
 			<p:layout fullPage="true">
 				<ui:include src="include/cabecalho.xhtml" />
@@ -35,8 +35,11 @@
 
 				<p:layoutUnit position="center" header="Inserir Receita">
 
+					<p:messages id="mensagemValidacao" showDetail="false" autoUpdate="true"
+						closable="true" />
+						
 					<h:panelGrid columns="3" cellpadding="5" id="gridReceita">
-					
+
 						<h:column>
 							<h:outputLabel for="descricao" value="Descrição:" />
 							<font color="#FF0000">*</font>
@@ -63,10 +66,9 @@
 							<font color="#FF0000">*</font>
 						</h:column>
 						<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
-							id="valor" required="true" label="Valor" size="13" maxlength="13" 
-							onkeyup="moeda(this);"/>
-						<p:message id="valorMessage" for="valor"
-							 />
+							id="valor" required="true" label="Valor" size="13" maxlength="13"
+							onkeyup="moeda(this);" />
+						<p:message id="valorMessage" for="valor" />
 
 						<h:column>
 							<h:outputText for="dataGeracao" value="Data de Geração: " />
@@ -78,16 +80,16 @@
 						<p:message id="dataGeracaoMessage" for="dataGeracao" />
 
 
-							<h:column>
-								<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
-							</h:column>
-							<p:autoComplete id="empresaContabil" dropdown="true" size="30"
-								value="#{InserirReceitaBean.receitaTO.empresaContabil}"
-								completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
-								var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
-								itemValue="#{empresaContabil}"
-								converter="empresaContabilConverter" />
-							<p:message id="empresaContabilMessage" for="empresaContabil" />
+						<h:column>
+							<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+						</h:column>
+						<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+							value="#{InserirReceitaBean.receitaTO.empresaContabil}"
+							completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
+							var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
+							itemValue="#{empresaContabil}"
+							converter="empresaContabilConverter" />
+						<p:message id="empresaContabilMessage" for="empresaContabil" />
 
 						<h:column>
 							<h:outputText for="clienteTO" value="Cliente:" />
@@ -97,10 +99,11 @@
 							completeMethod="#{InserirReceitaBean.completaCliente}"
 							var="clienteTO"
 							itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
-							itemValue="#{clienteTO}" converter="clienteTOConverter" />
+							itemValue="#{clienteTO}" converter="clienteTOConverter"
+							/>
 						<p:message id="clienteMessage" for="clienteTO" />
-					
-					
+
+
 						<h:column>
 							<h:outputLabel for="observacao" value="Observação:" />
 						</h:column>
@@ -110,11 +113,10 @@
 							maxlength="300" cols="" />
 						<p:message id="observacaoMessage" for="observacao" />
 					</h:panelGrid>
-					
+
 					<h:panelGrid columns="1" cellpadding="5">
 						<p:commandButton id="cadastrarButton" value="Cadastrar"
-							action="#{InserirReceitaBean.cadastrar}"
-							update="gridReceita" />
+							action="#{InserirReceitaBean.cadastrar}" update="gridReceita" />
 					</h:panelGrid>
 
 				</p:layoutUnit>
