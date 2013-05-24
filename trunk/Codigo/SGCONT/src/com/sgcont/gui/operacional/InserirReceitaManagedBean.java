@@ -3,7 +3,9 @@ package com.sgcont.gui.operacional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,6 +14,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
+import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.fachada.Fachada;
@@ -107,9 +110,41 @@ public class InserirReceitaManagedBean implements Serializable {
 	public String cadastrar() {
 
 		Fachada fachada = Fachada.getInstance();
-		fachada.inserirReceita(this.receitaTO);
-		return "tela_sucesso";
+		
+		if(validarEmpresaContabilouCliente()){
+		
+			fachada.inserirReceita(this.receitaTO);
+			return "tela_sucesso";
+		}else{
+			return "";
+		}
+		
+		
+		
 
+	}
+
+	private boolean validarEmpresaContabilouCliente() {
+		
+		boolean dadosValidos = true;
+		
+		if (this.receitaTO.getEmpresaContabil() == null 
+				&& this.receitaTO.getClienteTO() == null) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
+		
+
+		}else if(this.receitaTO.getEmpresaContabil() != null 
+				&& this.receitaTO.getClienteTO() != null) {
+			
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
+		
+		}
+		return dadosValidos;
 	}
 
 	/**
@@ -193,5 +228,18 @@ public class InserirReceitaManagedBean implements Serializable {
 		}
 	} 
 	
+	
+	public void validarClienteOuEmpresaContabilInformada(FacesContext context, UIComponent toValidate, Object value) {
+
+		String mensagem = null;
+		if (this.receitaTO.getEmpresaContabil() == null 
+				&& this.receitaTO.getClienteTO() == null) {
+
+			mensagem = "Informe Cliente ou Empresa Contábil.";
+			
+
+			verificarMensagemCampo(context, toValidate, mensagem);
+		}
+	}
 	
 }
