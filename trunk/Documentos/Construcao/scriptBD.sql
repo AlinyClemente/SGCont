@@ -113,6 +113,7 @@ CREATE TABLE operacional.compromisso (
   dsCompromisso VARCHAR(50) NOT NULL,
   observacao VARCHAR(300) NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  cdCompromissoPrincipal INTEGER  ,
   icRecorrente SMALLINT NOT NULL,
   nnRepetir INTEGER ,
   icFrequencia SMALLINT ,
