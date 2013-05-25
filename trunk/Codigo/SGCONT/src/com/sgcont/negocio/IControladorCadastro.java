@@ -179,4 +179,15 @@ public interface IControladorCadastro {
 	 * @since 20/05/2013
 	 * */
 	public void inserirEmpresaContabil(EmpresaContabilTO empresaContabilTO);
+	
+	/**
+	 * [UC005] Inserir Usuário
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS004] - Verificar USUARIO
+	 * existente
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public Usuario verificarLoginUsuarioExistente(String login) ;
 }

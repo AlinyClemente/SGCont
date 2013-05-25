@@ -125,7 +125,7 @@ public class UsuarioTO implements Serializable {
 		}
 		
 		usuario.setNome(this.nome);
-		usuario.setLogin(this.login);
+		usuario.setLogin(this.login.toLowerCase());
 		usuario.setSenha(this.senha);
 		
 		if(this.numeroTelefone !=null 
