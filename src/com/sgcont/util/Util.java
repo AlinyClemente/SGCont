@@ -189,4 +189,130 @@ public class Util {
 		return false;
 
 	}
+
+	/**
+	 * Subtrair uma quantidade de horas de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date subtrairNumeroHorasDeUmaData(Date data, int numeroHoras) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.HOUR_OF_DAY, (-1 * numeroHoras));
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Subtrair uma quantidade de minutos de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date subtrairNumeroMinutosDeUmaData(Date data, int numeroMinutos) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.MINUTE, (-1 * numeroMinutos));
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Subtrair uma quantidade de dias de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date subtrairNumeroDiasDeUmaData(Date data, int numeroDias) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.DAY_OF_MONTH, (-1 * numeroDias));
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Adicionar uma quantidade de dias de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date adicionarNumeroDiasDeUmaData(Date data, int numeroDias) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.DAY_OF_MONTH, numeroDias);
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Adicionar uma quantidade de semanas de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date adicionarNumeroSemanasDeUmaData(Date data, int numeroSemanas) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.WEEK_OF_MONTH, numeroSemanas);
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Adicionar uma quantidade de meses de uma data  
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date adicionarNumeroMesesDeUmaData(Date data, int numeroMeses) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.MONTH, numeroMeses);
+
+		data = c.getTime();
+
+		return data;
+	}
+
+	/**
+	 * Adicionar uma quantidade de anos de uma data
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * */	
+	public static Date adicionarNumeroAnosDeUmaData(Date data, int numeroAnos) {
+		
+		Calendar c = GregorianCalendar.getInstance();
+
+		c.setTime(data);
+		c.add(Calendar.YEAR, numeroAnos);
+
+		data = c.getTime();
+
+		return data;
+	}
 }

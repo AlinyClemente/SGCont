@@ -14,6 +14,9 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Endereco;
 import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.Compromisso;
+import com.sgcont.dados.operacional.CompromissoResponsavel;
+import com.sgcont.dados.operacional.Lembrete;
 
 public class HibernateUtil {
 	
@@ -31,7 +34,10 @@ public class HibernateUtil {
 			.addAnnotatedClass(Profissao.class)
 			.addAnnotatedClass(Cliente.class)
 			.addAnnotatedClass(ClientePessoaFisica.class)
-			.addAnnotatedClass(ClientePessoaJuridica.class);
+			.addAnnotatedClass(ClientePessoaJuridica.class)
+			.addAnnotatedClass(Compromisso.class)
+			.addAnnotatedClass(CompromissoResponsavel.class)
+			.addAnnotatedClass(Lembrete.class);
 		
 	    configuration.configure();
 	    ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());

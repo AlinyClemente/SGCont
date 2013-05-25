@@ -4,13 +4,17 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.Compromisso;
+import com.sgcont.negocio.ControladorAgenda;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorUtil;
+import com.sgcont.negocio.IControladorAgenda;
 import com.sgcont.negocio.IControladorCadastro;
 import com.sgcont.negocio.IControladorUtil;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
+import com.sgcont.util.CompromissoEvent;
 
 public class Fachada {
 
@@ -18,6 +22,7 @@ public class Fachada {
 
 	private IControladorCadastro controladorCadastro;
 	private IControladorUtil controladorUtil;
+	private IControladorAgenda controladorAgenda;
 	
 	public static synchronized Fachada getInstance(){
 		if (instance == null){
@@ -29,6 +34,7 @@ public class Fachada {
 	private Fachada() {
 		controladorCadastro = ControladorCadastro.getInstance();
 		controladorUtil = ControladorUtil.getInstance();
+		controladorAgenda = ControladorAgenda.getInstance();
 	}
 	
 
@@ -54,6 +60,13 @@ public class Fachada {
 	}
 
 	/**
+	 * Método genérico que retorna uma lista com objetos a partir dos valores passados como parâmetros.
+	 * */
+	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
+		return this.controladorUtil.pesquisarColecao(classe, campos);
+	}
+
+	/**
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
@@ -66,6 +79,15 @@ public class Fachada {
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
 		
 		return this.controladorUtil.pesquisar(classe, campos);
+		
+	}
+
+	/**
+	 * Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		
+		this.controladorUtil.remover(classe, campos);
 		
 	}
 	
@@ -168,6 +190,108 @@ public class Fachada {
 	public String verificarTituloEleitorExistente(String tituloEleitor) {
 
 		return this.controladorCadastro.verificarTituloEleitorExistente(tituloEleitor);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario) {
+		
+		return this.controladorCadastro.pesquisarUsuarios(codigoUsuario);
+		
+	}
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os compromissos a partir do usuário
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Compromisso>
+	 * */
+	public Collection<Compromisso> pesquisarCompromisso(Integer codigoUsuario) {
+		
+		return this.controladorAgenda.pesquisarCompromisso(codigoUsuario);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os responsáveis a partir do compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoCompromisso
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarResponsaveis(Integer codigoCompromisso) {
+		
+		return this.controladorAgenda.pesquisarResponsaveis(codigoCompromisso);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável inserir ou atualizar o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public Integer inserirOuAtualizarCompromisso(CompromissoEvent compromissoEvent, Usuario usuarioLogado) {
+		
+		return this.controladorAgenda.inserirOuAtualizarCompromisso(compromissoEvent, usuarioLogado);
+		
+	}
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável inserir um compromisso recorrente
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public Compromisso inserirCompromissoRecorrente(Compromisso compromisso,
+			CompromissoEvent compromissoEvent, Usuario usuarioLogado,
+			Integer idCompromissoPrincipal) {
+		
+		return this.controladorAgenda.inserirCompromissoRecorrente(
+				compromisso, compromissoEvent, usuarioLogado, idCompromissoPrincipal);
+		
+	}
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável remove os dados relacionados ao compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 25/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public Collection<Compromisso> removerDadosDoCompromisso(Compromisso compromisso) {
+		
+		return this.controladorAgenda.removerDadosDoCompromisso(compromisso);
 		
 	}
 	

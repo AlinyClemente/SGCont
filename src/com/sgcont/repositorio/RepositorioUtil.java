@@ -57,6 +57,38 @@ public class RepositorioUtil implements IRepositorioUtil {
 	}
 
 	/**
+	 * Método genérico que retorna uma lista com objetos a partir dos valores passados como parâmetros.
+	 * */
+	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "from " + classe.getName() + " where ";
+		
+		Iterator<String> keys = campos.keySet().iterator();
+		
+		while (keys.hasNext()) {
+			String key = keys.next();  
+	        Object campo = campos.get(key);  
+	  
+	        if (campo instanceof String) {
+	            consulta = consulta + key + " = '" + campo + "' and ";
+	        } else {
+	            consulta = consulta + key + " = " + campo + " and ";  
+	        }  
+		}
+		
+		consulta = consulta.substring(0, consulta.length() - 4);
+		
+		Collection<?> colecao = session.createQuery(
+				consulta)
+				.list();
+		
+		HibernateUtil.closeSession(session);
+		
+		return colecao;
+	}
+
+	/**
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
@@ -101,5 +133,34 @@ public class RepositorioUtil implements IRepositorioUtil {
 		
 		return objeto;
 	}
+
+	/**
+	 * Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		Session session = HibernateUtil.getSession();
+		String query = "delete from " + classe.getName() + " where ";
+		
+		Iterator<String> keys = campos.keySet().iterator();
+		
+		while (keys.hasNext()) {
+			String key = keys.next();  
+	        Object campo = campos.get(key);  
+	  
+	        if (campo instanceof String) {
+	        	query = query + key + " = '" + campo + "' and ";
+	        } else {
+	        	query = query + key + " = " + campo + " and ";  
+	        }  
+		}
+		
+		query = query.substring(0, query.length() - 4);
+		
+		session.createQuery(query)
+				.executeUpdate();
+		
+		HibernateUtil.closeSession(session);
+	}
+
 
 }

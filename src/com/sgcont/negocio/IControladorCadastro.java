@@ -1,5 +1,7 @@
 package com.sgcont.negocio;
 
+import java.util.Collection;
+
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.transferobject.ClientePessoaFisicaTO;
 import com.sgcont.transferobject.ClientePessoaJuridicaTO;
@@ -83,5 +85,18 @@ public interface IControladorCadastro {
 	 * @since 13/05/2013
 	 */
 	public String verificarTituloEleitorExistente(String tituloEleitor);
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario);
 	
 }
