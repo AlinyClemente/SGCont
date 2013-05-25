@@ -202,8 +202,8 @@ public class Util {
 	 * 35465456412.00 354654564.12 = 354654564.12 354654564,12 = 354654564.12
 	 * 
 	 * @param data
-	 * @autor Sávio Luiz, Thiago Toscano
-	 * @date 15/02/2006, 18/03/2006
+	 * @autor Rõmulo Aurélio
+	 * @date 15/05/2013
 	 * @return
 	 */
 
