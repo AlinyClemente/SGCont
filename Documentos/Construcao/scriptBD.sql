@@ -118,6 +118,7 @@ CREATE TABLE operacional.compromisso (
   nnRepetir INTEGER ,
   icFrequencia SMALLINT ,
   PRIMARY KEY(cdCompromisso)
+  FOREIGN KEY (cdCompromissoPrincipal) REFERENCES operacional.compromisso(cdCompromisso)
 );
 
 CREATE SEQUENCE operacional.seq_compromisso
