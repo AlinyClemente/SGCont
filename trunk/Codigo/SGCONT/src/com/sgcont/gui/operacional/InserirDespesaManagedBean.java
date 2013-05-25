@@ -118,19 +118,13 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * */
 	public String cadastrar() {
 		
-//	    RequestContext context = RequestContext.getCurrentInstance();  
-//		boolean dadosValidos = validarDadosClienteEmpresaContabil(); 
-//		
-//		if (dadosValidos) {
+		if(validarEmpresaContabilouCliente()){
 			Fachada fachada = Fachada.getInstance();
 			fachada.inserirDespesa(this.despesaTO);
-			
 			return "tela_sucesso";
-//		}else{
-//			context.addCallbackParam("dadosValidos", dadosValidos);  
-//			
-//			return "";
-//		}
+		}else{
+			return "";
+		}
 				
 	}
 	
@@ -221,28 +215,27 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * @author Vivianne Sousa
 	 * @since 20/05/2013
 	 */
-	public boolean validarDadosClienteEmpresaContabil() {  
+	private boolean validarEmpresaContabilouCliente() {
+		
 		boolean dadosValidos = true;
 		
-		if (this.despesaTO.getClienteTO() == null
-			&& (this.despesaTO.getEmpresaContabil() == null || 
-				this.despesaTO.getEmpresaContabil().equals(""))) {
+		if (this.despesaTO.getEmpresaContabil() == null 
+				&& this.despesaTO.getClienteTO() == null) {
 
 			dadosValidos = false;
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Cliente ou Empresa Contabil: Erro de validação: o valor é necessário", null));
-		}
-
-		if (this.despesaTO.getClienteTO() != null
-				&& (this.despesaTO.getEmpresaContabil() != null || 
-					!this.despesaTO.getEmpresaContabil().equals(""))) {
-
-				dadosValidos = false;
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Cliente ou Empresa Contabil: Erro de validação: o valor é necessário", null));
-			}
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
 		
+
+		}else if(this.despesaTO.getEmpresaContabil() != null 
+				&& this.despesaTO.getClienteTO() != null) {
+			
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
+		
+		}
 		return dadosValidos;
-    }
+	}
 	
 }
