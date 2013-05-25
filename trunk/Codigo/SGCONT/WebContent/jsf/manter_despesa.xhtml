@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+		<script type="text/javascript">
+		function moeda(z){  
+			v = z.value;
+			v = v.replace(/\D/g,"")  
+			v = v.replace(/[0-9]{12}/,"") 
+			v = v.replace(/(\d{1})(\d{8})$/,"$1.$2")
+			v = v.replace(/(\d{1})(\d{5})$/,"$1.$2")
+			v = v.replace(/(\d{1})(\d{1,2})$/,"$1,$2")
+			z.value = v;
+		}	
+	</script>
+</h:head>
+<h:body>
+<f:view>
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+   		    <ui:include src="include/cabecalho.xhtml"/>  
+		  
+		    <ui:include src="include/rodape.xhtml"/>
+		  
+		    <ui:include src="include/menu.xhtml"/>
+
+		    <p:layoutUnit position="center" header="Manter Despesa">  
+ 
+			    <p:dataTable var="despesaTO" value="#{ManterDespesaBean.colecaoDespesaTO}"
+			    			 rowKey="#{despesaTO.codigo}" paginator="true" rows="10"  
+			                 selection="#{ManterDespesaBean.despesaTOSelecionada}" 
+			                 selectionMode="single" 
+			                 filteredValue="#{ManterDespesaBean.colecaoDespesaTOFiltro}" 
+			                 id="despesaTable"
+			                 >  
+			  
+			        <p:ajax event="rowSelect" update=":form:atualizarDespesa" />  
+			  		
+			  		<p:column headerText="Código" sortBy="#{despesaTO.codigo}" filterBy="#{despesaTO.codigo}" id="codigo">  
+			            #{despesaTO.codigo}  
+			        </p:column>  
+			        	  
+			        <p:column headerText="Descrição" sortBy="#{despesaTO.descricao}" filterBy="#{despesaTO.descricao}" id="descricao">  
+			            #{despesaTO.descricao}  
+			        </p:column>  
+			  
+			        <p:column headerText="Tipo de Despesa" sortBy="#{despesaTO.tipoDespesa.descricao}" filterBy="#{despesaTO.tipoDespesa.descricao}" id="tipoDespesa">  
+			            #{despesaTO.tipoDespesa.descricao}  
+			        </p:column>  
+			  
+			  		<p:column headerText="Valor" sortBy="#{despesaTO.valor}" filterBy="#{despesaTO.valor}" id="valor">  
+			            #{despesaTO.valor}  
+			        </p:column> 
+			  
+			        <p:column headerText="Data" sortBy="#{despesaTO.datadespesa}" filterBy="#{despesaTO.datadespesa}" id="dataDespesa">  
+			            #{despesaTO.datadespesa}  
+			        </p:column>  
+			  
+			    </p:dataTable>
+			    
+			    <hr></hr>
+			      <p:fieldset legend="Atualizar Despesa" id="atualizarDespesa">  
+			     
+			        <h:panelGrid id="gridAtualizar" columns="2" cellpadding="5">
+			        
+			        	<h:outputText value="Código:" />  
+			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.codigo}" 
+					    			id="codigo" required="true" label="Codigo" 
+					    			size="9" maxlength="9" disabled="true" />  
+			  
+			            <h:outputText value="Descrição:" />  
+			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.descricao}" 
+					    			id="descricao" required="true" label="Descrição" 
+					    			size="50" maxlength="50" />
+			  
+			            <h:outputText value="Tipo de Despesa:" />  
+				        <p:autoComplete id="tipoDespesa" dropdown="true" 
+				        	value="#{ManterDespesaBean.despesaTOSelecionada.tipoDespesa}"   
+	                 				completeMethod="#{ManterDespesaBean.completaTipoDespesa}" 
+	                 				var="tipoDespesa" itemLabel="#{tipoDespesa.descricao}" 
+	                 				itemValue="#{tipoDespesa}" converter="tipoDespesaConverter" />
+			  
+			            <h:outputText value="Valor:" />  
+			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.valor}" 
+					    			id="valor" required="true" label="Valor" 
+					    			size="13" maxlength="13" onkeyup="moeda(this);"/>
+
+           				<h:outputText for="datadespesa" value="Data de Geração: " /> 
+   						<p:inputMask value="#{ManterDespesaBean.despesaTOSelecionada.datadespesa}"
+   									id="datadespesa" required="true" label="Data de Geração"
+   									mask="99/99/9999" size="11" /> 
+
+         				<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
+				        	value="#{ManterDespesaBean.despesaTOSelecionada.empresaContabil}"   
+                  				completeMethod="#{ManterDespesaBean.completaEmpresaContabil}" 
+                  				var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}" 
+                  				itemValue="#{empresaContabil}" converter="empresaContabilConverter" 
+                  				/>
+
+						<h:column><h:outputText for="clienteTO" value="Cliente:" /> </h:column>
+						<p:autoComplete id="clienteTO" dropdown="true" size="30"
+							value="#{ManterDespesaBean.despesaTOSelecionada.clienteTO}"
+							completeMethod="#{ManterDespesaBean.completaCliente}"
+							var="clienteTO" itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
+							itemValue="#{clienteTO}" converter="clienteTOConverter" />
+						<p:message id="clienteMessage" for="clienteTO" />
+
+			        </h:panelGrid> 
+			        
+			        <h:panelGrid columns="1" cellpadding="5" > 
+		     			<p:commandButton id="atualizarButton" value="Atualizar" 
+		     				action="#{ManterDespesaBean.atualizar}" 
+		     				/> 
+               		</h:panelGrid>
+               		
+    			 </p:fieldset>
+    			 
+		    </p:layoutUnit>  
+		  
+		  		
+		  
+		</p:layout>
+					
+		
+	</h:form>
+</f:view>
+</h:body>
+</html>
+

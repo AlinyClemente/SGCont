@@ -181,6 +181,18 @@ public interface IControladorCadastro {
 	public void inserirEmpresaContabil(EmpresaContabilTO empresaContabilTO);
 	
 	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável pesquisar o CPF / CNPJ do cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public ClienteTO pesquisarDocumentoCliente(ClienteTO clienteTO);
+	
+	/**
 	 * [UC005] Inserir Usuário
 	 * 
 	 * [FS0002] - Verificar existência de dados [FS004] - Verificar USUARIO

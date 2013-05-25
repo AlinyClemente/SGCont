@@ -445,6 +445,35 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		return mensagem;
 	}
+	
+	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável pesquisar o CPF / CNPJ do cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public ClienteTO pesquisarDocumentoCliente(ClienteTO clienteTO) {
+		
+		Object[] objetoPesquisa = this.repositorioCadastro.
+				pesquisarCpfCnpjCliente(new Integer(clienteTO.getCodigo()));
+
+		//CPF
+		if (objetoPesquisa[0] != null) {
+			clienteTO.setCpf((String) objetoPesquisa[0]);
+		}
+
+		//CNPJ 
+		if (objetoPesquisa[1] != null) {
+			clienteTO.setCnpj((String) objetoPesquisa[1]);
+		}
+		
+		clienteTO.setardocumento();
+		return clienteTO;
+	}
 
 	/**
 	 * [UC005] Inserir Usuário

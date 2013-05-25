@@ -18,6 +18,8 @@ import com.sgcont.util.Util;
 public class DespesaTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private String codigo;
 
 	private String descricao;
 	
@@ -89,6 +91,15 @@ public class DespesaTO implements Serializable {
 		this.empresaContabil = empresaContabil;
 	}
 
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	public Despesa getDespesa() {
 		Despesa despesa = new Despesa();
 		
@@ -115,4 +126,30 @@ public class DespesaTO implements Serializable {
 		
 		return despesa;
 	}
+
+	public DespesaTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public DespesaTO(Despesa despesa) {
+		super();
+		this.codigo = despesa.getCodigo().toString();
+		this.descricao = despesa.getDescricao();
+		this.valor = Util.formatarMoedaReal(despesa.getValor());
+		this.datadespesa = (Util.formatarData(despesa.getDataDespesa()));
+		this.observacao = despesa.getObservacao();
+//		this.clienteTO = despesa.getClienteTO();
+//		if(despesa.getCliente() != null){
+//			this.clienteTO = new ClienteTO();
+//			this.clienteTO.setCodigo(despesa.getCliente().getCodigo().toString());
+//			this.clienteTO.setNome(despesa.getCliente().getNome());
+//			this.clienteTO.setDocumento("132123");
+//		}
+		
+		this.tipoDespesa = despesa.getTipoDespesa();
+		this.empresaContabil = despesa.getEmpresaContabil();
+	}
+	
+	
 }

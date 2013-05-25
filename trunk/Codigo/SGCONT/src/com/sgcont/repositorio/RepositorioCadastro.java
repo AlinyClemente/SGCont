@@ -168,5 +168,39 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 				
 	}
 	
+	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável pesquisar o CPF / CNPJ do cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Object[] pesquisarCpfCnpjCliente(Integer cdCliente) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		Object[] retorno = null;
+		
+		String consulta = "SELECT clipf.nncpf as cpf,  "
+				+ " clipj.cnpj as cnpj "
+				+ " FROM cadastro.cliente clie "
+				+ " LEFT JOIN cadastro.cliente_pf clipf on clipf.cdcliente = clie.cdcliente "
+				+ " LEFT JOIN cadastro.cliente_pj clipj on clipj.cdcliente = clie.cdcliente "
+				+ " WHERE clie.cdcliente = :cdCliente "
+				;
+		
+		retorno = (Object[]) session
+				.createSQLQuery(consulta)
+                .addScalar("cpf", StandardBasicTypes.STRING)
+                .addScalar("cnpj", StandardBasicTypes.STRING)
+                .setParameter("cdCliente", cdCliente)
+                .uniqueResult();
+		
+		return retorno;
+				
+	}
 	
 }

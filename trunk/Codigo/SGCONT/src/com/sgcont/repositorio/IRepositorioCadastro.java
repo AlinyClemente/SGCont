@@ -59,4 +59,16 @@ public interface IRepositorioCadastro {
 	 * @return ClienteTO
 	 * */
 	public ClienteTO pesquisarClienteTO(String nome) ;
+	
+	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável pesquisar o CPF / CNPJ do cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * 
+	 * @return Usuario
+	 * */
+	public Object[] pesquisarCpfCnpjCliente(Integer cdCliente);
 }

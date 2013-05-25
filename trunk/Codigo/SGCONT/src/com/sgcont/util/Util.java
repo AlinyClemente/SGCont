@@ -2,6 +2,8 @@ package com.sgcont.util;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -254,5 +256,63 @@ public class Util {
 	
 	public static byte[] upload(FileUploadEvent event) throws IOException{	
 		return event.getFile().getContents();
+	}
+	
+	
+	/**
+	 * Converte a data passada em string
+	 * 
+	 * @author: Vivianne Sousa
+	 * @date: 23/05/2013
+	 */
+	public static String formatarData(Date data) {
+		String retorno = "";
+		if (data != null) { // 1
+			Calendar dataCalendar = new GregorianCalendar();
+			StringBuffer dataBD = new StringBuffer();
+
+			dataCalendar.setTime(data);
+
+			if (dataCalendar.get(Calendar.DAY_OF_MONTH) > 9) {
+				dataBD.append(dataCalendar.get(Calendar.DAY_OF_MONTH) + "/");
+			} else {
+				dataBD.append("0" + dataCalendar.get(Calendar.DAY_OF_MONTH)
+						+ "/");
+			}
+
+			// Obs.: Janeiro no Calendar é mês zero
+			if ((dataCalendar.get(Calendar.MONTH) + 1) > 9) {
+				dataBD.append(dataCalendar.get(Calendar.MONTH) + 1 + "/");
+			} else {
+				dataBD.append("0" + (dataCalendar.get(Calendar.MONTH) + 1)
+						+ "/");
+			}
+
+			dataBD.append(dataCalendar.get(Calendar.YEAR));
+			retorno = dataBD.toString();
+		}
+		return retorno;
+	}
+	
+	public static String formatarMoedaReal(BigDecimal valor) {
+		/**
+		 * Símbolos especificos do Real Brasileiro
+		 */
+		DecimalFormatSymbols REAL = new DecimalFormatSymbols(new Locale("pt",
+				"BR"));
+		/**
+		 * Mascara de dinheiro para Real Brasileiro
+		 */
+		// DecimalFormat DINHEIRO_REAL = new DecimalFormat("###,###,##0.00");
+		//
+		// return DINHEIRO_REAL.format(valor);
+		if (valor != null && !"".equals(valor)) {
+			DecimalFormat DINHEIRO_REAL = new DecimalFormat("###,###,##0.00",
+					REAL);
+			return DINHEIRO_REAL.format(valor);
+		} else {
+			return "";
+		}
+
 	}
 }
