@@ -20,7 +20,7 @@
        			<h:column> <h:outputLabel for="cep" value="CEP:"/><font color="#FF0000">*</font></h:column>
 				<h:column>
 					<p:inputMask value="#{InserirEmpresaContabilBean.empresaContabilTO.cep}" 
-			    			id="cep" required="true" label="CEP" 
+			    			id="cep" required="false" label="CEP" 
 			    			size="20" maxlength="11" mask="99999-999"/>
 			    	&nbsp;&nbsp;
 			    	<p:commandButton id="pesquisarButton" icon="ui-icon-search"
@@ -30,12 +30,12 @@
      			
      			<h:column> <h:outputLabel for="rua" value="Rua:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.rua}" 
-			    			id="rua" required="true" label="Rua" 
+			    			id="rua" required="false" label="Rua" 
 			    			size="40" maxlength="60" />
 				
 				<h:column> <h:outputLabel for="numero" value="Número:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.numeroEndereco}" 
-			    			id="numeroEndereco" required="true" label="Número" 
+			    			id="numeroEndereco" required="false" label="Número" 
 			    			size="10" maxlength="7" />
 				
 				<h:column> <h:outputLabel for="complemento" value="Complemento:"/></h:column>
@@ -45,17 +45,17 @@
 				
 				<h:column> <h:outputLabel for="bairro" value="Bairro:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.bairro}" 
-			    			id="bairro" required="true" label="Bairro" 
+			    			id="bairro" required="false" label="Bairro" 
 			    			size="40" maxlength="20" />
 				
 				<h:column><h:outputLabel for="cidade" value="Cidade:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.cidade}" 
-			    			id="cidade" required="true" label="Cidade" 
+			    			id="cidade" required="false" label="Cidade" 
 			    			size="56" maxlength="50" />
 				
 				<h:column> <h:outputLabel for="estado" value="UF:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.estado}" 
-			    			id="estado" required="true" label="Estado" 
+			    			id="estado" required="false" label="Estado" 
 			    			size="5" maxlength="2" />
 				
 				<f:facet name="footer">  

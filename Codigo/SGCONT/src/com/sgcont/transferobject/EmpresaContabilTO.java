@@ -179,8 +179,9 @@ public class EmpresaContabilTO implements Serializable {
 		
 		empresaContabil.setCnpj(cnpj);
 		empresaContabil.setNumeroTelefone(this.numeroTelefone);
-		empresaContabil.setEmail(this.email);
-		
+		if(this.email != null && !this.email.equals("")){
+			empresaContabil.setEmail(this.email);
+		}
 		empresaContabil.setLogomarca(this.logomarca);
 		
 		return empresaContabil;
