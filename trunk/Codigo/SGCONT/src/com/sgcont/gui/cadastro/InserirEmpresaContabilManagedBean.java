@@ -195,7 +195,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Estado: Erro de validação: o valor é necessário", null));
+					FacesMessage.SEVERITY_ERROR,"UF: Erro de validação: o valor é necessário", null));
 		}
 		
 		return dadosValidos;
