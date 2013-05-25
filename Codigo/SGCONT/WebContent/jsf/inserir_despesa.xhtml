@@ -30,8 +30,8 @@
 		    <ui:include src="include/menu.xhtml"/>
 
 		    <p:layoutUnit position="center" header="Inserir Despesa">  
-		        <h:form>  
-	
+					<p:messages id="mensagemValidacao" showDetail="false" autoUpdate="true"
+						closable="true" />
   						
 					<h:panelGrid columns="3" cellpadding="5" id="gridDados">
 				     	<h:column><h:outputLabel for="descricao" value="Descrição:"/><font color="#FF0000">*</font></h:column>
@@ -92,7 +92,6 @@
 		     				update="gridDados"/> 
                		</h:panelGrid>
 					
-		        </h:form>  
 		    </p:layoutUnit>  
 		  
 		</p:layout>
