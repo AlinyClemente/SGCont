@@ -13,6 +13,7 @@
 		        </p:submenu> 
 		        <p:submenu label="CONTADOR">  
 		            <p:menuitem value="Inserir Contador" action="#{InserirContadorBean.exibirInserirContador}" icon="ui-icon-disk" ajax="false" immediate="true"/>  
+		            <p:menuitem value="Manter Contador" action="#{ManterContadorBean.exibirManterContador}" icon="ui-icon-disk" ajax="false" immediate="true"/>
 		        </p:submenu> 
 		        <p:submenu label="EMPRESA CONTABIL">  
 		            <p:menuitem value="Inserir Empresa Contabil" action="#{InserirEmpresaContabilBean.exibirInserirEmpresaContabil}" icon="ui-icon-disk" ajax="false" immediate="true"/>  
@@ -28,7 +29,7 @@
 	        	</p:submenu>
 	        	<p:submenu label="RECEITA">
 		            <p:menuitem value="Inserir Receita" action="#{InserirReceitaBean.exibirInserirReceita}" icon="ui-icon-disk" ajax="false" immediate="true"/>
-		            <p:menuitem value="Manter Receita" actionListener="#" icon="ui-icon-arrowrefresh-1-w" />
+		            <p:menuitem value="Manter Receita" action="#{ManterReceitaBean.exibirManterReceita}" icon="ui-icon-disk" ajax="false" immediate="true"/>
 	        	</p:submenu>
 	        </p:submenu>
 	        <p:submenu label="AGENDA">  
