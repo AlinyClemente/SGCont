@@ -52,6 +52,10 @@ public class ClienteTO implements Serializable {
 	private String cnpj;
 
 	private String codigo;
+	
+	private ClientePessoaFisicaTO clientePessoaFisicaTO;
+	
+	private ClientePessoaJuridicaTO clientePessoaJuridicaTO;
 
 	public Cliente getCliente() {
 		
@@ -217,8 +221,6 @@ public class ClienteTO implements Serializable {
 		this.enderecoFormatado = enderecoFormatado;
 	}
 
-	
-
 	public String getDocumento() {
 		return documento;
 	}
@@ -251,7 +253,23 @@ public class ClienteTO implements Serializable {
 		this.codigo = codigo;
 	}
 
-	
+	public ClientePessoaFisicaTO getClientePessoaFisicaTO() {
+		return clientePessoaFisicaTO;
+	}
+
+	public void setClientePessoaFisicaTO(ClientePessoaFisicaTO clientePessoaFisicaTO) {
+		this.clientePessoaFisicaTO = clientePessoaFisicaTO;
+	}
+
+	public ClientePessoaJuridicaTO getClientePessoaJuridicaTO() {
+		return clientePessoaJuridicaTO;
+	}
+
+	public void setClientePessoaJuridicaTO(
+			ClientePessoaJuridicaTO clientePessoaJuridicaTO) {
+		this.clientePessoaJuridicaTO = clientePessoaJuridicaTO;
+	}
+
 	public String getNumeroCpfFormatado() {
 		String cpfFormatado = this.cpf;
 
@@ -297,6 +315,48 @@ public class ClienteTO implements Serializable {
 		return cnpjFormatado;
 	}
 	
+
+	public ClienteTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public ClienteTO(Cliente cliente) {
+		super();
+		this.codigo = cliente.getCodigo().toString();
+		this.nome = cliente.getNome();
+		this.indicadorPessoaFisica = cliente.getIndicadorPessoaFisica().toString();
+		
+		this.cep = "" + cliente.getEndereco().getCodigoCep();
+		this.bairro = "" + cliente.getEndereco().getBairro();
+		this.cidade = "" + cliente.getEndereco().getNomeCidade();
+		this.complemento = ""
+		+ cliente.getEndereco().getDescricaoComplemento();
+		this.estado = "" + cliente.getEndereco().getDescricaoSiglaUf();
+		this.numeroEndereco = "" + cliente.getEndereco().getNumeroEndereco();
+		
+		this.enderecoFormatado = this.rua
+		+ " - Num: " + this.numeroEndereco+ " - "
+		+ this.bairro + " - "
+		+ this.cidade + " - "
+		+ this.estado + " - "
+		+ this.cep;
+		
+		this.numeroTelefone = cliente.getNumeroTelefone();
+		this.numeroFax = cliente.getNumeroFax();
+		this.email = cliente.getEmail();
+		this.inscricaoMunicipal = cliente.getInscricaoMunicipal();
+		this.observacao = cliente.getObservacao();
+		
+//		this.documento = documento;
+//		this.cpf = cpf;
+//		this.cnpj = cnpj;
+//		this.clientePessoaFisicaTO = clientePessoaFisicaTO;
+//		this.clientePessoaJuridicaTO = clientePessoaJuridicaTO;
+		
+	}
 
 	@Override
 	public boolean equals(Object obj) {

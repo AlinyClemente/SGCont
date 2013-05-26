@@ -151,4 +151,30 @@ public class ClientePessoaJuridicaTO implements Serializable {
 		this.clienteMatriz = clienteMatriz;
 	}
 
+	public ClientePessoaJuridicaTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ClientePessoaJuridicaTO(ClientePessoaJuridica clientePessoaJuridica) {
+		super();
+		this.razaoSocial = clientePessoaJuridica.getRazaoSocial();
+		this.cnpj = clientePessoaJuridica.getNumeroCnpj();
+		this.inscricaoEstadual = clientePessoaJuridica.getInscricaoEstadual();
+		if(clientePessoaJuridica.getDataInicioAtividade() != null){
+			this.dataInicioAtividade = Util.formatarData(clientePessoaJuridica.getDataInicioAtividade());
+		}
+		if(clientePessoaJuridica.getDataFimAtividade() != null){
+			this.dataFimAtividade = Util.formatarData(clientePessoaJuridica.getDataFimAtividade());
+		}
+		this.suframa = clientePessoaJuridica.getCodigoSuframa();
+		if(clientePessoaJuridica.getCodigoNire() != null){
+			this.nirf = clientePessoaJuridica.getCodigoNire().toString();
+		}
+		this.site = clientePessoaJuridica.getSite();
+		this.contador = clientePessoaJuridica.getContador();
+		this.clienteMatriz = clientePessoaJuridica.getClienteMatriz();
+	}
+
+	
 }
