@@ -3,8 +3,10 @@ package com.sgcont.gui.operacional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,8 +34,6 @@ public class ManterDespesaManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private DespesaTO despesaTO;
-
 	private Collection<EmpresaContabil> colecaoEmpresaContabil;
 	
 	private Collection<TipoDespesa> colecaoTipoDespesa;
@@ -47,15 +47,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	private DespesaTO despesaTOSelecionada;
 	
 	public ManterDespesaManagedBean() {
-		this.despesaTO = new DespesaTO();
-	}
-
-	public DespesaTO getDespesaTO() {
-		return despesaTO;
-	}
-
-	public void setDespesaTO(DespesaTO despesaTO) {
-		this.despesaTO = despesaTO;
+		this.despesaTOSelecionada = new DespesaTO();
 	}
 
 	public Collection<DespesaTO> getColecaoDespesaTO() {
@@ -109,14 +101,16 @@ public class ManterDespesaManagedBean implements Serializable {
 	}
 
 	/**
-	 * [UC013] Inserir Despesa
+	 * [UC014] Manter Despesa
 	 * 
-	 * Método responsável por exibir a tela de cadastro da despesa 
+	 * Método responsável por exibir a tela de manter despesa 
 	 * 
 	 * @author Vivianne Sousa
-	 * @since 23/04/2013
+	 * @since 23/05/2013
 	 * */
 	public String exibirManterDespesa() {
+		
+		this.despesaTOSelecionada = new DespesaTO();
 
 		Fachada fachada = Fachada.getInstance();
 		
@@ -136,25 +130,44 @@ public class ManterDespesaManagedBean implements Serializable {
 	}
 
 	/**
-	 * [UC013] Inserir Despesa
+	 * [UC014] Manter Despesa
 	 * 
-	 * Método responsável por cadastrar a despesa
+	 * Método responsável por atualizar a despesa
 	 * 
 	 * @author Vivianne Sousa
-	 * @since 23/04/2013
+	 * @since 25/05/2013
 	 * */
 	public String atualizar() {
-
-		Fachada fachada = Fachada.getInstance();
-//		fachada.inserirDespesa(this.despesaTO);
 		
-		
-		return "tela_sucesso";
+		if(validarDadosDespesaSelecionada() && validarEmpresaContabilouCliente()){
+			Fachada fachada = Fachada.getInstance();
+			fachada.atualizarDespesa(this.despesaTOSelecionada);
+			return "tela_sucesso";
+		}else{
+			return "";
+		}
 		
 	}
 	
+	public String remover(){
+		Map<String,String> parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		System.out.println("código da despesa: " + new Integer(parametros.get("idDespesa")));
+		
+		Integer idDespesa = new Integer(parametros.get("idDespesa"));
+		
+		Fachada fachada = Fachada.getInstance();
+		
+		Map<String, Object> parametrosRemover = new HashMap<String, Object>();
+		parametrosRemover.put("codigo", idDespesa);
+		fachada.remover(Despesa.class, parametrosRemover);
+
+		exibirManterDespesa();
+		
+		return "";
+	}
+	
 	/**
-	 * [UC013] Inserir Despesa
+	 * [UC014] Manter Despesa
 	 * 
 	 * Método responsável por filtrar os resultados da pesquisa do tipo de despesa
 	 * 
@@ -176,7 +189,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	}
 	
 	/**
-	 * [UC013] Inserir Despesa
+	 * [UC014] Manter Despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 16/05/2013
@@ -196,7 +209,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	}
 	
 	/**
-	 * [UC013] Inserir Despesa
+	 * [UC014] Manter Despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 16/05/2013
@@ -262,5 +275,78 @@ public class ManterDespesaManagedBean implements Serializable {
 		}
 		
 		return colecaoDespesaTO;
+	}
+	
+	
+	/**
+	 * Método responsável por validar os dados da despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 26/05/2013
+	 * */
+	private boolean validarDadosDespesaSelecionada() {
+		boolean dadosValidos = true;
+		
+		if (this.despesaTOSelecionada.getDescricao() == null
+				|| this.despesaTOSelecionada.getDescricao().equals("")) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Descrição: Erro de validação: o valor é necessário", null));
+		}
+		
+		if (this.despesaTOSelecionada.getTipoDespesa() == null) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Tipo de Despesa: Erro de validação: o valor é necessário", null));
+		}
+		
+		if (this.despesaTOSelecionada.getValor() == null
+				|| this.despesaTOSelecionada.getValor().equals("")) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Valor: Erro de validação: o valor é necessário", null));
+		}
+
+		if (this.despesaTOSelecionada.getDatadespesa() == null
+				|| this.despesaTOSelecionada.getDatadespesa().equals("")) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Data de Geração: Erro de validação: o valor é necessário", null));
+		}
+		
+		return dadosValidos;
+	}
+
+	/** 
+	 * [UC014] Manter Despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 26/05/2013
+	 */
+	private boolean validarEmpresaContabilouCliente() {
+		
+		boolean dadosValidos = true;
+		
+		if (this.despesaTOSelecionada.getEmpresaContabil() == null 
+				&& this.despesaTOSelecionada.getClienteTO() == null) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
+		
+
+		}else if(this.despesaTOSelecionada.getEmpresaContabil() != null 
+				&& this.despesaTOSelecionada.getClienteTO() != null) {
+			
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Contábil ou Cliente", null));
+		
+		}
+		return dadosValidos;
 	}
 }

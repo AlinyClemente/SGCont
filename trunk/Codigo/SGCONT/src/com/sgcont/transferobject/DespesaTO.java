@@ -35,6 +35,16 @@ public class DespesaTO implements Serializable {
 	
 	private EmpresaContabil empresaContabil;
 	
+	private String indicadorUso;
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -91,17 +101,20 @@ public class DespesaTO implements Serializable {
 		this.empresaContabil = empresaContabil;
 	}
 
-	
-	public String getCodigo() {
-		return codigo;
+	public String getIndicadorUso() {
+		return indicadorUso;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setIndicadorUso(String indicadorUso) {
+		this.indicadorUso = indicadorUso;
 	}
 
 	public Despesa getDespesa() {
 		Despesa despesa = new Despesa();
+		
+		if(this.codigo != null){
+			despesa.setCodigo(new Integer(this.codigo));
+		}
 		
 		despesa.setDescricao(this.descricao);
 		
@@ -123,6 +136,9 @@ public class DespesaTO implements Serializable {
 		if(this.empresaContabil != null && !this.empresaContabil.equals("")){
 			despesa.setEmpresaContabil(this.empresaContabil);
 		}
+		if(this.indicadorUso != null){
+			despesa.setIndicadorUso(new Short(this.indicadorUso));
+		}
 		
 		return despesa;
 	}
@@ -139,16 +155,9 @@ public class DespesaTO implements Serializable {
 		this.valor = Util.formatarMoedaReal(despesa.getValor());
 		this.datadespesa = (Util.formatarData(despesa.getDataDespesa()));
 		this.observacao = despesa.getObservacao();
-//		this.clienteTO = despesa.getClienteTO();
-//		if(despesa.getCliente() != null){
-//			this.clienteTO = new ClienteTO();
-//			this.clienteTO.setCodigo(despesa.getCliente().getCodigo().toString());
-//			this.clienteTO.setNome(despesa.getCliente().getNome());
-//			this.clienteTO.setDocumento("132123");
-//		}
-		
 		this.tipoDespesa = despesa.getTipoDespesa();
 		this.empresaContabil = despesa.getEmpresaContabil();
+		this.indicadorUso = despesa.getIndicadorUso().toString();
 	}
 	
 	

@@ -102,4 +102,32 @@ public class RepositorioUtil implements IRepositorioUtil {
 		return objeto;
 	}
 
+	/**
+	* Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	* */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		
+		Session session = HibernateUtil.getSession();
+		String query = "delete from " + classe.getName() + " where ";
+		
+		Iterator<String> keys = campos.keySet().iterator();
+		
+		while (keys.hasNext()) {
+			String key = keys.next();  
+	       Object campo = campos.get(key);  
+	 
+	       if (campo instanceof String) {
+	       	query = query + key + " = '" + campo + "' and ";
+	       } else {
+	       	query = query + key + " = " + campo + " and ";  
+	       }  
+		}
+		
+		query = query.substring(0, query.length() - 4);
+		
+		session.createQuery(query)
+			.executeUpdate();
+		
+		HibernateUtil.closeSession(session);
+	}
 }

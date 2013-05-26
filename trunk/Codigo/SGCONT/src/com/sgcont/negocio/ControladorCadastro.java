@@ -496,4 +496,56 @@ public class ControladorCadastro implements IControladorCadastro {
 		return usuario;
 	}
 
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável pesquisar a colecao de cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 26/05/2013
+	 */
+	public Collection<ClienteTO> pesquisarColecaoClienteTO(){
+		
+		Collection<ClienteTO> colecaoClienteTO = null;
+		
+		Collection<Cliente> colecaoCliente = (Collection<Cliente>) this.repositorioUtil.pesquisar(Cliente.class);
+		
+		if(colecaoCliente != null && !colecaoCliente.isEmpty()){
+			
+			Iterator<Cliente> iterCliente = colecaoCliente.iterator();
+			
+			while (iterCliente.hasNext()) {
+				Cliente cliente = (Cliente) iterCliente.next();
+				
+				ClienteTO clienteTO = new ClienteTO(cliente);
+				
+				if(cliente.getIndicadorPessoaFisica().equals(Cliente.INDICADOR_PESSOA_FISICA)){
+					
+					ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica)
+							this.repositorioUtil.pesquisar(ClientePessoaFisica.class, cliente.getCodigo());
+					
+					ClientePessoaFisicaTO clientePessoaFisicaTO = new ClientePessoaFisicaTO(clientePessoaFisica);
+					
+					clienteTO.setClientePessoaFisicaTO(clientePessoaFisicaTO);
+					
+				}else{
+					
+					ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica)
+							this.repositorioUtil.pesquisar(ClientePessoaJuridica.class, cliente.getCodigo());
+					
+					ClientePessoaJuridicaTO clientePessoaJuridicaTO = new ClientePessoaJuridicaTO(clientePessoaJuridica);
+						
+					clienteTO.setClientePessoaJuridicaTO(clientePessoaJuridicaTO);
+					
+				}
+				clienteTO.setardocumento();
+				colecaoClienteTO.add(clienteTO);
+			}
+			
+		}
+		
+		return colecaoClienteTO;
+		
+	}
 }
