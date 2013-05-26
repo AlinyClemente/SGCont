@@ -170,4 +170,25 @@ public class ClientePessoaFisicaTO implements Serializable {
 		this.numeroConta = numeroConta;
 	}
 
+	public ClientePessoaFisicaTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ClientePessoaFisicaTO(ClientePessoaFisica clientePessoaFisica) {
+		super();
+		this.cpf = clientePessoaFisica.getNumeroCpf();
+		this.rg = clientePessoaFisica.getNumeroRg();
+		this.dataNascimento = Util.formatarData(clientePessoaFisica.getDataNascimento());
+		this.sexo = clientePessoaFisica.getSexo().toString();
+		this.indicadorDeclaracaoIR = clientePessoaFisica.getIndicadorDeclaracaoIr().toString();
+		this.tituloEleitor = clientePessoaFisica.getNumeroTituloEleitor();
+		this.numeroCei = clientePessoaFisica.getNumeroCei();
+		this.profissao = clientePessoaFisica.getProfissao();
+		this.clienteTitular = clientePessoaFisica.getClienteTitular();
+		this.banco = clientePessoaFisica.getBanco();
+		this.numeroAgencia = clientePessoaFisica.getNumeroAgencia();
+		this.numeroConta = clientePessoaFisica.getNumeroConta();
+	}
+
 }

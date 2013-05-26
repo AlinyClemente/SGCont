@@ -18,6 +18,9 @@ import javax.persistence.Table;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Cliente {
 
+	public static final  Short INDICADOR_PESSOA_FISICA = new Short("1");
+	public static final  Short INDICADOR_PESSOA_JURIDICA = new Short("2");
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cdcliente", nullable=false)
