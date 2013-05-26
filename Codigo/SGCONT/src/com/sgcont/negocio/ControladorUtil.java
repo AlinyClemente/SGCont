@@ -65,4 +65,12 @@ public class ControladorUtil implements IControladorUtil {
 		
 	}
 	
+	/**
+	* Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	* */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		
+		this.repositorioUtil.remover(classe, campos);
+		
+	}
 }

@@ -114,4 +114,23 @@ public class ControladorOperacional implements IControladorOperacional {
 		
 		
 	}
+	
+	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável atualizar uma despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * */
+	public void atualizarDespesa(DespesaTO despesaTO) {
+		
+		Despesa despesa = despesaTO.getDespesa();
+		
+		despesa.setUltimaAlteracao(new Date());
+		
+		this.repositorioUtil.inserirOuAtualizar(despesa);
+		
+	}
+
 }

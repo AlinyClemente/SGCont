@@ -387,4 +387,40 @@ public class Fachada {
 	public Usuario verificarLoginUsuarioExistente(String login) {
 		return this.controladorCadastro.verificarLoginUsuarioExistente(login);
 	}
+	
+	/**
+	 * [UC014] Manter Despesa
+	 * 
+	 * Método responsável atualizar uma despesa
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 25/05/2013
+	 * */
+	public void atualizarDespesa(DespesaTO despesaTO){
+		
+		this.controladorOperacional.atualizarDespesa(despesaTO);
+	
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável pesquisar a colecao de cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 26/05/2013
+	 */
+	public Collection<ClienteTO> pesquisarColecaoClienteTO(){
+		
+		return this.controladorCadastro.pesquisarColecaoClienteTO();
+	}
+	
+	/**
+	* Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	* */
+	public void remover(Class<?> classe, Map<String, Object> campos){
+		
+		this.controladorUtil.remover(classe, campos);
+		
+	}
 }

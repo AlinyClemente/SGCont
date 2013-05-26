@@ -30,4 +30,9 @@ public interface IRepositorioUtil {
 	 * */
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos);
 	
+	/**
+	* Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	* */
+	public void remover(Class<?> classe, Map<String, Object> campos);
+	
 }

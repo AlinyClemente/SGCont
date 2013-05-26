@@ -135,40 +135,4 @@ public class Despesa {
 		this.indicadorUso = indicadorUso;
 	}
 
-	
-	public void getClienteTO(){
-		
-		
-		if(this.cliente != null){
-			ClienteTO clienteTO = new ClienteTO();
-			
-			
-		}
-		
-//		Object[] objetoPesquisa = (Object[]) iterator.next();
-//
-//		//Codigo
-//		if (objetoPesquisa[0] != null) {
-//			clienteTO.setCodigo(((Integer) objetoPesquisa[0]).toString());
-//		}
-//
-//		//Nome 
-//		if (objetoPesquisa[1] != null) {
-//			clienteTO.setNome((String) objetoPesquisa[1]);
-//		}
-//		
-//		//Cpf
-//		if (objetoPesquisa[2] != null) {
-//			clienteTO.setCpf((String) objetoPesquisa[2]);
-//		}
-//		
-//		//Cnpf
-//		if (objetoPesquisa[3] != null) {
-//			clienteTO.setCnpj( ((String) objetoPesquisa[3]));
-//		}
-//				
-//		clienteTO.setardocumento();
-		
-	}
-	
 }

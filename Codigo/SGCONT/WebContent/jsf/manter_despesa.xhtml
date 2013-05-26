@@ -35,12 +35,21 @@
 			    <p:dataTable var="despesaTO" value="#{ManterDespesaBean.colecaoDespesaTO}"
 			    			 rowKey="#{despesaTO.codigo}" paginator="true" rows="10"  
 			                 selection="#{ManterDespesaBean.despesaTOSelecionada}" 
-			                 selectionMode="single" 
+			                 selectionMode="single" sortBy="#{despesaTO.codigo}"
 			                 filteredValue="#{ManterDespesaBean.colecaoDespesaTOFiltro}" 
 			                 id="despesaTable"
 			                 >  
 			  
-			        <p:ajax event="rowSelect" update=":form:atualizarDespesa" />  
+			        <p:ajax event="rowSelect" update=":form:dadosDespesaSelecionada" />  
+			        
+			  		<p:column headerText="Remover" id="remover">  
+			  			<center>
+				  			<h:commandLink action="#{ManterDespesaBean.remover}">
+				  				<h:graphicImage value="/resources/imagens/remover.png"/>
+								<f:param name="idDespesa" value="#{despesaTO.codigo}"/>
+							</h:commandLink>
+						</center>
+			        </p:column>  
 			  		
 			  		<p:column headerText="Código" sortBy="#{despesaTO.codigo}" filterBy="#{despesaTO.codigo}" id="codigo">  
 			            #{despesaTO.codigo}  
@@ -65,18 +74,23 @@
 			    </p:dataTable>
 			    
 			    <hr></hr>
-			      <p:fieldset legend="Atualizar Despesa" id="atualizarDespesa">  
+			     
+			    <p:outputPanel id="dadosDespesaSelecionada">
+			     <p:panel header="Atualizar" rendered="#{ManterDespesaBean.despesaTOSelecionada.codigo != null}">
+			     	<p:messages id="mensagemValidacao" showDetail="false" autoUpdate="true"
+						closable="true" />
 			     
 			        <h:panelGrid id="gridAtualizar" columns="2" cellpadding="5">
 			        
+			        
 			        	<h:outputText value="Código:" />  
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.codigo}" 
-					    			id="codigo" required="true" label="Codigo" 
+					    			id="codigo" required="false" label="Codigo" 
 					    			size="9" maxlength="9" disabled="true" />  
 			  
 			            <h:outputText value="Descrição:" />  
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.descricao}" 
-					    			id="descricao" required="true" label="Descrição" 
+					    			id="descricao" required="false" label="Descrição" 
 					    			size="50" maxlength="50" />
 			  
 			            <h:outputText value="Tipo de Despesa:" />  
@@ -88,12 +102,12 @@
 			  
 			            <h:outputText value="Valor:" />  
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.valor}" 
-					    			id="valor" required="true" label="Valor" 
+					    			id="valor" required="false" label="Valor" 
 					    			size="13" maxlength="13" onkeyup="moeda(this);"/>
 
            				<h:outputText for="datadespesa" value="Data de Geração: " /> 
    						<p:inputMask value="#{ManterDespesaBean.despesaTOSelecionada.datadespesa}"
-   									id="datadespesa" required="true" label="Data de Geração"
+   									id="datadespesa" required="false" label="Data de Geração"
    									mask="99/99/9999" size="11" /> 
 
          				<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
@@ -110,8 +124,14 @@
 							completeMethod="#{ManterDespesaBean.completaCliente}"
 							var="clienteTO" itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
 							itemValue="#{clienteTO}" converter="clienteTOConverter" />
-						<p:message id="clienteMessage" for="clienteTO" />
 
+
+			        	<h:column><h:outputLabel for="observacao" value="Observação:"/></h:column>
+					    <p:inputTextarea value="#{ManterDespesaBean.despesaTOSelecionada.observacao}" 
+					    			id="observacao" required="false" label="Observação" 
+					    			size="300" maxlength="300" cols=""/>
+
+	       				
 			        </h:panelGrid> 
 			        
 			        <h:panelGrid columns="1" cellpadding="5" > 
@@ -119,8 +139,9 @@
 		     				action="#{ManterDespesaBean.atualizar}" 
 		     				/> 
                		</h:panelGrid>
-               		
-    			 </p:fieldset>
+			     
+			      </p:panel>
+			    </p:outputPanel>
     			 
 		    </p:layoutUnit>  
 		  

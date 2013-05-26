@@ -202,4 +202,14 @@ public interface IControladorCadastro {
 	 * @since 25/05/2013
 	 */
 	public Usuario verificarLoginUsuarioExistente(String login) ;
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável pesquisar a colecao de cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 26/05/2013
+	 */
+	public Collection<ClienteTO> pesquisarColecaoClienteTO();
 }
