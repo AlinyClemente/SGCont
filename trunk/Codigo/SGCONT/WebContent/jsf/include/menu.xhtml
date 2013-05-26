@@ -35,6 +35,13 @@
 	            <p:menuitem value="Gerenciar Agenda" actionListener="#" icon="ui-icon-calendar" />  
 	        </p:submenu>
 	    </p:panelMenu>
+	    <h:panelGrid columns="4" cellpadding="120" /> 
+	        <h:panelGrid collumns="2">
+	        	<h:outputLabel for="name" value="Usuário: #{sessionScope.usuarioLogado.nome}" style="font-weight:bold"/>  
+		    </h:panelGrid>
+		    <h:panelGrid>
+		        <p:commandButton value="Sair" action="#{LogoutBean.efetuarLogout}" icon="ui-icon-close" ajax="false"/>  
+			</h:panelGrid> 
     </p:layoutUnit>  
 </html>
 
