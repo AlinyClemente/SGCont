@@ -496,6 +496,82 @@ public class ControladorCadastro implements IControladorCadastro {
 		return usuario;
 	}
 
+	/**
+	* [UC004] ManterContador
+	 * 
+	 * Método responsável atualizar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 * */
+	public void atualizarContador(ContadorTO contadorTO) {
+
+		if (contadorTO != null) {
+
+			Contador contador = contadorTO.getContador();
+			contador.getEndereco().setUltimaAlteracao(new Date());
+			this.repositorioUtil.inserirOuAtualizar(contador.getEndereco());
+			
+			contador.setUltimaAlteracao(new Date());
+			repositorioUtil.inserirOuAtualizar(contador);
+		}
+
+	}
+	
+	
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String verificarCPFValidoExistenteContador(String cpf, String codigoContador) {
+		String mensagem = null;
+
+		if (!Util.validacaoCPF(cpf)) {
+			mensagem = "Dígito verificador do CPF não confere.";
+		} else {
+			Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("numeroCpf", cpf);
+			Contador contador = (Contador) Fachada.getInstance().pesquisar(
+					Contador.class, parametros);
+
+			if (contador != null && !contador.getCodigo().toString().equals(codigoContador)) {
+				mensagem = "CPF já cadastrado para o Contador "
+						+ contador.getNomeRazaoSocial() + ".";
+			}
+		}
+
+		return mensagem;
+	}
+	
+	
+	
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS004] - Verificar numero CRC existente
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String verificarCRCExistenteContador(String crc, String codigoContador) {
+		String mensagem = null;
+
+			Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("numeroCrc", crc);
+			Contador contador = (Contador) Fachada.getInstance().pesquisar(
+					Contador.class, parametros);
+
+			if (contador != null && !contador.getCodigo().toString().equals(codigoContador)) {
+				mensagem = "CRC já cadastrado para o Contador "
+						+ contador.getNomeRazaoSocial() + ".";
+			}
+
+		return mensagem;
+	}
 	
 	/**
 	 * [UC002] Manter Cliente 

@@ -3,182 +3,191 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<script type="text/javascript">
+		function moeda(z) {
+			v = z.value;
+			v = v.replace(/\D/g, "")
+			v = v.replace(/[0-9]{12}/, "")
+			v = v.replace(/(\d{1})(\d{8})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{5})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2")
+			z.value = v;
+		}
+	</script>
 </h:head>
 <h:body>
 	<f:view>
 		<h:form id="form">
 			<p:layout fullPage="true">
-				<p:layoutUnit position="north" size="100">
-					<h:outputText value="Aqui fica a logo..." />
-				</p:layoutUnit>
+				<ui:include src="include/cabecalho.xhtml" />
 
-				<p:layoutUnit position="south" size="60">
-					<h:outputText value="Rodapé com a versão/direitos autorais/etc..." />
-				</p:layoutUnit>
+				<ui:include src="include/rodape.xhtml" />
 
-				<p:layoutUnit position="west" size="200">
-					<p:panelMenu style="width:200px">
-						<p:submenu label="Cadastro">
-							<p:menuitem value="Inserir Cliente"
-								action="#{InserirClienteBean.exibirInserirCliente}"
-								icon="ui-icon-disk" />
-							<p:menuitem value="Manter Cliente" actionListener="#"
-								icon="ui-icon-arrowrefresh-1-w" />
-							<p:menuitem value="Inserir Receita"
-								action="#{InserirReceitaBean.exibirInserirReceita}"
-								icon="ui-icon-disk" />
-						</p:submenu>
-						<p:submenu label="Agenda">
-							<p:menuitem value="Gerenciar Agenda" actionListener="#"
-								icon="ui-icon-disk" />
-						</p:submenu>
-					</p:panelMenu>
-				</p:layoutUnit>
+				<ui:include src="include/menu.xhtml" />
 
-			
-				<p:layoutUnit position="center" header="Inserir Receita">
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputLabel for="descricao" value="Descrição:" />
-							<p:inputText value="#{InserirReceitaBean.receitaTO.descricao}"
-								id="descricao" required="true" label="Descrição" size="50"
-								maxlength="50" />
+				<p:layoutUnit position="center" header="Manter Receita">
 
-							<h:outputLabel for="tipoReceita" value="Tipo Receita:" />
-							<p:selectOneMenu
-								value="#{InserirReceitaBean.receitaTO.tipoReceita}">
-								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-								<f:selectItems value="#{InserirReceitaBean.colecaoTipoReceita}"
-									var="d" itemLabel="#{d.descricao}" itemValue="#{d.codigo}" />
-							</p:selectOneMenu>
-							
-							<h:outputText value="Data de Geração: " />
-							<p:inputMask value="#{InserirReceitaBean.receitaTO.dataGeracao}"
-								mask="99/99/9999" size="11" />
+					<p:dataTable var="receitaTO"
+						value="#{ManterReceitaBean.colecaoReceitaTO}"
+						rowKey="#{receitaTO.codigo}" paginator="true" rows="10"
+						selection="#{ManterReceitaBean.receitaTOSelecionada}"
+						selectionMode="single" sortBy="#{receitaTO.codigo}"
+						filteredValue="#{ManterReceitaBean.colecaoReceitaTOFiltro}"
+						id="receitaTable">
 
-							<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
-							<p:selectOneMenu
-								value="#{InserirReceitaBean.receitaTO.empresaContabil}">
-								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-								<f:selectItems
-									value="#{InserirReceitaBean.colecaoEmpresaContabil}" var="e"
-									itemLabel="#{e.nomeFantasia}" itemValue="#{e.codigo}" />
-							</p:selectOneMenu>
+						<p:ajax event="rowSelect" update=":form:dadosReceitaSelecionada" />
 
+						<p:column headerText="Remover" id="remover">
+							<center>
+								<h:commandLink action="#{ManterReceitaBean.remover}">
+									<h:graphicImage value="/resources/imagens/remover.png" />
+									<f:param name="idReceita" value="#{receitaTO.codigo}" />
+								</h:commandLink>
+							</center>
+						</p:column>
 
-							<h:outputLabel for="valor" value="Valor:" />
-							<p:inputText value="#{InserirReceitaBean.receitaTO.valor}"
-								id="valor" required="true" label="Valor" size="13"
-								maxlength="13" />
-							<h:outputLabel for="clienteTO" value="Cliente:" />
-							
-							<p:selectOneMenu
-								value="#{InserirReceitaBean.receitaTO.cliente}"
-								panelStyle="width:150px" effect="fade" var="c"
-								style="width:250px" filter="true" filterMatchMode="contains">
-								<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
-								<f:selectItems
-									value="#{InserirReceitaBean.colecaoCliente}" var="c"
-									itemLabel="#{c.dadosClienteFormatado}" itemValue="#{c.codigo}" />
-							</p:selectOneMenu>	
-							
+						<p:column headerText="Código" sortBy="#{receitaTO.codigo}"
+							filterBy="#{receitaTO.codigo}" id="codigo">  
+			            #{receitaTO.codigo}  
+			        </p:column>
 
+						<p:column headerText="Descrição" sortBy="#{receitaTO.descricao}"
+							filterBy="#{receitaTO.descricao}" id="descricao">  
+			            #{receitaTO.descricao}  
+			        </p:column>
 
-								
-							<h:outputLabel for="observacao" value="Observação:" />
-							<p:inputTextarea value="#{InserirReceitaBean.receitaTO.observacao}"
-								id="observacao" required="true" label="Observação" size="50"
-								maxlength="50" />
+						<p:column headerText="Tipo de Receita"
+							sortBy="#{receitaTO.tipoReceita.descricao}"
+							filterBy="#{receitaTO.tipoReceita.descricao}" id="tipoReceita">  
+			            #{receitaTO.tipoReceita.descricao}  
+			        </p:column>
 
+						<p:column headerText="Valor" sortBy="#{receitaTO.valor}"
+							filterBy="#{receitaTO.valor}" id="valor">  
+			            #{receitaTO.valor}  
+			        </p:column>
 
-					
-								
-
-						</h:panelGrid>
-						<h:panelGrid columns="1" cellpadding="5">
-							<p:commandButton id="cadastrarButton" value="Cadastrar"
-								actionListener="#{InserirReceitaBean.cadastrar}" />
-						</h:panelGrid>
-
-
-
-
-
-
-
-
-
-
-					<p:dataTable var="car" value="#{#{ManterReceitaBean.colecaoReceita}"
-						rowKey="#{receita.codigo}" paginator="true" rows="10"
-						selection="#{ManterReceitaBean.selectedCar}" selectionMode="single"
-						filteredValue="#{ManterReceitaBean.filteredCars}" id="Receita">
-
-						<p:ajax event="rowSelect" update=":form:display"
-							oncomplete="carDialog.show()" />
-
-						<f:facet name="header">  
-           Manter Receita
-        </f:facet>
-
-						<p:column headerText="Codigo" sortBy="#{receita.codigo}"
-							filterBy="#{receita.codigo}" id="codigo">  
-				            #{receita.codigo}  
-				        </p:column>
-
-						<p:column headerText="Descrição" sortBy="#{receita.descricao}"
-							filterBy="#{receita.descricao}" id="descricao">  
-				            #{receita.descricao}  
-				        </p:column>
-
-						<p:column headerText="Manufacturer" sortBy="#{car.manufacturer}"
-							filterBy="#{car.manufacturer}" id="manufacturer">  
-            #{car.manufacturer}  
-        </p:column>
-
-						<p:column headerText="Color" sortBy="#{car.color}"
-							filterBy="#{car.color}" id="color">  
-            #{car.color}"  
-        </p:column>
+						<p:column headerText="Data" sortBy="#{receitaTO.dataGeracao}"
+							filterBy="#{receitaTO.dataGeracao}" id="dataReceita">  
+			            #{receitaTO.dataGeracao}  
+			        </p:column>
 
 					</p:dataTable>
 
-					<p:dialog header="Car Detail" widgetVar="carDialog"
-						resizable="false" width="200" showEffect="explode"
-						hideEffect="explode">
+					<hr></hr>
+					<p:outputPanel id="dadosReceitaSelecionada">
+						<p:panel header="Atualizar"
+							rendered="#{ManterReceitaBean.receitaTOSelecionada.codigo != null}">
+							<p:messages id="mensagemValidacao" showDetail="false"
+								autoUpdate="true" closable="true" />
 
-						<h:panelGrid id="display" columns="2" cellpadding="4">
+							<h:panelGrid id="gridAtualizar" columns="3" cellpadding="5"
+								autoUpdate="true" closable="true">
 
-							<f:facet name="header">
-								<p:graphicImage
-									value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg" />
-							</f:facet>
+								<h:column>
+									<h:outputText value="Código:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterReceitaBean.receitaTOSelecionada.codigo}"
+									id="codigo" required="false" label="Codigo" size="9"
+									maxlength="9" disabled="true" />
+								<p:message id="codigoMessage" for="codigo" />
 
-							<h:outputText value="Model:" />
-							<h:outputText value="#{tableBean.selectedCar.model}" id="model" />
+								<h:column>
+									<h:outputText value="Descrição:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterReceitaBean.receitaTOSelecionada.descricao}"
+									id="descricao" required="false" label="Descrição" size="50"
+									maxlength="50" />
+								<p:message id="descricaoMessage" for="descricao" />
 
-							<h:outputText value="Year:" />
-							<h:outputText value="#{tableBean.selectedCar.year}" id="year" />
+								<h:column>
+									<h:outputText value="Tipo de Receita:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:autoComplete id="tipoReceita" dropdown="true"
+									required="false"
+									value="#{ManterReceitaBean.receitaTOSelecionada.tipoReceita}"
+									completeMethod="#{ManterReceitaBean.completaTipoReceita}"
+									var="tipoReceita" itemLabel="#{tipoReceita.descricao}"
+									itemValue="#{tipoReceita}" converter="tipoReceitaConverter" />
+								<p:message id="tipoReceitaMessage" for="tipoReceita" />
 
-							<h:outputText value="Manufacturer:" />
-							<h:outputText value="#{tableBean.selectedCar.manufacturer}"
-								id="manufacturer" />
+								<h:column>
+									<h:outputText value="Valor:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterReceitaBean.receitaTOSelecionada.valor}"
+									id="valor" required="false" label="Valor" size="13"
+									maxlength="13" onkeyup="moeda(this);" />
+								<p:message id="valorMessage" for="valor" />
 
-							<h:outputText value="Color:" />
-							<h:outputText value="#{tableBean.selectedCar.color}" id="color" />
-						</h:panelGrid>
-					</p:dialog>
+								<h:column>
+									<h:outputText for="dataGeracao" value="Data de Geração: " />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputMask
+									value="#{ManterReceitaBean.receitaTOSelecionada.dataGeracao}"
+									id="dataGeracao" required="false" label="Data de Geração"
+									mask="99/99/9999" size="11" />
+								<p:message id="dataGeracaoMessage" for="dataGeracao" />
+
+								<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+								<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+									value="#{ManterReceitaBean.receitaTOSelecionada.empresaContabil}"
+									completeMethod="#{ManterReceitaBean.completaEmpresaContabil}"
+									var="empresaContabil"
+									itemLabel="#{empresaContabil.nomeFantasia}"
+									itemValue="#{empresaContabil}"
+									converter="empresaContabilConverter" />
+								<p:message id="empresaContabilMessage" for="empresaContabil" />
+
+								<h:column>
+									<h:outputText for="clienteTO" value="Cliente:" />
+								</h:column>
+								<p:autoComplete id="clienteTO" dropdown="true" size="30"
+									value="#{ManterReceitaBean.receitaTOSelecionada.clienteTO}"
+									completeMethod="#{ManterReceitaBean.completaCliente}"
+									var="clienteTO"
+									itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"
+									itemValue="#{clienteTO}" converter="clienteTOConverter" />
+								<p:message id="clienteMessage" for="clienteTO" />
 
 
+								<h:column>
+									<h:outputLabel for="observacao" value="Observação:" />
+								</h:column>
+								<p:inputTextarea
+									value="#{ManterReceitaBean.receitaTOSelecionada.observacao}"
+									id="observacao" required="false" label="Observação" size="300"
+									maxlength="300" cols="" />
+								<p:message id="observacaoMessage" for="observacao" />
 
+							</h:panelGrid>
 
-
+							<h:panelGrid columns="1" cellpadding="5">
+								<p:commandButton id="atualizarButton" value="Atualizar"
+									action="#{ManterReceitaBean.atualizar}" update="gridAtualizar" />
+							</h:panelGrid>
+						</p:panel>
+					</p:outputPanel>
 
 				</p:layoutUnit>
 
+
+
 			</p:layout>
+
+
 		</h:form>
 	</f:view>
 </h:body>

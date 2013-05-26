@@ -56,7 +56,16 @@ public interface IControladorOperacional {
 	 * @return TipoReceita
 	 * */
 	public TipoReceita pesquisarTipoReceita(String descricao);
-	
+
+	/**
+	 * [UC012] Manter Receita 
+	 * 
+	 * Método responsável atualizar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 * */
+	public void atualizarReceita(ReceitaTO receitaTO) ;
 	/**
 	 * [UC014] Manter Despesa
 	 * 

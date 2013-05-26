@@ -387,6 +387,56 @@ public class Fachada {
 	public Usuario verificarLoginUsuarioExistente(String login) {
 		return this.controladorCadastro.verificarLoginUsuarioExistente(login);
 	}
+	/**
+	 * [UC012] Manter Receita 
+	 * 
+	 * Método responsável atualizar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 * */
+	public void atualizarReceita(ReceitaTO receitaTO) {
+		this.controladorOperacional.atualizarReceita(receitaTO);
+	}
+	
+	
+	/**
+	 * [UC004] ManterContador
+	 * 
+	 * Método responsável atualizar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 * */
+	public void atualizarContador(ContadorTO contadorTO) {
+		this.controladorCadastro.atualizarContador(contadorTO);
+	}
+
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String verificarCPFValidoExistenteContador(String cpf, String codigoContador) {
+		return  this.controladorCadastro.verificarCPFValidoExistenteContador(cpf, codigoContador);
+	}
+	
+	
+	
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS004] - Verificar numero CRC existente
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String verificarCRCExistenteContador(String crc, String codigoContador){
+		return  this.controladorCadastro.verificarCRCExistenteContador(crc, codigoContador);
+	}
 	
 	/**
 	 * [UC014] Manter Despesa

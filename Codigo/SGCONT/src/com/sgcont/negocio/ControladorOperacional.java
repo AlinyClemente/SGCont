@@ -22,19 +22,19 @@ public class ControladorOperacional implements IControladorOperacional {
 
 	protected IRepositorioOperacional repositorioOperacional = null;
 	protected IRepositorioUtil repositorioUtil = null;
-	
-	public static synchronized IControladorOperacional getInstance(){
-		if (instance == null){
+
+	public static synchronized IControladorOperacional getInstance() {
+		if (instance == null) {
 			instance = new ControladorOperacional();
 		}
 		return instance;
 	}
-	
+
 	private ControladorOperacional() {
 
 		repositorioOperacional = RepositorioOperacional.getInstancia();
 		repositorioUtil = RepositorioUtil.getInstancia();
-		
+
 	}
 
 	/**
@@ -48,12 +48,12 @@ public class ControladorOperacional implements IControladorOperacional {
 	 * @param descrição
 	 * @return TipoDespesa
 	 * */
-	public TipoDespesa pesquisarTipoDespesa(String descricao){
-		
+	public TipoDespesa pesquisarTipoDespesa(String descricao) {
+
 		return this.repositorioOperacional.pesquisarTipoDespesa(descricao);
-		
+
 	}
-	
+
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
@@ -63,17 +63,16 @@ public class ControladorOperacional implements IControladorOperacional {
 	 * @since 14/05/2013
 	 * */
 	public void inserirDespesa(DespesaTO despesaTO) {
-		
+
 		Despesa despesa = despesaTO.getDespesa();
-		
+
 		despesa.setUltimaAlteracao(new Date());
 		despesa.setIndicadorUso(new Short("1"));
-		
+
 		this.repositorioUtil.inserirOuAtualizar(despesa);
-		
+
 	}
 
-	
 	/**
 	 * [UC011] Inserir Receita
 	 * 
@@ -86,14 +85,13 @@ public class ControladorOperacional implements IControladorOperacional {
 	 * @return TipoReceita
 	 * */
 	public TipoReceita pesquisarTipoReceita(String descricao) {
-		
+
 		return this.repositorioOperacional.pesquisarTipoReceita(descricao);
-		
+
 	}
-	
-	
+
 	/**
-	 * [UC011] Inserir Receita 
+	 * [UC011] Inserir Receita
 	 * 
 	 * Método responsável cadastrar uma receita
 	 * 
@@ -101,19 +99,39 @@ public class ControladorOperacional implements IControladorOperacional {
 	 * @since 23/04/2013
 	 * */
 	public void inserirReceita(ReceitaTO receitaTO) {
+
+		if (receitaTO != null) {
+
+			Receita receita = receitaTO.getReceita();
+			receita.setUltimaAlteracao(new Date());
+
+			receita.setIndicadorUso((new Integer(1)).shortValue());
+
+			repositorioUtil.inserirOuAtualizar(receita);
+		}
+
+	}
+
+	/**
+	 * [UC012] Manter Receita
+	 * 
+	 * Método responsável atualizar uma receita
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 * */
+	public void atualizarReceita(ReceitaTO receitaTO) {
 		
 		if(receitaTO != null){
 			
 			Receita receita = receitaTO.getReceita();
 			receita.setUltimaAlteracao(new Date());
 			
-			receita.setIndicadorUso((new Integer(1)).shortValue());
-
 			repositorioUtil.inserirOuAtualizar(receita);
 		}
-		
-		
+
 	}
+
 	
 	/**
 	 * [UC014] Manter Despesa
