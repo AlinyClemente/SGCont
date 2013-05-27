@@ -31,6 +31,8 @@ public class CompromissoEvent extends DefaultScheduleEvent implements ScheduleEv
 	private String quantidade;
 	
 	private String frequencia;
+	
+	private Compromisso compromissoPrincipal;
 
 	public CompromissoEvent() {
 		this.setIndicadorUsarLembrete("2");
@@ -74,6 +76,10 @@ public class CompromissoEvent extends DefaultScheduleEvent implements ScheduleEv
 		} else {
 			this.setIndicadorUsarLembrete("2");
 		}
+		
+		if (compromisso.getCompromissoPrincipal() != null) {
+			this.setCompromissoPrincipal(compromisso.getCompromissoPrincipal());
+		}
 			
 	}
 	
@@ -100,6 +106,10 @@ public class CompromissoEvent extends DefaultScheduleEvent implements ScheduleEv
 					&& !this.getFrequencia().isEmpty()) {
 				compromisso.setIndicadorFrequencia(new Short(this.getFrequencia()));
 			}
+		}
+		
+		if (this.getCompromissoPrincipal() != null) {
+			compromisso.setCompromissoPrincipal(this.getCompromissoPrincipal());
 		}
 		
 		return compromisso;
@@ -177,6 +187,14 @@ public class CompromissoEvent extends DefaultScheduleEvent implements ScheduleEv
 
 	public void setFrequencia(String frequencia) {
 		this.frequencia = frequencia;
+	}
+
+	public Compromisso getCompromissoPrincipal() {
+		return compromissoPrincipal;
+	}
+
+	public void setCompromissoPrincipal(Compromisso compromissoPrincipal) {
+		this.compromissoPrincipal = compromissoPrincipal;
 	}
 
 }

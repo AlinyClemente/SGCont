@@ -66,13 +66,25 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * Método responsável remove os dados relacionados ao compromisso
+	 * Método responsável por remover um compromisso
 	 * 
 	 * @author Mariana Victor
-	 * @since 25/05/2013
+	 * @since 26/05/2013
 	 * 
 	 * @param compromissoEvent
 	 * */
-	public Collection<Compromisso> removerDadosDoCompromisso(Compromisso compromisso);
+	public void removerCompromisso(Compromisso compromisso);
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável mover o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void moverCompromisso(CompromissoEvent compromissoEvent);
 	
 }

@@ -278,21 +278,35 @@ public class Fachada {
 				compromisso, compromissoEvent, usuarioLogado, idCompromissoPrincipal);
 		
 	}
-
+	
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * Método responsável remove os dados relacionados ao compromisso
+	 * Método responsável por remover um compromisso
 	 * 
 	 * @author Mariana Victor
-	 * @since 25/05/2013
+	 * @since 26/05/2013
 	 * 
 	 * @param compromissoEvent
 	 * */
-	public Collection<Compromisso> removerDadosDoCompromisso(Compromisso compromisso) {
+	public void removerCompromisso(Compromisso compromisso) {
 		
-		return this.controladorAgenda.removerDadosDoCompromisso(compromisso);
+		this.controladorAgenda.removerCompromisso(compromisso);
 		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável mover o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void moverCompromisso(CompromissoEvent compromissoEvent) {
+		this.controladorAgenda.moverCompromisso(compromissoEvent);
 	}
 	
 }

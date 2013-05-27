@@ -29,7 +29,7 @@ import com.sgcont.fachada.Fachada;
 import com.sgcont.util.CompromissoEvent;
 
 /**
- * [UC001] Inserir Cliente
+ * [UC010] Informar Agenda
  * 
  * @author Mariana Victor
  * @since 11/04/2013
@@ -122,19 +122,6 @@ public class InformarAgendaManagedBean implements Serializable {
 				eventModel.addEvent(compromissoEvent);  
 			} else {  
 				eventModel.updateEvent(compromissoEvent);
-				//Collection<Compromisso> colecaoCompromissosRemovidos = 
-				//fachada.removerDadosDoCompromisso(compromissoEvent.getCompromisso());
-//				if(colecaoCompromissosRemovidos != null
-//						&& !colecaoCompromissosRemovidos.isEmpty()) {
-//					Iterator<Compromisso> iterator = colecaoCompromissosRemovidos.iterator();
-//					
-//					while(iterator.hasNext()) {
-//						Compromisso compromisso = (Compromisso) iterator.next();
-//						
-//						eventModel.deleteEvent(new CompromissoEvent(compromisso));
-//					}
-//					
-//				}
 			}
 			event = new CompromissoEvent();
 			
@@ -152,30 +139,22 @@ public class InformarAgendaManagedBean implements Serializable {
 		return "informar_agenda";
 	}
 
-	private void inserirCompromissosRecorrentes(HttpSession session,
-			Fachada fachada, CompromissoEvent compromissoEvent,
-			Integer codigoCompromisso) {
-		Compromisso compromissoInserido = compromissoEvent.getCompromisso();
-		for (int i = 0; i < new Integer(compromissoEvent.getQuantidade()) - 1; i++) {
-			compromissoInserido = fachada.inserirCompromissoRecorrente(
-					compromissoInserido, compromissoEvent, 
-					(Usuario) session.getAttribute("usuarioLogado"), codigoCompromisso);
-			
-			Collection<Usuario> colecaoResponsaveis = 
-					fachada.pesquisarResponsaveis(compromissoInserido.getCodigo());
-			
-			Map<String, Object> parametros = new HashMap<String, Object>();
-			parametros.put("compromisso.codigo", compromissoInserido.getCodigo());
-
-			Lembrete lembrete = (Lembrete)
-					fachada.pesquisar(Lembrete.class, parametros);
-			
-			ScheduleEvent compromissoRecorrente = new CompromissoEvent(
-					compromissoInserido, colecaoResponsaveis, lembrete);
-			
-			eventModel.addEvent(compromissoRecorrente);
-		}
-	}  
+	/**
+	 * Método responsável por remover um evento
+	 * 
+	 * @author Mariana Victor
+	 * @since 25/05/2013
+	 * */
+	public void removeEvent() {
+		RequestContext context = RequestContext.getCurrentInstance();
+		Fachada fachada = Fachada.getInstance();
+		
+		fachada.removerCompromisso(
+				((CompromissoEvent) event).getCompromisso());
+		
+		context.addCallbackParam("dadosValidos", true);
+		
+	}
 
 	/**
 	 * Método responsável por selecionar um evento
@@ -205,6 +184,9 @@ public class InformarAgendaManagedBean implements Serializable {
 	 * @since 14/04/2013
 	 * */
 	public void onEventMove(ScheduleEntryMoveEvent event) {
+		Fachada fachada = Fachada.getInstance();
+		fachada.moverCompromisso((CompromissoEvent) event.getScheduleEvent());
+		
 		FacesMessage message;
 		
 		if (event.getDayDelta() < 0 || event.getMinuteDelta() < 0) {
@@ -223,6 +205,9 @@ public class InformarAgendaManagedBean implements Serializable {
 	 * @since 14/04/2013
 	 * */
 	public void onEventResize(ScheduleEntryResizeEvent event) {  
+		Fachada fachada = Fachada.getInstance();
+		fachada.moverCompromisso((CompromissoEvent) event.getScheduleEvent());
+		
 		FacesMessage message;
 
 		if (event.getDayDelta() < 0 || event.getMinuteDelta() < 0) {
@@ -232,6 +217,37 @@ public class InformarAgendaManagedBean implements Serializable {
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
+	}  
+	  
+	/**
+	 * Método responsável inserir os compromissos recorrentes 
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * */
+	private void inserirCompromissosRecorrentes(HttpSession session,
+			Fachada fachada, CompromissoEvent compromissoEvent,
+			Integer codigoCompromisso) {
+		Compromisso compromissoInserido = compromissoEvent.getCompromisso();
+		for (int i = 0; i < new Integer(compromissoEvent.getQuantidade()) - 1; i++) {
+			compromissoInserido = fachada.inserirCompromissoRecorrente(
+					compromissoInserido, compromissoEvent, 
+					(Usuario) session.getAttribute("usuarioLogado"), codigoCompromisso);
+			
+			Collection<Usuario> colecaoResponsaveis = 
+					fachada.pesquisarResponsaveis(compromissoInserido.getCodigo());
+			
+			Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("compromisso.codigo", compromissoInserido.getCodigo());
+
+			Lembrete lembrete = (Lembrete)
+					fachada.pesquisar(Lembrete.class, parametros);
+			
+			ScheduleEvent compromissoRecorrente = new CompromissoEvent(
+					compromissoInserido, colecaoResponsaveis, lembrete);
+			
+			eventModel.addEvent(compromissoRecorrente);
+		}
 	}  
 
 	/**
