@@ -56,13 +56,13 @@
 	
 			<p:layoutUnit position="center" header="Gerenciar Agenda">
 				<p:growl id="messages" showDetail="true" />  
-			
+		
 			    <p:schedule id="schedule" locale="pt" value="#{InformarAgendaBean.eventModel}" widgetVar="myschedule">  
 			  
 			        <p:ajax event="dateSelect" listener="#{InformarAgendaBean.onDateSelect}" 
-			        	update="eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
+			        	update="eventDialog, eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
 			        <p:ajax event="eventSelect" listener="#{InformarAgendaBean.onEventSelect}" 
-			        	update="eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
+			        	update="eventDialog, eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
 			        <p:ajax event="eventMove" listener="#{InformarAgendaBean.onEventMove}" update="messages" />  
 			        <p:ajax event="eventResize" listener="#{InformarAgendaBean.onEventResize}" update="messages" />  
 			  
@@ -187,12 +187,30 @@
 				   	</p:outputPanel>
 			        
 			        <f:facet name="footer">
-			            <p:commandButton type="reset" value="Desfazer" />  
-			            <p:commandButton id="addButton" value="Salvar" 
+		            	<p:commandButton type="reset" value="Desfazer" />
+			            
+			            <p:commandButton id="addButton" value="Salvar"
+			            	action="#{InformarAgendaBean.exibirInformarAgenda}" 
 			            	actionListener="#{InformarAgendaBean.addEvent}" 
-			            	oncomplete="verificarValidacao(args);" ajax="false"/>  
+			            	oncomplete="verificarValidacao(args);" />
+
+			            <p:outputPanel rendered="#{InformarAgendaBean.event.id != null}" style="float: right" >	
+				            <p:commandButton id="removerButton" value="Remover"
+				            	onclick="confirmation.show()" />
+			            </p:outputPanel>
 			        </f:facet>
 			    </p:dialog>  
+			    
+			    <p:confirmDialog id="confirmDialog" message="Todos os compromissos relacionados serão removidos. Confirma?"  
+			                header="Confirmação" severity="alert" widgetVar="confirmation">  
+			        
+			        <p:commandButton id="confirm" value="Sim" update="messages" 
+			        			oncomplete="confirmation.hide();myschedule.update();eventDialog.hide();"
+			            		action="#{InformarAgendaBean.exibirInformarAgenda}"
+			                    actionListener="#{InformarAgendaBean.removeEvent}" />  
+			        <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
+			                  
+			    </p:confirmDialog>
 		  
 		</p:layout>
 	</h:form>

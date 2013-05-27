@@ -90,7 +90,7 @@ public class ControladorAgenda implements IControladorAgenda {
 		Compromisso compromisso = compromissoEvent.getCompromisso();
 		compromisso.setUltimaAlteracao(new Date());
 
-		// remove os usuários já associados para o compromisso
+		// remove os dados já associados para o compromisso
 		if (compromisso.getCodigo() != null) {
 
 			this.removerDadosDoCompromisso(compromisso);
@@ -271,7 +271,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * Método responsável remove os dados relacionados ao compromisso
+	 * Método responsável por remover os dados relacionados ao compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 25/05/2013
@@ -279,7 +279,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	 * @param compromissoEvent
 	 * */
 	@SuppressWarnings("unchecked")
-	public Collection<Compromisso> removerDadosDoCompromisso(Compromisso compromisso) {
+	private Integer removerDadosDoCompromisso(Compromisso compromisso) {
 		
 		// remove os dados do compromisso principal
 		Integer idCompromissoPrincipal = null;
@@ -317,7 +317,57 @@ public class ControladorAgenda implements IControladorAgenda {
 			}
 		}
 		
-		return colecaoCompromissoRecorrente;
+		return idCompromissoPrincipal;
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável por remover um compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void removerCompromisso(Compromisso compromisso) {
+		Integer idCompromissoPrincipal = this.removerDadosDoCompromisso(compromisso);
+		
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("codigo", idCompromissoPrincipal);
+		this.repositorioUtil.remover(Compromisso.class, parametros);
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável mover o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void moverCompromisso(CompromissoEvent compromissoEvent) {
+
+		Compromisso compromisso = compromissoEvent.getCompromisso();
+		compromisso.setUltimaAlteracao(new Date());
+
+		// remove o lembrete e os usuários já associados para o compromisso
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("compromisso.codigo", compromisso.getCodigo());
+		this.repositorioUtil.remover(Lembrete.class, parametros);
+
+		// insere/atualiza o compromisso
+		this.repositorioUtil.inserirOuAtualizar(compromisso);
+		
+		if (compromissoEvent.getIndicadorUsarLembrete() != null 
+				&& compromissoEvent.getIndicadorUsarLembrete().trim().equals("1")) {
+			
+			this.inserirLembrete(compromissoEvent, compromisso);
+			
+		}
+		
 	}
 	
 }
