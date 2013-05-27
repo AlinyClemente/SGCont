@@ -18,8 +18,6 @@ public class ContadorTO implements Serializable {
 
 	private String numeroCRC;
 
-	private String dataReceita;
-
 	private String numeroTelefone;
 
 	private String nnfax;
@@ -84,14 +82,6 @@ public class ContadorTO implements Serializable {
 		this.numeroCRC = numeroCRC;
 	}
 
-	public String getDataReceita() {
-		return dataReceita;
-	}
-
-	public void setDataReceita(String dataReceita) {
-		this.dataReceita = dataReceita;
-	}
-
 	public String getNumeroTelefone() {
 		return numeroTelefone;
 	}
@@ -143,18 +133,16 @@ public class ContadorTO implements Serializable {
 	public Contador getContador() {
 		Contador contador = new Contador();
 
-		contador.setNumeroCpf(this.numeroCpf
-				.replace(".", "")
-				.replace("-", ""));
+		if (this.getCodigo() != null) {
+			contador.setCodigo(new Integer(this.getCodigo()));
+		}
+		contador.setNumeroCpf(this.numeroCpf.replace(".", "").replace("-", ""));
 
 		Endereco endereco = new Endereco();
-		endereco.setCodigoCep(
-				new Integer(this.cep.replace("-", "")));
+		endereco.setCodigoCep(new Integer(this.cep.replace("-", "")));
 		endereco.setDescricaoLogradouro(this.rua);
-		endereco.setNumeroEndereco(
-				new Integer(this.numeroEndereco));
-		if (this.complemento != null
-				&& !this.complemento.isEmpty()) {
+		endereco.setNumeroEndereco(new Integer(this.numeroEndereco));
+		if (this.complemento != null && !this.complemento.isEmpty()) {
 			endereco.setDescricaoComplemento(this.complemento);
 		}
 		endereco.setBairro(this.bairro);
@@ -162,26 +150,24 @@ public class ContadorTO implements Serializable {
 		endereco.setDescricaoSiglaUf(this.estado);
 		contador.setEndereco(endereco);
 
-
 		if (this.empresaContabil != null && !this.empresaContabil.equals("")) {
 			contador.setEmpresaContabil(this.empresaContabil);
 		}
-		
-		if(this.email !=null && !this.email.equals("")){
+
+		if (this.email != null && !this.email.equals("")) {
 			contador.setEmail(this.email);
 		}
-		
+
 		contador.setIndicadorResponsavel(new Short(this.indicadorResponsavel));
 		contador.setNomeRazaoSocial(this.razaoSocial);
 		contador.setNumeroCrc(this.numeroCRC);
 		contador.setNumeroTelefone(this.numeroTelefone);
-		
-		if (this.nnfax != null
-				&& !this.nnfax.isEmpty()) {
+		contador.setIndicadorUso(new Short(this.indicadorUso));
+
+		if (this.nnfax != null && !this.nnfax.isEmpty()) {
 			contador.setNumeroFax(this.nnfax);
 		}
-		
-		
+
 		return contador;
 	}
 
@@ -259,6 +245,61 @@ public class ContadorTO implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public ContadorTO(Contador contador) {
+		super();
+		this.codigo = contador.getCodigo().toString();
+		this.razaoSocial = contador.getNomeRazaoSocial();
+		this.email = "" + contador.getEmail();
+		this.indicadorUso = contador.getIndicadorUso().toString();
+
+		this.numeroCpf = contador.getNumeroCpf().replace(".", "")
+				.replace("-", "");
+
+		if (contador.getEmpresaContabil() != null
+				&& !contador.getEmpresaContabil().equals("")) {
+			this.empresaContabil = contador.getEmpresaContabil();
+		}
+
+		if (contador.getEmail() != null) {
+			this.email = contador.getEmail();
+		} else {
+			this.email = "";
+		}
+
+		this.indicadorResponsavel = contador.getIndicadorResponsavel()
+				.toString();
+		this.numeroCRC = contador.getNumeroCrc();
+		this.numeroTelefone = contador.getNumeroTelefone();
+		this.indicadorUso = contador.getIndicadorUso().toString();
+
+		if (contador.getNumeroFax() != null
+				&& !contador.getNumeroFax().isEmpty()) {
+			this.nnfax = contador.getNumeroFax();
+		}
+
+		this.rua = contador.getEndereco().getDescricaoLogradouro();
+		this.cep = "" + contador.getEndereco().getCodigoCep();
+		this.bairro = "" + contador.getEndereco().getBairro();
+		this.cidade = "" + contador.getEndereco().getNomeCidade();
+
+		if (contador.getEndereco().getDescricaoComplemento() != null) {
+			this.complemento = contador.getEndereco().getDescricaoComplemento();
+		} else {
+			this.complemento = "";
+		}
+		this.estado = "" + contador.getEndereco().getDescricaoSiglaUf();
+		this.numeroEndereco = "" + contador.getEndereco().getNumeroEndereco();
+
+		this.enderecoFormatado = this.rua + " - Num: " + this.numeroEndereco
+				+ " - " + this.bairro + " - " + this.cidade + " - "
+				+ this.estado + " - " + this.cep;
+
+	}
+
+	public ContadorTO() {
+		super();
 	}
 
 }

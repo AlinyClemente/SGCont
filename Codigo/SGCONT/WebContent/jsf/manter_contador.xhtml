@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<script type="text/javascript">
+		function moeda(z) {
+			v = z.value;
+			v = v.replace(/\D/g, "")
+			v = v.replace(/[0-9]{12}/, "")
+			v = v.replace(/(\d{1})(\d{8})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{5})$/, "$1.$2")
+			v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2")
+			z.value = v;
+		}
+	</script>
+</h:head>
+<h:body>
+	<f:view>
+		<ui:include
+			src="include/dialog_pesquisa_endereco_manter_contador.xhtml" />
+		<h:form id="form">
+			<p:layout fullPage="true">
+				<ui:include src="include/cabecalho.xhtml" />
+
+				<ui:include src="include/rodape.xhtml" />
+
+				<ui:include src="include/menu.xhtml" />
+
+				<p:layoutUnit position="center" header="Manter Contador">
+
+					<p:dataTable var="contadorTO"
+						value="#{ManterContadorBean.colecaoContadorTO}"
+						rowKey="#{contadorTO.codigo}" paginator="true" rows="10"
+						selection="#{ManterContadorBean.contadorTOSelecionada}"
+						selectionMode="single" sortBy="#{contadorTO.codigo}"
+						filteredValue="#{ManterContadorBean.colecaoContadorTOFiltro}"
+						id="contadorTable">
+
+						<p:ajax event="rowSelect" update=":form:dadosContadorSelecionada , :formEndereco:dialog" />
+
+						<p:column headerText="Remover" id="remover">
+							<center>
+								<h:commandLink action="#{ManterContadorBean.remover}">
+									<h:graphicImage value="/resources/imagens/remover.png" />
+									<f:param name="idContador" value="#{contadorTO.codigo}" />
+								</h:commandLink>
+							</center>
+						</p:column>
+
+
+						<p:column headerText="Código" sortBy="#{contadorTO.codigo}"
+							filterBy="#{contadorTO.codigo}" id="codigo">  
+			            #{contadorTO.codigo}  
+			        </p:column>
+
+						<p:column headerText="Nome/Razão Social" sortBy="razaoSocial"
+							filterBy="#{contadorTO.razaoSocial}" id="razaoSocial">  
+			            #{contadorTO.razaoSocial}  
+			        </p:column>
+
+						<p:column headerText="CPF" sortBy="#{contadorTO.numeroCpf}"
+							filterBy="#{contadorTO.numeroCpf}" id="numeroCpf">  
+			            #{contadorTO.numeroCpf}  
+			        </p:column>
+
+						<p:column headerText="Número CRC" sortBy="#{contadorTO.numeroCRC}"
+							filterBy="#{contadorTO.numeroCRC}" id="numeroCRC">  
+			            #{contadorTO.numeroCRC}  
+			        </p:column>
+
+					</p:dataTable>
+
+					<hr></hr>
+					<p:outputPanel id="dadosContadorSelecionada">
+						<p:panel header="Atualizar"
+							rendered="#{ManterContadorBean.contadorTOSelecionada.codigo != null}">
+							<p:messages id="mensagemValidacao" showDetail="false"
+								autoUpdate="true" closable="true" />
+							<h:panelGrid id="gridAtualizar" columns="3" cellpadding="5"
+								autoUpdate="true" closable="true">
+
+								<h:column>
+									<h:outputText value="Código:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterContadorBean.contadorTOSelecionada.codigo}"
+									id="codigo" required="false" label="Codigo" size="9"
+									maxlength="9" disabled="true" />
+								<p:message id="codigoMessage" for="codigo" />
+
+								<h:column>
+									<h:outputLabel for="numeroCpf" value="CPF:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputMask
+									value="#{ManterContadorBean.contadorTOSelecionada.numeroCpf}"
+									id="numeroCpf" required="false" label="CPF" size="15"
+									maxlength="11" mask="999.999.999-99"
+									/>
+								<p:message id="cpfMessage" for="numeroCpf" />
+
+								<h:column>
+									<h:outputLabel for="razaoSocial"
+										value="Nome/Denominação Social:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterContadorBean.contadorTOSelecionada.razaoSocial}"
+									id="razaoSocial" required="false"
+									label="Nome/Denominação Social" size="60" maxlength="60" />
+								<p:message id="razaoSocialMessage" for="razaoSocial" />
+
+								<h:column>
+									<h:outputLabel for="numeroCRC" value="Número do CRC:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterContadorBean.contadorTOSelecionada.numeroCRC}"
+									id="numeroCRC" required="false" label="Nome/Denominação Social"
+									size="15" maxlength="9"
+									 />
+								<p:message id="numeroCRCMessage" for="numeroCRC" />
+
+							</h:panelGrid>
+							<h:panelGrid columns="3" cellpadding="5"
+								id="gridEnderecoFormatado">
+								<h:column>
+									<h:outputLabel value="Endereço:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputText
+									value="#{ManterContadorBean.contadorTOSelecionada.enderecoFormatado}"
+									id="enderecoFormatado" required="false"
+									label="Endereço Formatado" readonly="true"
+									style="border: 0pt none ; background-color:#EFEFEF;" size="90"
+									maxlength="300" />
+								<p:commandButton id="showDialogButton" type="button"
+									value="Informar Endereço"
+									onclick="dialogEnderecoManterContador.show()" />
+								<h:inputHidden
+									value="#{ManterContadorBean.contadorTOSelecionada.enderecoFormatado}"
+									id="endereco" required="false" label="Endereço" />
+								<p:message id="enderecoMessage" for="endereco" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="3" cellpadding="5" id="gridDadosGerais">
+
+								<h:column>
+									<h:outputLabel for="numeroTelefone" value="Telefone:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:inputMask
+									value="#{ManterContadorBean.contadorTOSelecionada.numeroTelefone}"
+									id="numeroTelefone" required="false" label="Telefone" size="20"
+									maxlength="11" mask="(999)9999-9999" />
+								<p:message id="numeroTelefoneMessage" for="numeroTelefone" />
+
+								<h:outputLabel for="nnfax" value="Fax:" />
+								<p:inputMask
+									value="#{ManterContadorBean.contadorTOSelecionada.nnfax}"
+									id="nnfax" required="false" label="Fax" size="20"
+									maxlength="11" mask="(999)9999-9999" />
+								<p:message id="nnfaxMessage" for="nnfax" />
+
+
+								<h:column>
+									<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+									value="#{ManterContadorBean.contadorTOSelecionada.empresaContabil}"
+									completeMethod="#{ManterContadorBean.completaEmpresaContabil}"
+									var="empresaContabil"
+									itemLabel="#{empresaContabil.nomeFantasia}"
+									itemValue="#{empresaContabil}"
+									converter="empresaContabilConverter" />
+								<p:message id="empresaContabilMessage" for="empresaContabil" />
+
+								<h:column>
+									<h:outputText for="indicadorResponsavel"
+										value="Indicador de Responsável: " />
+									<font color="#FF0000">*</font>
+								</h:column>
+								<p:selectOneRadio id="indicadorResponsavel"
+									value="#{ManterContadorBean.contadorTOSelecionada.indicadorResponsavel}"
+									required="false" label="Indicador de Responsável">
+									<f:selectItem itemLabel="Sim" itemValue="1" />
+									<f:selectItem itemLabel="Não" itemValue="2" />
+								</p:selectOneRadio>
+								<p:message id="indicadorResponsavelMessage"
+									for="indicadorResponsavel" />
+
+								<h:outputLabel for="email" value="E-mail:" />
+								<p:inputText
+									value="#{ManterContadorBean.contadorTOSelecionada.email}"
+									id="email" required="false" label="E-mail" size="35"
+									maxlength="30" />
+								<p:message id="emailMessage" for="email" />
+
+							</h:panelGrid>
+
+							<h:panelGrid columns="1" cellpadding="5">
+								<p:commandButton id="atualizarButton" value="Atualizar"
+									action="#{ManterContadorBean.atualizar}" />
+							</h:panelGrid>
+
+						</p:panel>
+					</p:outputPanel>
+				</p:layoutUnit>
+
+
+
+			</p:layout>
+
+
+		</h:form>
+	</f:view>
+</h:body>
+</html>
+
