@@ -1,4 +1,14 @@
-cREATE TABLE cadastro.profissao (
+CREATE ROLE sgcont LOGIN
+ENCRYPTED PASSWORD 'md53e25027e9d67ea5d32faf2445858cecd'
+SUPERUSER INHERIT CREATEDB CREATEROLE NOREPLICATION;
+
+CREATE SCHEMA cadastro
+AUTHORIZATION sgcont;
+
+CREATE SCHEMA operacional
+AUTHORIZATION sgcont;
+
+CREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -239,7 +249,7 @@ ALTER TABLE operacional.seq_compromisso_responsaveis
 
 CREATE TABLE cadastro.contador (
   cdContador INTEGER  NOT NULL ,
-  cdEmpresaCobrabil INTEGER  NOT NULL,
+  cdEmpresaContabil INTEGER  NOT NULL,
   cdEndereco INTEGER  NOT NULL,
   nnCPF VARCHAR(20) NOT NULL,
   nmRazaoSocial VARCHAR(70) NOT NULL,
