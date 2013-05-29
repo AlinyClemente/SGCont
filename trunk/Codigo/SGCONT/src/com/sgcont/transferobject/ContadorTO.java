@@ -162,7 +162,10 @@ public class ContadorTO implements Serializable {
 		contador.setNomeRazaoSocial(this.razaoSocial);
 		contador.setNumeroCrc(this.numeroCRC);
 		contador.setNumeroTelefone(this.numeroTelefone);
-		contador.setIndicadorUso(new Short(this.indicadorUso));
+		
+		if (this.indicadorUso != null) {
+			contador.setIndicadorUso(new Short(this.indicadorUso));
+		}
 
 		if (this.nnfax != null && !this.nnfax.isEmpty()) {
 			contador.setNumeroFax(this.nnfax);
@@ -249,7 +252,10 @@ public class ContadorTO implements Serializable {
 
 	public ContadorTO(Contador contador) {
 		super();
-		this.codigo = contador.getCodigo().toString();
+
+		if (contador.getCodigo() != null) {
+			this.codigo = contador.getCodigo().toString();
+		}
 		this.razaoSocial = contador.getNomeRazaoSocial();
 		this.email = "" + contador.getEmail();
 		this.indicadorUso = contador.getIndicadorUso().toString();

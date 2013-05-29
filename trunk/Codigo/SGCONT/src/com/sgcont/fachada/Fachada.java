@@ -473,4 +473,41 @@ public class Fachada {
 		this.controladorUtil.remover(classe, campos);
 		
 	}
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * Método responsável atualizar uma usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 * */
+	public void atualizarUsuario(UsuarioTO usuarioTO) {
+		this.controladorCadastro.atualizarUsuario(usuarioTO);
+	}
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf, String codigoUsuario) {
+		return  this.controladorCadastro.verificarCPFValidoExistenteUsuario(cpf, codigoUsuario);
+	}
+	
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String validaIndicadorResponsavel(String indicadorResponsavel,
+			String codigoContador){
+		return  this.controladorCadastro.validaIndicadorResponsavel(indicadorResponsavel, codigoContador);
+	}
 }

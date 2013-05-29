@@ -124,8 +124,8 @@ public class ManterContadorManagedBean implements Serializable {
 	 * @since 25/05/2013
 	 * */
 	public String atualizar() {
-		if (validarDadosContadorSelecionada()
-				&& validarDadosEndereco()) {
+		if (validarDadosContadorSelecionada() && validarDadosEndereco() 
+				&& validaIndicadorResponsavel()) {
 			Fachada fachada = Fachada.getInstance();
 			fachada.atualizarContador(this.contadorTOSelecionada);
 
@@ -199,38 +199,6 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * [FS0002] - Verificar existência de dados [FS004] - Verificar CPF inválido
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 25/05/2013
-	 */
-	/*
-	 * public void validaCPF(FacesContext context, UIComponent toValidate,
-	 * Object value) { String cpf = ((String) value).replace(".",
-	 * "").replace("-", "");
-	 * 
-	 * String mensagem = Fachada.getInstance()
-	 * .verificarCPFValidoExistenteContador(cpf,
-	 * this.contadorTOSelecionada.getCodigo());
-	 * 
-	 * verificarMensagemCampo(context, toValidate, mensagem); }
-	 */
-	/**
-	 * [FS004] - Verificar CRC inválido
-	 * 
-	 * @author Rômulo Aurélio
-	 * @since 25/05/2013
-	 */
-	/*
-	 * public void validaCRC(FacesContext context, UIComponent toValidate,
-	 * Object value) {
-	 * 
-	 * String mensagem = Fachada.getInstance().verificarCRCExistenteContador(
-	 * value.toString(), this.contadorTOSelecionada.getCodigo());
-	 * 
-	 * verificarMensagemCampo(context, toValidate, mensagem); }
-	 */
-	/**
 	 * Método responsável por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Mariana Victor
@@ -245,8 +213,8 @@ public class ManterContadorManagedBean implements Serializable {
 			this.contadorTOSelecionada.setEstado(cepWebService.getEstado());
 			this.contadorTOSelecionada.setCidade(cepWebService.getCidade());
 			this.contadorTOSelecionada.setBairro(cepWebService.getBairro());
-			this.contadorTOSelecionada.setRua(cepWebService.getTipoLogradouro() + " "
-					+ cepWebService.getLogradouro());
+			this.contadorTOSelecionada.setRua(cepWebService.getTipoLogradouro()
+					+ " " + cepWebService.getLogradouro());
 		} else {
 			this.contadorTOSelecionada.setEstado("");
 			this.contadorTOSelecionada.setCidade("");
@@ -277,12 +245,14 @@ public class ManterContadorManagedBean implements Serializable {
 
 		if (dadosValidos) {
 
-			this.contadorTOSelecionada.setEnderecoFormatado(this.contadorTOSelecionada.getRua()
-					+ " - Num: " + this.contadorTOSelecionada.getNumeroEndereco() + " - "
-					+ this.contadorTOSelecionada.getBairro() + " - "
-					+ this.contadorTOSelecionada.getCidade() + " - "
-					+ this.contadorTOSelecionada.getEstado() + " - "
-					+ this.contadorTOSelecionada.getCep());
+			this.contadorTOSelecionada
+					.setEnderecoFormatado(this.contadorTOSelecionada.getRua()
+							+ " - Num: "
+							+ this.contadorTOSelecionada.getNumeroEndereco()
+							+ " - " + this.contadorTOSelecionada.getBairro()
+							+ " - " + this.contadorTOSelecionada.getCidade()
+							+ " - " + this.contadorTOSelecionada.getEstado()
+							+ " - " + this.contadorTOSelecionada.getCep());
 		}
 
 		context.addCallbackParam("dadosValidos", dadosValidos);
@@ -469,7 +439,8 @@ public class ManterContadorManagedBean implements Serializable {
 
 		String mensagemCpf = Fachada.getInstance()
 				.verificarCPFValidoExistenteContador(
-						this.contadorTOSelecionada.getNumeroCpf().replace(".", "").replace("-", ""),
+						this.contadorTOSelecionada.getNumeroCpf()
+								.replace(".", "").replace("-", ""),
 						this.contadorTOSelecionada.getCodigo());
 
 		if (mensagemCpf != null && !mensagemCpf.equals("")) {
@@ -493,6 +464,32 @@ public class ManterContadorManagedBean implements Serializable {
 							null));
 		}
 
+		return dadosValidos;
+
+	}
+
+	/**
+	 * [FS0002] - Verificar existência de dados [FS004] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public boolean validaIndicadorResponsavel() {
+
+		boolean dadosValidos = true;
+		
+
+		String mensagem = Fachada.getInstance().validaIndicadorResponsavel(
+				this.contadorTOSelecionada.getIndicadorResponsavel(), 
+				this.contadorTOSelecionada.getCodigo());
+
+		if (mensagem != null) {
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, mensagem,
+							null));
+		}
 		return dadosValidos;
 	}
 

@@ -114,7 +114,8 @@
 						</h:column>
 						<p:selectOneRadio id="indicadorResponsavel"
 							value="#{InserirContadorBean.contadorTO.indicadorResponsavel}"
-							required="true" label="Indicador de Responsável">
+							required="true" label="Indicador de Responsável" 
+							validator="#{InserirContadorBean.validaIndicadorResponsavel}">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="2" />
 						</p:selectOneRadio>

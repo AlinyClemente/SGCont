@@ -115,10 +115,10 @@ public class ReceitaTO implements Serializable {
 	}
 
 	public Receita getReceita() {
-		
+
 		Receita receita = new Receita();
-		
-		if(this.getCodigo() != null){
+
+		if (this.getCodigo() != null) {
 			receita.setCodigo(new Integer(this.getCodigo()));
 		}
 
@@ -147,18 +147,19 @@ public class ReceitaTO implements Serializable {
 			receita.setObservacao(this.observacao);
 		}
 		receita.setValor(Util.formatarMoedaRealparaBigDecimal(this.valor));
-		
-		if(this.indicadorUso != null){
+
+		if (this.indicadorUso != null) {
 			receita.setIndicadorUso(new Short(this.indicadorUso));
 		}
-		
 
 		return receita;
 	}
 
 	public ReceitaTO(Receita receita) {
 		super();
-		this.codigo = receita.getCodigo().toString();
+		if (receita.getCodigo() != null) {
+			this.codigo = receita.getCodigo().toString();
+		}
 		this.descricao = receita.getDescricao();
 		this.valor = Util.formatarMoedaReal(receita.getValor());
 		this.dataGeracao = (Util.formatarData(receita.getDataReceita()));

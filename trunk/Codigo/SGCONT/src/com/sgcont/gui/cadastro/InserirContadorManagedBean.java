@@ -294,4 +294,22 @@ public class InserirContadorManagedBean implements Serializable {
 		verificarMensagemCampo(context, toValidate, mensagem);
 	}
 
+	/**
+	 * [FS0002] - Verificar existência de dados [FS004] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 21/05/2013
+	 */
+	public void validaIndicadorResponsavel(FacesContext context,
+			UIComponent toValidate, Object value) {
+		String indicadorResponsavel = ((String) value);
+
+		String mensagem = Fachada.getInstance().validaIndicadorResponsavel(
+				indicadorResponsavel, null);
+
+		if (mensagem != null) {
+			verificarMensagemCampo(context, toValidate, mensagem);
+		}
+	}
+
 }
