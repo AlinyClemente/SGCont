@@ -647,6 +647,7 @@ public class ControladorCadastro implements IControladorCadastro {
 			Usuario usuario = usuarioTO.getUsuario();
 
 			usuario.setUltimaAlteracao(new Date());
+			usuario.setIndicadorUso(new Integer(1).shortValue());
 			repositorioUtil.inserirOuAtualizar(usuario);
 		}
 
