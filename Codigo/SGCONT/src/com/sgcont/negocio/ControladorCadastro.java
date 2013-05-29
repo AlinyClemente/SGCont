@@ -445,11 +445,11 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		return mensagem;
 	}
-	
+
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * Método responsável pesquisar o CPF / CNPJ do cliente 
+	 * Método responsável pesquisar o CPF / CNPJ do cliente
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -457,20 +457,20 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @return Usuario
 	 * */
 	public ClienteTO pesquisarDocumentoCliente(ClienteTO clienteTO) {
-		
-		Object[] objetoPesquisa = this.repositorioCadastro.
-				pesquisarCpfCnpjCliente(new Integer(clienteTO.getCodigo()));
 
-		//CPF
+		Object[] objetoPesquisa = this.repositorioCadastro
+				.pesquisarCpfCnpjCliente(new Integer(clienteTO.getCodigo()));
+
+		// CPF
 		if (objetoPesquisa[0] != null) {
 			clienteTO.setCpf((String) objetoPesquisa[0]);
 		}
 
-		//CNPJ 
+		// CNPJ
 		if (objetoPesquisa[1] != null) {
 			clienteTO.setCnpj((String) objetoPesquisa[1]);
 		}
-		
+
 		clienteTO.setardocumento();
 		return clienteTO;
 	}
@@ -489,15 +489,14 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("login", login);
-		usuario = (Usuario) Fachada.getInstance().pesquisar(
-				Usuario.class, parametros);
+		usuario = (Usuario) Fachada.getInstance().pesquisar(Usuario.class,
+				parametros);
 
-		
 		return usuario;
 	}
 
 	/**
-	* [UC004] ManterContador
+	 * [UC004] ManterContador
 	 * 
 	 * Método responsável atualizar uma receita
 	 * 
@@ -511,14 +510,13 @@ public class ControladorCadastro implements IControladorCadastro {
 			Contador contador = contadorTO.getContador();
 			contador.getEndereco().setUltimaAlteracao(new Date());
 			this.repositorioUtil.inserirOuAtualizar(contador.getEndereco());
-			
+
 			contador.setUltimaAlteracao(new Date());
 			repositorioUtil.inserirOuAtualizar(contador);
 		}
 
 	}
-	
-	
+
 	/**
 	 * [UC004] Manter Contador
 	 * 
@@ -527,7 +525,8 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Rômulo Aurélio
 	 * @since 25/05/2013
 	 */
-	public String verificarCPFValidoExistenteContador(String cpf, String codigoContador) {
+	public String verificarCPFValidoExistenteContador(String cpf,
+			String codigoContador) {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
@@ -538,7 +537,8 @@ public class ControladorCadastro implements IControladorCadastro {
 			Contador contador = (Contador) Fachada.getInstance().pesquisar(
 					Contador.class, parametros);
 
-			if (contador != null && !contador.getCodigo().toString().equals(codigoContador)) {
+			if (contador != null
+					&& !contador.getCodigo().toString().equals(codigoContador)) {
 				mensagem = "CPF já cadastrado para o Contador "
 						+ contador.getNomeRazaoSocial() + ".";
 			}
@@ -546,9 +546,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		return mensagem;
 	}
-	
-	
-	
+
 	/**
 	 * [UC004] Manter Contador
 	 * 
@@ -557,71 +555,164 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Rômulo Aurélio
 	 * @since 25/05/2013
 	 */
-	public String verificarCRCExistenteContador(String crc, String codigoContador) {
+	public String verificarCRCExistenteContador(String crc,
+			String codigoContador) {
 		String mensagem = null;
 
-			Map<String, Object> parametros = new HashMap<String, Object>();
-			parametros.put("numeroCrc", crc);
-			Contador contador = (Contador) Fachada.getInstance().pesquisar(
-					Contador.class, parametros);
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("numeroCrc", crc);
+		Contador contador = (Contador) Fachada.getInstance().pesquisar(
+				Contador.class, parametros);
 
-			if (contador != null && !contador.getCodigo().toString().equals(codigoContador)) {
-				mensagem = "CRC já cadastrado para o Contador "
-						+ contador.getNomeRazaoSocial() + ".";
-			}
+		if (contador != null
+				&& !contador.getCodigo().toString().equals(codigoContador)) {
+			mensagem = "CRC já cadastrado para o Contador "
+					+ contador.getNomeRazaoSocial() + ".";
+		}
 
 		return mensagem;
 	}
-	
+
 	/**
-	 * [UC002] Manter Cliente 
+	 * [UC002] Manter Cliente
 	 * 
-	 * Método responsável pesquisar a colecao de cliente 
+	 * Método responsável pesquisar a colecao de cliente
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
 	 */
-	public Collection<ClienteTO> pesquisarColecaoClienteTO(){
-		
+	public Collection<ClienteTO> pesquisarColecaoClienteTO() {
+
 		Collection<ClienteTO> colecaoClienteTO = null;
-		
-		Collection<Cliente> colecaoCliente = (Collection<Cliente>) this.repositorioUtil.pesquisar(Cliente.class);
-		
-		if(colecaoCliente != null && !colecaoCliente.isEmpty()){
-			
+
+		Collection<Cliente> colecaoCliente = (Collection<Cliente>) this.repositorioUtil
+				.pesquisar(Cliente.class);
+
+		if (colecaoCliente != null && !colecaoCliente.isEmpty()) {
+
 			Iterator<Cliente> iterCliente = colecaoCliente.iterator();
-			
+
 			while (iterCliente.hasNext()) {
 				Cliente cliente = (Cliente) iterCliente.next();
-				
+
 				ClienteTO clienteTO = new ClienteTO(cliente);
-				
-				if(cliente.getIndicadorPessoaFisica().equals(Cliente.INDICADOR_PESSOA_FISICA)){
-					
-					ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica)
-							this.repositorioUtil.pesquisar(ClientePessoaFisica.class, cliente.getCodigo());
-					
-					ClientePessoaFisicaTO clientePessoaFisicaTO = new ClientePessoaFisicaTO(clientePessoaFisica);
-					
+
+				if (cliente.getIndicadorPessoaFisica().equals(
+						Cliente.INDICADOR_PESSOA_FISICA)) {
+
+					ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
+							.pesquisar(ClientePessoaFisica.class,
+									cliente.getCodigo());
+
+					ClientePessoaFisicaTO clientePessoaFisicaTO = new ClientePessoaFisicaTO(
+							clientePessoaFisica);
+
 					clienteTO.setClientePessoaFisicaTO(clientePessoaFisicaTO);
-					
-				}else{
-					
-					ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica)
-							this.repositorioUtil.pesquisar(ClientePessoaJuridica.class, cliente.getCodigo());
-					
-					ClientePessoaJuridicaTO clientePessoaJuridicaTO = new ClientePessoaJuridicaTO(clientePessoaJuridica);
-						
-					clienteTO.setClientePessoaJuridicaTO(clientePessoaJuridicaTO);
-					
+
+				} else {
+
+					ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica) this.repositorioUtil
+							.pesquisar(ClientePessoaJuridica.class,
+									cliente.getCodigo());
+
+					ClientePessoaJuridicaTO clientePessoaJuridicaTO = new ClientePessoaJuridicaTO(
+							clientePessoaJuridica);
+
+					clienteTO
+							.setClientePessoaJuridicaTO(clientePessoaJuridicaTO);
+
 				}
 				clienteTO.setardocumento();
 				colecaoClienteTO.add(clienteTO);
 			}
-			
+
 		}
-		
+
 		return colecaoClienteTO;
+
+	}
+
+	/**
+	 * [UC006] ManterUsuario
+	 * 
+	 * Método responsável atualizar uma usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 * */
+	public void atualizarUsuario(UsuarioTO usuarioTO) {
+
+		if (usuarioTO != null) {
+
+			Usuario usuario = usuarioTO.getUsuario();
+
+			usuario.setUltimaAlteracao(new Date());
+			repositorioUtil.inserirOuAtualizar(usuario);
+		}
+
+	}
+
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf,
+			String codigoUsuario) {
+
+		String mensagem = null;
+
+		if (!Util.validacaoCPF(cpf)) {
+			mensagem = "Dígito verificador do CPF não confere.";
+		} else {
+			Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("numeroCpf", cpf);
+			Usuario usuario = (Usuario) Fachada.getInstance().pesquisar(
+					Usuario.class, parametros);
+
+			if (usuario != null
+					&& !usuario.getCodigo().toString().equals(codigoUsuario)) {
+				mensagem = "CPF já cadastrado para o Usuário "
+						+ usuario.getNome() + ".";
+			}
+		}
+
+		return mensagem;
+	}
+
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String validaIndicadorResponsavel(String indicadorResponsavel,
+			String codigoContador) {
 		
+		String mensagem = null;
+
+		if (indicadorResponsavel.equals("1")) {
+
+			Map<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("indicadorResponsavel", 1);
+			Contador contador = (Contador) Fachada.getInstance().pesquisar(
+					Contador.class, parametros);
+
+			if (contador != null && codigoContador != null
+					&& !contador.getCodigo().toString().equals(codigoContador)) {
+				mensagem = "Contador " + contador.getNomeRazaoSocial()
+						+ " já cadastrado como responsável.";
+			} else if (contador != null) {
+				mensagem = "Contador " + contador.getNomeRazaoSocial()
+						+ " já cadastrado como responsável.";
+			}
+
+		}
+		return mensagem;
 	}
 }

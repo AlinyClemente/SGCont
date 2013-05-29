@@ -243,4 +243,36 @@ public interface IControladorCadastro {
 	 * @since 26/05/2013
 	 */
 	public Collection<ClienteTO> pesquisarColecaoClienteTO();
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * Método responsável atualizar uma usuario
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 * */
+	public void atualizarUsuario(UsuarioTO usuarioTO);
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 27/05/2013
+	 */
+	public String verificarCPFValidoExistenteUsuario(String cpf, String codigoUsuario);
+	
+	/**
+	 * [UC004] Manter Contador
+	 * 
+	 * [FS0002] - Verificar existência de dados [FS003] - Verificar CPF inválido
+	 * 
+	 * @author Rômulo Aurélio
+	 * @since 25/05/2013
+	 */
+	public String validaIndicadorResponsavel(String indicadorResponsavel,
+			String codigoContador) ;
 }
+
