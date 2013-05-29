@@ -20,13 +20,9 @@ public class UsuarioTO implements Serializable {
 
 	private String numeroTelefone;
 
-	private String nnfax;
-
 	private String email;
 
 	private String indicadorUso;
-
-	private String indicadorResponsavel;
 
 	private Usuario usuario;
 
@@ -62,8 +58,6 @@ public class UsuarioTO implements Serializable {
 		this.senha = senha;
 	}
 
-	
-
 	public String getNumeroCpf() {
 		return numeroCpf;
 	}
@@ -72,21 +66,12 @@ public class UsuarioTO implements Serializable {
 		this.numeroCpf = numeroCpf;
 	}
 
-
 	public String getNumeroTelefone() {
 		return numeroTelefone;
 	}
 
 	public void setNumeroTelefone(String numeroTelefone) {
 		this.numeroTelefone = numeroTelefone;
-	}
-
-	public String getNnfax() {
-		return nnfax;
-	}
-
-	public void setNnfax(String nnfax) {
-		this.nnfax = nnfax;
 	}
 
 	public String getEmail() {
@@ -105,37 +90,66 @@ public class UsuarioTO implements Serializable {
 		this.indicadorUso = indicadorUso;
 	}
 
-	public String getIndicadorResponsavel() {
-		return indicadorResponsavel;
-	}
-
-	public void setIndicadorResponsavel(String indicadorResponsavel) {
-		this.indicadorResponsavel = indicadorResponsavel;
-	}
-
 	public Usuario getUsuario() {
-		Usuario  usuario = new Usuario ();
+		Usuario usuario = new Usuario();
+		if (this.codigo != null) {
+			usuario.setCodigo(new Integer(this.codigo));
+		}
 
-		usuario.setNumeroCpf(this.numeroCpf
-				.replace(".", "")
-				.replace("-", ""));
+		usuario.setNumeroCpf(this.numeroCpf.replace(".", "").replace("-", ""));
 
-		if(this.email !=null && !this.email.equals("")){
+		if (this.email != null && !this.email.equals("")) {
 			usuario.setEmail(this.email);
 		}
-		
+
 		usuario.setNome(this.nome);
 		usuario.setLogin(this.login.toLowerCase());
 		usuario.setSenha(this.senha);
-		
-		if(this.numeroTelefone !=null 
-				&& !this.numeroTelefone.equals("")){
-		usuario.setNumeroTelefone(this.numeroTelefone);
+
+		if (this.numeroTelefone != null && !this.numeroTelefone.equals("")) {
+			usuario.setNumeroTelefone(this.numeroTelefone);
 		}
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public UsuarioTO(Usuario usuario) {
+		super();
+		this.codigo = usuario.getCodigo().toString();
+		this.nome = usuario.getNome();
+		this.login = usuario.getLogin();
+		if (usuario.getEmail() != null) {
+			this.email = usuario.getEmail();
+		} else {
+			this.email = "";
+		}
+		this.senha = usuario.getSenha();
+		this.indicadorUso = usuario.getIndicadorUso().toString();
+		this.numeroCpf = getNumeroCpfFormatado(usuario.getNumeroCpf());
+
+		this.numeroTelefone = usuario.getNumeroTelefone();
+	}
+
+	public UsuarioTO() {
+		super();
+
+	}
+
+	public String getNumeroCpfFormatado(String cpf) {
+		String cpfFormatado = cpf;
+
+		if (cpfFormatado != null && cpfFormatado.length() == 11) {
+
+			cpfFormatado = cpfFormatado.substring(0, 3) + "."
+					+ cpfFormatado.substring(3, 6) + "."
+					+ cpfFormatado.substring(6, 9) + "-"
+					+ cpfFormatado.substring(9, 11);
+		}
+
+		return cpfFormatado;
+
 	}
 }
