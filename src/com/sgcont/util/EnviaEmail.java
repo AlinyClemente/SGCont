@@ -1,10 +1,10 @@
 package com.sgcont.util;
 
+import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
-import org.slf4j.LoggerFactory;
 
 /**
  * [UC007] Enviar E-mail Lembrete Compromisso
@@ -15,27 +15,30 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("deprecation")
 public class EnviaEmail implements StatefulJob {
 
-	  @Override
-	  public void execute(JobExecutionContext context) throws JobExecutionException {
-	    try {
-	    	SimpleEmail email = new SimpleEmail();
-	    	
-			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
-			email.setSmtpPort(465);
-	
-			email.addTo("marianavictor.s@gmail.com", "Marii");
-	
-			email.setFrom("marianavictor.s@gmail.com", "Me"); // remetente
-	
-			email.setSubject("Mensagem de Teste"); // assunto do e-mail
-	
-			email.setMsg("Teste de Email utilizando commons-email"); //conteudo do e-mail
-	
-			email.send(); //envia o e-mail
+	//	private JavaMailSenderImpl mailSender = null;
+	//	public void setMailSender(JavaMailSenderImpl mailSender)
+	//	{
+	//	  this.mailSender = mailSender;
+	//	}
+
+
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		try {
+			Email email = new SimpleEmail();
 			
-	    } catch (Exception ex) {
-	    	ex.printStackTrace();
-	    	LoggerFactory.getLogger(getClass()).error(ex.getMessage());
-	    }
-	  }
+			email.setHostName("smtp.gmail.com");
+			email.setSmtpPort(587);
+			email.setTLS(true);
+			email.addTo("marianavictor.s@gmail.com");  
+			email.setFrom("");   //TODO Alterar
+			email.setSubject("teste");  
+			email.setMsg("testee");  
+			email.setAuthentication("", ""); //TODO Alterar    
+			email.send();
+		  
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
+}
