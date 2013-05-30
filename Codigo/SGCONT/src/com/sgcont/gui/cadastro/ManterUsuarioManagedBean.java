@@ -234,6 +234,17 @@ public class ManterUsuarioManagedBean implements Serializable {
 								mensagemCpf, null));
 			}
 		}
+		
+		if (this.usuarioTOSelecionada.getEmail() == null
+				|| this.usuarioTOSelecionada.getEmail().equals("")) {
+
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"E-mail: Erro de validação: o valor é necessário",
+							null));
+		}
 
 		return dadosValidos;
 	}

@@ -71,9 +71,12 @@
 							maxlength="11" mask="(999)9999-9999" />
 						<p:message id="numeroTelefoneMessage" for="numeroTelefone" />
 
-						<h:outputLabel for="email" value="E-mail:" />
+						<h:column>
+							<h:outputLabel for="email" value="E-mail:" />
+							<font color="#FF0000">*</font>
+						</h:column>
 						<p:inputText value="#{InserirUsuarioBean.usuarioTO.email}"
-							id="email" required="false" label="E-mail" size="35"
+							id="email" required="true" label="E-mail" size="35"
 							maxlength="30" />
 						<p:message id="emailMessage" for="email" />
 
