@@ -123,7 +123,7 @@ public class ManterDespesaManagedBean implements Serializable {
 				fachada.pesquisar(TipoDespesa.class);
 		
 		this.colecaoCliente = (Collection) fachada
-				.pesquisarDadosClienteParaCombo();
+				.pesquisarDadosClienteParaCombo(null);
 		
 		return "manter_despesa";
 		

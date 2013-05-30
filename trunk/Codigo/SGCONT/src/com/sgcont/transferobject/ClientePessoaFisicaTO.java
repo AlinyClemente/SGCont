@@ -189,6 +189,7 @@ public class ClientePessoaFisicaTO implements Serializable {
 		this.banco = clientePessoaFisica.getBanco();
 		this.numeroAgencia = clientePessoaFisica.getNumeroAgencia();
 		this.numeroConta = clientePessoaFisica.getNumeroConta();
+
 	}
 
 }

@@ -53,6 +53,8 @@ public class ClienteTO implements Serializable {
 
 	private String codigo;
 	
+	private String indicadorUso;
+	
 	private ClientePessoaFisicaTO clientePessoaFisicaTO;
 	
 	private ClientePessoaJuridicaTO clientePessoaJuridicaTO;
@@ -60,6 +62,10 @@ public class ClienteTO implements Serializable {
 	public Cliente getCliente() {
 		
 		Cliente cliente = new Cliente();
+		
+		if(this.codigo != null){
+			cliente.setCodigo(new Integer(this.codigo));
+		}
 		
 		cliente.setNome(this.nome);
 		cliente.setIndicadorPessoaFisica(
@@ -96,6 +102,10 @@ public class ClienteTO implements Serializable {
 		}
 		
 		cliente.setInscricaoMunicipal(this.inscricaoMunicipal);
+		
+		if(this.indicadorUso != null){
+			cliente.setIndicadorUso(new Short(this.indicadorUso));
+		}
 		
 		return cliente;
 		
@@ -270,6 +280,14 @@ public class ClienteTO implements Serializable {
 		this.clientePessoaJuridicaTO = clientePessoaJuridicaTO;
 	}
 
+	public String getIndicadorUso() {
+		return indicadorUso;
+	}
+
+	public void setIndicadorUso(String indicadorUso) {
+		this.indicadorUso = indicadorUso;
+	}
+
 	public String getNumeroCpfFormatado() {
 		String cpfFormatado = this.cpf;
 
@@ -314,8 +332,17 @@ public class ClienteTO implements Serializable {
 		
 		return cnpjFormatado;
 	}
-	
 
+	public String getIndicadorPessoaFisicaFormatado(){
+		String descricao = "";
+		if(this.getIndicadorPessoaFisica().equals(Cliente.INDICADOR_PESSOA_FISICA.toString())){
+			descricao = "PESSOA FÍSICA";
+		}else{
+			descricao = "PESSOA JURÍDICA";
+		}
+		return descricao;
+	}
+	
 	public ClienteTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -329,6 +356,7 @@ public class ClienteTO implements Serializable {
 		this.nome = cliente.getNome();
 		this.indicadorPessoaFisica = cliente.getIndicadorPessoaFisica().toString();
 		
+		this.rua = "" + cliente.getEndereco().getDescricaoLogradouro();
 		this.cep = "" + cliente.getEndereco().getCodigoCep();
 		this.bairro = "" + cliente.getEndereco().getBairro();
 		this.cidade = "" + cliente.getEndereco().getNomeCidade();
@@ -350,6 +378,7 @@ public class ClienteTO implements Serializable {
 		this.inscricaoMunicipal = cliente.getInscricaoMunicipal();
 		this.observacao = cliente.getObservacao();
 		
+		this.indicadorUso = cliente.getIndicadorUso().toString();
 //		this.documento = documento;
 //		this.cpf = cpf;
 //		this.cnpj = cnpj;

@@ -31,7 +31,7 @@ public interface IRepositorioCadastro {
 	 * 
 	 * @return Usuario
 	 * */
-	public Collection pesquisarDadosClienteParaCombo();
+	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso);
 
 	/**
 	 * [UC010] Informar Agenda
@@ -84,4 +84,13 @@ public interface IRepositorioCadastro {
 	 * @return Usuario
 	 * */
 	public Object[] pesquisarCpfCnpjCliente(Integer cdCliente);
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void atualizarIndicadorUsoCliente(Integer cdCliente, Short indicadorUso);
 }

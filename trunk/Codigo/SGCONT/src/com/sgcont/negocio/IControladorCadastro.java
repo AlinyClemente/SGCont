@@ -57,7 +57,7 @@ public interface IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCPFValidoExistente(String cpf);
+	public String verificarCPFValidoExistente(String cpf, String codigoCliente);
 	
 	/**
 	 * [UC001] Inserir Cliente
@@ -68,7 +68,7 @@ public interface IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCNPJValidoExistente(String cnpj);
+	public String verificarCNPJValidoExistente(String cnpj, String codigoCliente);
 	
 	/**
 	 * [UC001] Inserir Cliente
@@ -78,7 +78,7 @@ public interface IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarRGExistente(String rg);
+	public String verificarRGExistente(String rg, String codigoCliente);
 
 	/**
 	 * [UC001] Inserir Cliente
@@ -88,7 +88,7 @@ public interface IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarTituloEleitorExistente(String tituloEleitor);
+	public String verificarTituloEleitorExistente(String tituloEleitor, String codigoCliente);
 
 	
 	/**
@@ -124,7 +124,7 @@ public interface IControladorCadastro {
 	 * 
 	 * @return Usuario
 	 * */
-	public Collection pesquisarDadosClienteParaCombo() ;
+	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) ;
 	
 	/**
 	 * [UC011] Inserir Receita
@@ -243,6 +243,34 @@ public interface IControladorCadastro {
 	 * @since 26/05/2013
 	 */
 	public Collection<ClienteTO> pesquisarColecaoClienteTO();
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa física
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePF(ClienteTO clienteTO);
+
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa jurídica
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePJ(ClienteTO clienteTO);
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * */
+	public void removerCliente(Integer cdCliente);
 	
 	/**
 	 * [UC006] Manter Usuario

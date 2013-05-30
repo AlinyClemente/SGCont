@@ -3,7 +3,9 @@ package com.sgcont.gui.cadastro;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +17,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 import com.sgcont.dados.cadastro.Banco;
+import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
@@ -142,14 +145,24 @@ public class InserirClienteManagedBean implements Serializable {
 		
 		this.colecaoProfissoes = (Collection<Profissao>) 
 				fachada.pesquisar(Profissao.class);
-		this.colecaoClienteTitular = (Collection<ClientePessoaFisica>) 
-				fachada.pesquisar(ClientePessoaFisica.class);
+//		this.colecaoClienteTitular = (Collection<ClientePessoaFisica>) 
+//				fachada.pesquisar(ClientePessoaFisica.class);
 		this.colecaoContador = (Collection<Contador>) 
 				fachada.pesquisar(Contador.class);
-		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
-				fachada.pesquisar(ClientePessoaJuridica.class);
+//		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
+//				fachada.pesquisar(ClientePessoaJuridica.class);
 		this.colecaoBanco = (Collection<Banco>) 
 				fachada.pesquisar(Banco.class);
+		
+		Map<String, Object> parametrosPesquisarClientePessoaFisica = new HashMap<String, Object>();
+		parametrosPesquisarClientePessoaFisica.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
+		this.colecaoClienteTitular = (Collection<ClientePessoaFisica>) 
+				fachada.pesquisarColecao(ClientePessoaFisica.class,parametrosPesquisarClientePessoaFisica);
+		
+		Map<String, Object> parametrosPesquisarClientePessoaJuridica = new HashMap<String, Object>();
+		parametrosPesquisarClientePessoaJuridica.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
+		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
+				fachada.pesquisarColecao(ClientePessoaJuridica.class,parametrosPesquisarClientePessoaJuridica);
 		
 		return "inserir_cliente";
 		
@@ -201,7 +214,7 @@ public class InserirClienteManagedBean implements Serializable {
         		.replace(".", "")
 				.replace("-", "");
         
-        String mensagem = Fachada.getInstance().verificarCPFValidoExistente(cpf);
+        String mensagem = Fachada.getInstance().verificarCPFValidoExistente(cpf, null);
 
 		verificarMensagemCampo(context, toValidate, mensagem);
     }
@@ -219,7 +232,7 @@ public class InserirClienteManagedBean implements Serializable {
 				.replace("/", "")
 				.replace("-", "");
         
-        String mensagem = Fachada.getInstance().verificarCNPJValidoExistente(cnpj);
+        String mensagem = Fachada.getInstance().verificarCNPJValidoExistente(cnpj, null);
 
 		verificarMensagemCampo(context, toValidate, mensagem);
     }
@@ -233,7 +246,7 @@ public class InserirClienteManagedBean implements Serializable {
 	public void validaRG(FacesContext context, UIComponent toValidate, Object value) {  
         String rg = (String) value;
         
-        String mensagem = Fachada.getInstance().verificarRGExistente(rg);
+        String mensagem = Fachada.getInstance().verificarRGExistente(rg, null);
 
 		verificarMensagemCampo(context, toValidate, mensagem);
     } 
@@ -247,7 +260,7 @@ public class InserirClienteManagedBean implements Serializable {
 	public void validaTituloEleitor(FacesContext context, UIComponent toValidate, Object value) {  
         String tituloEleitor = (String) value;
         
-        String mensagem = Fachada.getInstance().verificarTituloEleitorExistente(tituloEleitor);
+        String mensagem = Fachada.getInstance().verificarTituloEleitorExistente(tituloEleitor, null);
 
 		verificarMensagemCampo(context, toValidate, mensagem);
     }

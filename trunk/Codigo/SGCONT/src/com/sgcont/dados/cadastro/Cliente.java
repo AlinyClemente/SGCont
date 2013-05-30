@@ -21,6 +21,9 @@ public class Cliente {
 	public static final  Short INDICADOR_PESSOA_FISICA = new Short("1");
 	public static final  Short INDICADOR_PESSOA_JURIDICA = new Short("2");
 	
+	public static final  Short INDICADOR_ATIVO = new Short("1");
+	public static final  Short INDICADOR_INATIVO = new Short("2");
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cdcliente", nullable=false)

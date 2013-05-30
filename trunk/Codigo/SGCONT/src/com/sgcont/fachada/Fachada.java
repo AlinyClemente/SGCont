@@ -147,9 +147,9 @@ public class Fachada {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCPFValidoExistente(String cpf) {
+	public String verificarCPFValidoExistente(String cpf, String codigoCliente) {
 		
-		return this.controladorCadastro.verificarCPFValidoExistente(cpf);
+		return this.controladorCadastro.verificarCPFValidoExistente(cpf, codigoCliente);
 		
 	}
 	
@@ -162,9 +162,9 @@ public class Fachada {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCNPJValidoExistente(String cnpj) {
+	public String verificarCNPJValidoExistente(String cnpj, String codigoCliente) {
 		
-		return this.controladorCadastro.verificarCNPJValidoExistente(cnpj);
+		return this.controladorCadastro.verificarCNPJValidoExistente(cnpj, codigoCliente);
 		
 	}
 	
@@ -176,9 +176,9 @@ public class Fachada {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarRGExistente(String rg) {
+	public String verificarRGExistente(String rg, String codigoCliente) {
 		
-		return this.controladorCadastro.verificarRGExistente(rg);
+		return this.controladorCadastro.verificarRGExistente(rg,codigoCliente);
 		
 	}
 	
@@ -221,9 +221,9 @@ public class Fachada {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarTituloEleitorExistente(String tituloEleitor) {
+	public String verificarTituloEleitorExistente(String tituloEleitor, String codigoCliente) {
 
-		return this.controladorCadastro.verificarTituloEleitorExistente(tituloEleitor);
+		return this.controladorCadastro.verificarTituloEleitorExistente(tituloEleitor, codigoCliente);
 		
 	}
 
@@ -298,9 +298,9 @@ public class Fachada {
 	 * 
 	 * @return Usuario
 	 * */
-	public Collection pesquisarDadosClienteParaCombo() {
+	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 		
-		return this.controladorCadastro.pesquisarDadosClienteParaCombo();
+		return this.controladorCadastro.pesquisarDadosClienteParaCombo(indicadorUso);
 	}
 
 	
@@ -485,6 +485,42 @@ public class Fachada {
 		
 		this.controladorUtil.remover(classe, campos);
 		
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa física
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePF(ClienteTO clienteTO){
+		
+		this.controladorCadastro.atualizarClientePF(clienteTO);
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa jurídica
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePJ(ClienteTO clienteTO){
+		
+		this.controladorCadastro.atualizarClientePJ(clienteTO);
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * */
+	public void removerCliente(Integer cdCliente){
+		this.controladorCadastro.removerCliente(cdCliente);
 	}
 	
 	/**

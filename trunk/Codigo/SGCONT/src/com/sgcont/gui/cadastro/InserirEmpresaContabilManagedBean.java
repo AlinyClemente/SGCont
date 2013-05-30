@@ -214,7 +214,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 				.replace("/", "")
 				.replace("-", "");
         
-        String mensagem = Fachada.getInstance().verificarCNPJValidoExistente(cnpj);
+        String mensagem = Fachada.getInstance().verificarCNPJValidoExistente(cnpj, null);
         
 		if (!Util.validacaoCNPJ(cnpj)) {
         	mensagem = "Dígito verificador do CNPJ não confere.";

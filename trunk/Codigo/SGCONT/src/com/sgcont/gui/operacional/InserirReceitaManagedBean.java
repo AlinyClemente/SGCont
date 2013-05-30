@@ -14,6 +14,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
+import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.operacional.TipoReceita;
@@ -95,7 +96,7 @@ public class InserirReceitaManagedBean implements Serializable {
 				.pesquisar(EmpresaContabil.class);
 
 		this.colecaoCliente = (Collection) fachada
-				.pesquisarDadosClienteParaCombo();
+				.pesquisarDadosClienteParaCombo(Cliente.INDICADOR_ATIVO);
 
 		return "inserir_receita";
 

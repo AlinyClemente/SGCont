@@ -133,7 +133,7 @@ public class ManterReceitaManagedBean implements Serializable {
 				.pesquisar(TipoReceita.class);
 
 		this.colecaoCliente = (Collection) fachada
-				.pesquisarDadosClienteParaCombo();
+				.pesquisarDadosClienteParaCombo(null);
 
 		return "manter_receita";
 
