@@ -20,14 +20,6 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
-  <filter>
-    <filter-name>Login Filter</filter-name>
-    <filter-class>com.sgcont.util.FiltroSessao</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>Login Filter</filter-name>
-    <url-pattern>/jsf/index.xhtml</url-pattern>
-  </filter-mapping>
   
   <!-- Definições para upload de arquivos -->
 	<filter>

@@ -3,16 +3,10 @@
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
- <managed-bean>
-  <managed-bean-name>FiltroSessao</managed-bean-name>
-  <managed-bean-class>com.sgcont.util.FiltroSessao</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- 
   <navigation-rule>
     <from-view-id>*</from-view-id>
     <navigation-case>
-        <from-outcome>sessao_espirada</from-outcome>            
+        <from-outcome>sessao_expirada</from-outcome>            
         <to-view-id>/jsf/sessao_expirada.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
@@ -90,8 +84,19 @@
   </navigation-rule>
 
  <factory>
-        <exception-handler-factory>
-            com.sgcont.util.CustomExceptionHandlerFactory
-        </exception-handler-factory>
- </factory>
+    <exception-handler-factory>
+        com.sgcont.util.CustomExceptionHandlerFactory
+    </exception-handler-factory>
+  </factory>
+  
+  <lifecycle>
+  	<phase-listener>com.sgcont.util.AuthorizationListener</phase-listener>
+  </lifecycle>
+  <navigation-rule>
+    <from-view-id>/*</from-view-id>
+    <navigation-case>
+      <from-outcome>login</from-outcome>
+      <to-view-id>/jsf/login.xhtml</to-view-id>
+    </navigation-case>
+   </navigation-rule>
 </faces-config>
