@@ -24,6 +24,9 @@ public class EnviaEmail implements StatefulJob {
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		try {
+
+			System.out.println(Util.formatarDataComHora(new Date()) + " - VERIFICAÇÃO DE LEMBRETES ");
+			
 			Fachada fachada = Fachada.getInstance();
 			
 			Collection<Object[]> colecaoLembrete =  

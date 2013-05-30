@@ -263,6 +263,7 @@ public class ControladorAgenda implements IControladorAgenda {
 		
 		lembrete.setDataLembrete(dataLembrete);
 		lembrete.setIndicadorUnidadeLembrete(indicadorUnidadeLembrete);
+		lembrete.setIndicadorFrequencia(new Short("2"));
 		lembrete.setValorLembrete(tempo);
 		
 		this.repositorioUtil.inserirOuAtualizar(lembrete);
