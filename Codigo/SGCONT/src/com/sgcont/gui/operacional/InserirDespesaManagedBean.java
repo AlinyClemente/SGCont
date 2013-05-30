@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Profissao;
@@ -102,7 +103,7 @@ public class InserirDespesaManagedBean implements Serializable {
 				fachada.pesquisar(TipoDespesa.class);
 		
 		this.colecaoCliente = (Collection) fachada
-				.pesquisarDadosClienteParaCombo();
+				.pesquisarDadosClienteParaCombo(Cliente.INDICADOR_ATIVO);
 		
 		return "inserir_despesa";
 		

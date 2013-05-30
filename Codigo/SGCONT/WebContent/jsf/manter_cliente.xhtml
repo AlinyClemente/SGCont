@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+
+</h:head>
+<h:body>
+<f:view>
+
+    <ui:include src="include/dialog_pesquisa_endereco_manter_cliente.xhtml"/>
+	<ui:include src="include/dialog_tela_espera.xhtml"/>
+
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+   		    <ui:include src="include/cabecalho.xhtml"/>  
+		  
+		    <ui:include src="include/rodape.xhtml"/>
+		  
+		    <ui:include src="include/menu.xhtml"/>
+
+		    <p:layoutUnit position="center" header="Manter Cliente">  
+ 
+			    <p:dataTable var="clienteTO" value="#{ManterClienteBean.colecaoClienteTO}"
+			    			 rowKey="#{clienteTO.codigo}" paginator="true" rows="10"  
+			                 selection="#{ManterClienteBean.clienteTOSelecionado}" 
+			                 selectionMode="single" sortBy="#{clienteTO.codigo}"
+			                 filteredValue="#{ManterClienteBean.colecaoClienteTOFiltro}" 
+			                 id="clienteTable"
+			                 >  
+			  
+			        <p:ajax event="rowSelect" update=":form:dadosClienteSelecionada, :formEndereco:dialog" />  
+			        
+			  		<p:column headerText="Remover" id="remover">  
+			  			<center>
+				  			<h:commandLink action="#{ManterClienteBean.remover}">
+				  				<h:graphicImage value="/resources/imagens/remover.png"/>
+								<f:param name="idCliente" value="#{clienteTO.codigo}"/>
+							</h:commandLink>
+						</center>
+			        </p:column>  
+			  		
+			  		<p:column headerText="Código" sortBy="#{clienteTO.codigo}" filterBy="#{clienteTO.codigo}" id="codigo">  
+			            #{clienteTO.codigo}  
+			        </p:column>  
+			        	  
+			        <p:column headerText="Nome" sortBy="#{clienteTO.nome}" filterBy="#{clienteTO.nome}" id="nome">  
+			            #{clienteTO.nome}  
+			        </p:column>  
+			  
+			        <p:column headerText="Tipo de Cliente" sortBy="#{clienteTO.indicadorPessoaFisicaFormatado}" filterBy="#{clienteTO.indicadorPessoaFisicaFormatado}" id="indicadorPessoaFisica">  
+			            #{clienteTO.indicadorPessoaFisicaFormatado}  
+			        </p:column>  
+			  
+			  		<p:column headerText="Documento" sortBy="#{clienteTO.documento}" filterBy="#{clienteTO.documento}" id="documento">  
+			            #{clienteTO.documento}  
+			        </p:column> 
+	
+			    </p:dataTable>
+			    
+			    <hr></hr>
+			     
+			    <p:outputPanel id="dadosClienteSelecionada">
+			     <p:panel header="Atualizar" rendered="#{ManterClienteBean.clienteTOSelecionado.codigo != null}">
+			     	<p:messages id="mensagemCliente" showDetail="false" autoUpdate="true"
+						closable="true" />
+			     
+			     	<h:panelGrid id="gridAtualizar" columns="1" cellpadding="5">
+			     	
+			     
+			     
+			        
+			       		<h:panelGrid columns="3" cellpadding="5" id="gridNome">
+						    <h:column>
+						     	<h:outputLabel for="nome" value="Nome:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+					    	<p:inputText value="#{ManterClienteBean.clienteTOSelecionado.nome}" 
+						    			id="nome" required="false" label="Nome" 
+						    			size="50" maxlength="100" />
+			        		<p:message id="nomeMessage" for="nome" />
+			        	</h:panelGrid>    
+			        	
+				     	<h:panelGrid columns="3" cellpadding="5" id="gridEnderecoFormatado">
+						    <h:column>    
+					    		<h:outputLabel value="Endereço:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.enderecoFormatado}" 
+						    			id="enderecoFormatado" required="false" label="Endereço Formatado" readonly="true" style="border: 0pt none ; background-color:#EFEFEF;" 
+						    			size="80" maxlength="300" />
+							<p:commandButton id="showDialogButton" type="button" value="Informar Endereço" onclick="dialogEnderecoManterCliente.show()" />
+							<h:inputHidden value="#{ManterClienteBean.clienteTOSelecionado.enderecoFormatado}" 
+						    			id="endereco" required="false" label="Endereço" />
+							<p:message id="enderecoMessage" for="endereco" />
+						</h:panelGrid>
+				     	<h:panelGrid columns="3" cellpadding="5" id="gridGeral">
+						    <h:column>    
+				     			<h:outputLabel for="telefone" value="Telefone:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.numeroTelefone}" 
+						    			id="telefone" required="false" label="Telefone" 
+						    			size="20" maxlength="11" mask="(999)9999-9999"/>
+						    <p:message id="telefoneMessage" for="telefone" />
+						    			
+				     		<h:outputLabel for="fax" value="Fax:"/>
+						    <p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.numeroFax}" 
+						    			id="fax" required="false" label="Fax" 
+						    			size="20" maxlength="11" mask="(999)9999-9999"/>
+						    <p:message id="faxMessage" for="fax" />
+						    			
+						    <h:column>
+	          					<h:outputLabel for="inscricaoMunicipal" value="Inscrição Municipal:"/>
+						    	<font color="#FF0000">*</font>
+						    </h:column>
+						    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.inscricaoMunicipal}" 
+						    			id="inscricaoMunicipal" required="false" label="Inscrição Municipal" 
+						    			size="20" maxlength="14"/>
+						    <p:message id="inscricaoMunicipalMessage" for="inscricaoMunicipal" />
+						     							    
+						    <h:outputLabel for="observacao" value="Observação:"/>
+						    <p:inputTextarea value="#{ManterClienteBean.clienteTOSelecionado.observacao}" 
+						    			id="observacao" required="false" label="Observação" 
+						    			maxlength="500" cols="20" rows="5" autoResize="false" />
+						    <p:message id="observacaoMessage" for="observacao" />
+						    
+						    <h:outputLabel for="email" value="E-mail:"/>
+						    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.email}" 
+						    			id="email" required="false" label="E-mail" 
+						    			size="35" maxlength="30" />
+						    <p:message id="emailMessage" for="email" />
+						     
+				     	</h:panelGrid>
+			        
+				        <h:panelGrid columns="3" cellpadding="5" id="gridTipoCliente">
+							<h:column> 
+				        	    <h:outputText for="tipoCliente" value="Tipo de Cliente: " />
+						    	<font color="#FF0000">*</font>
+						    </h:column> 
+					        <p:selectOneRadio id="tipoCliente" value="#{ManterClienteBean.clienteTOSelecionado.indicadorPessoaFisica}" 
+					        	onchange="#" required="false" label="Tipo de Cliente" disabled="true">  
+					            <p:ajax event="change" update="dadosPfPj" />
+					            <f:selectItem itemLabel="Pessoa Física" itemValue="1"   />  
+					            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="2" />  
+					        </p:selectOneRadio>
+					        <p:message id="tipoClienteMessage" for="tipoCliente" /> 
+				        </h:panelGrid>
+				        
+				        <p:outputPanel id="dadosPfPj">  
+					     <p:panel rendered="#{ManterClienteBean.clienteTOSelecionado.indicadorPessoaFisica == 1}">  
+    						<h:panelGrid columns="3" cellpadding="5" id="gridPF">
+								<h:column>
+							    	<h:outputLabel for="cpf" value="CPF:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+							    <p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.cpf}" 
+							    			id="cpf" required="false" label="CPF" 
+							    			size="15" maxlength="11" mask="999.999.999-99"
+							    			validator="#{ManterClienteBean.validaCPF}"/>
+							    <p:message id="cpfMessage" for="cpf" />
+							    
+								<h:column>
+							    	<h:outputLabel for="rg" value="RG:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.rg}" 
+							    			id="rg" required="false" label="RG" 
+							    			size="11" maxlength="9"
+							    			validator="#{ManterClienteBean.validaRG}" />
+							    <p:message id="rgMessage" for="rg" />
+							    			
+								<h:column>
+							    	<h:outputText for="dataNascimento" value="Data de Nascimento: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column>  
+           						<p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.dataNascimento}"
+           									id="dataNascimento" required="false" label="Data de Nascimento"
+           									mask="99/99/9999" size="12" /> 
+           						<p:message id="dataNascimentoMessage" for="dataNascimento" />
+           						
+								<h:column>
+           							<h:outputText for="sexo" value="Sexo: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+           						<p:selectOneRadio value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.sexo}" 
+           							onchange="#" id="sexo" required="false" label="Sexo">  
+						            <f:selectItem itemLabel="Masculino" itemValue="1" />  
+						            <f:selectItem itemLabel="Feminino" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        <p:message id="sexoMessage" for="sexo" />
+						        
+								<h:column>
+           							<h:outputText for="indicadorDeclaracaoIR" value="Declaração de IR: " />
+							    	<font color="#FF0000">*</font>
+							    </h:column> 
+           						<p:selectOneRadio value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.indicadorDeclaracaoIR}" 
+           							onchange="#" id="indicadorDeclaracaoIR" required="false" label="Declaração de IR">  
+						            <f:selectItem itemLabel="Sim" itemValue="1" />  
+						            <f:selectItem itemLabel="Não" itemValue="2" />  
+						        </p:selectOneRadio> 
+						        <p:message id="indicadorDeclaracaoIRMessage" for="indicadorDeclaracaoIR" />
+						        
+							    <h:outputLabel for="tituloEleitor" value="Título de Eleitor:"/>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.tituloEleitor}" 
+							    			id="tituloEleitor" required="false" label="Título de Eleitor" 
+							    			size="13" maxlength="12" 
+							    			validator="#{ManterClienteBean.validaTituloEleitor}"/>
+							    <p:message id="tituloEleitorMessage" for="tituloEleitor" />
+							    
+							    <h:outputLabel for="numeroCei" value="CEI:"/>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.numeroCei}" 
+							    			id="numeroCei" required="false" label="CEI" 
+							    			size="13" maxlength="12" />
+							    <p:message id="numeroCeiMessage" for="numeroCei" />
+							    
+						        <h:outputText for="profissao" value="Profissão:" />  
+						        <p:autoComplete id="profissao" dropdown="true" size="30"
+						        	value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.profissao}"   
+                    				completeMethod="#{ManterClienteBean.completaProfissao}" 
+                    				var="profissao" itemLabel="#{profissao.nomeProfissao}" 
+                    				itemValue="#{profissao}" converter="profissaoConverter" />
+			                    <p:message id="profissaoMessage" for="profissao" />
+			                    		
+						        <h:outputText for="clienteTitular" value="Cliente Titular para IR:" />
+						        <p:autoComplete id="clienteTitular" dropdown="true" size="30" 
+						        	value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.clienteTitular}"   
+                    				completeMethod="#{ManterClienteBean.completaClienteTitular}" 
+                    				var="clientePF" itemLabel="#{clientePF.numeroCpfFormatado} - #{clientePF.cliente.nome}" 
+                    				itemValue="#{clientePF}" converter="clientePfConverter" />
+			                    <p:message id="clienteTitularMessage" for="clienteTitular" />
+			                     
+			    			</h:panelGrid>
+			    			
+			    			 <p:fieldset legend="Informações Bancárias">  
+    								<h:panelGrid columns="3" cellpadding="5" id="gridBanco">
+										<h:column>
+											<h:outputLabel for="banco" value="Banco:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+								        <p:autoComplete id="banco" dropdown="true" size="30"
+										        	value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.banco}"   
+						               				completeMethod="#{ManterClienteBean.completaBanco}" 
+						               				var="banco" itemLabel="#{banco.descricaoBanco}" 
+						               				itemValue="#{banco}" converter="bancoConverter" 
+						               				required="false" label="Banco"/>
+			                    		<p:message id="bancoMessage" for="banco" /> 
+									    			
+										<h:column>
+									    	<h:outputLabel for="numeroAgencia" value="Nº da Agência:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+									    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.numeroAgencia}" 
+									    			id="numeroAgencia" required="false" label="Nº da Agência" 
+									    			size="15" maxlength="10" />
+			                    		<p:message id="numeroAgenciaMessage" for="numeroAgencia" />
+									    
+										<h:column>
+									    	<h:outputLabel for="numeroConta" value="Nº da Conta:"/>
+									    	<font color="#FF0000">*</font>
+									    </h:column>
+									    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.numeroConta}" 
+									    			id="numeroConta" required="false" label="Nº da Conta" 
+									    			size="15" maxlength="10" />
+			                    		<p:message id="numeroContaMessage" for="numeroConta" />
+    								</h:panelGrid>
+   							 </p:fieldset>
+   							 
+   							 
+			    		</p:panel>
+				        
+				         <p:panel rendered="#{ManterClienteBean.clienteTOSelecionado.indicadorPessoaFisica == 2}">  
+					     	<h:panelGrid columns="3" cellpadding="5" id="gridPJ">
+								<h:column>				        		    
+						     		<h:outputLabel for="razaoSocial" value="Razão Social:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.razaoSocial}" 
+							    			id="razaoSocial" required="false" label="Razão Social" 
+							    			size="35" maxlength="120" />
+			                    <p:message id="razaoSocialMessage" for="razaoSocial" />
+							    	
+								<h:column>		
+							    	<h:outputLabel for="cnpj" value="CNPJ:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.cnpj}" 
+							    			id="cnpj" required="false" label="CNPJ" 
+							    			size="25" maxlength="14" mask="99.999.999/9999-99"
+							    			validator="#{ManterClienteBean.validaCNPJ}"/>
+			                    <p:message id="cnpjMessage" for="cnpj" />
+							    			
+								<h:column>
+							    	<h:outputLabel for="inscricaoEstadual" value="Inscrição Estadual:"/>
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.inscricaoEstadual}" 
+							    			id="inscricaoEstadual" required="false" label="Inscrição Estadual" 
+							    			size="25" maxlength="20" />
+			                    <p:message id="inscricaoEstadualMessage" for="inscricaoEstadual" />
+
+						        <h:outputText for="clienteMatriz" value="Cliente Matriz:" />
+						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30"  
+						        	value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.clienteMatriz}"   
+                    				completeMethod="#{ManterClienteBean.completaClienteMatriz}" 
+                    				var="clientePJ" itemLabel="#{clientePJ.numeroCnpjFormatado} - #{clientePJ.cliente.nome}" 
+                    				itemValue="#{clientePJ}" converter="clientePjConverter" />
+			                    <p:message id="clienteMatrizMessage" for="clienteMatriz" />
+							    		
+								<h:column>
+						        	<h:outputText for="contador" value="Contador:" />
+							    	<font color="#FF0000">*</font>
+							    </h:column>
+						        <p:autoComplete id="contador" dropdown="true" size="30" 
+						        	value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.contador}"   
+                    				completeMethod="#{ManterClienteBean.completaContador}" 
+                    				var="contador" itemLabel="#{contador.nomeRazaoSocial}" 
+                    				itemValue="#{contador}" converter="contadorConverter" 
+                    				required="false" label="Contador"/>
+			                    <p:message id="contadorMessage" for="contador" />
+			                    	
+							    <h:outputText for="dataInicioAtividade" value="Data Inicio de Atividade: " />  
+           						<p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.dataInicioAtividade}"
+           									mask="99/99/9999" size="11" 
+           									id="dataInicioAtividade" required="false" label="Data Inicio de Atividade" />
+			                    <p:message id="dataInicioAtividadeMessage" for="dataInicioAtividade" /> 
+							    			
+							    <h:outputText for="dataFimAtividade" value="Data Fim de Atividade: " />  
+           						<p:inputMask value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.dataFimAtividade}"
+           									mask="99/99/9999" size="11" 
+           									id="dataFimAtividade" required="false" label="Data Fim de Atividade"/>
+			                    <p:message id="dataFimAtividadeMessage" for="dataFimAtividade" /> 
+           									
+							    <h:outputLabel for="suframa" value="Suframa:"/>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.suframa}" 
+							    			id="suframa" required="false" label="Suframa:" 
+							    			size="25" maxlength="20" />
+			                    <p:message id="suframaMessage" for="suframa" />
+							    			
+							    <h:outputLabel for="nirf" value="N.I.R.E:"/>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.nirf}" 
+							    			id="nirf" required="false" label="N.I.R.E" 
+							    			size="11" maxlength="9" />
+			                    <p:message id="nirfMessage" for="nirf" />
+							    			
+							    <h:outputLabel for="site" value="Site:"/>
+							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.site}" 
+							    			id="site" required="false" label="Site" 
+							    			size="35" maxlength="40" />
+			                    <p:message id="siteMessage" for="site" />
+           									
+			    			</h:panelGrid>
+					     </p:panel>
+			        </p:outputPanel>
+			        
+			        	
+
+	       			</h:panelGrid>	
+			         
+			        
+			        <h:panelGrid columns="1" cellpadding="5" > 
+		     			<p:commandButton id="atualizarButton" value="Atualizar" 
+		     				action="#{ManterClienteBean.atualizar}" /> 
+               		</h:panelGrid>
+			     
+			      </p:panel>
+			    </p:outputPanel>
+    			 
+		    </p:layoutUnit>  
+		  
+		  		
+		  
+		</p:layout>
+					
+		
+	</h:form>
+</f:view>
+</h:body>
+</html>
+

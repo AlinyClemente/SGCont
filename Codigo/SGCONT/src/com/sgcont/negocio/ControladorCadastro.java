@@ -15,6 +15,8 @@ import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
+import com.sgcont.dados.operacional.Compromisso;
+import com.sgcont.dados.operacional.Despesa;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -127,7 +129,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCPFValidoExistente(String cpf) {
+	public String verificarCPFValidoExistente(String cpf, String codigoCliente) {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
@@ -139,7 +141,10 @@ public class ControladorCadastro implements IControladorCadastro {
 					.getInstance().pesquisar(ClientePessoaFisica.class,
 							parametros);
 
-			if (clientePessoaFisica != null) {
+			if (clientePessoaFisica != null 
+				&& (codigoCliente == null
+				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
+
 				mensagem = "CPF já cadastrado para o Cliente "
 						+ clientePessoaFisica.getCliente().getNome() + ".";
 			}
@@ -157,7 +162,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarCNPJValidoExistente(String cnpj) {
+	public String verificarCNPJValidoExistente(String cnpj, String codigoCliente) {
 		String mensagem = null;
 
 		if (!Util.validacaoCNPJ(cnpj)) {
@@ -168,7 +173,10 @@ public class ControladorCadastro implements IControladorCadastro {
 			ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica) this.repositorioUtil
 					.pesquisar(ClientePessoaJuridica.class, parametros);
 
-			if (clientePessoaJuridica != null) {
+			if (clientePessoaJuridica != null 
+					&& (codigoCliente == null
+					|| (codigoCliente != null && !clientePessoaJuridica.getCodigo().toString().equals(codigoCliente)))) {
+				
 				mensagem = "CNPJ já cadastrado para o Cliente "
 						+ clientePessoaJuridica.getCliente().getNome() + ".";
 			}
@@ -185,7 +193,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarRGExistente(String rg) {
+	public String verificarRGExistente(String rg, String codigoCliente) {
 		String mensagem = null;
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
@@ -193,7 +201,10 @@ public class ControladorCadastro implements IControladorCadastro {
 		ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
 				.pesquisar(ClientePessoaFisica.class, parametros);
 
-		if (clientePessoaFisica != null) {
+		if (clientePessoaFisica != null 
+				&& (codigoCliente == null
+				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
+			
 			mensagem = "RG já cadastrado para o Cliente "
 					+ clientePessoaFisica.getCliente().getNome() + ".";
 		}
@@ -209,7 +220,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
-	public String verificarTituloEleitorExistente(String tituloEleitor) {
+	public String verificarTituloEleitorExistente(String tituloEleitor, String codigoCliente) {
 		String mensagem = null;
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
@@ -217,7 +228,10 @@ public class ControladorCadastro implements IControladorCadastro {
 		ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
 				.pesquisar(ClientePessoaFisica.class, parametros);
 
-		if (clientePessoaFisica != null) {
+		if (clientePessoaFisica != null 
+				&& (codigoCliente == null
+				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
+			
 			mensagem = "Título de Eleitor já cadastrado para o Cliente "
 					+ clientePessoaFisica.getCliente().getNome() + ".";
 		}
@@ -261,7 +275,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * 
 	 * @return Usuario
 	 * */
-	public Collection pesquisarDadosClienteParaCombo() {
+	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 
 		Collection<ClienteTO> colecaoClientesCombo = new ArrayList();
 
@@ -270,7 +284,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		try {
 
 			retornoConsulta = repositorioCadastro
-					.pesquisarDadosClienteParaCombo();
+					.pesquisarDadosClienteParaCombo(indicadorUso);
 
 			if (retornoConsulta != null && !retornoConsulta.isEmpty()) {
 
@@ -584,12 +598,15 @@ public class ControladorCadastro implements IControladorCadastro {
 	public Collection<ClienteTO> pesquisarColecaoClienteTO() {
 
 		Collection<ClienteTO> colecaoClienteTO = null;
-
-		Collection<Cliente> colecaoCliente = (Collection<Cliente>) this.repositorioUtil
-				.pesquisar(Cliente.class);
-
+		
+		Map<String, Object> parametrosPesquisar = new HashMap<String, Object>();
+		parametrosPesquisar.put("indicadorUso", new Short("1"));
+		Collection<Cliente> colecaoCliente = (Collection<Cliente>) 
+				this.repositorioUtil.pesquisarColecao(Cliente.class,parametrosPesquisar);
+		
 		if (colecaoCliente != null && !colecaoCliente.isEmpty()) {
 
+			colecaoClienteTO = new ArrayList<ClienteTO>();
 			Iterator<Cliente> iterCliente = colecaoCliente.iterator();
 
 			while (iterCliente.hasNext()) {
@@ -597,31 +614,27 @@ public class ControladorCadastro implements IControladorCadastro {
 
 				ClienteTO clienteTO = new ClienteTO(cliente);
 
-				if (cliente.getIndicadorPessoaFisica().equals(
-						Cliente.INDICADOR_PESSOA_FISICA)) {
+				if (cliente.getIndicadorPessoaFisica().equals(Cliente.INDICADOR_PESSOA_FISICA)) {
 
 					ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
-							.pesquisar(ClientePessoaFisica.class,
-									cliente.getCodigo());
+							.pesquisar(ClientePessoaFisica.class, cliente.getCodigo());
 
-					ClientePessoaFisicaTO clientePessoaFisicaTO = new ClientePessoaFisicaTO(
-							clientePessoaFisica);
+					ClientePessoaFisicaTO clientePessoaFisicaTO = new ClientePessoaFisicaTO(clientePessoaFisica);
 
 					clienteTO.setClientePessoaFisicaTO(clientePessoaFisicaTO);
+					clienteTO.setCpf(clientePessoaFisicaTO.getCpf());
+					
+				}else{
+					
+					ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica)
+							this.repositorioUtil.pesquisar(ClientePessoaJuridica.class, cliente.getCodigo());
+					
+					ClientePessoaJuridicaTO clientePessoaJuridicaTO = new ClientePessoaJuridicaTO(clientePessoaJuridica);
+						
+					clienteTO.setClientePessoaJuridicaTO(clientePessoaJuridicaTO);
+					clienteTO.setCnpj(clientePessoaJuridicaTO.getCnpj());
 
-				} else {
-
-					ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica) this.repositorioUtil
-							.pesquisar(ClientePessoaJuridica.class,
-									cliente.getCodigo());
-
-					ClientePessoaJuridicaTO clientePessoaJuridicaTO = new ClientePessoaJuridicaTO(
-							clientePessoaJuridica);
-
-					clienteTO
-							.setClientePessoaJuridicaTO(clientePessoaJuridicaTO);
-
-				}
+				} 
 				clienteTO.setardocumento();
 				colecaoClienteTO.add(clienteTO);
 			}
@@ -716,6 +729,71 @@ public class ControladorCadastro implements IControladorCadastro {
 		}
 		return mensagem;
 	}
+	
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa física
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePF(ClienteTO clienteTO) {
+
+		Cliente cliente = clienteTO.getCliente();
+		ClientePessoaFisica clientePessoaFisica = clienteTO.getClientePessoaFisicaTO()
+				.getClientePessoaFisica();
+
+		cliente.getEndereco().setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(cliente.getEndereco());
+		
+		cliente.setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(cliente);
+
+		clientePessoaFisica.setCliente(cliente);
+		this.repositorioUtil.inserirOuAtualizar(clientePessoaFisica);
+
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * Método responsável atualizar um cliente do tipo pessoa jurídica
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 27/05/2013
+	 * */
+	public void atualizarClientePJ(ClienteTO clienteTO) {
+
+		Cliente cliente = clienteTO.getCliente();
+		ClientePessoaJuridica clientePessoaJuridica = clienteTO.getClientePessoaJuridicaTO()
+				.getClientePessoaJuridica();
+
+		cliente.getEndereco().setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(cliente.getEndereco());
+		
+		cliente.setUltimaAlteracao(new Date());
+		this.repositorioUtil.inserirOuAtualizar(cliente);
+
+		clientePessoaJuridica.setCliente(cliente);
+		this.repositorioUtil.inserirOuAtualizar(clientePessoaJuridica);
+
+	}
+	
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * */
+	public void removerCliente(Integer cdCliente) {
+
+		this.repositorioCadastro.atualizarIndicadorUsoCliente(
+				cdCliente, Cliente.INDICADOR_INATIVO);
+
+	}
+
 	/**
 	 * [UC010] Informar Agenda
 	 * 

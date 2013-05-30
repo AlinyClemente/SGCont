@@ -1,6 +1,7 @@
 package com.sgcont.repositorio;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.type.StandardBasicTypes;
@@ -133,7 +134,7 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	 * 
 	 * @return Usuario
 	 * */
-	public Collection pesquisarDadosClienteParaCombo() {
+	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 		
 		Session session = HibernateUtil.getSession();
 		
@@ -145,18 +146,31 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 				+ " clipj.cnpj as cnpj "
 				+ " FROM cadastro.cliente clie "
 				+ " LEFT JOIN cadastro.cliente_pf clipf on clipf.cdcliente = clie.cdcliente "
-				+ " LEFT JOIN cadastro.cliente_pj clipj on clipj.cdcliente = clie.cdcliente "
+				+ " LEFT JOIN cadastro.cliente_pj clipj on clipj.cdcliente = clie.cdcliente " 
 				;
-		
-		retorno =  session
-				.createSQLQuery(consulta)
-				.addScalar("codigo", StandardBasicTypes.INTEGER)
-                .addScalar("nomeCliente", StandardBasicTypes.STRING)
-                .addScalar("cpf", StandardBasicTypes.STRING)
-                .addScalar("cnpj", StandardBasicTypes.STRING)
-                .list()
-                ;
-		
+				
+		if(indicadorUso != null){
+			consulta = consulta + " WHERE clie.icuso = :indicadorUso ";
+			
+			retorno =  session
+					.createSQLQuery(consulta)
+					.addScalar("codigo", StandardBasicTypes.INTEGER)
+	                .addScalar("nomeCliente", StandardBasicTypes.STRING)
+	                .addScalar("cpf", StandardBasicTypes.STRING)
+	                .addScalar("cnpj", StandardBasicTypes.STRING)
+	                .setShort("indicadorUso", indicadorUso)
+	                .list();
+	                
+		}else{
+			retorno =  session
+					.createSQLQuery(consulta)
+					.addScalar("codigo", StandardBasicTypes.INTEGER)
+	                .addScalar("nomeCliente", StandardBasicTypes.STRING)
+	                .addScalar("cpf", StandardBasicTypes.STRING)
+	                .addScalar("cnpj", StandardBasicTypes.STRING)
+	                .list();
+		}
+				
 		return retorno;
 				
 	}
@@ -232,5 +246,29 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		return retorno;
 				
 	}
-	
+
+	/**
+	 * [UC002] Manter Cliente 
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void atualizarIndicadorUsoCliente(Integer cdCliente, Short indicadorUso) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "UPDATE com.sgcont.dados.cadastro.Cliente " 
+				+ "SET indicadorUso = :indicadorUso, ultimaAlteracao = :dataAtual "
+				+ "WHERE codigo = :cdCliente";
+
+		session.createQuery(consulta)
+				.setInteger("cdCliente",cdCliente)
+				.setShort("indicadorUso", indicadorUso)
+				.setTimestamp("dataAtual", new Date())
+				.executeUpdate();
+				
+		HibernateUtil.closeSession(session);
+		
+	}
 }
