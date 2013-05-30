@@ -8,7 +8,7 @@ AUTHORIZATION sgcont;
 CREATE SCHEMA operacional
 AUTHORIZATION sgcont;
 
-CREATE TABLE cadastro.profissao (
+cREATE TABLE cadastro.profissao (
   cdProfissao INTEGER NOT NULL,
   nmProfissao VARCHAR(70) NOT NULL,
   icUso SMALLINT NOT NULL,
@@ -145,7 +145,7 @@ ALTER TABLE operacional.seq_compromisso
   cdCompromisso INTEGER NOT NULL,
   dsLembrete VARCHAR(255) NULL,
   tmLembrete TIMESTAMP NOT NULL,
-  icFrequencia SMALLINT NULL,
+  icEnvioEmail SMALLINT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
   icUnidadeLembrete SMALLINT, 
   nnValorLembrete INTEGER, 
