@@ -67,7 +67,7 @@ CREATE TABLE cadastro.usuario (
   senha VARCHAR(10) NOT NULL,
   nnCPF VARCHAR(20) NOT NULL,
   nnTelefone VARCHAR(20) NULL,
-  email VARCHAR(30) NULL,
+  email VARCHAR(30) NOT NULL,
   icUso SMALLINT  NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
   PRIMARY KEY(cdUsuario)
@@ -127,7 +127,7 @@ CREATE TABLE operacional.compromisso (
   icRecorrente SMALLINT NOT NULL,
   nnRepetir INTEGER ,
   icFrequencia SMALLINT ,
-  PRIMARY KEY(cdCompromisso)
+  PRIMARY KEY(cdCompromisso),
   FOREIGN KEY (cdCompromissoPrincipal) REFERENCES operacional.compromisso(cdCompromisso)
 );
 
