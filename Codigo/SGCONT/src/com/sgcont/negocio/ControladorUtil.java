@@ -7,7 +7,7 @@ import com.sgcont.repositorio.IRepositorioUtil;
 import com.sgcont.repositorio.RepositorioUtil;
 
 /**
- * Controlador respons·vel pelas operaÁıes b·sicas
+ * Controlador respons√°vel pelas opera√ß√µes b√°sicas
  * */
 public class ControladorUtil implements IControladorUtil {
 
@@ -29,42 +29,42 @@ public class ControladorUtil implements IControladorUtil {
 	}
 
 	/**
-	 * MÈtodo genÈrico para inserir ou atualizar um objeto.
+	 * M√©todo gen√©rico para inserir ou atualizar um objeto.
 	 * */
 	public void inserirOuAtualizar(Object object) {
 		this.repositorioUtil.inserirOuAtualizar(object);
 	}
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto.
+	 * M√©todo gen√©rico para remover um objeto.
 	 * */
 	public void remover(Object object) {
 		this.repositorioUtil.remover(object);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos.
+	 * M√©todo gen√©rico que retorna uma lista com objetos.
 	 * */
 	public Collection<?> pesquisar(Class<?> classe) {
 		return this.repositorioUtil.pesquisar(classe);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna uma lista com objetos a partir dos valores passados como par√¢metros.
 	 * */
 	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
 		return this.repositorioUtil.pesquisarColecao(classe, campos);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir do ID.
+	 * M√©todo gen√©rico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
 		return this.repositorioUtil.pesquisar(classe, id);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna um objeto a partir dos valores passados como par√¢metros.
 	 * */
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
 		
@@ -73,7 +73,7 @@ public class ControladorUtil implements IControladorUtil {
 	}
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico para remover um objeto a partir dos valores passados como par√¢metros.
 	 * */
 	public void remover(Class<?> classe, Map<String, Object> campos) {
 		
@@ -81,12 +81,4 @@ public class ControladorUtil implements IControladorUtil {
 		
 	}
 	
-	/**
-	* MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
-	* */
-	public void remover(Class<?> classe, Map<String, Object> campos) {
-		
-		this.repositorioUtil.remover(classe, campos);
-		
-	}
 }

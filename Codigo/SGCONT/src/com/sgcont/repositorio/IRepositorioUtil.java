@@ -6,43 +6,38 @@ import java.util.Map;
 public interface IRepositorioUtil {
 
 	/**
-	 * MÈtodo genÈrico para inserir ou atualizar um objeto.
+	 * M√©todo gen√©rico para inserir ou atualizar um objeto.
 	 * */
 	public void inserirOuAtualizar(Object object);
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto.
+	 * M√©todo gen√©rico para remover um objeto.
 	 * */
 	public void remover(Object object);
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos.
+	 * M√©todo gen√©rico que retorna uma lista com objetos.
 	 * */
 	public Collection<?> pesquisar(Class<?> classe);
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna uma lista com objetos a partir dos valores passados como par√¢metros.
 	 * */
 	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos);
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir do ID.
+	 * M√©todo gen√©rico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id);
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna um objeto a partir dos valores passados como par√¢metros.
 	 * */
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos);
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico para remover um objeto a partir dos valores passados como par√¢metros.
 	 * */
-	public void remover(Class<?> classe, Map<String, Object> campos);
-	
-	/**
-	* MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
-	* */
 	public void remover(Class<?> classe, Map<String, Object> campos);
 	
 }
