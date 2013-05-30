@@ -370,4 +370,52 @@ public class ControladorAgenda implements IControladorAgenda {
 		
 	}
 	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os lembretes que ainda não foram enviados por email
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	public Collection<Object[]> pesquisarLembretesPendentes() {
+		
+		return this.repositorioAgenda.pesquisarLembretesPendentes();
+		
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os dados do compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	public Collection<Object[]> pesquisarCompromissoResponsaveis(Integer codigoCompromisso) {
+		
+		return this.repositorioAgenda.pesquisarCompromissoResponsaveis(codigoCompromisso);
+		
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável por atualizar o lembrete
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @parm codigoLembrete
+	 * */
+	public void atualizarLembretePendente(Integer codigoLembrete) {
+		
+		this.repositorioAgenda.atualizarLembretePendente(codigoLembrete);
+		
+	}
+	
 }
