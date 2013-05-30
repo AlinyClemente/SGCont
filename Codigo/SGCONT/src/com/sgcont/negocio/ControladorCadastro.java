@@ -716,4 +716,21 @@ public class ControladorCadastro implements IControladorCadastro {
 		}
 		return mensagem;
 	}
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario) {
+		
+		return this.repositorioCadastro.pesquisarUsuarios(codigoUsuario);
+		
+	}
+	
 }

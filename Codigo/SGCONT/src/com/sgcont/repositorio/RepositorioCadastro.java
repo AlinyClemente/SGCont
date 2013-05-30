@@ -57,8 +57,38 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		return usuario;
 				
 	}
-
 	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	@SuppressWarnings("unchecked")
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT usur "
+				+ " FROM Usuario usur "
+				+ " WHERE usur.codigo <> :codigoUsuario ";
+		
+		Collection<Usuario> colecaoUsuario = (Collection<Usuario>) 
+				session.createQuery(consulta)
+	                .setParameter("codigoUsuario", codigoUsuario)
+	                .list();
+
+		HibernateUtil.closeSession(session);
+				
+		return colecaoUsuario;
+				
+	}
+
 	
 	
 	

@@ -50,6 +50,13 @@ public class ControladorUtil implements IControladorUtil {
 	}
 
 	/**
+	 * Método genérico que retorna uma lista com objetos a partir dos valores passados como parâmetros.
+	 * */
+	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
+		return this.repositorioUtil.pesquisarColecao(classe, campos);
+	}
+
+	/**
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
@@ -62,6 +69,15 @@ public class ControladorUtil implements IControladorUtil {
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
 		
 		return this.repositorioUtil.pesquisar(classe, campos);
+		
+	}
+
+	/**
+	 * Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		
+		this.repositorioUtil.remover(classe, campos);
 		
 	}
 	
