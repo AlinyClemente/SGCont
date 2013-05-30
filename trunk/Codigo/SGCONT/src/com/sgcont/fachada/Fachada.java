@@ -51,42 +51,42 @@ public class Fachada {
 	
 
 	/**
-	 * MÈtodo genÈrico para inserir ou atualizar um objeto.
+	 * M√©todo gen√©rico para inserir ou atualizar um objeto.
 	 * */
 	public void inserirOuAtualizar(Object object) {
 		this.controladorUtil.inserirOuAtualizar(object);
 	}
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto.
+	 * M√©todo gen√©rico para remover um objeto.
 	 * */
 	public void remover(Object object) {
 		this.controladorUtil.remover(object);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos.
+	 * M√©todo gen√©rico que retorna uma lista com objetos.
 	 * */
 	public Collection<?> pesquisar(Class<?> classe) {
 		return this.controladorUtil.pesquisar(classe);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna uma lista com objetos a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna uma lista com objetos a partir dos valores passados como par√¢metros.
 	 * */
 	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
 		return this.controladorUtil.pesquisarColecao(classe, campos);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir do ID.
+	 * M√©todo gen√©rico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
 		return this.controladorUtil.pesquisar(classe, id);
 	}
 
 	/**
-	 * MÈtodo genÈrico que retorna um objeto a partir dos valores passados como par‚metros.
+	 * M√©todo gen√©rico que retorna um objeto a partir dos valores passados como par√¢metros.
 	 * */
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
 		
@@ -95,18 +95,9 @@ public class Fachada {
 	}
 
 	/**
-	 * MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
-	 * */
-	public void remover(Class<?> classe, Map<String, Object> campos) {
-		
-		this.controladorUtil.remover(classe, campos);
-		
-	}
-	
-	/**
 	 * [UC010] Efetuar Login
 	 * 
-	 * MÈtodo respons·vel pesquisar um usu·rio a partir do login e da senha
+	 * M√©todo respons√°vel pesquisar um usu√°rio a partir do login e da senha
 	 * 
 	 * @author Mariana Victor
 	 * @since 21/03/2013
@@ -119,9 +110,9 @@ public class Fachada {
 	
 	/**
 	 * [UC001] Inserir Cliente 
-	 * 2.1.1.	Caso o usu·rio escolha Pessoa FÌsica
+	 * 2.1.1.	Caso o usu√°rio escolha Pessoa F√≠sica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -134,9 +125,9 @@ public class Fachada {
 	
 	/**
 	 * [UC001] Inserir Cliente 
-	 * 2.1.2.	Caso o usu·rio escolha Pessoa JurÌdica
+	 * 2.1.2.	Caso o usu√°rio escolha Pessoa Jur√≠dica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa Jur√≠dica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -150,8 +141,8 @@ public class Fachada {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -165,8 +156,8 @@ public class Fachada {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CNPJ inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CNPJ inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -180,7 +171,7 @@ public class Fachada {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -194,12 +185,12 @@ public class Fachada {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de despesa a partir da descriÁ„o
+	 * M√©todo respons√°vel pesquisar um tipo de despesa a partir da descri√ß√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
 	 * 
-	 * @param descriÁ„o
+	 * @param descri√ß√£o
 	 * @return TipoDespesa
 	 * */
 	public TipoDespesa pesquisarTipoDespesa(String descricao){
@@ -211,7 +202,7 @@ public class Fachada {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel cadastrar uma despesa
+	 * M√©todo respons√°vel cadastrar uma despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 14/05/2013
@@ -225,7 +216,7 @@ public class Fachada {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -239,9 +230,9 @@ public class Fachada {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -255,9 +246,9 @@ public class Fachada {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -272,9 +263,9 @@ public class Fachada {
 	/**
 	 * [UC003] Inserir Contador 
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	public void inserirContador(ContadorTO contadorTO) {
@@ -286,9 +277,9 @@ public class Fachada {
 	/**
 	 * [UC011] Inserir Receita 
 	 * 
-	 * MÈtodo respons·vel cadastrar uma receita
+	 * M√©todo respons√°vel cadastrar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public void inserirReceita(ReceitaTO receitaTO) {
@@ -300,9 +291,9 @@ public class Fachada {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * M√©todo respons√°vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return Usuario
@@ -316,9 +307,9 @@ public class Fachada {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente  
+	 * M√©todo respons√°vel pesquisar os cliente  
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return ClienteTO
@@ -331,9 +322,9 @@ public class Fachada {
 	/**
 	 * [UC005] Inserir Usuario 
 	 * 
-	 * MÈtodo respons·vel cadastrar um usuario
+	 * M√©todo respons√°vel cadastrar um usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 * */
 	public void inserirUsuario(UsuarioTO usuarioTO){
@@ -342,9 +333,9 @@ public class Fachada {
 
 	
 	/**
-	 * [UC015] Inserir Empresa Cont·bil 
+	 * [UC015] Inserir Empresa Cont√°bil 
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 20/05/2013
@@ -358,10 +349,10 @@ public class Fachada {
 	/**
 	 * [UC003] Inserir Contador
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf) {
@@ -371,12 +362,12 @@ public class Fachada {
 	}
 	
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir usu√°rio
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf){
@@ -386,7 +377,7 @@ public class Fachada {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar o CPF / CNPJ do cliente 
+	 * M√©todo respons√°vel pesquisar o CPF / CNPJ do cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -398,12 +389,12 @@ public class Fachada {
 	}
 	
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir usu√°rio
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar USUARIO
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar USUARIO
 	 * existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public Usuario verificarLoginUsuarioExistente(String login) {
@@ -412,9 +403,9 @@ public class Fachada {
 	/**
 	 * [UC012] Manter Receita 
 	 * 
-	 * MÈtodo respons·vel atualizar uma receita
+	 * M√©todo respons√°vel atualizar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public void atualizarReceita(ReceitaTO receitaTO) {
@@ -425,9 +416,9 @@ public class Fachada {
 	/**
 	 * [UC004] ManterContador
 	 * 
-	 * MÈtodo respons·vel atualizar uma receita
+	 * M√©todo respons√°vel atualizar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public void atualizarContador(ContadorTO contadorTO) {
@@ -437,9 +428,9 @@ public class Fachada {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf, String codigoContador) {
@@ -453,7 +444,7 @@ public class Fachada {
 	 * 
 	 * [FS004] - Verificar numero CRC existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCRCExistenteContador(String crc, String codigoContador){
@@ -463,7 +454,7 @@ public class Fachada {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel atualizar uma despesa
+	 * M√©todo respons√°vel atualizar uma despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -477,7 +468,7 @@ public class Fachada {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel pesquisar a colecao de cliente 
+	 * M√©todo respons√°vel pesquisar a colecao de cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
@@ -488,7 +479,7 @@ public class Fachada {
 	}
 	
 	/**
-	* MÈtodo genÈrico para remover um objeto a partir dos valores passados como par‚metros.
+	* M√©todo gen√©rico para remover um objeto a partir dos valores passados como par√¢metros.
 	* */
 	public void remover(Class<?> classe, Map<String, Object> campos){
 		
@@ -499,9 +490,9 @@ public class Fachada {
 	/**
 	 * [UC006] Manter Usuario
 	 * 
-	 * MÈtodo respons·vel atualizar uma usuario
+	 * M√©todo respons√°vel atualizar uma usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 * */
 	public void atualizarUsuario(UsuarioTO usuarioTO) {
@@ -511,9 +502,9 @@ public class Fachada {
 	/**
 	 * [UC006] Manter Usuario
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf, String codigoUsuario) {
@@ -523,9 +514,9 @@ public class Fachada {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String validaIndicadorResponsavel(String indicadorResponsavel,
@@ -535,7 +526,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os usu·rios
+	 * M√©todo respons√°vel pesquisar os usu√°rios
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -552,7 +543,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os compromissos a partir do usu·rio
+	 * M√©todo respons√°vel pesquisar os compromissos a partir do usu√°rio
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -569,7 +560,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os respons·veis a partir do compromisso
+	 * M√©todo respons√°vel pesquisar os respons√°veis a partir do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -586,7 +577,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir ou atualizar o compromisso
+	 * M√©todo respons√°vel inserir ou atualizar o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -602,7 +593,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir um compromisso recorrente
+	 * M√©todo respons√°vel inserir um compromisso recorrente
 	 * 
 	 * @author Mariana Victor
 	 * @since 23/05/2013
@@ -621,7 +612,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por remover um compromisso
+	 * M√©todo respons√°vel por remover um compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -637,7 +628,7 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel mover o compromisso
+	 * M√©todo respons√°vel mover o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -651,7 +642,7 @@ public class Fachada {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os lembretes que ainda n„o foram enviados por email
+	 * M√©todo respons√°vel pesquisar os lembretes que ainda n√£o foram enviados por email
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -667,7 +658,7 @@ public class Fachada {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os dados do compromisso
+	 * M√©todo respons√°vel pesquisar os dados do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -683,7 +674,7 @@ public class Fachada {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel por atualizar o lembrete
+	 * M√©todo respons√°vel por atualizar o lembrete
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013

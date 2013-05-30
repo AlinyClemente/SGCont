@@ -45,7 +45,7 @@ public class HibernateUtil {
 			.addAnnotatedClass(ClientePessoaFisica.class)
 			.addAnnotatedClass(ClientePessoaJuridica.class)
 			.addAnnotatedClass(Receita.class)
-			.addAnnotatedClass(TipoReceita.class);
+			.addAnnotatedClass(TipoReceita.class)
 			.addAnnotatedClass(Compromisso.class)
 			.addAnnotatedClass(CompromissoResponsavel.class)
 			.addAnnotatedClass(Lembrete.class);
