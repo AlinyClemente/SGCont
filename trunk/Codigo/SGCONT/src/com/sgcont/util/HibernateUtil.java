@@ -19,6 +19,9 @@ import com.sgcont.dados.operacional.Despesa;
 import com.sgcont.dados.operacional.Receita;
 import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.dados.operacional.TipoReceita;
+import com.sgcont.dados.operacional.Compromisso;
+import com.sgcont.dados.operacional.CompromissoResponsavel;
+import com.sgcont.dados.operacional.Lembrete;
 
 public class HibernateUtil {
 	
@@ -43,6 +46,9 @@ public class HibernateUtil {
 			.addAnnotatedClass(ClientePessoaJuridica.class)
 			.addAnnotatedClass(Receita.class)
 			.addAnnotatedClass(TipoReceita.class);
+			.addAnnotatedClass(Compromisso.class)
+			.addAnnotatedClass(CompromissoResponsavel.class)
+			.addAnnotatedClass(Lembrete.class);
 		
 		
 	    configuration.configure();

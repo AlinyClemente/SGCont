@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>SGCONT - Tela Inicial</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<script>
+		PrimeFaces.locales['pt'] = { 
+				closeText: 'Fechar', 
+				prevText: 'Anterior', 
+				nextText: 'Próximo', 
+				currentText: 'Começo', 
+				monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'], 
+				monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'], 
+				dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'], 
+				dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'], 
+				dayNamesMin: ['D','S','T','Q','Q','S','S'], 
+				weekHeader: 'Semana', 
+				firstDay: 1, 
+				isRTL: false, 
+				showMonthAfterYear: false, 
+				yearSuffix: '', 
+				timeOnlyTitle: 'Só Horas', 
+				timeText: 'Tempo', 
+				hourText: 'Hora', 
+				minuteText: 'Minuto', 
+				secondText: 'Segundo', 
+				currentText: 'Data Atual', 
+				ampm: false, 
+				month: 'Mês', 
+				week: 'Semana', 
+				day: 'Dia', 
+				allDayText : 'Todo Dia' };
+		
+		function verificarValidacao(args) {
+	        if(args.dadosValidos) {
+	        	myschedule.update();
+	        	eventDialog.hide();
+	        }  
+	    }  
+	</script>
+</h:head>
+<h:body>
+<f:view>
+	<h:form id="form">  
+	    <p:layout fullPage="true">  
+		    <ui:include src="include/cabecalho.xhtml"/>  
+		  
+		    <ui:include src="include/rodape.xhtml"/>
+		  
+		    <ui:include src="include/menu.xhtml"/>
+	
+			<p:layoutUnit position="center" header="Gerenciar Agenda">
+				<p:growl id="messages" showDetail="true" />  
+		
+			    <p:schedule id="schedule" locale="pt" value="#{InformarAgendaBean.eventModel}" widgetVar="myschedule">  
+			  
+			        <p:ajax event="dateSelect" listener="#{InformarAgendaBean.onDateSelect}" 
+			        	update="eventDialog, eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
+			        <p:ajax event="eventSelect" listener="#{InformarAgendaBean.onEventSelect}" 
+			        	update="eventDialog, eventDetails, dadosLembrete, compromissoRecorrente, dadosCompromissoRecorrente" oncomplete="eventDialog.show()" />  
+			        <p:ajax event="eventMove" listener="#{InformarAgendaBean.onEventMove}" update="messages" />  
+			        <p:ajax event="eventResize" listener="#{InformarAgendaBean.onEventResize}" update="messages" />  
+			  
+			    </p:schedule>
+		    </p:layoutUnit>    
+			  
+				<p:dialog widgetVar="eventDialog" id="eventDialog" header="Detalhes do Compromisso" showEffect="clip" hideEffect="clip" 
+						 height="350" width="400" modal="true" >
+   					<p:messages id="mensagemDialog" showDetail="false" autoUpdate="true" closable="true" />  
+			        <h:panelGrid id="eventDetails" columns="2">
+			            <h:column>
+				            <h:outputLabel for="title" value="Descrição:" />  
+							<font color="#FF0000">*</font>
+						</h:column>
+			            <p:inputText id="title" value="#{InformarAgendaBean.event.title}" required="false" maxlength="40"/>
+													    	
+			            <h:column>
+				            <h:outputLabel for="from" value="Data Início:" />
+				            <font color="#FF0000">*</font>
+				        </h:column>  
+			            <p:inputMask id="from" value="#{InformarAgendaBean.event.startDate}" mask="99/99/9999 99:99" required="false">  
+			                <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00" />
+			            </p:inputMask>  
+
+			            <h:column>			  			
+				            <h:outputLabel for="to" value="Data Fim:" />
+				            <font color="#FF0000">*</font>
+			            </h:column>
+			            <p:inputMask id="to" value="#{InformarAgendaBean.event.endDate}" mask="99/99/9999 99:99" required="false">  
+			                <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00" />
+			            </p:inputMask>
+			  	
+				        <h:outputLabel for="usuarios" value="Usuários Responsáveis:" />
+			            <p:selectManyMenu id="usuarios" value="#{InformarAgendaBean.event.colecaoUsuariosSelecionados}" 
+			            			converter="usuarioConverter" style="width:150px;height:80px" 
+			            			var="p" showCheckbox="true" required="false">  
+				            <f:selectItems value="#{InformarAgendaBean.colecaoUsuario}" var="usuario" 
+				            			itemLabel="#{usuario.nome}" itemValue="#{usuario}" />  
+				            <p:column>  
+				                #{p.nome}  
+				            </p:column>  
+				        </p:selectManyMenu>  
+			  		
+			            <h:outputLabel for="observacao" value="Observação:" />
+					    <p:inputTextarea value="#{InformarAgendaBean.event.observacao}" 
+					    			id="observacao" required="false" label="Observação" 
+					    			maxlength="100" cols="16" rows="3" autoResize="false" />
+
+			            <h:column>					    			
+	   						<h:outputText for="indicadorUsarLembrete" value="Usar lembrete:" />
+	   						<font color="#FF0000">*</font>
+	   					</h:column> 
+   						<p:selectOneRadio value="#{InformarAgendaBean.event.indicadorUsarLembrete}" 
+     							id="indicadorUsarLembrete" required="false" label="Usar lembrete">
+     						<p:ajax event="change" update="dadosLembrete" />  
+				            <f:selectItem itemLabel="Sim" itemValue="1" />  
+				            <f:selectItem itemLabel="Não" itemValue="2" />  
+				        </p:selectOneRadio>
+				    </h:panelGrid>
+				    
+			        <p:outputPanel id="dadosLembrete">  
+					    <p:panel rendered="#{InformarAgendaBean.event.indicadorUsarLembrete == 1}">
+						    <h:panelGrid columns="2">
+					            <h:column>	
+							    	<h:outputLabel for="tempoLembrete" value="Lembrete:"/>
+						            <font color="#FF0000">*</font>
+					            </h:column>
+							    <h:column>
+								    <p:inputText value="#{InformarAgendaBean.event.tempoLembrete}" 
+						    			id="tempoLembrete" required="false" label="Lembrete" 
+						    			size="10" maxlength="9"/>
+						    	</h:column>
+						    	<h:column/>
+						    	<h:column>
+						    		<p:selectOneMenu value="#{InformarAgendaBean.event.opcaoTempoLembrete}">  
+							            <f:selectItem itemLabel="minuto(s)" itemValue="1" />  
+							            <f:selectItem itemLabel="hora(s)" itemValue="2" />  
+							            <f:selectItem itemLabel="dia(s)" itemValue="3" />  
+							        </p:selectOneMenu>  
+						    	</h:column>
+						    </h:panelGrid>
+					    </p:panel>
+					</p:outputPanel>
+				    
+				    <h:panelGrid id="compromissoRecorrente" columns="2">
+			            <h:column>					    			
+	   						<h:outputText for="indicadorCompromissoRecorrente" value="Compromisso Recorrente:" />
+	   						<font color="#FF0000">*</font>
+	   					</h:column> 
+   						<p:selectOneRadio value="#{InformarAgendaBean.event.indicadorCompromissoRecorrente}" 
+     							id="indicadorCompromissoRecorrente" required="false" label="Compromisso Recorrente">
+     						<p:ajax event="change" update="dadosCompromissoRecorrente" />    
+				            <f:selectItem itemLabel="Sim" itemValue="1" />  
+				            <f:selectItem itemLabel="Não" itemValue="2" />  
+				        </p:selectOneRadio>
+				    </h:panelGrid>
+				    
+			        <p:outputPanel id="dadosCompromissoRecorrente">
+					    <p:panel rendered="#{InformarAgendaBean.event.indicadorCompromissoRecorrente == 1}">
+						    <h:panelGrid columns="2">
+					            <h:column>
+						        	<h:outputLabel for="quantidade" value="Repetir:"/>
+						            <font color="#FF0000">*</font>
+					            </h:column>
+								<p:inputText value="#{InformarAgendaBean.event.quantidade}" 
+						    			id="quantidade" required="false" label="Repetir" 
+						    			size="10" maxlength="9"/>
+						        
+					            <h:column>
+						        	<h:outputLabel for="quantidade" value="Frequência:" />
+			   						<font color="#FF0000">*</font>
+			   					</h:column> 
+					    		<p:selectOneMenu value="#{InformarAgendaBean.event.frequencia}">  
+						            <f:selectItem itemLabel="Dia(s)" itemValue="1" />  
+						            <f:selectItem itemLabel="Semana(s)" itemValue="2" />  
+						            <f:selectItem itemLabel="Mês(es)" itemValue="3" />   
+						            <f:selectItem itemLabel="Ano(s)" itemValue="4" />  
+						        </p:selectOneMenu>  
+						        
+					        </h:panelGrid>
+				        </p:panel>
+				   	</p:outputPanel>
+			        
+			        <f:facet name="footer">
+		            	<p:commandButton type="reset" value="Desfazer" />
+			            
+			            <p:commandButton id="addButton" value="Salvar"
+			            	action="#{InformarAgendaBean.exibirInformarAgenda}" 
+			            	actionListener="#{InformarAgendaBean.addEvent}" 
+			            	oncomplete="verificarValidacao(args);" />
+
+			            <p:outputPanel rendered="#{InformarAgendaBean.event.id != null}" style="float: right" >	
+				            <p:commandButton id="removerButton" value="Remover"
+				            	onclick="confirmation.show()" />
+			            </p:outputPanel>
+			        </f:facet>
+			    </p:dialog>  
+			    
+			    <p:confirmDialog id="confirmDialog" message="Todos os compromissos relacionados serão removidos. Confirma?"  
+			                header="Confirmação" severity="alert" widgetVar="confirmation">  
+			        
+			        <p:commandButton id="confirm" value="Sim" update="messages" 
+			        			oncomplete="confirmation.hide();myschedule.update();eventDialog.hide();"
+			            		action="#{InformarAgendaBean.exibirInformarAgenda}"
+			                    actionListener="#{InformarAgendaBean.removeEvent}" />  
+			        <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
+			                  
+			    </p:confirmDialog>
+		  
+		</p:layout>
+	</h:form>
+</f:view>
+</h:body>
+</html>
+

@@ -32,6 +32,19 @@ public interface IRepositorioCadastro {
 	 * @return Usuario
 	 * */
 	public Collection pesquisarDadosClienteParaCombo();
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario);
 	
 	
 	/**

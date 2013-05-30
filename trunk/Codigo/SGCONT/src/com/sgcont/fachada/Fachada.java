@@ -7,9 +7,12 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.dados.operacional.TipoReceita;
+import com.sgcont.dados.operacional.Compromisso;
+import com.sgcont.negocio.ControladorAgenda;
 import com.sgcont.negocio.ControladorCadastro;
 import com.sgcont.negocio.ControladorOperacional;
 import com.sgcont.negocio.ControladorUtil;
+import com.sgcont.negocio.IControladorAgenda;
 import com.sgcont.negocio.IControladorCadastro;
 import com.sgcont.negocio.IControladorOperacional;
 import com.sgcont.negocio.IControladorUtil;
@@ -21,6 +24,7 @@ import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.transferobject.EmpresaContabilTO;
 import com.sgcont.transferobject.ReceitaTO;
 import com.sgcont.transferobject.UsuarioTO;
+import com.sgcont.util.CompromissoEvent;
 
 public class Fachada {
 
@@ -29,6 +33,7 @@ public class Fachada {
 	private IControladorCadastro controladorCadastro;
 	private IControladorUtil controladorUtil;
 	private IControladorOperacional controladorOperacional;
+	private IControladorAgenda controladorAgenda;
 	
 	public static synchronized Fachada getInstance(){
 		if (instance == null){
@@ -41,6 +46,7 @@ public class Fachada {
 		controladorCadastro = ControladorCadastro.getInstance();
 		controladorUtil = ControladorUtil.getInstance();
 		controladorOperacional = ControladorOperacional.getInstance();
+		controladorAgenda = ControladorAgenda.getInstance();
 	}
 	
 
@@ -66,6 +72,13 @@ public class Fachada {
 	}
 
 	/**
+	 * Método genérico que retorna uma lista com objetos a partir dos valores passados como parâmetros.
+	 * */
+	public Collection<?> pesquisarColecao(Class<?> classe, Map<String, Object> campos) {
+		return this.controladorUtil.pesquisarColecao(classe, campos);
+	}
+
+	/**
 	 * Método genérico que retorna um objeto a partir do ID.
 	 * */
 	public Object pesquisar(Class<?> classe, Integer id) {
@@ -78,6 +91,15 @@ public class Fachada {
 	public Object pesquisar(Class<?> classe, Map<String, Object> campos) {
 		
 		return this.controladorUtil.pesquisar(classe, campos);
+		
+	}
+
+	/**
+	 * Método genérico para remover um objeto a partir dos valores passados como parâmetros.
+	 * */
+	public void remover(Class<?> classe, Map<String, Object> campos) {
+		
+		this.controladorUtil.remover(classe, campos);
 		
 	}
 	
@@ -510,4 +532,168 @@ public class Fachada {
 			String codigoContador){
 		return  this.controladorCadastro.validaIndicadorResponsavel(indicadorResponsavel, codigoContador);
 	}
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os usuários
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarUsuarios(Integer codigoUsuario) {
+		
+		return this.controladorCadastro.pesquisarUsuarios(codigoUsuario);
+		
+	}
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os compromissos a partir do usuário
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoUsuario
+	 * @return Collection<Compromisso>
+	 * */
+	public Collection<Compromisso> pesquisarCompromisso(Integer codigoUsuario) {
+		
+		return this.controladorAgenda.pesquisarCompromisso(codigoUsuario);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar os responsáveis a partir do compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param codigoCompromisso
+	 * @return Collection<Usuario>
+	 * */
+	public Collection<Usuario> pesquisarResponsaveis(Integer codigoCompromisso) {
+		
+		return this.controladorAgenda.pesquisarResponsaveis(codigoCompromisso);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável inserir ou atualizar o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 22/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public Integer inserirOuAtualizarCompromisso(CompromissoEvent compromissoEvent, Usuario usuarioLogado) {
+		
+		return this.controladorAgenda.inserirOuAtualizarCompromisso(compromissoEvent, usuarioLogado);
+		
+	}
+
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável inserir um compromisso recorrente
+	 * 
+	 * @author Mariana Victor
+	 * @since 23/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public Compromisso inserirCompromissoRecorrente(Compromisso compromisso,
+			CompromissoEvent compromissoEvent, Usuario usuarioLogado,
+			Integer idCompromissoPrincipal) {
+		
+		return this.controladorAgenda.inserirCompromissoRecorrente(
+				compromisso, compromissoEvent, usuarioLogado, idCompromissoPrincipal);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável por remover um compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void removerCompromisso(Compromisso compromisso) {
+		
+		this.controladorAgenda.removerCompromisso(compromisso);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável mover o compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 26/05/2013
+	 * 
+	 * @param compromissoEvent
+	 * */
+	public void moverCompromisso(CompromissoEvent compromissoEvent) {
+		this.controladorAgenda.moverCompromisso(compromissoEvent);
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os lembretes que ainda não foram enviados por email
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	public Collection<Object[]> pesquisarLembretesPendentes() {
+		
+		return this.controladorAgenda.pesquisarLembretesPendentes();
+		
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os dados do compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	public Collection<Object[]> pesquisarCompromissoResponsaveis(Integer codigoCompromisso) {
+		
+		return this.controladorAgenda.pesquisarCompromissoResponsaveis(codigoCompromisso);
+		
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável por atualizar o lembrete
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @parm codigoLembrete
+	 * */
+	public void atualizarLembretePendente(Integer codigoLembrete) {
+		
+		this.controladorAgenda.atualizarLembretePendente(codigoLembrete);
+		
+	}
+	
 }
