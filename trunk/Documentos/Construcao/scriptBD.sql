@@ -233,6 +233,7 @@ CREATE TABLE operacional.compromisso_responsaveis (
   cdUsuario INTEGER  NOT NULL,
   cdCompromisso INTEGER  NOT NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
+  icResponsavel NOT NULL SMALLINT ,
   PRIMARY KEY(cdCompResponsaveis),
   FOREIGN KEY (cdUsuario) REFERENCES cadastro.usuario(cdUsuario)
 );
