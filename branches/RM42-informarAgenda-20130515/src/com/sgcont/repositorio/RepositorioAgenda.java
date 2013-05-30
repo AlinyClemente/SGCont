@@ -1,6 +1,7 @@
 package com.sgcont.repositorio;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.hibernate.Session;
 
@@ -84,6 +85,96 @@ public class RepositorioAgenda implements IRepositorioAgenda {
 		HibernateUtil.closeSession(session);
 				
 		return colecaoUsuario;
+				
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os lembretes que ainda não foram enviados por email
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	@SuppressWarnings("unchecked")
+	public Collection<Object[]> pesquisarLembretesPendentes() {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT lembr.codigo, compr.codigo, compr.dataInicioCompromisso, compr.descricaoCompromisso "
+				+ " FROM Lembrete lembr "
+				+ "   JOIN lembr.compromisso compr "
+				+ " WHERE lembr.indicadorFrequencia = 2 "
+				+ "   and lembr.dataLembrete <= :dataAtual ";
+		
+		Collection<Object[]> colecaoDados = (Collection<Object[]>) session
+				.createQuery(consulta)
+                .setParameter("dataAtual", new Date())
+                .list();
+
+		HibernateUtil.closeSession(session);
+				
+		return colecaoDados;
+				
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável pesquisar os dados do compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	@SuppressWarnings("unchecked")
+	public Collection<Object[]> pesquisarCompromissoResponsaveis(Integer codigoCompromisso) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "SELECT usur.nome, usur.email "
+				+ " FROM CompromissoResponsavel compresp "
+				+ "   JOIN compresp.compromisso compr "
+				+ "   JOIN compresp.usuario usur "
+				+ " WHERE compr.codigo = :codigoCompromisso ";
+		
+		Collection<Object[]> colecaoDados = (Collection<Object[]>) session
+				.createQuery(consulta)
+                .setParameter("codigoCompromisso", codigoCompromisso)
+                .list();
+
+		HibernateUtil.closeSession(session);
+				
+		return colecaoDados;
+				
+	}
+	
+	/**
+	 * [UC007] Enviar E-mail Lembrete Compromisso
+	 * 
+	 * Método responsável por atualizar o lembrete
+	 * 
+	 * @author Mariana Victor
+	 * @since 29/05/2013
+	 * 
+	 * @parm codigoLembrete
+	 * */
+	public void atualizarLembretePendente(Integer codigoLembrete) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "UPDATE Lembrete "
+				+ " SET indicadorFrequencia = 1 "
+				+ " WHERE codigo = :codigoLembrete ";
+		
+		session.createQuery(consulta)
+                .setParameter("codigoLembrete", codigoLembrete)
+                .executeUpdate();
+
+		HibernateUtil.closeSession(session);
 				
 	}
 
