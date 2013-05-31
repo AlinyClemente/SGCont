@@ -39,7 +39,7 @@
  	<from-view-id>/jsf/login.xhtml</from-view-id>
  	<navigation-case>
  		<from-outcome>paginaInicial</from-outcome>
- 		<to-view-id>/jsf/informar_agenda.xhtml</to-view-id>
+ 		<to-view-id>#{InformarAgendaBean.exibirInformarAgendaLogin()}</to-view-id>
  	</navigation-case>
   </navigation-rule>
  

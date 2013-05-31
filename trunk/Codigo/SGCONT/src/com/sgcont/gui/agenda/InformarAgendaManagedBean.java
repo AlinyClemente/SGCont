@@ -95,6 +95,20 @@ public class InformarAgendaManagedBean implements Serializable {
 		
 		return "informar_agenda";
 
+	}	
+
+	/**
+	 * Método responsável por exibir a tela de informar agenda na tela inicial 
+	 * 
+	 * @author Mariana Victor
+	 * @since 30/05/2013
+	 * */
+	public String exibirInformarAgendaLogin() {
+		
+		this.exibirInformarAgenda();
+		
+		return "/jsf/informar_agenda.xhtml";
+
 	}
 
 	/**
