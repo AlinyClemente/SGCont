@@ -13,7 +13,7 @@
 	</script>  
 	<h:form id="formEndereco">
 		<p:dialog id="dialog" header="Informar Endereço" widgetVar="dialogEnderecoManterCliente" height="400" modal="true">
-   			<p:messages id="messagesPopup" showDetail="false" autoUpdate="true" closable="true" />
+   			<p:messages id="messagesPopup" showDetail="false" autoUpdate="false" closable="true" />
    			
        		<h:panelGrid columns="2" cellpadding="5" id="gridCep">
 				<h:column>
@@ -77,7 +77,7 @@
 				<f:facet name="footer">  
                 	<p:commandButton id="InformarButton" value="Informar"     
                     	actionListener="#{ManterClienteBean.informarEndereco}"   
-                    	oncomplete="verificarValidacao(args)" update=":form:gridEnderecoFormatado"/>
+                    	oncomplete="verificarValidacao(args)" update=":form:gridEnderecoFormatado, messagesPopup"/>
             	</f:facet> 
 
 			</h:panelGrid>

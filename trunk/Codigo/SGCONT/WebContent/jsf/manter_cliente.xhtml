@@ -67,7 +67,7 @@
 			     
 			    <p:outputPanel id="dadosClienteSelecionada">
 			     <p:panel header="Atualizar" rendered="#{ManterClienteBean.clienteTOSelecionado.codigo != null}">
-			     	<p:messages id="mensagemCliente" showDetail="false" autoUpdate="true"
+			     	<p:messages id="mensagemCliente" showDetail="false" autoUpdate="false"
 						closable="true" />
 			     
 			     	<h:panelGrid id="gridAtualizar" columns="1" cellpadding="5">
@@ -365,7 +365,7 @@
 			        
 			        <h:panelGrid columns="1" cellpadding="5" > 
 		     			<p:commandButton id="atualizarButton" value="Atualizar" 
-		     				action="#{ManterClienteBean.atualizar}" /> 
+		     				action="#{ManterClienteBean.atualizar}" update="mensagemCliente" /> 
                		</h:panelGrid>
 			     
 			      </p:panel>
