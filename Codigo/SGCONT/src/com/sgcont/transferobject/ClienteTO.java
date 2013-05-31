@@ -360,8 +360,14 @@ public class ClienteTO implements Serializable {
 		this.cep = "" + cliente.getEndereco().getCodigoCep();
 		this.bairro = "" + cliente.getEndereco().getBairro();
 		this.cidade = "" + cliente.getEndereco().getNomeCidade();
-		this.complemento = ""
-		+ cliente.getEndereco().getDescricaoComplemento();
+		
+		if(cliente.getEndereco().getDescricaoComplemento() != null){
+			this.complemento = ""
+					+ cliente.getEndereco().getDescricaoComplemento();
+		}else{
+			this.complemento = "";
+		}
+
 		this.estado = "" + cliente.getEndereco().getDescricaoSiglaUf();
 		this.numeroEndereco = "" + cliente.getEndereco().getNumeroEndereco();
 		
