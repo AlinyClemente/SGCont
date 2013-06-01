@@ -336,9 +336,9 @@ public class ClienteTO implements Serializable {
 	public String getIndicadorPessoaFisicaFormatado(){
 		String descricao = "";
 		if(this.getIndicadorPessoaFisica().equals(Cliente.INDICADOR_PESSOA_FISICA.toString())){
-			descricao = "PESSOA FÕSICA";
+			descricao = "PESSOA F√≠sica";
 		}else{
-			descricao = "PESSOA JURÕDICA";
+			descricao = "PESSOA Jur√≠dica";
 		}
 		return descricao;
 	}

@@ -24,7 +24,7 @@ public class EnviarEmailJob implements StatefulJob {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		try {
 
-			System.out.println(Util.formatarDataComHora(new Date()) + " - VERIFICA«√O DE LEMBRETES ");
+			System.out.println(Util.formatarDataComHora(new Date()) + " - VERIFICA√á√ÉO DE LEMBRETES ");
 			
 			Fachada fachada = Fachada.getInstance();
 			
@@ -81,7 +81,7 @@ public class EnviarEmailJob implements StatefulJob {
 						
 						if (observacao != null
 								&& !observacao.isEmpty()) {
-							mensagem += "<h2>ObservaÁ„o: " + observacao + "</h2>";
+							mensagem += "<h2>Observa√ß√£o: " + observacao + "</h2>";
 						}
 						
 						mensagem += "<h2>Envolvidos:<ul>" + responsaveis + "</ul></h2>";

@@ -6,7 +6,7 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Endereco;
 
 /**
- * [UC015] Inserir Empresa Cont·bil
+ * [UC015] Inserir Empresa Cont√°bil
  * 
  * @author Vivianne Sousa
  * @since 07/05/2013

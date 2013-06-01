@@ -11,7 +11,7 @@ import com.sgcont.util.Util;
 /**
  * [UC011] Inserir Receita
  * 
- * @author Rômulo Aurélio
+ * @author RÃ´mulo AurÃ©lio
  * @since 23/04/2013
  * */
 public class ReceitaTO implements Serializable {
