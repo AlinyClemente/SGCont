@@ -82,7 +82,7 @@
 						<p:panel header="Atualizar"
 							rendered="#{ManterContadorBean.contadorTOSelecionada.codigo != null}">
 							<p:messages id="mensagemValidacao" showDetail="false"
-								autoUpdate="true" closable="true" />
+								autoUpdate="false" closable="true" />
 							<h:panelGrid id="gridAtualizar" columns="3" cellpadding="5"
 								autoUpdate="true" closable="true">
 
@@ -209,7 +209,7 @@
 
 							<h:panelGrid columns="1" cellpadding="5">
 								<p:commandButton id="atualizarButton" value="Atualizar"
-									action="#{ManterContadorBean.atualizar}" />
+									action="#{ManterContadorBean.atualizar}" update="mensagemValidacao" />
 							</h:panelGrid>
 
 						</p:panel>
