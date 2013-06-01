@@ -160,11 +160,13 @@ public class InformarAgendaManagedBean implements Serializable {
 	 * @since 25/05/2013
 	 * */
 	public void removeEvent() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		RequestContext context = RequestContext.getCurrentInstance();
 		Fachada fachada = Fachada.getInstance();
 		
 		fachada.removerCompromisso(
-				((CompromissoEvent) event).getCompromisso());
+				((CompromissoEvent) event).getCompromisso(),
+				(Usuario) session.getAttribute("usuarioLogado"));
 		
 		context.addCallbackParam("dadosValidos", true);
 		
@@ -271,6 +273,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	 * @since 22/05/2013
 	 * */
 	private boolean validarDadosCompromisso() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		boolean dadosValidos = true;
 		
 		CompromissoEvent compromissoEvent = (CompromissoEvent) this.event;
@@ -324,6 +327,26 @@ public class InformarAgendaManagedBean implements Serializable {
 					FacesMessage.SEVERITY_ERROR,"Repetição do Compromisso: Erro de validação: o valor é necessário", null));
 		}
 		
+		if (compromissoEvent.getStartDate() != null
+				&& compromissoEvent.getEndDate() != null
+				&& compromissoEvent.getStartDate().compareTo(compromissoEvent.getEndDate()) > 0) {
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Data Fim deve ser menor ou igual a Data Inicio do compromisso.", null));
+		}
+		
+		Collection<Object[]> colecaoDados = Fachada.getInstance().pesquisarCompromissosMesmoHorario(
+				compromissoEvent.getCodigo(), compromissoEvent.getStartDate(), 
+				compromissoEvent.getColecaoUsuariosSelecionados(), 
+				(Usuario) session.getAttribute("usuarioLogado"));
+		if (colecaoDados != null
+				&& !colecaoDados.isEmpty()) {
+			Object[] dados = (Object[]) colecaoDados.iterator().next();
+			dadosValidos = false;
+			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,"Usuário " + dados[0] + " já possui o compromisso " + dados[1] + " no mesmo horário.", null));
+		}
+		
 		return dadosValidos;
 	}
 
@@ -334,7 +357,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	 * @since 22/05/2013
 	 * */
 	private void carregarCompromissos(Fachada fachada, Usuario usuario) {
-		
+
 		this.eventModel = new DefaultScheduleModel();
 		
 		Collection<Compromisso> colecaoCompromisso =  
@@ -358,6 +381,10 @@ public class InformarAgendaManagedBean implements Serializable {
 				
 				ScheduleEvent event = new CompromissoEvent(
 						compromisso, colecaoResponsaveis, lembrete);
+
+				if (!fachada.verificarUsuarioResponsavelCompromisso(compromisso.getCodigo(), usuario.getCodigo())) {
+					((CompromissoEvent)event).setEditable(false);
+				}
 				
 				this.eventModel.addEvent(event);
 			}

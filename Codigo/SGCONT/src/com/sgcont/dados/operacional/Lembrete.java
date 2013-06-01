@@ -26,8 +26,8 @@ public class Lembrete {
 	@Column(name="tmlembrete", nullable=false)
 	private Date dataLembrete;
 	
-	@Column(name="icfrequencia", nullable=true)
-	private Short indicadorFrequencia;
+	@Column(name="icEnvioEmail", nullable=true)
+	private Short indicadorEnvioEmail;
 	
 	@Column(name="icunidadelembrete", nullable=true)
 	private Short indicadorUnidadeLembrete;
@@ -68,12 +68,12 @@ public class Lembrete {
 		this.dataLembrete = dataLembrete;
 	}
 
-	public Short getIndicadorFrequencia() {
-		return indicadorFrequencia;
+	public Short getIndicadorEnvioEmail() {
+		return indicadorEnvioEmail;
 	}
 
-	public void setIndicadorFrequencia(Short indicadorFrequencia) {
-		this.indicadorFrequencia = indicadorFrequencia;
+	public void setIndicadorEnvioEmail(Short indicadorEnvioEmail) {
+		this.indicadorEnvioEmail = indicadorEnvioEmail;
 	}
 
 	public Short getIndicadorUnidadeLembrete() {

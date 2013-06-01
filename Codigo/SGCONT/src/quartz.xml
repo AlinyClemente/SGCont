@@ -32,13 +32,13 @@
 
         <schedule>
                 <job>
-                        <name>EnviaEmail</name>
-                        <job-class>com.sgcont.util.EnviaEmail</job-class>
+                        <name>EnviarEmail</name>
+                        <job-class>com.sgcont.util.EnviarEmailJob</job-class>
                 </job>
                 <trigger>
                         <simple>
                                 <name>TenSecondIntervals</name>
-                                <job-name>EnviaEmail</job-name>
+                                <job-name>EnviarEmail</job-name>
                                 <repeat-count>-1</repeat-count> <!-- repeat forever  -->
                                 <repeat-interval>60000</repeat-interval>  <!--  every 10 seconds -->
                         </simple>

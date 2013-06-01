@@ -21,6 +21,9 @@ public class CompromissoResponsavel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cdcompresponsaveis", nullable=false)
 	private Integer codigo;
+
+	@Column(name="icResponsavel", nullable=true)
+	private Short indicadorResponsavel;
 	
 	@Column(name="tmultimaalteracao", nullable=false)
 	private Date ultimaAlteracao;
@@ -43,6 +46,14 @@ public class CompromissoResponsavel {
 
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+
+	public Short getIndicadorResponsavel() {
+		return indicadorResponsavel;
+	}
+
+	public void setIndicadorResponsavel(Short indicadorResponsavel) {
+		this.indicadorResponsavel = indicadorResponsavel;
 	}
 
 	public Date getUltimaAlteracao() {

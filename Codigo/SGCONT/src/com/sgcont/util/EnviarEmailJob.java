@@ -1,11 +1,10 @@
 package com.sgcont.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.HtmlEmail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
@@ -19,7 +18,7 @@ import com.sgcont.fachada.Fachada;
  * @since 27/04/2013
  * */
 @SuppressWarnings("deprecation")
-public class EnviaEmail implements StatefulJob {
+public class EnviarEmailJob implements StatefulJob {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -45,6 +44,10 @@ public class EnviaEmail implements StatefulJob {
 					Integer codigoCompromisso = (Integer) dadosLembrete[1];
 					Date dataCompromisso = (Date) dadosLembrete[2];
 					String descricaoCompromisso = (String) dadosLembrete[3];
+					String observacao = null;
+					if (dadosLembrete[4] != null) {
+						observacao = (String) dadosLembrete[4];
+					}
 					
 					Collection<Object[]> colecaoResponsaveis = fachada
 							.pesquisarCompromissoResponsaveis(codigoCompromisso);
@@ -53,18 +56,13 @@ public class EnviaEmail implements StatefulJob {
 							&& !colecaoResponsaveis.isEmpty()) {
 						Iterator<Object[]> iteratorResponsaveis = colecaoResponsaveis.iterator();
 						
-						Email htmlEmail = new HtmlEmail();
 						
-						htmlEmail.setHostName("smtp.gmail.com");
-						htmlEmail.setSmtpPort(587);
-						htmlEmail.setTLS(true);
-						htmlEmail.setFrom("suporte.sgcont@gmail.com", "SGCONT");
-						htmlEmail.setSubject("[SGCONT] Lembrete: " + descricaoCompromisso 
-									+ " - " + Util.formatarDataComHora(dataCompromisso));  
-						htmlEmail.setAuthentication("suporte.sgcont@gmail.com", "sgcont123456");    
+						String assunto = "[SGCONT] Lembrete: " + descricaoCompromisso 
+								+ " - " + Util.formatarDataComHora(dataCompromisso);
 						
 						String responsaveis = "";
-						
+
+						Collection<String[]> colecaoDestinatarios = new ArrayList<String[]>();
 						while (iteratorResponsaveis.hasNext()) {
 							Object[] dadosResponsavel = (Object[]) iteratorResponsaveis.next();
 
@@ -74,15 +72,21 @@ public class EnviaEmail implements StatefulJob {
 							responsaveis = responsaveis 
 									+ "<li>" + nome + " - " + email + "</li>";
 							
-							htmlEmail.addTo(email, nome);  
-							
+							colecaoDestinatarios.add(
+									new String[]{email, nome});
 						}  
 						
-						htmlEmail.setMsg("<h1>" + descricaoCompromisso + "</h1>"
-								+ "<h2><b>Data:</b> " + Util.formatarDataComHora(dataCompromisso) + "</h2>"
-								+ "<h2>Participantes:<ul>" + responsaveis + "</ul></h2>");
+						String mensagem = "<h1>" + descricaoCompromisso + "</h1>"
+								+ "<h2>Data: " + Util.formatarDataComHora(dataCompromisso) + "</h2>";
 						
-						htmlEmail.send();
+						if (observacao != null
+								&& !observacao.isEmpty()) {
+							mensagem += "<h2>Observação: " + observacao + "</h2>";
+						}
+						
+						mensagem += "<h2>Envolvidos:<ul>" + responsaveis + "</ul></h2>";
+						
+						ServicosEmail.enviarEmail(assunto, mensagem, colecaoDestinatarios);
 						
 						fachada.atualizarLembretePendente(codigoLembrete);
 					}
