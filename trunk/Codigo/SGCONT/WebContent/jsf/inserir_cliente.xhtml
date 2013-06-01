@@ -9,7 +9,7 @@
 	<title>SGCONT - Inserir Cliente</title>
 	<link rel="shortcut icon" href="/SGCONT/resources/imagens/favicon.ico" />
 	<h:outputStylesheet library="css" name="estilo.css" />
-	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputScript library="javascript" name="util.js"></h:outputScript>
 </h:head>
 <h:body>
 <f:view>
@@ -124,7 +124,8 @@
 							    <p:inputText value="#{InserirClienteBean.clientePfTO.rg}" 
 							    			id="rg" required="true" label="RG" 
 							    			size="11" maxlength="9"
-							    			validator="#{InserirClienteBean.validaRG}" />
+							    			onkeyup="formatarCampoNumerico(this);"
+							    			validator="#{InserirClienteBean.validaRG}"/>
 							    <p:message id="rgMessage" for="rg" />
 							    			
 								<h:column>
@@ -297,7 +298,8 @@
 							    <h:outputLabel for="nirf" value="N.I.R.E:"/>
 							    <p:inputText value="#{InserirClienteBean.clientePjTO.nirf}" 
 							    			id="nirf" required="false" label="N.I.R.E" 
-							    			size="11" maxlength="9" />
+							    			size="11" maxlength="9" 
+							    			onkeyup="formatarCampoNumerico(this);"/>
 			                    <p:message id="nirfMessage" for="nirf" />
 							    			
 							    <h:outputLabel for="site" value="Site:"/>

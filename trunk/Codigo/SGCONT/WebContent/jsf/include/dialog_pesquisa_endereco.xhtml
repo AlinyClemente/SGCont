@@ -43,7 +43,8 @@
 			    </h:column>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.numeroEndereco}" 
 			    			id="numeroEndereco" required="false" label="Número" 
-			    			size="40" maxlength="9" />
+			    			size="40" maxlength="9" 
+							onkeyup="formatarCampoNumerico(this);"/>
 				
 				<h:outputLabel for="complemento" value="Complemento:"/>
 			    <p:inputText value="#{InserirClienteBean.clienteTO.complemento}" 
