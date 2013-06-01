@@ -36,7 +36,7 @@
 				<h:column> <h:outputLabel for="numero" value="Número:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.numeroEndereco}" 
 			    			id="numeroEndereco" required="false" label="Número" 
-			    			size="10" maxlength="7" />
+			    			size="10" maxlength="7" onkeyup="formatarCampoNumerico(this);" />
 				
 				<h:column> <h:outputLabel for="complemento" value="Complemento:"/></h:column>
 			    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.complemento}" 

@@ -8,7 +8,7 @@
 <h:head>
 	<title>SGCONT - Tela Inicial</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
-
+	<h:outputScript library="javascript" name="util.js"></h:outputScript>
 </h:head>
 <h:body>
 <f:view>
@@ -172,6 +172,7 @@
 							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaFisicaTO.rg}" 
 							    			id="rg" required="false" label="RG" 
 							    			size="11" maxlength="9"
+							    			onkeyup="formatarCampoNumerico(this);"
 							    			validator="#{ManterClienteBean.validaRG}" />
 							    <p:message id="rgMessage" for="rg" />
 							    			
@@ -345,6 +346,7 @@
 							    <h:outputLabel for="nirf" value="N.I.R.E:"/>
 							    <p:inputText value="#{ManterClienteBean.clienteTOSelecionado.clientePessoaJuridicaTO.nirf}" 
 							    			id="nirf" required="false" label="N.I.R.E" 
+							    			onkeyup="formatarCampoNumerico(this);"
 							    			size="11" maxlength="9" />
 			                    <p:message id="nirfMessage" for="nirf" />
 							    			
