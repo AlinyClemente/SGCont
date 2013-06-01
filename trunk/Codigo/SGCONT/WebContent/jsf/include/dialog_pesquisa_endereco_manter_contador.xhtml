@@ -13,7 +13,7 @@
 	</script>  
 	<h:form id="formEndereco">
 		<p:dialog id="dialog" header="Informar Endereço" widgetVar="dialogEnderecoManterContador" height="400" modal="true">
-   			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+   			<p:messages id="messages" showDetail="false" autoUpdate="false" closable="true" />
    			
        		<h:panelGrid columns="2" cellpadding="5" id="gridCep">
 			   <h:column> <h:outputLabel for="cep" value="CEP:"/><font color="#FF0000">*</font></h:column>
@@ -59,7 +59,7 @@
 				<f:facet name="footer">  
                 	<p:commandButton id="InformarButton" value="Informar"     
                     	actionListener="#{ManterContadorBean.informarEndereco}"   
-                    	oncomplete="verificarValidacao(args)" update=":form:gridEnderecoFormatado"/>
+                    	oncomplete="verificarValidacao(args)" update=":form:gridEnderecoFormatado, messages"/>
             	</f:facet> 
 
 			</h:panelGrid>
