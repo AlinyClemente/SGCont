@@ -37,7 +37,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEventContext context =
                     (ExceptionQueuedEventContext) event.getSource();
  
-            // obtÈm a exceÁ„o
+            // obt√©m a exce√ß√£o
             Throwable t = context.getException();
  
             final FacesContext fc = FacesContext.getCurrentInstance();
@@ -51,7 +51,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
                 flash.put("mensagemExcecao", t.getCause());
                 flash.put("dataHoraAtual", Util.formatarDataComHora(new Date()));
                 
-                // redireciona a p·gina de acordo com o tipo da exceÁ„o
+                // redireciona a p√°gina de acordo com o tipo da exce√ß√£o
                 if (t instanceof ViewExpiredException) {
                 	nav.handleNavigation(fc, null, "sessao_espirada?faces-redirect=true");
                 } else {

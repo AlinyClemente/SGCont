@@ -35,7 +35,7 @@ public class Util {
 						+ "/");
 			}
 
-			// Obs.: Janeiro no Calendar é mês zero
+			// Obs.: Janeiro no Calendar - mÃªs zero
 			if ((dataCalendar.get(Calendar.MONTH) + 1) > 9) {
 				dataBD.append(dataCalendar.get(Calendar.MONTH) + 1 + "/");
 			} else {
@@ -84,13 +84,13 @@ public class Util {
 		try {
 			retorno = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR")).parse(data);
 		} catch (Exception e) {
-			new IllegalArgumentException(data + " não tem o formato dd/MM/yyyy.");
+			new IllegalArgumentException(data + " nÃ£o tem o formato dd/MM/yyyy.");
 		}
 		return retorno;
 	}
 
 	/**
-	 * Valida o CPF passado como parâmetro 
+	 * Valida o CPF passado como parÃ¢metro 
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -151,7 +151,7 @@ public class Util {
 
 
 	/**
-	 * Valida o CNPJ passado como parâmetro 
+	 * Valida o CNPJ passado como parÃ¢metro 
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -197,14 +197,14 @@ public class Util {
 	}
 	
 	/**
-	 * Método que recebe uma string ex."123456" e converte para o objeto
+	 * MÃ©todo que recebe uma string ex."123456" e converte para o objeto
 	 * BigDecimal ex. "123456".
 	 * 
 	 * 354654564,12 = 354654564.12 354.654.564,12 = 354654564.12 35465456412 =
 	 * 35465456412.00 354654564.12 = 354654564.12 354654564,12 = 354654564.12
 	 * 
 	 * @param data
-	 * @autor Rõmulo Aurélio
+	 * @autor RÃ´mulo AurÃ©lio
 	 * @date 15/05/2013
 	 * @return
 	 */
@@ -280,7 +280,7 @@ public class Util {
 						+ "/");
 			}
 
-			// Obs.: Janeiro no Calendar é mês zero
+			// Obs.: Janeiro no Calendar - mÃªs zero
 			if ((dataCalendar.get(Calendar.MONTH) + 1) > 9) {
 				dataBD.append(dataCalendar.get(Calendar.MONTH) + 1 + "/");
 			} else {
@@ -296,7 +296,7 @@ public class Util {
 	
 	public static String formatarMoedaReal(BigDecimal valor) {
 		/**
-		 * Símbolos especificos do Real Brasileiro
+		 * SÃ­mbolos especificos do Real Brasileiro
 		 */
 		DecimalFormatSymbols REAL = new DecimalFormatSymbols(new Locale("pt",
 				"BR"));
