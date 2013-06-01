@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -19,7 +20,8 @@ import org.hibernate.annotations.Type;
 public class EmpresaContabil {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_empresa_contabil")
+	@SequenceGenerator(name="cadastro.seq_empresa_contabil", sequenceName="cadastro.seq_empresa_contabil")
 	@Column(name="cdempresacontabil", nullable=false)
 	private Integer codigo;
 	

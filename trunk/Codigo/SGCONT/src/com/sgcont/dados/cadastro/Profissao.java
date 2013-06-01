@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +18,8 @@ public class Profissao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_profissao")
+	@SequenceGenerator(name="cadastro.seq_profissao", sequenceName="cadastro.seq_profissao")
 	@Column(name="cdprofissao", nullable=false)
 	private Integer codigo;
 	

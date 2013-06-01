@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +26,8 @@ public class Cliente {
 	public static final  Short INDICADOR_INATIVO = new Short("2");
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_cliente")
+	@SequenceGenerator(name="cadastro.seq_cliente", sequenceName="cadastro.seq_cliente")
 	@Column(name="cdcliente", nullable=false)
 	private Integer codigo;
 	

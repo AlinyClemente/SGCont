@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +17,8 @@ import javax.persistence.Table;
 public class Lembrete {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="operacional.seq_lembrete")
+	@SequenceGenerator(name="operacional.seq_lembrete", sequenceName="operacional.seq_lembrete")
 	@Column(name="cdlembrete", nullable=false)
 	private Integer codigo;
 	

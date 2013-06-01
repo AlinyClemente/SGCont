@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.sgcont.dados.cadastro.Cliente;
@@ -20,7 +21,8 @@ import com.sgcont.dados.cadastro.EmpresaContabil;
 public class Despesa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="operacional.seq_despesa")
+	@SequenceGenerator(name="operacional.seq_despesa", sequenceName="operacional.seq_despesa")
 	@Column(name="cddespesa", nullable=false)
 	private Integer codigo;
 	
