@@ -118,6 +118,7 @@ public class ManterReceitaManagedBean implements Serializable {
 	 * @author Rômulo Aurélio
 	 * @since 25/05/2013
 	 * */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String exibirManterReceita() {
 
 		this.receitaTOSelecionada = new ReceitaTO();
@@ -231,6 +232,7 @@ public class ManterReceitaManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
+	@SuppressWarnings("unused")
 	private void verificarMensagemCampo(FacesContext context,
 			UIComponent toValidate, String mensagem) {
 		if (mensagem != null) {
@@ -244,10 +246,12 @@ public class ManterReceitaManagedBean implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private Collection pesquisarColecaoReceitaTO() {
 
 		Collection<ReceitaTO> colecaoReceitaTO = null;
 		Fachada fachada = Fachada.getInstance();
+		@SuppressWarnings("unchecked")
 		Collection<Receita> colecaoReceita = (Collection<Receita>) fachada
 				.pesquisar(Receita.class);
 

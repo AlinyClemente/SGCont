@@ -54,6 +54,7 @@ public class InserirContadorManagedBean implements Serializable {
 	 * @author Rômulo Aurélio
 	 * @since 11/05/2013
 	 * */
+	@SuppressWarnings("unchecked")
 	public String exibirInserirContador() {
 
 		this.contadorTO = new ContadorTO();

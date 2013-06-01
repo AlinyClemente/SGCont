@@ -32,6 +32,7 @@ public class ContadorTO implements Serializable {
 
 	private String endereco;
 
+	@SuppressWarnings("unused")
 	private Contador contador;
 
 	private String estado;

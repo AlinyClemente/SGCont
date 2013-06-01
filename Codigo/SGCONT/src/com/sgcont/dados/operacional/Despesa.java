@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.transferobject.ClienteTO;
 
 @Entity
 @Table(name = "operacional.despesa")

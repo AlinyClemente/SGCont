@@ -19,7 +19,6 @@ import org.primefaces.context.RequestContext;
 
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.operacional.Receita;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.transferobject.ContadorTO;
 import com.sgcont.util.CepWebService;
@@ -100,6 +99,7 @@ public class ManterContadorManagedBean implements Serializable {
 	 * @author Rômulo Aurélio
 	 * @since 25/05/2013
 	 * */
+	@SuppressWarnings("unchecked")
 	public String exibirManterContador() {
 
 		this.contadorTOSelecionada = new ContadorTO();
@@ -163,6 +163,7 @@ public class ManterContadorManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
+	@SuppressWarnings("unused")
 	private void verificarMensagemCampo(FacesContext context,
 			UIComponent toValidate, String mensagem) {
 		if (mensagem != null) {
@@ -176,10 +177,12 @@ public class ManterContadorManagedBean implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private Collection pesquisarColecaoContadorTO() {
 
 		Collection<ContadorTO> colecaoContadorTO = null;
 		Fachada fachada = Fachada.getInstance();
+		@SuppressWarnings("unchecked")
 		Collection<Contador> colecaoContador = (Collection<Contador>) fachada
 				.pesquisar(Contador.class);
 

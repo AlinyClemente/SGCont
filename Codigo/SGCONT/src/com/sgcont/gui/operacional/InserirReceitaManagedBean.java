@@ -3,9 +3,7 @@ package com.sgcont.gui.operacional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,7 +13,6 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import com.sgcont.dados.cadastro.Cliente;
-import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.fachada.Fachada;
@@ -83,6 +80,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	 * @author Rômulo Aurélio
 	 * @since 23/04/2013
 	 * */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String exibirInserirReceita() {
 
 		this.receitaTO = new ReceitaTO();

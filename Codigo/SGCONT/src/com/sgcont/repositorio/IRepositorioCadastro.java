@@ -31,6 +31,7 @@ public interface IRepositorioCadastro {
 	 * 
 	 * @return Usuario
 	 * */
+	@SuppressWarnings("rawtypes")
 	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso);
 
 	/**

@@ -5,7 +5,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.fachada.Fachada;
 

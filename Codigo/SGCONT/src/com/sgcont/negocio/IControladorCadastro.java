@@ -124,6 +124,7 @@ public interface IControladorCadastro {
 	 * 
 	 * @return Usuario
 	 * */
+	@SuppressWarnings("rawtypes")
 	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) ;
 	
 	/**
