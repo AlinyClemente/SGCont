@@ -4,7 +4,7 @@ import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.dados.operacional.TipoReceita;
 
 /**
- * Interface do repositÛrio respons·vel pelas consultas do mÛdulo operacional
+ * Interface do reposit√≥rio respons√°vel pelas consultas do m√≥dulo operacional
  * */
 public interface IRepositorioOperacional {
 
@@ -12,12 +12,12 @@ public interface IRepositorioOperacional {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de despesa a partir da descriÁ„o
+	 * M√©todo respons√°vel pesquisar um tipo de despesa a partir da descri√ß√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
 	 * 
-	 * @param descriÁ„o
+	 * @param descri√ß√£o
 	 * @return TipoDespesa
 	 * */
 	public TipoDespesa pesquisarTipoDespesa(String descricao);
@@ -25,9 +25,9 @@ public interface IRepositorioOperacional {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome

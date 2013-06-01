@@ -25,7 +25,7 @@ import com.sgcont.transferobject.ReceitaTO;
 /**
  * [UC012] Manter Receita
  * 
- * @author RÙmulo AurÈlio
+ * @author R√¥mulo Aur√©lio
  * @since 25/05/2013
  * */
 @ManagedBean(name = "ManterReceitaBean")
@@ -113,9 +113,9 @@ public class ManterReceitaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de cadastro da receita
+	 * M√©todo respons√°vel por exibir a tela de cadastro da receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -143,9 +143,9 @@ public class ManterReceitaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel por cadastrar a receita
+	 * M√©todo respons√°vel por cadastrar a receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public String atualizar() {
@@ -165,10 +165,10 @@ public class ManterReceitaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do tipo de
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do tipo de
 	 * receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public List<TipoReceita> completaTipoReceita(String query) {
@@ -188,7 +188,7 @@ public class ManterReceitaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public List<EmpresaContabil> completaEmpresaContabil(String query) {
@@ -208,7 +208,7 @@ public class ManterReceitaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public List<ClienteTO> completaCliente(String query) {
@@ -226,7 +226,7 @@ public class ManterReceitaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o
 	 * campo validado
 	 * 
 	 * @author Mariana Victor
@@ -297,9 +297,9 @@ public class ManterReceitaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados da receita
+	 * M√©todo respons√°vel por validar os dados da receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 26/05/2013
 	 * */
 	private boolean validarDadosReceitaSelecionada() {
@@ -315,7 +315,7 @@ public class ManterReceitaManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"DescriÁ„o: Erro de validaÁ„o: o valor È necess·rio",
+									"Descri√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -328,7 +328,7 @@ public class ManterReceitaManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"Tipo de Receita: Erro de validaÁ„o: o valor È necess·rio",
+									"Tipo de Receita: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -339,7 +339,7 @@ public class ManterReceitaManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Valor: Erro de validaÁ„o: o valor È necess·rio",
+							"Valor: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -353,7 +353,7 @@ public class ManterReceitaManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"Data de GeraÁ„o: Erro de validaÁ„o: o valor È necess·rio",
+									"Data de Gera√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -362,7 +362,7 @@ public class ManterReceitaManagedBean implements Serializable {
 
 	/**
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 26/05/2013
 	 */
 	private boolean validarEmpresaContabilouCliente() {
@@ -376,7 +376,7 @@ public class ManterReceitaManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					"mensagemValidacao",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Informe Empresa Cont·bil ou Cliente", null));
+							"Informe Empresa Cont√°bil ou Cliente", null));
 
 		} else if (this.receitaTOSelecionada.getEmpresaContabil() != null
 				&& this.receitaTOSelecionada.getClienteTO() != null) {
@@ -385,7 +385,7 @@ public class ManterReceitaManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					"mensagemValidacao",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Informe Empresa Cont·bil ou Cliente", null));
+							"Informe Empresa Cont√°bil ou Cliente", null));
 
 		}
 		return dadosValidos;

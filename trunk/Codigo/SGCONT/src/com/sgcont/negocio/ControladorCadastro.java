@@ -29,7 +29,7 @@ import com.sgcont.transferobject.UsuarioTO;
 import com.sgcont.util.Util;
 
 /**
- * Controlador respons·vel pelas regras de negÛcio do mÛdulo de cadastro
+ * Controlador respons√°vel pelas regras de neg√≥cio do m√≥dulo de cadastro
  * */
 public class ControladorCadastro implements IControladorCadastro {
 
@@ -55,7 +55,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC010] Efetuar Login
 	 * 
-	 * MÈtodo respons·vel pesquisar um usu·rio a partir do login e da senha
+	 * M√©todo respons√°vel pesquisar um usu√°rio a partir do login e da senha
 	 * 
 	 * @author Mariana Victor
 	 * @since 21/03/2013
@@ -67,9 +67,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	}
 
 	/**
-	 * [UC001] Inserir Cliente 2.1.1. Caso o usu·rio escolha Pessoa FÌsica
+	 * [UC001] Inserir Cliente 2.1.1. Caso o usu√°rio escolha Pessoa F√≠sica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -89,9 +89,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	}
 
 	/**
-	 * [UC001] Inserir Cliente 2.1.2. Caso o usu·rio escolha Pessoa JurÌdica
+	 * [UC001] Inserir Cliente 2.1.2. Caso o usu√°rio escolha Pessoa Jur√≠dica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa jur√≠dica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -122,7 +122,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -131,7 +131,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
-			mensagem = "DÌgito verificador do CPF n„o confere.";
+			mensagem = "D√≠gito verificador do CPF n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
@@ -143,7 +143,7 @@ public class ControladorCadastro implements IControladorCadastro {
 				&& (codigoCliente == null
 				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
 
-				mensagem = "CPF j· cadastrado para o Cliente "
+				mensagem = "CPF j√° cadastrado para o Cliente "
 						+ clientePessoaFisica.getCliente().getNome() + ".";
 			}
 		}
@@ -154,8 +154,8 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CNPJ
-	 * inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CNPJ
+	 * inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -164,7 +164,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		String mensagem = null;
 
 		if (!Util.validacaoCNPJ(cnpj)) {
-			mensagem = "DÌgito verificador do CNPJ n„o confere.";
+			mensagem = "D√≠gito verificador do CNPJ n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCnpj", cnpj);
@@ -175,7 +175,7 @@ public class ControladorCadastro implements IControladorCadastro {
 					&& (codigoCliente == null
 					|| (codigoCliente != null && !clientePessoaJuridica.getCodigo().toString().equals(codigoCliente)))) {
 				
-				mensagem = "CNPJ j· cadastrado para o Cliente "
+				mensagem = "CNPJ j√° cadastrado para o Cliente "
 						+ clientePessoaJuridica.getCliente().getNome() + ".";
 			}
 		}
@@ -186,7 +186,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -203,7 +203,7 @@ public class ControladorCadastro implements IControladorCadastro {
 				&& (codigoCliente == null
 				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
 			
-			mensagem = "RG j· cadastrado para o Cliente "
+			mensagem = "RG j√° cadastrado para o Cliente "
 					+ clientePessoaFisica.getCliente().getNome() + ".";
 		}
 
@@ -213,7 +213,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -230,7 +230,7 @@ public class ControladorCadastro implements IControladorCadastro {
 				&& (codigoCliente == null
 				|| (codigoCliente != null && !clientePessoaFisica.getCodigo().toString().equals(codigoCliente)))) {
 			
-			mensagem = "TÌtulo de Eleitor j· cadastrado para o Cliente "
+			mensagem = "T√≠tulo de Eleitor j√° cadastrado para o Cliente "
 					+ clientePessoaFisica.getCliente().getNome() + ".";
 		}
 
@@ -240,9 +240,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC003] Inserir Contador
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	public void inserirContador(ContadorTO contadorTO) {
@@ -265,10 +265,10 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente cadastrados concatenando CPF /
+	 * M√©todo respons√°vel pesquisar os cliente cadastrados concatenando CPF /
 	 * CNPJ e nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return Usuario
@@ -333,9 +333,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -350,9 +350,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente
+	 * M√©todo respons√°vel pesquisar os cliente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return ClienteTO
@@ -363,9 +363,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	}
 
 	/**
-	 * [UC015] Inserir Empresa Cont·bil
+	 * [UC015] Inserir Empresa Cont√°bil
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 20/05/2013
@@ -385,9 +385,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC005] Inserir Usuario
 	 * 
-	 * MÈtodo respons·vel cadastrar um usuario
+	 * M√©todo respons√°vel cadastrar um usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 * */
 	public void inserirUsuario(UsuarioTO usuarioTO) {
@@ -405,18 +405,18 @@ public class ControladorCadastro implements IControladorCadastro {
 	}
 
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir Usu√°rio
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf) {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
-			mensagem = "DÌgito verificador do CPF n„o confere.";
+			mensagem = "D√≠gito verificador do CPF n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
@@ -424,7 +424,7 @@ public class ControladorCadastro implements IControladorCadastro {
 					Usuario.class, parametros);
 
 			if (usuario != null) {
-				mensagem = "CPF j· cadastrado para o Usu·rio "
+				mensagem = "CPF j√° cadastrado para o Usu√°rio "
 						+ usuario.getNome() + ".";
 			}
 		}
@@ -435,16 +435,16 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC003] Inserir Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf) {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
-			mensagem = "DÌgito verificador do CPF n„o confere.";
+			mensagem = "D√≠gito verificador do CPF n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
@@ -452,7 +452,7 @@ public class ControladorCadastro implements IControladorCadastro {
 					Contador.class, parametros);
 
 			if (contador != null) {
-				mensagem = "CPF j· cadastrado para o Contador "
+				mensagem = "CPF j√° cadastrado para o Contador "
 						+ contador.getNomeRazaoSocial() + ".";
 			}
 		}
@@ -463,7 +463,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar o CPF / CNPJ do cliente
+	 * M√©todo respons√°vel pesquisar o CPF / CNPJ do cliente
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -490,12 +490,12 @@ public class ControladorCadastro implements IControladorCadastro {
 	}
 
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir Usu√°rio
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar USUARIO
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar USUARIO
 	 * existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public Usuario verificarLoginUsuarioExistente(String login) {
@@ -512,9 +512,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC004] ManterContador
 	 * 
-	 * MÈtodo respons·vel atualizar uma receita
+	 * M√©todo respons√°vel atualizar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public void atualizarContador(ContadorTO contadorTO) {
@@ -534,9 +534,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf,
@@ -544,7 +544,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
-			mensagem = "DÌgito verificador do CPF n„o confere.";
+			mensagem = "D√≠gito verificador do CPF n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
@@ -553,7 +553,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 			if (contador != null
 					&& !contador.getCodigo().toString().equals(codigoContador)) {
-				mensagem = "CPF j· cadastrado para o Contador "
+				mensagem = "CPF j√° cadastrado para o Contador "
 						+ contador.getNomeRazaoSocial() + ".";
 			}
 		}
@@ -566,7 +566,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * 
 	 * [FS004] - Verificar numero CRC existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCRCExistenteContador(String crc,
@@ -580,7 +580,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		if (contador != null
 				&& !contador.getCodigo().toString().equals(codigoContador)) {
-			mensagem = "CRC j· cadastrado para o Contador "
+			mensagem = "CRC j√° cadastrado para o Contador "
 					+ contador.getNomeRazaoSocial() + ".";
 		}
 
@@ -590,7 +590,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente
 	 * 
-	 * MÈtodo respons·vel pesquisar a colecao de cliente
+	 * M√©todo respons√°vel pesquisar a colecao de cliente
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
@@ -649,9 +649,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC006] ManterUsuario
 	 * 
-	 * MÈtodo respons·vel atualizar uma usuario
+	 * M√©todo respons√°vel atualizar uma usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 * */
 	public void atualizarUsuario(UsuarioTO usuarioTO) {
@@ -670,9 +670,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC006] Manter Usuario
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf,
@@ -681,7 +681,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		String mensagem = null;
 
 		if (!Util.validacaoCPF(cpf)) {
-			mensagem = "DÌgito verificador do CPF n„o confere.";
+			mensagem = "D√≠gito verificador do CPF n√£o confere.";
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
@@ -690,7 +690,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 			if (usuario != null
 					&& !usuario.getCodigo().toString().equals(codigoUsuario)) {
-				mensagem = "CPF j· cadastrado para o Usu·rio "
+				mensagem = "CPF j√° cadastrado para o Usu√°rio "
 						+ usuario.getNome() + ".";
 			}
 		}
@@ -701,9 +701,9 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String validaIndicadorResponsavel(String indicadorResponsavel,
@@ -721,10 +721,10 @@ public class ControladorCadastro implements IControladorCadastro {
 			if (contador != null && codigoContador != null
 					&& !contador.getCodigo().toString().equals(codigoContador)) {
 				mensagem = "Contador " + contador.getNomeRazaoSocial()
-						+ " j· cadastrado como respons·vel.";
+						+ " j√° cadastrado como respons√°vel.";
 			} else if (contador != null) {
 				mensagem = "Contador " + contador.getNomeRazaoSocial()
-						+ " j· cadastrado como respons·vel.";
+						+ " j√° cadastrado como respons√°vel.";
 			}
 
 		}
@@ -735,7 +735,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -760,7 +760,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa jur√≠dica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -798,7 +798,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os usu·rios
+	 * M√©todo respons√°vel pesquisar os usu√°rios
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013

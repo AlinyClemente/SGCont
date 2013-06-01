@@ -14,7 +14,7 @@ import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.transferobject.ReceitaTO;
 
 /**
- * Controlador respons·vel pelas regras de negÛcio do mÛdulo operacional
+ * Controlador respons√°vel pelas regras de neg√≥cio do m√≥dulo operacional
  * */
 public class ControladorOperacional implements IControladorOperacional {
 
@@ -40,12 +40,12 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de despesa a partir da descriÁ„o
+	 * M√©todo respons√°vel pesquisar um tipo de despesa a partir da descri√ß√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
 	 * 
-	 * @param descriÁ„o
+	 * @param descri√ß√£o
 	 * @return TipoDespesa
 	 * */
 	public TipoDespesa pesquisarTipoDespesa(String descricao) {
@@ -57,7 +57,7 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel cadastrar uma despesa
+	 * M√©todo respons√°vel cadastrar uma despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 14/05/2013
@@ -76,9 +76,9 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -93,9 +93,9 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel cadastrar uma receita
+	 * M√©todo respons√°vel cadastrar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public void inserirReceita(ReceitaTO receitaTO) {
@@ -115,9 +115,9 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC012] Manter Receita
 	 * 
-	 * MÈtodo respons·vel atualizar uma receita
+	 * M√©todo respons√°vel atualizar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public void atualizarReceita(ReceitaTO receitaTO) {
@@ -136,7 +136,7 @@ public class ControladorOperacional implements IControladorOperacional {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel atualizar uma despesa
+	 * M√©todo respons√°vel atualizar uma despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013

@@ -40,7 +40,7 @@ public class EfetuarLoginManagedBean implements Serializable {
 	/**
 	 * [UC010] Efetuar Login
 	 * 
-	 * MÈtodo respons·vel por validar e efetuar o login
+	 * M√©todo respons√°vel por validar e efetuar o login
 	 * 
 	 * @author Mariana Victor
 	 * @since 21/03/2013
@@ -61,7 +61,7 @@ public class EfetuarLoginManagedBean implements Serializable {
 			
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
-					null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login/Senha inv·lido.", null));
+					null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login/Senha inv√°lido.", null));
 		}
 			
 		

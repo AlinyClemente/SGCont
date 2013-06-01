@@ -103,7 +103,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de manter despesa 
+	 * M√©todo respons√°vel por exibir a tela de manter despesa 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 23/05/2013
@@ -133,7 +133,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel por atualizar a despesa
+	 * M√©todo respons√°vel por atualizar a despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -152,7 +152,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	
 	public String remover(){
 		Map<String,String> parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		System.out.println("cÛdigo da despesa: " + new Integer(parametros.get("idDespesa")));
+		System.out.println("c√≥digo da despesa: " + new Integer(parametros.get("idDespesa")));
 		
 		Integer idDespesa = new Integer(parametros.get("idDespesa"));
 		
@@ -170,7 +170,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do tipo de despesa
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do tipo de despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
@@ -230,7 +230,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	}
 	
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -283,7 +283,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	
 	
 	/**
-	 * MÈtodo respons·vel por validar os dados da despesa
+	 * M√©todo respons√°vel por validar os dados da despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
@@ -296,14 +296,14 @@ public class ManterDespesaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"DescriÁ„o: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Descri√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (this.despesaTOSelecionada.getTipoDespesa() == null) {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Tipo de Despesa: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Tipo de Despesa: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (this.despesaTOSelecionada.getValor() == null
@@ -311,7 +311,7 @@ public class ManterDespesaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Valor: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Valor: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.despesaTOSelecionada.getDatadespesa() == null
@@ -319,7 +319,7 @@ public class ManterDespesaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Data de GeraÁ„o: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Data de Gera√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		return dadosValidos;
@@ -340,7 +340,7 @@ public class ManterDespesaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 
 		}else if(this.despesaTOSelecionada.getEmpresaContabil() != null 
@@ -348,7 +348,7 @@ public class ManterDespesaManagedBean implements Serializable {
 			
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 		}
 		return dadosValidos;

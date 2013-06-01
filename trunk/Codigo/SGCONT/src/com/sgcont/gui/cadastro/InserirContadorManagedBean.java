@@ -22,7 +22,7 @@ import com.sgcont.util.CepWebService;
 /**
  * [UC003] Inserir Contador
  * 
- * @author RÙmulo AurÈlio
+ * @author R√¥mulo Aur√©lio
  * @since 11/05/2013
  * */
 @ManagedBean(name = "InserirContadorBean")
@@ -51,7 +51,7 @@ public class InserirContadorManagedBean implements Serializable {
 	/**
 	 * [UC003] Inserir Contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	@SuppressWarnings("unchecked")
@@ -70,7 +70,7 @@ public class InserirContadorManagedBean implements Serializable {
 	/**
 	 * [UC003] Inserir Contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	public String cadastrar() {
@@ -93,13 +93,13 @@ public class InserirContadorManagedBean implements Serializable {
 
 		if (endereco == null || endereco.isEmpty()) {
 			verificarMensagemCampo(context, toValidate,
-					"EndereÁo: Erro de ValidaÁ„o: o valor È necess·rio.");
+					"Endere√ßo: Erro de Valida√ß√£o: o valor √© necess√°rio.");
 		}
 
 	}
 
 	/**
-	 * MÈtodo respons·vel por pesquisar o CEP a partir de um WebService
+	 * M√©todo respons√°vel por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Mariana Victor
 	 * @since 10/05/2013
@@ -124,7 +124,7 @@ public class InserirContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"CEP n„o encontrado", null));
+							"CEP n√£o encontrado", null));
 		}
 
 		return "";
@@ -132,8 +132,8 @@ public class InserirContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo e format·-los para
-	 * adicionar o endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo e format√°-los para
+	 * adicionar o endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -159,7 +159,7 @@ public class InserirContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -174,7 +174,7 @@ public class InserirContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Rua: Erro de validaÁ„o: o valor È necess·rio",
+							"Rua: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -185,7 +185,7 @@ public class InserirContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"N˙mero: Erro de validaÁ„o: o valor È necess·rio",
+							"N√∫mero: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -196,7 +196,7 @@ public class InserirContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Bairro: Erro de validaÁ„o: o valor È necess·rio",
+							"Bairro: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -207,7 +207,7 @@ public class InserirContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Cidade: Erro de validaÁ„o: o valor È necess·rio",
+							"Cidade: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -221,7 +221,7 @@ public class InserirContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"UF: Erro de validaÁ„o: o valor È necess·rio",
+									"UF: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -229,7 +229,7 @@ public class InserirContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o
 	 * campo validado
 	 * 
 	 * @author Mariana Victor
@@ -259,7 +259,7 @@ public class InserirContadorManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public List<EmpresaContabil> completaEmpresaContabil(String query) {
@@ -280,9 +280,9 @@ public class InserirContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public void validaCPF(FacesContext context, UIComponent toValidate,
@@ -296,9 +296,9 @@ public class InserirContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public void validaIndicadorResponsavel(FacesContext context,

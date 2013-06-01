@@ -26,7 +26,7 @@ import com.sgcont.util.CepWebService;
 /**
  * [UC004] ManterContador
  * 
- * @author RÙmulo AurÈlio
+ * @author R√¥mulo Aur√©lio
  * @since 25/05/2013
  * */
 @ManagedBean(name = "ManterContadorBean")
@@ -94,9 +94,9 @@ public class ManterContadorManagedBean implements Serializable {
 	/**
 	 * [UC004] ManterContador
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de cadastro da contador
+	 * M√©todo respons√°vel por exibir a tela de cadastro da contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	@SuppressWarnings("unchecked")
@@ -118,9 +118,9 @@ public class ManterContadorManagedBean implements Serializable {
 	/**
 	 * [UC004] ManterContador
 	 * 
-	 * MÈtodo respons·vel por cadastrar a contador
+	 * M√©todo respons√°vel por cadastrar a contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public String atualizar() {
@@ -139,7 +139,7 @@ public class ManterContadorManagedBean implements Serializable {
 	/**
 	 * [UC004] ManterContador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public List<EmpresaContabil> completaEmpresaContabil(String query) {
@@ -157,7 +157,7 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o
 	 * campo validado
 	 * 
 	 * @author Mariana Victor
@@ -202,7 +202,7 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por pesquisar o CEP a partir de um WebService
+	 * M√©todo respons√°vel por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Mariana Victor
 	 * @since 10/05/2013
@@ -227,7 +227,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"CEP n„o encontrado", null));
+							"CEP n√£o encontrado", null));
 		}
 
 		return "";
@@ -235,8 +235,8 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo e format·-los para
-	 * adicionar o endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo e format√°-los para
+	 * adicionar o endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -264,7 +264,7 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -279,7 +279,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Rua: Erro de validaÁ„o: o valor È necess·rio",
+							"Rua: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -290,7 +290,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"N˙mero: Erro de validaÁ„o: o valor È necess·rio",
+							"N√∫mero: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -301,7 +301,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Bairro: Erro de validaÁ„o: o valor È necess·rio",
+							"Bairro: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -312,7 +312,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Cidade: Erro de validaÁ„o: o valor È necess·rio",
+							"Cidade: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -326,7 +326,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"UF: Erro de validaÁ„o: o valor È necess·rio",
+									"UF: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -351,9 +351,9 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados da receita
+	 * M√©todo respons√°vel por validar os dados da receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 26/05/2013
 	 * */
 	private boolean validarDadosContadorSelecionada() {
@@ -366,7 +366,7 @@ public class ManterContadorManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"CPF: Erro de validaÁ„o: o valor È necess·rio",
+							"CPF: Erro de valida√ß√£o: o valor √© necess√°rio",
 							null));
 		}
 
@@ -380,7 +380,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"DescriÁ„o: Erro de validaÁ„o: o valor È necess·rio",
+									"Descri√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -394,7 +394,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"N˙mero do CRC: Erro de validaÁ„o: o valor È necess·rio",
+									"N√∫mero do CRC: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -408,7 +408,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"Telefone: Erro de validaÁ„o: o valor È necess·rio",
+									"Telefone: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -421,7 +421,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"Empresa Contabil: Erro de validaÁ„o: o valor È necess·rio",
+									"Empresa Contabil: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -436,7 +436,7 @@ public class ManterContadorManagedBean implements Serializable {
 							null,
 							new FacesMessage(
 									FacesMessage.SEVERITY_ERROR,
-									"Indicador de Respons·vel: Erro de validaÁ„o: o valor È necess·rio",
+									"Indicador de Respons√°vel: Erro de valida√ß√£o: o valor √© necess√°rio",
 									null));
 		}
 
@@ -472,9 +472,9 @@ public class ManterContadorManagedBean implements Serializable {
 	}
 
 	/**
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public boolean validaIndicadorResponsavel() {

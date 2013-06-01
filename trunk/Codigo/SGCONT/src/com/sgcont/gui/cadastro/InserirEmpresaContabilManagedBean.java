@@ -26,7 +26,7 @@ import com.sgcont.util.CepWebService;
 import com.sgcont.util.Util;
 
 /**
- * [UC015] Inserir Empresa Cont·bil
+ * [UC015] Inserir Empresa Cont√°bil
  * 
  * @author Vivianne Sousa
  * @since 07/05/2013
@@ -58,9 +58,9 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 	}
 
 	/**
-	 * [UC015] Inserir Empresa Cont·bil
+	 * [UC015] Inserir Empresa Cont√°bil
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de cadastro da empresa contabil 
+	 * M√©todo respons√°vel por exibir a tela de cadastro da empresa contabil 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 07/05/2013
@@ -74,9 +74,9 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 	}
 
 	/**
-	 * [UC015] Inserir Empresa Cont·bil
+	 * [UC015] Inserir Empresa Cont√°bil
 	 * 
-	 * MÈtodo respons·vel por cadastrar a empresa contabil
+	 * M√©todo respons√°vel por cadastrar a empresa contabil
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 07/05/2013
@@ -92,7 +92,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por pesquisar o CEP a partir de um WebService
+	 * M√©todo respons√°vel por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Mariana Victor
 	 * @since 10/05/2013
@@ -115,7 +115,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 			this.empresaContabilTO.setRua("");
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"CEP n„o encontrado", null));
+						FacesMessage.SEVERITY_ERROR,"CEP n√£o encontrado", null));
 		}
 		
 		return "";
@@ -123,7 +123,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo e format·-los para adicionar o endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo e format√°-los para adicionar o endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -150,7 +150,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -163,7 +163,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Rua: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Rua: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.empresaContabilTO.getNumeroEndereco() == null
@@ -171,7 +171,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"N˙mero: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"N√∫mero: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.empresaContabilTO.getBairro() == null
@@ -179,7 +179,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.empresaContabilTO.getCidade() == null
@@ -187,7 +187,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.empresaContabilTO.getEstado() == null
@@ -195,15 +195,15 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"UF: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"UF: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		return dadosValidos;
 	}
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CNPJ inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CNPJ inv√°lido
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 21/05/2013
@@ -217,7 +217,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
         String mensagem = Fachada.getInstance().verificarCNPJValidoExistente(cnpj, null);
         
 		if (!Util.validacaoCNPJ(cnpj)) {
-        	mensagem = "DÌgito verificador do CNPJ n„o confere.";
+        	mensagem = "D√≠gito verificador do CNPJ n√£o confere.";
         } else {
     		Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("cnpj", cnpj);
@@ -225,7 +225,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 					Fachada.getInstance().pesquisar(EmpresaContabil.class, parametros);
 			
 			if (empresaContabil != null) {
-				mensagem = "CNPJ j· cadastrado para a Empresa " + empresaContabil.getNomeFantasia() + ".";
+				mensagem = "CNPJ j√° cadastrado para a Empresa " + empresaContabil.getNomeFantasia() + ".";
 			}
 	    }
 		
@@ -233,7 +233,7 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
     }
 	
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013

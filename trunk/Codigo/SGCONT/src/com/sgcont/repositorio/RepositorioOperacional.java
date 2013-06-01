@@ -7,7 +7,7 @@ import com.sgcont.dados.operacional.TipoReceita;
 import com.sgcont.util.HibernateUtil;
 
 /**
- * RepositÛrio respons·vel pelas consultas do mÛdulo operacional
+ * Reposit√≥rio respons√°vel pelas consultas do m√≥dulo operacional
  * */
 public class RepositorioOperacional implements IRepositorioOperacional {
 
@@ -23,12 +23,12 @@ public class RepositorioOperacional implements IRepositorioOperacional {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de despesa a partir da descriÁ„o
+	 * M√©todo respons√°vel pesquisar um tipo de despesa a partir da descri√ß√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
 	 * 
-	 * @param descriÁ„o
+	 * @param descri√ß√£o
 	 * @return TipoDespesa
 	 * */
 	public TipoDespesa pesquisarTipoDespesa(String descricao) {
@@ -54,9 +54,9 @@ public class RepositorioOperacional implements IRepositorioOperacional {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
