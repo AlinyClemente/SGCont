@@ -72,7 +72,7 @@
 		    </p:layoutUnit>    
 			  
 				<p:dialog widgetVar="eventDialog" id="eventDialog" header="Detalhes do Compromisso" showEffect="clip" hideEffect="clip" 
-						 height="350" width="400" modal="true" >
+						 height="350" width="400" modal="true" onHide="myschedule.update();">
    					<p:messages id="mensagemDialog" showDetail="false" autoUpdate="true" closable="true" />  
 			        <h:panelGrid id="eventDetails" columns="2">
 			            <h:column>
