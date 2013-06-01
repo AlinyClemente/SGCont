@@ -123,7 +123,7 @@ public class ManterClienteManagedBean implements Serializable {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de manter cliente 
+	 * M√©todo respons√°vel por exibir a tela de manter cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -155,7 +155,7 @@ public class ManterClienteManagedBean implements Serializable {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel por atualziar a despesa
+	 * M√©todo respons√°vel por atualziar a despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -179,7 +179,7 @@ public class ManterClienteManagedBean implements Serializable {
 	
 	public String remover(){
 		Map<String,String> parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		System.out.println("cÛdigo do cliente: " + new Integer(parametros.get("idCliente")));
+		System.out.println("c√≥digo do cliente: " + new Integer(parametros.get("idCliente")));
 
 		Integer idCliente = new Integer(parametros.get("idCliente"));
 		
@@ -201,14 +201,14 @@ public class ManterClienteManagedBean implements Serializable {
         
         if (endereco == null
         		|| endereco.isEmpty()) {
-        	verificarMensagemCampo(context, toValidate, "EndereÁo: Erro de ValidaÁ„o: o valor È necess·rio.");
+        	verificarMensagemCampo(context, toValidate, "Endere√ßo: Erro de Valida√ß√£o: o valor √© necess√°rio.");
         }
 
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -225,8 +225,8 @@ public class ManterClienteManagedBean implements Serializable {
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CNPJ inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CNPJ inv√°lido
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -244,7 +244,7 @@ public class ManterClienteManagedBean implements Serializable {
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -259,7 +259,7 @@ public class ManterClienteManagedBean implements Serializable {
     } 
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -274,7 +274,7 @@ public class ManterClienteManagedBean implements Serializable {
     }
 
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -293,7 +293,7 @@ public class ManterClienteManagedBean implements Serializable {
 	} 
         
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do Cliente Titular
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do Cliente Titular
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -317,7 +317,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa da Profiss„o
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa da Profiss√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -340,7 +340,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa da Profiss„o
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa da Profiss√£o
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -363,7 +363,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do Cliente Matriz
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do Cliente Matriz
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -386,7 +386,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa de Bancos
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa de Bancos
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -408,7 +408,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por pesquisar o CEP a partir de um WebService
+	 * M√©todo respons√°vel por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -431,7 +431,7 @@ public class ManterClienteManagedBean implements Serializable {
 			this.clienteTOSelecionado.setRua("");
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"CEP n„o encontrado", null));
+						FacesMessage.SEVERITY_ERROR,"CEP n√£o encontrado", null));
 		}
 		
 		return "";
@@ -439,7 +439,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo e format·-los para adicionar o endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo e format√°-los para adicionar o endere√ßo
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -466,7 +466,7 @@ public class ManterClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -479,7 +479,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("messagesPopup", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Rua: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Rua: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTOSelecionado.getNumeroEndereco() == null
@@ -487,7 +487,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("messagesPopup", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"N˙mero: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"N√∫mero: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTOSelecionado.getBairro() == null
@@ -495,7 +495,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("messagesPopup", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTOSelecionado.getCidade() == null
@@ -503,7 +503,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("messagesPopup", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTOSelecionado.getEstado() == null
@@ -511,7 +511,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("messagesPopup", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"UF: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"UF: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		return dadosValidos;
@@ -519,7 +519,7 @@ public class ManterClienteManagedBean implements Serializable {
 	
 	
 	/**
-	 * MÈtodo respons·vel por validar os dados do cliente
+	 * M√©todo respons√°vel por validar os dados do cliente
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 28/05/2013
@@ -532,7 +532,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Nome: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Nome: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (this.clienteTOSelecionado.getNumeroTelefone() == null
@@ -540,7 +540,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Telefone: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Telefone: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (this.clienteTOSelecionado.getInscricaoMunicipal() == null
@@ -548,17 +548,17 @@ public class ManterClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"InscriÁ„o Municipal: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Inscri√ß√£o Municipal: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (this.clienteTOSelecionado.getIndicadorPessoaFisica().equals("1")) {
-			//PESSOA FÕSICA
+			//PESSOA F√≠sica
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getCpf() == null
 					|| this.clienteTOSelecionado.getClientePessoaFisicaTO().getCpf().equals("")) {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"CPF: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"CPF: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getRg() == null
@@ -566,7 +566,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"RG: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"RG: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getDataNascimento() == null
@@ -574,7 +574,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Data de Nascimento: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Data de Nascimento: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getSexo() == null
@@ -582,7 +582,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Sexo: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Sexo: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getIndicadorDeclaracaoIR() == null
@@ -590,14 +590,14 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"DeclaraÁ„o de IR: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Declara√ß√£o de IR: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getBanco() == null) {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Banco: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Banco: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getNumeroAgencia() == null
@@ -605,7 +605,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"N∫ da AgÍncia: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"N¬∫ da Ag√™ncia: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getNumeroConta() == null
@@ -613,17 +613,17 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"N∫ da Conta: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"N¬∫ da Conta: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 		} else {
-			//PESSOA JURÕDICA
+			//PESSOA Jur√≠dica
 			
 			if (this.clienteTOSelecionado.getClientePessoaJuridicaTO().getRazaoSocial() == null
 					|| this.clienteTOSelecionado.getClientePessoaJuridicaTO().getRazaoSocial().equals("")) {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Raz„o Social: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Raz√£o Social: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaJuridicaTO().getCnpj() == null
@@ -631,7 +631,7 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"CNPJ: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"CNPJ: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 		
 			if (this.clienteTOSelecionado.getClientePessoaJuridicaTO().getInscricaoEstadual() == null
@@ -639,14 +639,14 @@ public class ManterClienteManagedBean implements Serializable {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"InscriÁ„o Estadual: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Inscri√ß√£o Estadual: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 			
 			if (this.clienteTOSelecionado.getClientePessoaJuridicaTO().getContador() == null) {
 
 				dadosValidos = false;
 				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"Contador: Erro de validaÁ„o: o valor È necess·rio", null));
+						FacesMessage.SEVERITY_ERROR,"Contador: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			}
 		}
 		

@@ -8,14 +8,14 @@ import com.sgcont.dados.operacional.Compromisso;
 import com.sgcont.util.CompromissoEvent;
 
 /**
- * Interface do controlador respons·vel pelas regras de negÛcio do mÛdulo da agenda
+ * Interface do controlador respons√°vel pelas regras de neg√≥cio do m√≥dulo da agenda
  * */
 public interface IControladorAgenda {
 	
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os compromissos a partir do usu·rio
+	 * M√©todo respons√°vel pesquisar os compromissos a partir do usu√°rio
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -28,7 +28,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os respons·veis a partir do compromisso
+	 * M√©todo respons√°vel pesquisar os respons√°veis a partir do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -41,7 +41,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir ou atualizar o compromisso
+	 * M√©todo respons√°vel inserir ou atualizar o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -53,7 +53,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir um compromisso recorrente
+	 * M√©todo respons√°vel inserir um compromisso recorrente
 	 * 
 	 * @author Mariana Victor
 	 * @since 23/05/2013
@@ -67,7 +67,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por remover um compromisso
+	 * M√©todo respons√°vel por remover um compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -79,7 +79,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel mover o compromisso
+	 * M√©todo respons√°vel mover o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -91,7 +91,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os lembretes que ainda n„o foram enviados por email
+	 * M√©todo respons√°vel pesquisar os lembretes que ainda n√£o foram enviados por email
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -103,7 +103,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os dados do compromisso
+	 * M√©todo respons√°vel pesquisar os dados do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -115,7 +115,7 @@ public interface IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel por atualizar o lembrete
+	 * M√©todo respons√°vel por atualizar o lembrete
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -126,9 +126,9 @@ public interface IControladorAgenda {
 	
 	/**
 	 * [UC010] Informar Agenda
-	 * [FS0004] - Verificar respons·vel compromisso
+	 * [FS0004] - Verificar respons√°vel compromisso
 	 *  
-	 * MÈtodo respons·vel por verificar se o usu·rio È o respons·vel pelo compromisso
+	 * M√©todo respons√°vel por verificar se o usu√°rio √© o respons√°vel pelo compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013
@@ -142,8 +142,8 @@ public interface IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar compromissos associados a algum dos usu·rios 
-	 * no mesmo hor·rio do compromisso a ser inserido.
+	 * M√©todo respons√°vel pesquisar compromissos associados a algum dos usu√°rios 
+	 * no mesmo hor√°rio do compromisso a ser inserido.
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013

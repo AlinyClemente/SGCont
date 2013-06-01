@@ -16,7 +16,7 @@ import com.sgcont.transferobject.UsuarioTO;
 /**
  * [UC005] Inserir Usuario
  * 
- * @author RÙmulo AurÈlio
+ * @author R√¥mulo Aur√©lio
  * @since 21/05/2013
  * */
 @ManagedBean(name = "InserirUsuarioBean")
@@ -42,7 +42,7 @@ public class InserirUsuarioManagedBean implements Serializable {
 	/**
 	 * [UC003] Inserir Usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	public String cadastrar() {
@@ -61,7 +61,7 @@ public class InserirUsuarioManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o
 	 * campo validado
 	 * 
 	 * @author Mariana Victor
@@ -89,7 +89,7 @@ public class InserirUsuarioManagedBean implements Serializable {
 	}
 
 	/**
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -113,7 +113,7 @@ public class InserirUsuarioManagedBean implements Serializable {
 						this.usuarioTO.getLogin().toLowerCase());
 
 		if (usuarioExistente != null) {
-			String mensagem = "Login j· cadastrado para o Usu·rio "
+			String mensagem = "Login j√° cadastrado para o Usu√°rio "
 					+ usuarioExistente.getNome() + ".";
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(

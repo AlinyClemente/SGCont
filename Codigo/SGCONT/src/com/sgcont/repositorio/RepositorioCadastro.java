@@ -13,7 +13,7 @@ import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.util.HibernateUtil;
 
 /**
- * RepositÛrio respons·vel pelas consultas do mÛdulo de cadastro
+ * Reposit√≥rio respons√°vel pelas consultas do m√≥dulo de cadastro
  * */
 public class RepositorioCadastro implements IRepositorioCadastro {
 
@@ -29,7 +29,7 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC010] Efetuar Login
 	 * 
-	 * MÈtodo respons·vel pesquisar um usu·rio a partir do login e da senha
+	 * M√©todo respons√°vel pesquisar um usu√°rio a partir do login e da senha
 	 * 
 	 * @author Mariana Victor
 	 * @since 21/03/2013
@@ -62,7 +62,7 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os usu·rios
+	 * M√©todo respons√°vel pesquisar os usu√°rios
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -96,9 +96,9 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -127,9 +127,9 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * M√©todo respons√°vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return Usuario
@@ -180,9 +180,9 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente  
+	 * M√©todo respons√°vel pesquisar os cliente  
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return ClienteTO
@@ -216,7 +216,7 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar o CPF / CNPJ do cliente 
+	 * M√©todo respons√°vel pesquisar o CPF / CNPJ do cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013

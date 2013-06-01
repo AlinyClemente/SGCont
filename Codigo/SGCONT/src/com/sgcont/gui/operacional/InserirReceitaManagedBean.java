@@ -22,7 +22,7 @@ import com.sgcont.transferobject.ReceitaTO;
 /**
  * [UC011] Inserir Receita
  * 
- * @author RÙmulo AurÈlio
+ * @author R√¥mulo Aur√©lio
  * @since 23/04/2013
  * */
 @ManagedBean(name = "InserirReceitaBean")
@@ -77,7 +77,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -103,7 +103,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public String cadastrar() {
@@ -132,7 +132,7 @@ public class InserirReceitaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 
 		}else if(this.receitaTO.getEmpresaContabil() != null 
@@ -140,7 +140,7 @@ public class InserirReceitaManagedBean implements Serializable {
 			
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 		}
 		return dadosValidos;
@@ -149,7 +149,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public List<TipoReceita> completaTipoReceita(String query) {
@@ -170,7 +170,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public List<EmpresaContabil> completaEmpresaContabil(String query) {
@@ -191,7 +191,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 23/04/2013
 	 * */
 	public List<ClienteTO> completaCliente(String query) {
@@ -209,7 +209,7 @@ public class InserirReceitaManagedBean implements Serializable {
 	}
 	
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -234,7 +234,7 @@ public class InserirReceitaManagedBean implements Serializable {
 		if (this.receitaTO.getEmpresaContabil() == null 
 				&& this.receitaTO.getClienteTO() == null) {
 
-			mensagem = "Informe Cliente ou Empresa Cont·bil.";
+			mensagem = "Informe Cliente ou Empresa Cont√°bil.";
 			
 
 			verificarMensagemCampo(context, toValidate, mensagem);

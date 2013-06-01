@@ -22,7 +22,7 @@ import com.sgcont.util.ServicosEmail;
 import com.sgcont.util.Util;
 
 /**
- * Controlador respons·vel pelas regras de negÛcio do mÛdulo da agenda
+ * Controlador respons√°vel pelas regras de neg√≥cio do m√≥dulo da agenda
  * */
 public class ControladorAgenda implements IControladorAgenda {
 
@@ -48,7 +48,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os compromissos a partir do usu·rio
+	 * M√©todo respons√°vel pesquisar os compromissos a partir do usu√°rio
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -65,7 +65,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os respons·veis a partir do compromisso
+	 * M√©todo respons√°vel pesquisar os respons√°veis a partir do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -82,7 +82,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir ou atualizar o compromisso
+	 * M√©todo respons√°vel inserir ou atualizar o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -94,7 +94,7 @@ public class ControladorAgenda implements IControladorAgenda {
 		Compromisso compromisso = compromissoEvent.getCompromisso();
 		compromisso.setUltimaAlteracao(new Date());
 
-		// remove os dados j· associados para o compromisso
+		// remove os dados j√° associados para o compromisso
 		if (compromisso.getCodigo() != null) {
 
 			this.removerDadosDoCompromisso(compromisso);
@@ -120,7 +120,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir um compromisso recorrente
+	 * M√©todo respons√°vel inserir um compromisso recorrente
 	 * 
 	 * @author Mariana Victor
 	 * @since 23/05/2013
@@ -159,7 +159,7 @@ public class ControladorAgenda implements IControladorAgenda {
 				dataFimCompromisso = Util.adicionarNumeroSemanasDeUmaData(
 						dataFimCompromisso, 1);
 				break;
-			case 3: //mÍs(es)
+			case 3: //m√™s(es)
 				dataInicioCompromisso = Util.adicionarNumeroMesesDeUmaData(
 						dataInicioCompromisso, 1);
 				dataFimCompromisso = Util.adicionarNumeroMesesDeUmaData(
@@ -196,7 +196,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel inserir os usu·rios do compromisso
+	 * M√©todo respons√°vel inserir os usu√°rios do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 23/05/2013
@@ -223,7 +223,7 @@ public class ControladorAgenda implements IControladorAgenda {
 			}
 		}
 		
-		// insere o compromisso para o usu·rio que criou
+		// insere o compromisso para o usu√°rio que criou
 		CompromissoResponsavel compromissoResponsavel = new CompromissoResponsavel();
 		compromissoResponsavel.setCompromisso(compromisso);
 		compromissoResponsavel.setUsuario(usuarioLogado);
@@ -235,7 +235,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por inserir o lembrete do compromisso
+	 * M√©todo respons√°vel por inserir o lembrete do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 23/05/2013
@@ -277,7 +277,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por remover os dados relacionados ao compromisso
+	 * M√©todo respons√°vel por remover os dados relacionados ao compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 25/05/2013
@@ -329,7 +329,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por remover um compromisso
+	 * M√©todo respons√°vel por remover um compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -338,7 +338,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	 * */
 	public void removerCompromisso(Compromisso compromisso, Usuario usuarioLogado) {
 		
-		// [FS0004] - Verificar respons·vel compromisso
+		// [FS0004] - Verificar respons√°vel compromisso
 		if (this.verificarUsuarioResponsavelCompromisso(compromisso.getCodigo(), usuarioLogado.getCodigo())) {
 			
 			Integer idCompromissoPrincipal = this.removerDadosDoCompromisso(compromisso);
@@ -358,7 +358,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel por remover um compromisso de um usu·rio que n„o È o respons·vel
+	 * M√©todo respons√°vel por remover um compromisso de um usu√°rio que n√£o √© o respons√°vel
 	 * 
 	 * @author Mariana Victor
 	 * @since 30/05/2013
@@ -376,7 +376,7 @@ public class ControladorAgenda implements IControladorAgenda {
 			compromissoPrincipal = compromisso;
 		}
 		
-		//remove associaÁ„o ao compromisso principal
+		//remove associa√ß√£o ao compromisso principal
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuario.codigo", usuarioLogado.getCodigo());
 		parametros.put("compromisso.codigo", compromissoPrincipal.getCodigo());
@@ -394,7 +394,7 @@ public class ControladorAgenda implements IControladorAgenda {
 			while(iterator.hasNext()) {
 				Compromisso compromissoRecorrente = (Compromisso) iterator.next();
 
-				//remove associaÁ„o aos compromissos recorrentes
+				//remove associa√ß√£o aos compromissos recorrentes
 				parametros = new HashMap<String, Object>();
 				parametros.put("usuario.codigo", usuarioLogado.getCodigo());
 				parametros.put("compromisso.codigo", compromissoRecorrente.getCodigo());
@@ -403,15 +403,15 @@ public class ControladorAgenda implements IControladorAgenda {
 		}
 
 		String assunto = "[SGCONT] Aviso: " + usuarioLogado.getNome() 
-				+ " n„o participar· do compromisso " + compromissoPrincipal.getDescricaoCompromisso();
+				+ " n√£o participar√° do compromisso " + compromissoPrincipal.getDescricaoCompromisso();
 		
 //		String mensagem = "<h1>" + compromissoPrincipal.getDescricaoCompromisso() + "</h1>"
 //				+ "<h2>Data: " + Util.formatarDataComHora(compromissoPrincipal.getDataInicioCompromisso()) + "</h2>";
 
-		String mensagem = "<h2>O usu·rio " + usuarioLogado.getNome() 
-				+ " n„o participar· do compromisso " + compromissoPrincipal.getDescricaoCompromisso() 
+		String mensagem = "<h2>O usu√°rio " + usuarioLogado.getNome() 
+				+ " n√£o participar√° do compromisso " + compromissoPrincipal.getDescricaoCompromisso() 
 				+ " no dia " + Util.formatarData(compromissoPrincipal.getDataInicioCompromisso()) 
-				+ " ‡s " + Util.formatarHoraSemData(compromissoPrincipal.getDataInicioCompromisso())
+				+ " √†s " + Util.formatarHoraSemData(compromissoPrincipal.getDataInicioCompromisso())
 				+ ".</h2>";
 		
 		Object[] dadosUsuarioResponsavel = this.repositorioAgenda.pesquisarUsuarioResponsavelCompromisso(
@@ -431,7 +431,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel mover o compromisso
+	 * M√©todo respons√°vel mover o compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 26/05/2013
@@ -443,7 +443,7 @@ public class ControladorAgenda implements IControladorAgenda {
 		Compromisso compromisso = compromissoEvent.getCompromisso();
 		compromisso.setUltimaAlteracao(new Date());
 
-		// remove o lembrete e os usu·rios j· associados para o compromisso
+		// remove o lembrete e os usu√°rios j√° associados para o compromisso
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("compromisso.codigo", compromisso.getCodigo());
 		this.repositorioUtil.remover(Lembrete.class, parametros);
@@ -463,7 +463,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os lembretes que ainda n„o foram enviados por email
+	 * M√©todo respons√°vel pesquisar os lembretes que ainda n√£o foram enviados por email
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -479,7 +479,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel pesquisar os dados do compromisso
+	 * M√©todo respons√°vel pesquisar os dados do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -495,7 +495,7 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC007] Enviar E-mail Lembrete Compromisso
 	 * 
-	 * MÈtodo respons·vel por atualizar o lembrete
+	 * M√©todo respons√°vel por atualizar o lembrete
 	 * 
 	 * @author Mariana Victor
 	 * @since 29/05/2013
@@ -510,9 +510,9 @@ public class ControladorAgenda implements IControladorAgenda {
 	
 	/**
 	 * [UC010] Informar Agenda
-	 * [FS0004] - Verificar respons·vel compromisso
+	 * [FS0004] - Verificar respons√°vel compromisso
 	 *  
-	 * MÈtodo respons·vel por verificar se o usu·rio È o respons·vel pelo compromisso
+	 * M√©todo respons√°vel por verificar se o usu√°rio √© o respons√°vel pelo compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013
@@ -530,8 +530,8 @@ public class ControladorAgenda implements IControladorAgenda {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar compromissos associados a algum dos usu·rios 
-	 * no mesmo hor·rio do compromisso a ser inserido.
+	 * M√©todo respons√°vel pesquisar compromissos associados a algum dos usu√°rios 
+	 * no mesmo hor√°rio do compromisso a ser inserido.
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013

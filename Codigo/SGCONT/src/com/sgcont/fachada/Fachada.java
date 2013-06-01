@@ -492,7 +492,7 @@ public class Fachada {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -505,7 +505,7 @@ public class Fachada {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa jur√≠dica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -727,9 +727,9 @@ public class Fachada {
 	
 	/**
 	 * [UC010] Informar Agenda
-	 * [FS0004] - Verificar respons·vel compromisso
+	 * [FS0004] - Verificar respons√°vel compromisso
 	 *  
-	 * MÈtodo respons·vel por verificar se o usu·rio È o respons·vel pelo compromisso
+	 * M√©todo respons√°vel por verificar se o usu√°rio √© o respons√°vel pelo compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013
@@ -747,8 +747,8 @@ public class Fachada {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar compromissos associados a algum dos usu·rios 
-	 * no mesmo hor·rio do compromisso a ser inserido.
+	 * M√©todo respons√°vel pesquisar compromissos associados a algum dos usu√°rios 
+	 * no mesmo hor√°rio do compromisso a ser inserido.
 	 * 
 	 * @author Mariana Victor
 	 * @since 31/05/2013

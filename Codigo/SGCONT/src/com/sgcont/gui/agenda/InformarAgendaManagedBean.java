@@ -75,7 +75,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por exibir a tela de informar agenda 
+	 * M√©todo respons√°vel por exibir a tela de informar agenda 
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -98,7 +98,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}	
 
 	/**
-	 * MÈtodo respons·vel por exibir a tela de informar agenda na tela inicial 
+	 * M√©todo respons√°vel por exibir a tela de informar agenda na tela inicial 
 	 * 
 	 * @author Mariana Victor
 	 * @since 30/05/2013
@@ -112,7 +112,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por adicionar um evento 
+	 * M√©todo respons√°vel por adicionar um evento 
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -154,7 +154,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por remover um evento
+	 * M√©todo respons√°vel por remover um evento
 	 * 
 	 * @author Mariana Victor
 	 * @since 25/05/2013
@@ -173,7 +173,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por selecionar um evento
+	 * M√©todo respons√°vel por selecionar um evento
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -184,7 +184,7 @@ public class InformarAgendaManagedBean implements Serializable {
 
 
 	/**
-	 * MÈtodo respons·vel por criar um evento 
+	 * M√©todo respons√°vel por criar um evento 
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -194,7 +194,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}  
 
 	/**
-	 * MÈtodo respons·vel por mover um evento 
+	 * M√©todo respons√°vel por mover um evento 
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -215,7 +215,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}  
 
 	/**
-	 * MÈtodo respons·vel por redmensionar um evento 
+	 * M√©todo respons√°vel por redmensionar um evento 
 	 * 
 	 * @author Mariana Victor
 	 * @since 14/04/2013
@@ -236,7 +236,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}  
 	  
 	/**
-	 * MÈtodo respons·vel inserir os compromissos recorrentes 
+	 * M√©todo respons√°vel inserir os compromissos recorrentes 
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -267,7 +267,7 @@ public class InformarAgendaManagedBean implements Serializable {
 	}  
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do compromisso
+	 * M√©todo respons√°vel por validar os dados do compromisso
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
@@ -282,26 +282,26 @@ public class InformarAgendaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"DescriÁ„o: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Descri√ß√£o: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}		
 		if (compromissoEvent.getStartDate() == null) {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Data InÌcio: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Data In√≠cio: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}		
 		if (compromissoEvent.getEndDate() == null) {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Data Fim: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Data Fim: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}	
 		if (compromissoEvent.getIndicadorUsarLembrete() == null
 				|| compromissoEvent.getIndicadorUsarLembrete().isEmpty()) {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Usar lembrete: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Usar lembrete: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			
 		} else if (compromissoEvent.getIndicadorUsarLembrete().trim().equals("1")
 				&& (compromissoEvent.getTempoLembrete() == null
@@ -309,14 +309,14 @@ public class InformarAgendaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Lembrete: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Lembrete: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		if (compromissoEvent.getIndicadorCompromissoRecorrente() == null
 				|| compromissoEvent.getIndicadorCompromissoRecorrente().isEmpty()) {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Compromisso Recorrente: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Compromisso Recorrente: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 			
 		} else if (compromissoEvent.getIndicadorCompromissoRecorrente().trim().equals("1")
 				&& (compromissoEvent.getQuantidade() == null
@@ -324,7 +324,7 @@ public class InformarAgendaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"RepetiÁ„o do Compromisso: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Repeti√ß√£o do Compromisso: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		if (compromissoEvent.getStartDate() != null
@@ -344,14 +344,14 @@ public class InformarAgendaManagedBean implements Serializable {
 			Object[] dados = (Object[]) colecaoDados.iterator().next();
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemDialog", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Usu·rio " + dados[0] + " j· possui o compromisso " + dados[1] + " no mesmo hor·rio.", null));
+					FacesMessage.SEVERITY_ERROR,"Usu√°rio " + dados[0] + " j√° possui o compromisso " + dados[1] + " no mesmo hor√°rio.", null));
 		}
 		
 		return dadosValidos;
 	}
 
 	/**
-	 * MÈtodo respons·vel por carregar os dados dos compromissos
+	 * M√©todo respons√°vel por carregar os dados dos compromissos
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013

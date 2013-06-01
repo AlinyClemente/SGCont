@@ -79,7 +79,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel por exibir a tela de cadastro da despesa 
+	 * M√©todo respons√°vel por exibir a tela de cadastro da despesa 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 23/04/2013
@@ -107,7 +107,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel por cadastrar a despesa
+	 * M√©todo respons√°vel por cadastrar a despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 23/04/2013
@@ -127,7 +127,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	/**
 	 * [UC013] Inserir Despesa
 	 * 
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do tipo de despesa
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do tipo de despesa
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 13/05/2013
@@ -187,7 +187,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	}
 	
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -221,7 +221,7 @@ public class InserirDespesaManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 
 		}else if(this.despesaTO.getEmpresaContabil() != null 
@@ -229,7 +229,7 @@ public class InserirDespesaManagedBean implements Serializable {
 			
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage("mensagemValidacao", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont·bil ou Cliente", null));
+					FacesMessage.SEVERITY_ERROR,"Informe Empresa Cont√°bil ou Cliente", null));
 		
 		}
 		return dadosValidos;

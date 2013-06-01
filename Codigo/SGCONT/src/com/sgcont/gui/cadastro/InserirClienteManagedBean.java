@@ -129,7 +129,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por exibir a tela de cadastro do cliente 
+	 * M√©todo respons√°vel por exibir a tela de cadastro do cliente 
 	 * 
 	 * @author Mariana Victor
 	 * @since 11/04/2013
@@ -169,7 +169,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por cadastrar o cliente
+	 * M√©todo respons√°vel por cadastrar o cliente
 	 * 
 	 * @author Mariana Victor
 	 * @since 11/04/2013
@@ -197,14 +197,14 @@ public class InserirClienteManagedBean implements Serializable {
         
         if (endereco == null
         		|| endereco.isEmpty()) {
-        	verificarMensagemCampo(context, toValidate, "EndereÁo: Erro de ValidaÁ„o: o valor È necess·rio.");
+        	verificarMensagemCampo(context, toValidate, "Endere√ßo: Erro de Valida√ß√£o: o valor √© necess√°rio.");
         }
 
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -220,8 +220,8 @@ public class InserirClienteManagedBean implements Serializable {
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CNPJ inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CNPJ inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -238,7 +238,7 @@ public class InserirClienteManagedBean implements Serializable {
     }
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -252,7 +252,7 @@ public class InserirClienteManagedBean implements Serializable {
     } 
 	
 	/** 
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -266,7 +266,7 @@ public class InserirClienteManagedBean implements Serializable {
     }
 
 	/** 
-	 * MÈtodo respons·vel por verificar se deve ser exibida mensagem para o campo validado
+	 * M√©todo respons√°vel por verificar se deve ser exibida mensagem para o campo validado
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -285,7 +285,7 @@ public class InserirClienteManagedBean implements Serializable {
 	} 
         
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do Cliente Titular
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do Cliente Titular
 	 * 
 	 * @author Mariana Victor
 	 * @since 09/05/2013
@@ -309,7 +309,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa da Profiss„o
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa da Profiss√£o
 	 * 
 	 * @author Mariana Victor
 	 * @since 09/05/2013
@@ -332,7 +332,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa da Profiss„o
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa da Profiss√£o
 	 * 
 	 * @author Mariana Victor
 	 * @since 09/05/2013
@@ -355,7 +355,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa do Cliente Matriz
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa do Cliente Matriz
 	 * 
 	 * @author Mariana Victor
 	 * @since 11/05/2013
@@ -378,7 +378,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por filtrar os resultados da pesquisa de Bancos
+	 * M√©todo respons√°vel por filtrar os resultados da pesquisa de Bancos
 	 * 
 	 * @author Mariana Victor
 	 * @since 18/05/2013
@@ -400,7 +400,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 	
 	/**
-	 * MÈtodo respons·vel por pesquisar o CEP a partir de um WebService
+	 * M√©todo respons√°vel por pesquisar o CEP a partir de um WebService
 	 * 
 	 * @author Mariana Victor
 	 * @since 10/05/2013
@@ -423,7 +423,7 @@ public class InserirClienteManagedBean implements Serializable {
 			this.clienteTO.setRua("");
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,"CEP n„o encontrado", null));
+						FacesMessage.SEVERITY_ERROR,"CEP n√£o encontrado", null));
 		}
 		
 		return "";
@@ -431,7 +431,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo e format·-los para adicionar o endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo e format√°-los para adicionar o endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -458,7 +458,7 @@ public class InserirClienteManagedBean implements Serializable {
 	}
 
 	/**
-	 * MÈtodo respons·vel por validar os dados do endereÁo
+	 * M√©todo respons√°vel por validar os dados do endere√ßo
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -471,7 +471,7 @@ public class InserirClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Rua: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Rua: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTO.getNumeroEndereco() == null
@@ -479,7 +479,7 @@ public class InserirClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"N˙mero: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"N√∫mero: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTO.getBairro() == null
@@ -487,7 +487,7 @@ public class InserirClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Bairro: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTO.getCidade() == null
@@ -495,7 +495,7 @@ public class InserirClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Cidade: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 
 		if (this.clienteTO.getEstado() == null
@@ -503,7 +503,7 @@ public class InserirClienteManagedBean implements Serializable {
 
 			dadosValidos = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,"Estado: Erro de validaÁ„o: o valor È necess·rio", null));
+					FacesMessage.SEVERITY_ERROR,"Estado: Erro de valida√ß√£o: o valor √© necess√°rio", null));
 		}
 		
 		return dadosValidos;

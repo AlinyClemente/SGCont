@@ -12,14 +12,14 @@ import com.sgcont.transferobject.EmpresaContabilTO;
 import com.sgcont.transferobject.UsuarioTO;
 
 /**
- * Interface do controlador respons·vel pelas regras de negÛcio do mÛdulo de cadastro
+ * Interface do controlador respons√°vel pelas regras de neg√≥cio do m√≥dulo de cadastro
  * */
 public interface IControladorCadastro {
 
 	/**
 	 * [UC010] Efetuar Login
 	 * 
-	 * MÈtodo respons·vel pesquisar um usu·rio a partir do login e da senha
+	 * M√©todo respons√°vel pesquisar um usu√°rio a partir do login e da senha
 	 * 
 	 * @author Mariana Victor
 	 * @since 21/03/2013
@@ -28,9 +28,9 @@ public interface IControladorCadastro {
 	
 	/**
 	 * [UC001] Inserir Cliente 
-	 * 2.1.1.	Caso o usu·rio escolha Pessoa FÌsica
+	 * 2.1.1.	Caso o usu√°rio escolha Pessoa F√≠sica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -39,9 +39,9 @@ public interface IControladorCadastro {
 	
 	/**
 	 * [UC001] Inserir Cliente 
-	 * 2.1.2.	Caso o usu·rio escolha Pessoa JurÌdica
+	 * 2.1.2.	Caso o usu√°rio escolha Pessoa Jur√≠dica
 	 * 
-	 * MÈtodo respons·vel cadastrar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel cadastrar um cliente do tipo pessoa jur√≠dica
 	 * 
 	 * @author Mariana Victor
 	 * @since 19/04/2013
@@ -51,8 +51,8 @@ public interface IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS004] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS004] - Verificar CPF inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -62,8 +62,8 @@ public interface IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CNPJ inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CNPJ inv√°lido
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -73,7 +73,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -83,7 +83,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC001] Inserir Cliente
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
+	 * [FS0002] - Verificar exist√™ncia de dados
 	 * 
 	 * @author Mariana Victor
 	 * @since 13/05/2013
@@ -94,9 +94,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar um tipo de receita a partir do nome
+	 * M√©todo respons√°vel pesquisar um tipo de receita a partir do nome
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 * 
 	 * @param nome
@@ -107,9 +107,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC006] Inserir Contador 
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 11/05/2013
 	 * */
 	public void inserirContador(ContadorTO contadorTO);
@@ -117,9 +117,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
+	 * M√©todo respons√°vel pesquisar os cliente cadastrados concatenando CPF / CNPJ e  nome 
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return Usuario
@@ -130,9 +130,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC011] Inserir Receita
 	 * 
-	 * MÈtodo respons·vel pesquisar os cliente  
+	 * M√©todo respons√°vel pesquisar os cliente  
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 07/05/2013
 	 * 
 	 * @return ClienteTO
@@ -142,20 +142,20 @@ public interface IControladorCadastro {
 	/**
 	 * [UC005] Inserir Usuario 
 	 * 
-	 * MÈtodo respons·vel cadastrar um usuario
+	 * M√©todo respons√°vel cadastrar um usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 * */
 	public void inserirUsuario(UsuarioTO usuarioTO);
 	
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir Usu√°rio
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 13/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf);
@@ -163,18 +163,18 @@ public interface IControladorCadastro {
 	/**
 	 * [UC003] Inserir Contador
 	 *  
-	 * [FS0002] - Verificar existÍncia de dados
-	 * [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados
+	 * [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 21/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf);
 	
 	/**
-	 * [UC015] Inserir Empresa Cont·bil 
+	 * [UC015] Inserir Empresa Cont√°bil 
 	 * 
-	 * MÈtodo respons·vel cadastrar um contador
+	 * M√©todo respons√°vel cadastrar um contador
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 20/05/2013
@@ -184,7 +184,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC014] Manter Despesa
 	 * 
-	 * MÈtodo respons·vel pesquisar o CPF / CNPJ do cliente 
+	 * M√©todo respons√°vel pesquisar o CPF / CNPJ do cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
@@ -194,12 +194,12 @@ public interface IControladorCadastro {
 	public ClienteTO pesquisarDocumentoCliente(ClienteTO clienteTO);
 	
 	/**
-	 * [UC005] Inserir Usu·rio
+	 * [UC005] Inserir Usu√°rio
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS004] - Verificar USUARIO
+	 * [FS0002] - Verificar exist√™ncia de dados [FS004] - Verificar USUARIO
 	 * existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public Usuario verificarLoginUsuarioExistente(String login) ;
@@ -207,9 +207,9 @@ public interface IControladorCadastro {
 	/**
 	* [UC004] ManterContador
 	 * 
-	 * MÈtodo respons·vel atualizar uma receita
+	 * M√©todo respons√°vel atualizar uma receita
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 * */
 	public void atualizarContador(ContadorTO contadorTO);
@@ -217,9 +217,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCPFValidoExistenteContador(String cpf, String codigoContador);
@@ -230,7 +230,7 @@ public interface IControladorCadastro {
 	 * 
 	 * [FS004] - Verificar numero CRC existente
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String verificarCRCExistenteContador(String crc, String codigoContador);
@@ -238,7 +238,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel pesquisar a colecao de cliente 
+	 * M√©todo respons√°vel pesquisar a colecao de cliente 
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
@@ -248,7 +248,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa fÌsica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa f√≠sica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -258,7 +258,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC002] Manter Cliente 
 	 * 
-	 * MÈtodo respons·vel atualizar um cliente do tipo pessoa jurÌdica
+	 * M√©todo respons√°vel atualizar um cliente do tipo pessoa jur√≠dica
 	 * 
 	 * @author Vivianne Sousa
 	 * @since 27/05/2013
@@ -276,9 +276,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC006] Manter Usuario
 	 * 
-	 * MÈtodo respons·vel atualizar uma usuario
+	 * M√©todo respons√°vel atualizar uma usuario
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 * */
 	public void atualizarUsuario(UsuarioTO usuarioTO);
@@ -286,9 +286,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC006] Manter Usuario
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 27/05/2013
 	 */
 	public String verificarCPFValidoExistenteUsuario(String cpf, String codigoUsuario);
@@ -296,9 +296,9 @@ public interface IControladorCadastro {
 	/**
 	 * [UC004] Manter Contador
 	 * 
-	 * [FS0002] - Verificar existÍncia de dados [FS003] - Verificar CPF inv·lido
+	 * [FS0002] - Verificar exist√™ncia de dados [FS003] - Verificar CPF inv√°lido
 	 * 
-	 * @author RÙmulo AurÈlio
+	 * @author R√¥mulo Aur√©lio
 	 * @since 25/05/2013
 	 */
 	public String validaIndicadorResponsavel(String indicadorResponsavel,
@@ -306,7 +306,7 @@ public interface IControladorCadastro {
 	/**
 	 * [UC010] Informar Agenda
 	 * 
-	 * MÈtodo respons·vel pesquisar os usu·rios
+	 * M√©todo respons√°vel pesquisar os usu√°rios
 	 * 
 	 * @author Mariana Victor
 	 * @since 22/05/2013
