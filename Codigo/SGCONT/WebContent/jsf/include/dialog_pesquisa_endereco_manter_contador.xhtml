@@ -34,7 +34,7 @@
 				<h:column> <h:outputLabel for="numero" value="Número:"/><font color="#FF0000">*</font></h:column>
 			    <p:inputText value="#{ManterContadorBean.contadorTOSelecionada.numeroEndereco}" 
 			    			id="numeroEndereco" required="false" label="Número" 
-			    			size="10" maxlength="7" />
+			    			size="10" maxlength="7" onkeyup="formatarCampoNumerico(this);"/>
 				
 				<h:outputLabel for="complemento" value="Complemento:"/>
 			    <p:inputText value="#{ManterContadorBean.contadorTOSelecionada.complemento}" 
