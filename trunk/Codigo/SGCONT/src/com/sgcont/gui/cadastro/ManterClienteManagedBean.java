@@ -162,7 +162,7 @@ public class ManterClienteManagedBean implements Serializable {
 	 * */
 	public String atualizar() {
 		
-		if(validarDadosClienteSelecionado()){
+		if(validarDadosClienteSelecionado() && validarClienteTitularOuClienteMatrizSelecionado()){
 			Fachada fachada = Fachada.getInstance();
 			if (this.clienteTOSelecionado.getIndicadorPessoaFisica().equals("1")) {
 				fachada.atualizarClientePF(this.clienteTOSelecionado);
@@ -179,7 +179,6 @@ public class ManterClienteManagedBean implements Serializable {
 	
 	public String remover(){
 		Map<String,String> parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		System.out.println("código do cliente: " + new Integer(parametros.get("idCliente")));
 
 		Integer idCliente = new Integer(parametros.get("idCliente"));
 		
@@ -653,5 +652,40 @@ public class ManterClienteManagedBean implements Serializable {
 		return dadosValidos;
 	}
 
+	/**
+	 * M�todo respons�vel por validar os dados do cliente
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 31/05/2013
+	 * */
+	private boolean validarClienteTitularOuClienteMatrizSelecionado() {
+		boolean dadosValidos = true;
+				
+		if (this.clienteTOSelecionado.getIndicadorPessoaFisica().equals("1")) {
+			//PESSOA FÍSICA
+			if (this.clienteTOSelecionado.getClientePessoaFisicaTO().getClienteTitular() != null
+			 && this.clienteTOSelecionado.getClientePessoaFisicaTO().getClienteTitular().getCodigo()
+			 	.equals(new Integer(this.clienteTOSelecionado.getCodigo()))) {
+
+				dadosValidos = false;
+				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,"Cliente Titular para IR: Erro de validação: Cliente Titular para IR não pode ser igual ao cliente selecionado", null));
+			}
+			
+		} else {
+			//PESSOA JURÍDICA
+			if (this.clienteTOSelecionado.getClientePessoaJuridicaTO().getClienteMatriz() != null
+			 && this.clienteTOSelecionado.getClientePessoaJuridicaTO().getClienteMatriz().getCodigo()
+					.equals(new Integer(this.clienteTOSelecionado.getCodigo()))) {
+
+				dadosValidos = false;
+				FacesContext.getCurrentInstance().addMessage("mensagemCliente", new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,"Cliente Matriz: Erro de validação: Cliente Matriz não pode ser igual ao cliente selecionado", null));
+			}
+
+		}
+		
+		return dadosValidos;
+	}
 
 }
