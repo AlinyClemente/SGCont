@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,8 @@ import javax.persistence.Table;
 public class TipoDespesa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="operacional.seq_tipo_despesa")
+	@SequenceGenerator(name="operacional.seq_tipo_despesa", sequenceName="operacional.seq_tipo_despesa")
 	@Column(name="cdtipodespesa", nullable=false)
 	private Integer codigo;
 	

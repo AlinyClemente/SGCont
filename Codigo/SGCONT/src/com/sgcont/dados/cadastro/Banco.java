@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,8 @@ import javax.persistence.Table;
 public class Banco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_banco")
+	@SequenceGenerator(name="cadastro.seq_banco", sequenceName="cadastro.seq_banco")
 	@Column(name="cdBanco", nullable=false)
 	private Integer codigo;
 

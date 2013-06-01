@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,8 @@ import javax.persistence.Table;
 public class Contador {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_contador")
+	@SequenceGenerator(name="cadastro.seq_contador", sequenceName="cadastro.seq_contador")
 	@Column(name="cdcontador", nullable=false)
 	private Integer codigo;
 	

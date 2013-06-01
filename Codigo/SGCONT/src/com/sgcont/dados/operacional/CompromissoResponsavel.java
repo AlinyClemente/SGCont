@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.sgcont.dados.cadastro.Usuario;
@@ -18,7 +19,8 @@ import com.sgcont.dados.cadastro.Usuario;
 public class CompromissoResponsavel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="operacional.seq_compromisso_responsaveis")
+	@SequenceGenerator(name="operacional.seq_compromisso_responsaveis", sequenceName="operacional.seq_compromisso_responsaveis")
 	@Column(name="cdcompresponsaveis", nullable=false)
 	private Integer codigo;
 

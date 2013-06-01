@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.sgcont.dados.cadastro.Cliente;
@@ -28,7 +29,8 @@ public class Receita implements Serializable{
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="operacional.seq_receita")
+	@SequenceGenerator(name="operacional.seq_receita", sequenceName="operacional.seq_receita")
 	@Column(name="codigo", nullable=false)
 	private Integer codigo;
 	

@@ -42,7 +42,7 @@
 	        	<h:outputLabel for="name" value="Usuário: #{sessionScope.usuarioLogado.nome}" style="font-weight:bold"/>  
 		    </h:panelGrid>
 		    <h:panelGrid>
-		        <p:commandButton value="Sair" action="#{LogoutBean.efetuarLogout}" icon="ui-icon-close" ajax="false"/>  
+		        <p:commandButton value="Sair" action="#{LogoutBean.efetuarLogout}" icon="ui-icon-close" ajax="false" immediate="true"/>  
 			</h:panelGrid> 
     </p:layoutUnit>  
 </html>
