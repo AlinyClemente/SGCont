@@ -36,6 +36,7 @@ public class ReceitaTO implements Serializable {
 
 	private String indicadorUso;
 
+	@SuppressWarnings("unused")
 	private Receita receita = new Receita();
 
 	public String getDescricao() {

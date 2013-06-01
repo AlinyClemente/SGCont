@@ -108,6 +108,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	 * @author Vivianne Sousa
 	 * @since 23/05/2013
 	 * */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String exibirManterDespesa() {
 		
 		this.despesaTOSelecionada = new DespesaTO();
@@ -234,6 +235,7 @@ public class ManterDespesaManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
+	@SuppressWarnings("unused")
 	private void verificarMensagemCampo(FacesContext context,
 			UIComponent toValidate, String mensagem) {
 		if (mensagem != null) {
@@ -248,10 +250,12 @@ public class ManterDespesaManagedBean implements Serializable {
 	} 
 	
 	
+	@SuppressWarnings("rawtypes")
 	private Collection pesquisarColecaoDespesaTO(){
 
 		Collection<DespesaTO> colecaoDespesaTO = null;
 		Fachada fachada = Fachada.getInstance();
+		@SuppressWarnings("unchecked")
 		Collection<Despesa> colecaoDespesa = (Collection<Despesa>)fachada.pesquisar(Despesa.class);
 
 		if(colecaoDespesa != null && !colecaoDespesa.isEmpty()){

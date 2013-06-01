@@ -15,8 +15,6 @@ import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Usuario;
-import com.sgcont.dados.operacional.Compromisso;
-import com.sgcont.dados.operacional.Despesa;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.repositorio.IRepositorioCadastro;
 import com.sgcont.repositorio.IRepositorioUtil;
@@ -275,8 +273,10 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * 
 	 * @return Usuario
 	 * */
+	@SuppressWarnings("rawtypes")
 	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 
+		@SuppressWarnings("unchecked")
 		Collection<ClienteTO> colecaoClientesCombo = new ArrayList();
 
 		Collection<?> retornoConsulta = null;
@@ -595,6 +595,7 @@ public class ControladorCadastro implements IControladorCadastro {
 	 * @author Vivianne Sousa
 	 * @since 26/05/2013
 	 */
+	@SuppressWarnings("unchecked")
 	public Collection<ClienteTO> pesquisarColecaoClienteTO() {
 
 		Collection<ClienteTO> colecaoClienteTO = null;

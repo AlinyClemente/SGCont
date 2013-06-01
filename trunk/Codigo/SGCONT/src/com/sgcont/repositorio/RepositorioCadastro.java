@@ -134,6 +134,7 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 	 * 
 	 * @return Usuario
 	 * */
+	@SuppressWarnings("rawtypes")
 	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 		
 		Session session = HibernateUtil.getSession();

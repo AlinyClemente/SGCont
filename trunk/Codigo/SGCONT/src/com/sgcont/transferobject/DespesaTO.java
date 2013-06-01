@@ -1,7 +1,6 @@
 package com.sgcont.transferobject;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;

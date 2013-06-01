@@ -24,6 +24,7 @@ public class UsuarioTO implements Serializable {
 
 	private String indicadorUso;
 
+	@SuppressWarnings("unused")
 	private Usuario usuario;
 
 	public String getCodigo() {

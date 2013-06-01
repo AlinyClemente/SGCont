@@ -299,6 +299,7 @@ public class Fachada {
 	 * 
 	 * @return Usuario
 	 * */
+	@SuppressWarnings("rawtypes")
 	public Collection pesquisarDadosClienteParaCombo(Short indicadorUso) {
 		
 		return this.controladorCadastro.pesquisarDadosClienteParaCombo(indicadorUso);

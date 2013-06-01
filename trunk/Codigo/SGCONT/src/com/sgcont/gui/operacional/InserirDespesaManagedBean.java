@@ -12,16 +12,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
-
 import com.sgcont.dados.cadastro.Cliente;
-import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.EmpresaContabil;
-import com.sgcont.dados.cadastro.Profissao;
 import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.fachada.Fachada;
-import com.sgcont.transferobject.ClientePessoaFisicaTO;
-import com.sgcont.transferobject.ClientePessoaJuridicaTO;
 import com.sgcont.transferobject.ClienteTO;
 import com.sgcont.transferobject.DespesaTO;
 
@@ -90,6 +84,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * @author Vivianne Sousa
 	 * @since 23/04/2013
 	 * */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String exibirInserirDespesa() {
 
 		this.despesaTO = new DespesaTO();
@@ -197,6 +192,7 @@ public class InserirDespesaManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
+	@SuppressWarnings("unused")
 	private void verificarMensagemCampo(FacesContext context,
 			UIComponent toValidate, String mensagem) {
 		if (mensagem != null) {

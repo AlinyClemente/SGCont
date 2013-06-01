@@ -3,8 +3,6 @@ package com.sgcont.gui.cadastro;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,13 +19,9 @@ import com.sgcont.dados.cadastro.Banco;
 import com.sgcont.dados.cadastro.ClientePessoaFisica;
 import com.sgcont.dados.cadastro.ClientePessoaJuridica;
 import com.sgcont.dados.cadastro.Contador;
-import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.cadastro.Profissao;
-import com.sgcont.dados.operacional.Despesa;
-import com.sgcont.dados.operacional.TipoDespesa;
 import com.sgcont.fachada.Fachada;
 import com.sgcont.transferobject.ClienteTO;
-import com.sgcont.transferobject.DespesaTO;
 import com.sgcont.util.CepWebService;
 
 /**
@@ -134,6 +128,7 @@ public class ManterClienteManagedBean implements Serializable {
 	 * @author Vivianne Sousa
 	 * @since 25/05/2013
 	 * */
+	@SuppressWarnings("unchecked")
 	public String exibirManterCliente() {
 
 		this.clienteTOSelecionado = new ClienteTO();

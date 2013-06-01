@@ -83,10 +83,12 @@ public class ManterUsuarioManagedBean implements Serializable {
 	 * @author Rômulo Aurélio
 	 * @since 25/05/2013
 	 * */
+	@SuppressWarnings("unchecked")
 	public String exibirManterUsuario() {
 
 		this.usuarioTOSelecionada = new UsuarioTO();
 
+		@SuppressWarnings("unused")
 		Fachada fachada = Fachada.getInstance();
 
 		this.colecaoUsuarioTO = this.pesquisarColecaoUsuarioTO();
@@ -123,6 +125,7 @@ public class ManterUsuarioManagedBean implements Serializable {
 	 * @author Mariana Victor
 	 * @since 13/05/2013
 	 */
+	@SuppressWarnings("unused")
 	private void verificarMensagemCampo(FacesContext context,
 			UIComponent toValidate, String mensagem) {
 		if (mensagem != null) {
@@ -136,10 +139,12 @@ public class ManterUsuarioManagedBean implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private Collection pesquisarColecaoUsuarioTO() {
 
 		Collection<UsuarioTO> colecaoUsuarioTO = null;
 		Fachada fachada = Fachada.getInstance();
+		@SuppressWarnings("unchecked")
 		Collection<Usuario> colecaoUsuario = (Collection<Usuario>) fachada
 				.pesquisar(Usuario.class);
 
