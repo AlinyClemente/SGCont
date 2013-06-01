@@ -135,6 +135,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
+			parametros.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
 			ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) Fachada
 					.getInstance().pesquisar(ClientePessoaFisica.class,
 							parametros);
@@ -168,6 +169,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCnpj", cnpj);
+			parametros.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
 			ClientePessoaJuridica clientePessoaJuridica = (ClientePessoaJuridica) this.repositorioUtil
 					.pesquisar(ClientePessoaJuridica.class, parametros);
 
@@ -196,6 +198,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("numeroRg", rg);
+		parametros.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
 		ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
 				.pesquisar(ClientePessoaFisica.class, parametros);
 
@@ -223,6 +226,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("numeroTituloEleitor", tituloEleitor);
+		parametros.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
 		ClientePessoaFisica clientePessoaFisica = (ClientePessoaFisica) this.repositorioUtil
 				.pesquisar(ClientePessoaFisica.class, parametros);
 
