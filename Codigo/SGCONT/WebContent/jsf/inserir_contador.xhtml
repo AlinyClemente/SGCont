@@ -61,12 +61,14 @@
 						<h:column>
 							<h:outputLabel value="Endereço:" />
 							<font color="#FF0000">*</font>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</h:column>
 						<p:inputText
 							value="#{InserirContadorBean.contadorTO.enderecoFormatado}"
 							id="enderecoFormatado" required="true" label="Endereço Formatado"
 							readonly="true"
-							style="border: 0pt none ; background-color:#EFEFEF;" size="90"
+							style="border: 0pt none ; background-color:#EFEFEF;" size="70"
 							maxlength="300" />
 						<p:commandButton id="showDialogButton" type="button"
 							value="Informar Endereço" onclick="dialogEnderecoContador.show()" />
