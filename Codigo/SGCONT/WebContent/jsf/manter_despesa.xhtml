@@ -86,34 +86,34 @@
 			        <h:panelGrid id="gridAtualizar" columns="2" cellpadding="5">
 			        
 			        
-			        	<h:outputText value="Código:" />  
+			        	<h:column><h:outputText value="Código:" /> </h:column> 
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.codigo}" 
 					    			id="codigo" required="false" label="Codigo" 
 					    			size="9" maxlength="9" disabled="true" />  
 			  
-			            <h:outputText value="Descrição:" />  
+			           <h:column><h:outputLabel for="descricao" value="Descrição:"/><font color="#FF0000">*</font></h:column>  
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.descricao}" 
 					    			id="descricao" required="false" label="Descrição" 
 					    			size="50" maxlength="50" />
 			  
-			            <h:outputText value="Tipo de Despesa:" />  
+			            <h:column><h:outputText for="tipoDespesa" value="Tipo de Despesa:" /><font color="#FF0000">*</font></h:column>  
 				        <p:autoComplete id="tipoDespesa" dropdown="true" 
 				        	value="#{ManterDespesaBean.despesaTOSelecionada.tipoDespesa}"   
 	                 				completeMethod="#{ManterDespesaBean.completaTipoDespesa}" 
 	                 				var="tipoDespesa" itemLabel="#{tipoDespesa.descricao}" 
 	                 				itemValue="#{tipoDespesa}" converter="tipoDespesaConverter" />
 			  
-			            <h:outputText value="Valor:" />  
+			             <h:column><h:outputLabel for="valor" value="Valor:" /><font color="#FF0000">*</font></h:column>  
 			            <p:inputText value="#{ManterDespesaBean.despesaTOSelecionada.valor}" 
 					    			id="valor" required="false" label="Valor" 
 					    			size="13" maxlength="13" onkeyup="moeda(this);"/>
 
-           				<h:outputText for="datadespesa" value="Data de Geração: " /> 
+           				 <h:column><h:outputText for="datadespesa" value="Data de Geração: " /><font color="#FF0000">*</font> </h:column> 
    						<p:inputMask value="#{ManterDespesaBean.despesaTOSelecionada.datadespesa}"
    									id="datadespesa" required="false" label="Data de Geração"
    									mask="99/99/9999" size="11" /> 
 
-         				<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
+         				<h:column><h:outputLabel for="empresaContabil" value="Empresa Contabil:" /></h:column>
 				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
 				        	value="#{ManterDespesaBean.despesaTOSelecionada.empresaContabil}"   
                   				completeMethod="#{ManterDespesaBean.completaEmpresaContabil}" 
