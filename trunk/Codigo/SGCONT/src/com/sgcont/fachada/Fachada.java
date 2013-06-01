@@ -1,6 +1,7 @@
 package com.sgcont.fachada;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
@@ -655,9 +656,9 @@ public class Fachada {
 	 * 
 	 * @param compromissoEvent
 	 * */
-	public void removerCompromisso(Compromisso compromisso) {
+	public void removerCompromisso(Compromisso compromisso, Usuario usuarioLogado) {
 		
-		this.controladorAgenda.removerCompromisso(compromisso);
+		this.controladorAgenda.removerCompromisso(compromisso, usuarioLogado);
 		
 	}
 	
@@ -720,6 +721,45 @@ public class Fachada {
 	public void atualizarLembretePendente(Integer codigoLembrete) {
 		
 		this.controladorAgenda.atualizarLembretePendente(codigoLembrete);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * [FS0004] - Verificar responsável compromisso
+	 *  
+	 * Método responsável por verificar se o usuário é o responsável pelo compromisso
+	 * 
+	 * @author Mariana Victor
+	 * @since 31/05/2013
+	 * 
+	 * @parm codigoCompromisso
+	 * @parm codigoUsuario
+	 * @return boolean
+	 * */
+	public boolean verificarUsuarioResponsavelCompromisso(Integer codigoCompromisso, Integer codigoUsuario) {
+		
+		return this.controladorAgenda.verificarUsuarioResponsavelCompromisso(codigoCompromisso, codigoUsuario);
+		
+	}
+	
+	/**
+	 * [UC010] Informar Agenda
+	 * 
+	 * Método responsável pesquisar compromissos associados a algum dos usuários 
+	 * no mesmo horário do compromisso a ser inserido.
+	 * 
+	 * @author Mariana Victor
+	 * @since 31/05/2013
+	 * 
+	 * @return Collection<Object[]>
+	 * */
+	public Collection<Object[]> pesquisarCompromissosMesmoHorario(
+			Integer idCompromisso, Date dataCompromisso, 
+			Collection<Usuario> colecaoUsuarios, Usuario usuarioLogado) {
+		
+		return this.controladorAgenda.pesquisarCompromissosMesmoHorario(
+				idCompromisso, dataCompromisso, colecaoUsuarios, usuarioLogado);
 		
 	}
 	

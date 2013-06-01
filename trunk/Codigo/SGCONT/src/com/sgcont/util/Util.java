@@ -441,4 +441,45 @@ public class Util {
 
 		return data;
 	}
+
+	/**
+	 * Retorna a hora no seguinte formato: "hh:mm:ss"
+	 * 
+	 * @author Mariana Victor
+	 * @since 31/05/2013
+	 * */
+	public static String formatarHoraSemData(Date data) {
+		StringBuffer dataBD = new StringBuffer("");
+
+		if (data != null) {
+
+			Calendar dataCalendar = new GregorianCalendar();
+			dataCalendar.setTime(data);
+
+			if (dataCalendar.get(Calendar.HOUR_OF_DAY) > 9) {
+				dataBD.append(dataCalendar.get(Calendar.HOUR_OF_DAY));
+			} else {
+				dataBD.append("0" + dataCalendar.get(Calendar.HOUR_OF_DAY));
+			}
+
+			dataBD.append(":");
+
+			if (dataCalendar.get(Calendar.MINUTE) > 9) {
+				dataBD.append(dataCalendar.get(Calendar.MINUTE));
+			} else {
+				dataBD.append("0" + dataCalendar.get(Calendar.MINUTE));
+			}
+
+			dataBD.append(":");
+
+			if (dataCalendar.get(Calendar.SECOND) > 9) {
+				dataBD.append(dataCalendar.get(Calendar.SECOND));
+			} else {
+				dataBD.append("0" + dataCalendar.get(Calendar.SECOND));
+			}
+
+		}
+
+		return dataBD.toString();
+	}
 }

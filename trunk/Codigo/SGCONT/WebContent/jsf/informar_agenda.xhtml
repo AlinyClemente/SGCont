@@ -46,6 +46,7 @@
 </h:head>
 <h:body>
 <f:view>
+	
 	<h:form id="form">  
 	    <p:layout fullPage="true">  
 		    <ui:include src="include/cabecalho.xhtml"/>  
@@ -55,6 +56,7 @@
 		    <ui:include src="include/menu.xhtml"/>
 	
 			<p:layoutUnit position="center" header="Gerenciar Agenda">
+				<ui:include src="include/dialog_tela_espera.xhtml"/>
 				<p:growl id="messages" showDetail="true" />  
 		
 			    <p:schedule id="schedule" locale="pt" value="#{InformarAgendaBean.eventModel}" widgetVar="myschedule">  
@@ -95,7 +97,7 @@
 			                <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00" />
 			            </p:inputMask>
 			  	
-				        <h:outputLabel for="usuarios" value="Usuários Responsáveis:" />
+				        <h:outputLabel for="usuarios" value="Envolvido(s):" />
 			            <p:selectManyMenu id="usuarios" value="#{InformarAgendaBean.event.colecaoUsuariosSelecionados}" 
 			            			converter="usuarioConverter" style="width:150px;height:80px" 
 			            			var="p" showCheckbox="true" required="false">  
@@ -187,9 +189,11 @@
 				   	</p:outputPanel>
 			        
 			        <f:facet name="footer">
-		            	<p:commandButton type="reset" value="Desfazer" />
+		            	<p:commandButton type="reset" value="Desfazer"
+			            	disabled="#{!InformarAgendaBean.event.editable}" />
 			            
 			            <p:commandButton id="addButton" value="Salvar"
+			            	disabled="#{!InformarAgendaBean.event.editable}"
 			            	action="#{InformarAgendaBean.exibirInformarAgenda}" 
 			            	actionListener="#{InformarAgendaBean.addEvent}" 
 			            	oncomplete="verificarValidacao(args);" />
