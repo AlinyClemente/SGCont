@@ -211,7 +211,7 @@ CREATE TABLE cadastro.empresa_contabil (
   razaoSocial VARCHAR(120) NOT NULL,
   nomeFantasia VARCHAR(120) NULL,
   cnpj VARCHAR(14) NOT NULL,
-  logomarca bytea NOT NULL,
+  logomarca bytea NULL,
   nnTelefone VARCHAR(20) NOT NULL,
   email VARCHAR(30) NULL,
   tmUltimaAlteracao TIMESTAMP NOT NULL,
