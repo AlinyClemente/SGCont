@@ -826,4 +826,16 @@ public class ControladorCadastro implements IControladorCadastro {
 		this.repositorioCadastro.atualizarIndicadorUsoContador(
 				cdContador, Contador.INDICADOR_INATIVO);
 	}
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void removerUsuario(Integer cdUsuario){
+		this.repositorioCadastro.atualizarIndicadorUsoUsuario(
+				cdUsuario, Usuario.INDICADOR_INATIVO);
+	}
 }

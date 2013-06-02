@@ -103,4 +103,13 @@ public interface IRepositorioCadastro {
 	 * 
 	 * */
 	public void atualizarIndicadorUsoContador(Integer cdContador, Short indicadorUso); 
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void atualizarIndicadorUsoUsuario(Integer cdUsuario, Short indicadorUso);
 }

@@ -297,4 +297,29 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		HibernateUtil.closeSession(session);
 		
 	}
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void atualizarIndicadorUsoUsuario(Integer cdUsuario, Short indicadorUso) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		String consulta = "UPDATE com.sgcont.dados.cadastro.Usuario " 
+				+ "SET indicadorUso = :indicadorUso, ultimaAlteracao = :dataAtual "
+				+ "WHERE codigo = :cdUsuario";
+
+		session.createQuery(consulta)
+				.setInteger("cdUsuario",cdUsuario)
+				.setShort("indicadorUso", indicadorUso)
+				.setTimestamp("dataAtual", new Date())
+				.executeUpdate();
+				
+		HibernateUtil.closeSession(session);
+		
+	}
 }

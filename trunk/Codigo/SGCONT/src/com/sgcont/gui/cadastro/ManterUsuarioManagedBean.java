@@ -148,9 +148,13 @@ public class ManterUsuarioManagedBean implements Serializable {
 
 		Collection<UsuarioTO> colecaoUsuarioTO = null;
 		Fachada fachada = Fachada.getInstance();
+		
+		Map<String, Object> parametrosPesquisar = new HashMap<String, Object>();
+		parametrosPesquisar.put("indicadorUso", new Short("1"));
+		
 		@SuppressWarnings("unchecked")
 		Collection<Usuario> colecaoUsuario = (Collection<Usuario>) fachada
-				.pesquisar(Usuario.class);
+				.pesquisarColecao(Usuario.class,parametrosPesquisar);
 
 		if (colecaoUsuario != null && !colecaoUsuario.isEmpty()) {
 			colecaoUsuarioTO = new ArrayList<UsuarioTO>();
@@ -175,10 +179,11 @@ public class ManterUsuarioManagedBean implements Serializable {
 		Integer idUsuario = new Integer(parametros.get("idUsuario"));
 
 		Fachada fachada = Fachada.getInstance();
+		fachada.removerUsuario(idUsuario);
 
-		Map<String, Object> parametrosRemover = new HashMap<String, Object>();
-		parametrosRemover.put("codigo", idUsuario);
-		fachada.remover(Usuario.class, parametrosRemover);
+//		Map<String, Object> parametrosRemover = new HashMap<String, Object>();
+//		parametrosRemover.put("codigo", idUsuario);
+//		fachada.remover(Usuario.class, parametrosRemover);
 
 		exibirManterUsuario();
 
@@ -226,8 +231,8 @@ public class ManterUsuarioManagedBean implements Serializable {
 							null));
 		}
 
-		if (this.usuarioTOSelecionada.getNumeroCpf() == null
-				|| this.usuarioTOSelecionada.getNumeroCpf().equals("")) {
+		if (this.usuarioTOSelecionada.getNumeroCpf() != null
+				&& !this.usuarioTOSelecionada.getNumeroCpf().equals("")) {
 
 			String mensagemCpf = Fachada.getInstance()
 					.verificarCPFValidoExistenteUsuario(
