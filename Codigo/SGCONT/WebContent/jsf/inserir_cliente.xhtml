@@ -30,6 +30,8 @@
 						    <h:column>
 						     	<h:outputLabel for="nome" value="Nome:"/>
 						    	<font color="#FF0000">*</font>
+						    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						    </h:column>
 					    	<p:inputText value="#{InserirClienteBean.clienteTO.nome}" 
 						    			id="nome" required="true" label="Nome" 
@@ -40,6 +42,8 @@
 						    <h:column>    
 					    		<h:outputLabel value="Endereço:"/>
 						    	<font color="#FF0000">*</font>
+						    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						    	&nbsp;&nbsp;&nbsp;
 						    </h:column>
 						    <p:inputText value="#{InserirClienteBean.clienteTO.enderecoFormatado}" 
 						    			id="enderecoFormatado" required="true" label="Endereço Formatado" readonly="true" style="border: 0pt none ; background-color:#EFEFEF;" 
@@ -207,6 +211,7 @@
 										<h:column>
 									    	<h:outputLabel for="numeroAgencia" value="Nº da Agência:"/>
 									    	<font color="#FF0000">*</font>
+									    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									    </h:column>
 									    <p:inputText value="#{InserirClienteBean.clientePfTO.numeroAgencia}" 
 									    			id="numeroAgencia" required="true" label="Nº da Agência" 
