@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;
@@ -117,6 +118,10 @@ public class InserirDespesaManagedBean implements Serializable {
 		if(validarEmpresaContabilouCliente()){
 			Fachada fachada = Fachada.getInstance();
 			fachada.inserirDespesa(this.despesaTO);
+			
+            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("mensagem", "Despesa inserida com sucesso.");
+            
 			return "tela_sucesso";
 		}else{
 			return "";

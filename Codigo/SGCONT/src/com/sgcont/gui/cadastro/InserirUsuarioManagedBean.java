@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.fachada.Fachada;
@@ -53,6 +54,9 @@ public class InserirUsuarioManagedBean implements Serializable {
 
 			fachada.inserirUsuario(this.usuarioTO);
 
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	        flash.put("mensagem", "Usuário inserido com sucesso.");
+			
 			return "tela_sucesso";
 		} else {
 			return "";

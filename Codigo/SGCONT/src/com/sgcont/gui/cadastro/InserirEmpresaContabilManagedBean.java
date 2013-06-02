@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
@@ -86,6 +87,9 @@ public class InserirEmpresaContabilManagedBean implements Serializable {
 		Fachada fachada = Fachada.getInstance();
 		
 		fachada.inserirEmpresaContabil(this.empresaContabilTO);
+		
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        flash.put("mensagem", "Empresa Contabil inserida com sucesso.");
 		
 		return "tela_sucesso";
 		
