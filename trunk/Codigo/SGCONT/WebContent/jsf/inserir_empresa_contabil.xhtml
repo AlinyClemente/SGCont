@@ -51,6 +51,7 @@
 					    <h:column>    
 				    		<h:outputLabel value="Endereço:"/>
 					    	<font color="#FF0000">*</font>
+					    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    </h:column>
 					    <p:inputText value="#{InserirEmpresaContabilBean.empresaContabilTO.enderecoFormatado}" 
 					    			id="enderecoFormatado" required="true" label="Endereço Formatado" readonly="true" style="border: 0pt none ; background-color:#EFEFEF;" 
@@ -65,6 +66,7 @@
 					  
   						<h:column>    
 				    		<h:outputLabel value="Logomarca:"/>
+				    		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    </h:column>
 						  
 					    <p:fileUpload id="arquivo" fileUploadListener="#{InserirEmpresaContabilBean.upload}"  
@@ -72,7 +74,7 @@
 						            auto="true" 
 						            update="messageFile, refreshMe"  
 						            sizeLimit="5000000"   
-						            allowTypes="/(\.|\/)(gif|jpe?g|png|dwg)$/"
+						            allowTypes="/(\.|\/)(gif|jpeg|png|dwg)$/"
 						            invalidSizeMessage="ARQUIVO MUITO GRANDE (5MB)."
 	                                invalidFileMessage="TIPO INVALIDO"
 	                                label="Adicionar"
@@ -87,7 +89,11 @@
 					</h:panelGrid>
 					
 					<h:panelGrid columns="3" cellpadding="5" id="gridDados3">   
-				       	<h:column><h:outputLabel for="telefone" value="Telefone:"/><font color="#FF0000">*</font></h:column>
+				       	<h:column>
+							<h:outputLabel for="telefone" value="Telefone:" />
+							<font color="#FF0000">*</font>
+					       	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				       	</h:column>
 					    <p:inputMask value="#{InserirEmpresaContabilBean.empresaContabilTO.numeroTelefone}" 
 					    			id="telefone" required="true" label="Telefone" 
 					    			size="20" maxlength="11" mask="(999)9999-9999"/>
