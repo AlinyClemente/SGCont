@@ -424,6 +424,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
+			parametros.put("indicadorUso", Usuario.INDICADOR_ATIVO);
 			Usuario usuario = (Usuario) Fachada.getInstance().pesquisar(
 					Usuario.class, parametros);
 
@@ -452,6 +453,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
+			parametros.put("indicadorUso", Contador.INDICADOR_ATIVO);
 			Contador contador = (Contador) Fachada.getInstance().pesquisar(
 					Contador.class, parametros);
 
@@ -507,6 +509,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("login", login);
+		parametros.put("indicadorUso", Usuario.INDICADOR_ATIVO);
 		usuario = (Usuario) Fachada.getInstance().pesquisar(Usuario.class,
 				parametros);
 
@@ -552,6 +555,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
+			parametros.put("indicadorUso", Contador.INDICADOR_ATIVO);
 			Contador contador = (Contador) Fachada.getInstance().pesquisar(
 					Contador.class, parametros);
 
@@ -579,6 +583,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("numeroCrc", crc);
+		parametros.put("indicadorUso", Contador.INDICADOR_ATIVO);
 		Contador contador = (Contador) Fachada.getInstance().pesquisar(
 				Contador.class, parametros);
 
@@ -605,7 +610,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		Collection<ClienteTO> colecaoClienteTO = null;
 		
 		Map<String, Object> parametrosPesquisar = new HashMap<String, Object>();
-		parametrosPesquisar.put("indicadorUso", new Short("1"));
+		parametrosPesquisar.put("indicadorUso", Cliente.INDICADOR_ATIVO);
 		Collection<Cliente> colecaoCliente = (Collection<Cliente>) 
 				this.repositorioUtil.pesquisarColecao(Cliente.class,parametrosPesquisar);
 		
@@ -689,6 +694,7 @@ public class ControladorCadastro implements IControladorCadastro {
 		} else {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("numeroCpf", cpf);
+			parametros.put("indicadorUso", Usuario.INDICADOR_ATIVO);
 			Usuario usuario = (Usuario) Fachada.getInstance().pesquisar(
 					Usuario.class, parametros);
 
@@ -719,6 +725,7 @@ public class ControladorCadastro implements IControladorCadastro {
 
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("indicadorResponsavel", 1);
+			parametros.put("indicadorUso", Contador.INDICADOR_ATIVO);
 			Contador contador = (Contador) Fachada.getInstance().pesquisar(
 					Contador.class, parametros);
 
