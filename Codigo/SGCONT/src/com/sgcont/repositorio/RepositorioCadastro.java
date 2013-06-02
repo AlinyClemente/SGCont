@@ -45,12 +45,14 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		String consulta = "SELECT usur "
 				+ " FROM Usuario usur "
 				+ " WHERE login = :login "
-				+ "   and senha = :senha ";
+				+ "   and senha = :senha "
+				+ "   and indicadorUso = :indicadorUsoAtivo ";
 		
 		Usuario usuario = (Usuario) session
 				.createQuery(consulta)
                 .setParameter("login", login)
                 .setParameter("senha", senha)
+                .setParameter("indicadorUsoAtivo", new Short("1"))
                 .uniqueResult();
 
 		HibernateUtil.closeSession(session);
@@ -77,11 +79,13 @@ public class RepositorioCadastro implements IRepositorioCadastro {
 		
 		String consulta = "SELECT usur "
 				+ " FROM Usuario usur "
-				+ " WHERE usur.codigo <> :codigoUsuario ";
+				+ " WHERE usur.codigo <> :codigoUsuario "
+				+ "   and usur.indicadorUso = :indicadorUsoAtivo ";
 		
 		Collection<Usuario> colecaoUsuario = (Collection<Usuario>) 
 				session.createQuery(consulta)
 	                .setParameter("codigoUsuario", codigoUsuario)
+	                .setParameter("indicadorUsoAtivo", new Short("1"))
 	                .list();
 
 		HibernateUtil.closeSession(session);
