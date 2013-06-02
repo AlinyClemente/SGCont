@@ -764,7 +764,6 @@ public class Fachada {
 		
 	}
 	
-	
 	/**
 	 * [UC004] ManterContador
 	 * 
@@ -773,5 +772,16 @@ public class Fachada {
 	 * */
 	public void removerContador (Integer cdContador){
 		this.controladorCadastro.removerContador(cdContador);
+	}
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void removerUsuario(Integer cdUsuario){
+		this.controladorCadastro.removerUsuario(cdUsuario);
 	}
 }

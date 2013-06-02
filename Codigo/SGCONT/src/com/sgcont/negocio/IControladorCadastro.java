@@ -324,5 +324,14 @@ public interface IControladorCadastro {
 	 * @since 29/05/2013
 	 * */
 	public void removerContador (Integer cdContador);
+	
+	/**
+	 * [UC006] Manter Usuario
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * 
+	 * */
+	public void removerUsuario(Integer cdUsuario);
 }
 

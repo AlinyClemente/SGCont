@@ -16,6 +16,9 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public static final  Short INDICADOR_ATIVO = new Short("1");
+	public static final  Short INDICADOR_INATIVO = new Short("2");
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_usuario")
