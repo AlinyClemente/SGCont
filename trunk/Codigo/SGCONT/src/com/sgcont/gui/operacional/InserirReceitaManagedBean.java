@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.EmpresaContabil;
@@ -113,14 +114,14 @@ public class InserirReceitaManagedBean implements Serializable {
 		if(validarEmpresaContabilouCliente()){
 		
 			fachada.inserirReceita(this.receitaTO);
+			
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("mensagem", "Receita inserida com sucesso.");
+			
 			return "tela_sucesso";
 		}else{
 			return "";
 		}
-		
-		
-		
-
 	}
 
 	private boolean validarEmpresaContabilouCliente() {

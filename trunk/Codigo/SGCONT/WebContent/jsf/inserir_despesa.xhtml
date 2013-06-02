@@ -32,7 +32,7 @@
 					    <p:message id="descricaoMessage" for="descricao" />
 				    	
             		    <h:column><h:outputText for="tipoDespesa" value="Tipo de Despesa:" /><font color="#FF0000">*</font></h:column>  
-				        <p:autoComplete id="tipoDespesa" dropdown="true" 
+				        <p:autoComplete id="tipoDespesa" dropdown="true"  size="30" scrollHeight="150"
 				        	value="#{InserirDespesaBean.despesaTO.tipoDespesa}"   
 	                 				completeMethod="#{InserirDespesaBean.completaTipoDespesa}" 
 	                 				var="tipoDespesa" itemLabel="#{tipoDespesa.descricao}" 
@@ -53,7 +53,7 @@
            						<p:message id="datadespesaMessage" for="datadespesa" />
         							
          				<h:column><h:outputLabel for="empresaContabil" value="Empresa Contabil:" /></h:column>
-				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
+				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" scrollHeight="150"
 				        	value="#{InserirDespesaBean.despesaTO.empresaContabil}"   
                   				completeMethod="#{InserirDespesaBean.completaEmpresaContabil}" 
                   				var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}" 
@@ -62,7 +62,7 @@
 	                    <p:message id="empresaContabilMessage" for="empresaContabil" />
 					
 						<h:column><h:outputText for="clienteTO" value="Cliente:" /> </h:column>
-						<p:autoComplete id="clienteTO" dropdown="true" size="30"
+						<p:autoComplete id="clienteTO" dropdown="true" size="30" scrollHeight="150"
 							value="#{InserirDespesaBean.despesaTO.clienteTO}"
 							completeMethod="#{InserirDespesaBean.completaCliente}"
 							var="clienteTO" itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"

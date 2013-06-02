@@ -87,7 +87,7 @@
 					    			size="50" maxlength="50" />
 			  
 			            <h:column><h:outputText for="tipoDespesa" value="Tipo de Despesa:" /><font color="#FF0000">*</font></h:column>  
-				        <p:autoComplete id="tipoDespesa" dropdown="true" 
+				        <p:autoComplete id="tipoDespesa" dropdown="true"  size="30" scrollHeight="150"
 				        	value="#{ManterDespesaBean.despesaTOSelecionada.tipoDespesa}"   
 	                 				completeMethod="#{ManterDespesaBean.completaTipoDespesa}" 
 	                 				var="tipoDespesa" itemLabel="#{tipoDespesa.descricao}" 
@@ -104,7 +104,7 @@
    									mask="99/99/9999" size="11" /> 
 
          				<h:column><h:outputLabel for="empresaContabil" value="Empresa Contabil:" /></h:column>
-				        <p:autoComplete id="empresaContabil" dropdown="true" size="30" 
+				        <p:autoComplete id="empresaContabil" dropdown="true" size="30"  scrollHeight="150"
 				        	value="#{ManterDespesaBean.despesaTOSelecionada.empresaContabil}"   
                   				completeMethod="#{ManterDespesaBean.completaEmpresaContabil}" 
                   				var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}" 
@@ -112,7 +112,7 @@
                   				/>
 
 						<h:column><h:outputText for="clienteTO" value="Cliente:" /> </h:column>
-						<p:autoComplete id="clienteTO" dropdown="true" size="30"
+						<p:autoComplete id="clienteTO" dropdown="true" size="30" scrollHeight="150"
 							value="#{ManterDespesaBean.despesaTOSelecionada.clienteTO}"
 							completeMethod="#{ManterDespesaBean.completaCliente}"
 							var="clienteTO" itemLabel="#{clienteTO.documento} - #{clienteTO.nome}"

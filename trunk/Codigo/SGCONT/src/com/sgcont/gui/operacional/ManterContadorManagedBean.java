@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 
@@ -129,6 +130,9 @@ public class ManterContadorManagedBean implements Serializable {
 			Fachada fachada = Fachada.getInstance();
 			fachada.atualizarContador(this.contadorTOSelecionada);
 
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	        flash.put("mensagem", "Contador atualizado com sucesso.");
+			
 			return "tela_sucesso";
 		} else {
 			return "";

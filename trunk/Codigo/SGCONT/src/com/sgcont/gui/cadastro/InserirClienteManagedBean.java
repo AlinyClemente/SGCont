@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 
@@ -183,6 +184,9 @@ public class InserirClienteManagedBean implements Serializable {
 		} else {
 			fachada.inserirClientePJ(this.clienteTO, this.clientePjTO);
 		}
+		
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        flash.put("mensagem", "Cliente inserido com sucesso.");
 		
 		return "tela_sucesso";
 		

@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 
@@ -79,6 +80,9 @@ public class InserirContadorManagedBean implements Serializable {
 
 		fachada.inserirContador(this.contadorTO);
 
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        flash.put("mensagem", "Contador inserido com sucesso.");
+		
 		return "tela_sucesso";
 
 	}

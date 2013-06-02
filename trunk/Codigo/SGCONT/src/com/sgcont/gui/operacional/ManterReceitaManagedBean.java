@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.operacional.Receita;
@@ -154,6 +155,9 @@ public class ManterReceitaManagedBean implements Serializable {
 				&& validarEmpresaContabilouCliente()) {
 			Fachada fachada = Fachada.getInstance();
 			fachada.atualizarReceita(this.receitaTOSelecionada);
+			
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("mensagem", "Receita atualizada com sucesso.");
 
 			return "tela_sucesso";
 		} else {

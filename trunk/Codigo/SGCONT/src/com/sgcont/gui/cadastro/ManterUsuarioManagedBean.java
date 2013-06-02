@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.Usuario;
 import com.sgcont.fachada.Fachada;
@@ -111,6 +112,9 @@ public class ManterUsuarioManagedBean implements Serializable {
 			Fachada fachada = Fachada.getInstance();
 			fachada.atualizarUsuario(this.usuarioTOSelecionada);
 
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	        flash.put("mensagem", "Usuário atualizado com sucesso.");
+			
 			return "tela_sucesso";
 		} else {
 			return "";

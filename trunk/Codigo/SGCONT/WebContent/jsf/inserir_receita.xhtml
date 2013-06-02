@@ -44,7 +44,7 @@
 							<h:outputText for="tipoReceita" value="Tipo Receita:" />
 							<font color="#FF0000">*</font>
 						</h:column>
-						<p:autoComplete id="tipoReceita" dropdown="true" size="30"
+						<p:autoComplete id="tipoReceita" dropdown="true" size="30" scrollHeight="150"
 							value="#{InserirReceitaBean.receitaTO.tipoReceita}"
 							completeMethod="#{InserirReceitaBean.completaTipoReceita}"
 							var="tipoReceita" itemLabel="#{tipoReceita.descricao}"
@@ -74,7 +74,7 @@
 						<h:column>
 							<h:outputLabel for="empresaContabil" value="Empresa Contabil:" />
 						</h:column>
-						<p:autoComplete id="empresaContabil" dropdown="true" size="30"
+						<p:autoComplete id="empresaContabil" dropdown="true" size="30" scrollHeight="150"
 							value="#{InserirReceitaBean.receitaTO.empresaContabil}"
 							completeMethod="#{InserirReceitaBean.completaEmpresaContabil}"
 							var="empresaContabil" itemLabel="#{empresaContabil.nomeFantasia}"
@@ -85,7 +85,7 @@
 						<h:column>
 							<h:outputText for="clienteTO" value="Cliente:" />
 						</h:column>
-						<p:autoComplete id="clienteTO" dropdown="true" size="30"
+						<p:autoComplete id="clienteTO" dropdown="true" size="30" scrollHeight="150"
 							value="#{InserirReceitaBean.receitaTO.clienteTO}"
 							completeMethod="#{InserirReceitaBean.completaCliente}"
 							var="clienteTO"

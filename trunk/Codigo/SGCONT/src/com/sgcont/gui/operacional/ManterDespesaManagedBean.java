@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.dados.operacional.Despesa;
@@ -143,6 +144,10 @@ public class ManterDespesaManagedBean implements Serializable {
 		if(validarDadosDespesaSelecionada() && validarEmpresaContabilouCliente()){
 			Fachada fachada = Fachada.getInstance();
 			fachada.atualizarDespesa(this.despesaTOSelecionada);
+			
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("mensagem", "Despesa atualizada com sucesso.");
+            
 			return "tela_sucesso";
 		}else{
 			return "";
