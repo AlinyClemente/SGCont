@@ -146,12 +146,6 @@ public class InserirClienteManagedBean implements Serializable {
 		
 		this.colecaoProfissoes = (Collection<Profissao>) 
 				fachada.pesquisar(Profissao.class);
-//		this.colecaoClienteTitular = (Collection<ClientePessoaFisica>) 
-//				fachada.pesquisar(ClientePessoaFisica.class);
-//		this.colecaoContador = (Collection<Contador>) 
-//				fachada.pesquisar(Contador.class);
-//		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
-//				fachada.pesquisar(ClientePessoaJuridica.class);
 		this.colecaoBanco = (Collection<Banco>) 
 				fachada.pesquisar(Banco.class);
 		
