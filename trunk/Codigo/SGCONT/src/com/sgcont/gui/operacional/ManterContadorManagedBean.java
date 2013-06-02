@@ -18,6 +18,7 @@ import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 
+import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.fachada.Fachada;
@@ -186,9 +187,12 @@ public class ManterContadorManagedBean implements Serializable {
 
 		Collection<ContadorTO> colecaoContadorTO = null;
 		Fachada fachada = Fachada.getInstance();
+		
+		Map<String, Object> parametrosPesquisar = new HashMap<String, Object>();
+		parametrosPesquisar.put("indicadorUso", new Short("1"));
 		@SuppressWarnings("unchecked")
 		Collection<Contador> colecaoContador = (Collection<Contador>) fachada
-				.pesquisar(Contador.class);
+				.pesquisarColecao(Contador.class,parametrosPesquisar);
 
 		if (colecaoContador != null && !colecaoContador.isEmpty()) {
 			colecaoContadorTO = new ArrayList<ContadorTO>();
@@ -344,10 +348,12 @@ public class ManterContadorManagedBean implements Serializable {
 		Integer idContador = new Integer(parametros.get("idContador"));
 
 		Fachada fachada = Fachada.getInstance();
+		
+		fachada.removerContador(idContador);
 
-		Map<String, Object> parametrosRemover = new HashMap<String, Object>();
-		parametrosRemover.put("codigo", idContador);
-		fachada.remover(Contador.class, parametrosRemover);
+//		Map<String, Object> parametrosRemover = new HashMap<String, Object>();
+//		parametrosRemover.put("codigo", idContador);
+//		fachada.remover(Contador.class, parametrosRemover);
 
 		exibirManterContador();
 

@@ -19,6 +19,9 @@ import javax.persistence.Table;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Contador {
 
+	public static final  Short INDICADOR_ATIVO = new Short("1");
+	public static final  Short INDICADOR_INATIVO = new Short("2");
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="cadastro.seq_contador")
 	@SequenceGenerator(name="cadastro.seq_contador", sequenceName="cadastro.seq_contador")

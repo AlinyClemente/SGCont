@@ -726,7 +726,7 @@ public class ControladorCadastro implements IControladorCadastro {
 					&& !contador.getCodigo().toString().equals(codigoContador)) {
 				mensagem = "Contador " + contador.getNomeRazaoSocial()
 						+ " já cadastrado como responsável.";
-			} else if (contador != null) {
+			} else if (contador != null && codigoContador == null) {
 				mensagem = "Contador " + contador.getNomeRazaoSocial()
 						+ " já cadastrado como responsável.";
 			}
@@ -816,4 +816,14 @@ public class ControladorCadastro implements IControladorCadastro {
 		
 	}
 	
+	/**
+	 * [UC004] ManterContador
+	 * 
+	 * @author Vivianne Sousa
+	 * @since 29/05/2013
+	 * */
+	public void removerContador (Integer cdContador) {
+		this.repositorioCadastro.atualizarIndicadorUsoContador(
+				cdContador, Contador.INDICADOR_INATIVO);
+	}
 }

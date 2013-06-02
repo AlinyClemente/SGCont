@@ -148,8 +148,8 @@ public class InserirClienteManagedBean implements Serializable {
 				fachada.pesquisar(Profissao.class);
 //		this.colecaoClienteTitular = (Collection<ClientePessoaFisica>) 
 //				fachada.pesquisar(ClientePessoaFisica.class);
-		this.colecaoContador = (Collection<Contador>) 
-				fachada.pesquisar(Contador.class);
+//		this.colecaoContador = (Collection<Contador>) 
+//				fachada.pesquisar(Contador.class);
 //		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
 //				fachada.pesquisar(ClientePessoaJuridica.class);
 		this.colecaoBanco = (Collection<Banco>) 
@@ -164,6 +164,11 @@ public class InserirClienteManagedBean implements Serializable {
 		parametrosPesquisarClientePessoaJuridica.put("cliente.indicadorUso", Cliente.INDICADOR_ATIVO);
 		this.colecaoClienteMatriz = (Collection<ClientePessoaJuridica>) 
 				fachada.pesquisarColecao(ClientePessoaJuridica.class,parametrosPesquisarClientePessoaJuridica);
+		
+		Map<String, Object> parametrosPesquisarContador = new HashMap<String, Object>();
+		parametrosPesquisarContador.put("indicadorUso", Contador.INDICADOR_ATIVO);
+		this.colecaoContador = (Collection<Contador>) 
+				fachada.pesquisarColecao(Contador.class,parametrosPesquisarContador);
 		
 		return "inserir_cliente";
 		
