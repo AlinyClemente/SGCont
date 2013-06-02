@@ -177,7 +177,7 @@
 							    <p:message id="numeroCeiMessage" for="numeroCei" />
 							    
 						        <h:outputText for="profissao" value="Profissão:" />  
-						        <p:autoComplete id="profissao" dropdown="true" size="30"
+						        <p:autoComplete id="profissao" dropdown="true" size="30" scrollHeight="150"
 						        	value="#{InserirClienteBean.clientePfTO.profissao}"   
                     				completeMethod="#{InserirClienteBean.completaProfissao}" 
                     				var="profissao" itemLabel="#{profissao.nomeProfissao}" 
@@ -185,7 +185,7 @@
 			                    <p:message id="profissaoMessage" for="profissao" />
 			                    		
 						        <h:outputText for="clienteTitular" value="Cliente Titular para IR:" />
-						        <p:autoComplete id="clienteTitular" dropdown="true" size="30" 
+						        <p:autoComplete id="clienteTitular" dropdown="true" size="30" scrollHeight="150" 
 						        	value="#{InserirClienteBean.clientePfTO.clienteTitular}"   
                     				completeMethod="#{InserirClienteBean.completaClienteTitular}" 
                     				var="clientePF" itemLabel="#{clientePF.numeroCpfFormatado} - #{clientePF.cliente.nome}" 
@@ -200,7 +200,7 @@
 											<h:outputLabel for="banco" value="Banco:"/>
 									    	<font color="#FF0000">*</font>
 									    </h:column>
-								        <p:autoComplete id="banco" dropdown="true" size="30"
+								        <p:autoComplete id="banco" dropdown="true" size="30" scrollHeight="150"
 										        	value="#{InserirClienteBean.clientePfTO.banco}"   
 						               				completeMethod="#{InserirClienteBean.completaBanco}" 
 						               				var="banco" itemLabel="#{banco.descricaoBanco}" 
@@ -263,7 +263,7 @@
 			                    <p:message id="inscricaoEstadualMessage" for="inscricaoEstadual" />
 
 						        <h:outputText for="clienteMatriz" value="Cliente Matriz:" />
-						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30"  
+						        <p:autoComplete id="clienteMatriz" dropdown="true" size="30" scrollHeight="150"  
 						        	value="#{InserirClienteBean.clientePjTO.clienteMatriz}"   
                     				completeMethod="#{InserirClienteBean.completaClienteMatriz}" 
                     				var="clientePJ" itemLabel="#{clientePJ.numeroCnpjFormatado} - #{clientePJ.cliente.nome}" 
@@ -274,7 +274,7 @@
 						        	<h:outputText for="contador" value="Contador:" />
 							    	<font color="#FF0000">*</font>
 							    </h:column>
-						        <p:autoComplete id="contador" dropdown="true" size="30" 
+						        <p:autoComplete id="contador" dropdown="true" size="30" scrollHeight="150" 
 						        	value="#{InserirClienteBean.clientePjTO.contador}"   
                     				completeMethod="#{InserirClienteBean.completaContador}" 
                     				var="contador" itemLabel="#{contador.nomeRazaoSocial}" 
