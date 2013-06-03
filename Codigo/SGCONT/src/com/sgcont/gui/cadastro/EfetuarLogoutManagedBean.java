@@ -1,4 +1,4 @@
-package com.sgcont.util;
+package com.sgcont.gui.cadastro;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean (name="LogoutBean")
 @SessionScoped
-public class Logout implements Serializable {
+public class EfetuarLogoutManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

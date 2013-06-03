@@ -172,7 +172,6 @@ public class ClientePessoaFisicaTO implements Serializable {
 
 	public ClientePessoaFisicaTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ClientePessoaFisicaTO(ClientePessoaFisica clientePessoaFisica) {

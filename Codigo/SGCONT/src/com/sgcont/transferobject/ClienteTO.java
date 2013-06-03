@@ -345,7 +345,6 @@ public class ClienteTO implements Serializable {
 	
 	public ClienteTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	
