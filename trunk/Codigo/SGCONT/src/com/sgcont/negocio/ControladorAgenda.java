@@ -405,9 +405,6 @@ public class ControladorAgenda implements IControladorAgenda {
 		String assunto = "[SGCONT] Aviso: " + usuarioLogado.getNome() 
 				+ " não participará do compromisso " + compromissoPrincipal.getDescricaoCompromisso();
 		
-//		String mensagem = "<h1>" + compromissoPrincipal.getDescricaoCompromisso() + "</h1>"
-//				+ "<h2>Data: " + Util.formatarDataComHora(compromissoPrincipal.getDataInicioCompromisso()) + "</h2>";
-
 		String mensagem = "<h2>O usuário " + usuarioLogado.getNome() 
 				+ " não participará do compromisso " + compromissoPrincipal.getDescricaoCompromisso() 
 				+ " no dia " + Util.formatarData(compromissoPrincipal.getDataInicioCompromisso()) 

@@ -144,7 +144,6 @@ public class DespesaTO implements Serializable {
 
 	public DespesaTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public DespesaTO(Despesa despesa) {

@@ -1,4 +1,4 @@
-package com.sgcont.gui.operacional;
+package com.sgcont.gui.cadastro;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ import javax.faces.context.Flash;
 
 import org.primefaces.context.RequestContext;
 
-import com.sgcont.dados.cadastro.Cliente;
 import com.sgcont.dados.cadastro.Contador;
 import com.sgcont.dados.cadastro.EmpresaContabil;
 import com.sgcont.fachada.Fachada;

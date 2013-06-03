@@ -1,4 +1,4 @@
-package com.sgcont.gui.agenda;
+package com.sgcont.gui.operacional;
 
 import java.io.Serializable;
 import java.util.Collection;
